@@ -7,6 +7,9 @@ import EspritIndeora from '../components/EspritIndeora';
 import dipeshImg from '../assets/team/dipesh.png';
 import alessiaImg from '../assets/team/alessia.png';
 import rajanImg from '../assets/team/rajan.jpg';
+import InteractiveMap from '../components/InteractiveMap';
+import VisionSection from '../components/VisionSection';
+import EnviesVoyage from '../components/EnviesVoyage';
 
 
 const Home = () => {
@@ -191,16 +194,139 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
         `}} />
       </div>
 
-      {/* 2. Quote Section */}
+      <EspritIndeora />
+
+      {/* 3. Meet the Team Section */}
+      <section className="bg-[#60727a] py-3 md:py-4 px-6 text-white overflow-hidden">
+        <div className="max-w-6xl mx-auto">
+          {/* Header Content */}
+          <div className="flex flex-col items-center mb-4 md:mb-8 text-center max-w-3xl mx-auto">
+            <span className="text-white/60 text-[8px] md:text-[9px] tracking-[0.2em] uppercase mb-1">
+              L'art du voyage sur mesure en Inde
+            </span>
+            <h2 className="text-lg md:text-xl font-serif italic text-[#D7CBB3] mb-2 leading-tight">
+              NOTRE VISION DU VOYAGE
+            </h2>
+            <p className="text-white/80 text-[11px] md:text-[12px] leading-relaxed font-medium max-w-xl">
+              Voyager en Inde, c'est découvrir bien plus qu'une destination. C'est ressentir une émotion.
+            </p>
+          </div>
+
+          {/* Team Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+            {/* Vishnu Swami */}
+            <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
+                  <img src={dipeshImg} alt="Vishnu Swami" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">Vishnu Swami</h3>
+                  <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide">Fondateur francophone</p>
+                </div>
+              </div>
+              <div className="text-white/80 text-[13px] md:text-[14px] leading-relaxed flex flex-col h-full">
+                <p className="flex-grow">
+                  Passionné de voyages depuis toujours, Vishnu Swami a d’abord exploré le monde au-delà de l’Inde. Il a vécu plusieurs années en France où il a appris le français qu’il parle couramment, and s’est imprégné de la culture européenne.
+                  {showFullVishnu && (
+                    <>
+                      {" "}Directeur de notre agence à Delhi, Vishnu incarne la promesse d'authenticité. Sa connaissance du terrain and sa passion pour le principe de Atithi Devo Bhava garantissent une immersion profonde.
+                    </>
+                  )}
+                  {!showFullVishnu && "..."}
+                </p>
+                <a
+                  href="/about"
+                  className="text-[10px] tracking-[0.3em] font-bold text-white/40 hover:text-white uppercase flex items-center gap-2 mt-4 transition-all duration-300"
+                >
+                  LIRE LA SUITE <span>↓</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Amandine Fastré */}
+            <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
+              <div className="flex items-center gap-4 mb-2">
+                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
+                  <img src={alessiaImg} alt="Amandine Fastré" className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">Amandine Fastré</h3>
+                  <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide">Créatrice d'itinéraires</p>
+                </div>
+              </div>
+              <div className="text-white/80 text-[13px] md:text-[14px] leading-relaxed flex flex-col h-full">
+                <p className="flex-grow">
+                  Amandine est une véritable passionnée de l’Inde, un pays où elle a vécu plus de 18 ans en tant que créatrice de voyages sur mesure. Durant ces années, elle a sillonné de nombreuses régions and exploré des lieux authentiques.
+                  {showFullAlessia && (
+                    <>
+                      {" "}Basée en France, Amandine est votre premier point de contact and l'architecte de votre voyage. Elle transforme vos envies en itinéraire sur mesure, alliant découvertes culturelles and organisation fluide.
+                    </>
+                  )}
+                  {!showFullAlessia && "..."}
+                </p>
+                <a
+                  href="/about"
+                  className="text-[10px] tracking-[0.3em] font-bold text-white/40 hover:text-white uppercase flex items-center gap-2 mt-4 transition-all duration-300"
+                >
+                  LIRE LA SUITE <span>↓</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          {/* 
+          <div className="flex justify-center mt-8 md:mt-10">
+            <a href="/about" className="bg-[#B54118] hover:bg-[#963512] text-white text-[9px] md:text-[10px] tracking-[0.2em] font-bold py-2.5 px-8 rounded-full transition-all duration-300 shadow-lg border border-white/10 uppercase">
+              Explorer Notre Agence
+            </a>
+          </div> */}
+        </div>
+      </section>
+
+
+      <InteractiveMap />
+      <EnviesVoyage />
+      <VisionSection />
+      <PourquoiVoyager />
+
+      {/* 5. Featured Destinations */}
+      <section className="bg-white py-6 md:py-8 px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <h3 className="text-[9px] md:text-[10px] tracking-[0.4em] font-bold text-[#2d343e]/40 mb-2 uppercase">DISCOVER THE BEST OF INDIA</h3>
+          <h2 className="text-[9px] md:text-[10px] tracking-[0.2em] font-bold text-[#A88B52] mb-8 uppercase">THIS MONTH'S FEATURED DESTINATIONS</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4">
+            {[
+              { name: 'Rajasthan', img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80' },
+              { name: 'Kerala', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80' },
+              { name: 'Taj Mahal', img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80' },
+              { name: 'Varanasi', img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80' },
+              { name: 'Gujarat', img: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=800&q=80' },
+            ].map((dest, i) => (
+              <div key={i} className="flex flex-col items-center group cursor-pointer">
+                <div className="relative w-full h-[160px] md:h-[220px] overflow-hidden shadow-lg mb-3">
+                  <img src={dest.img} alt={dest.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                </div>
+                <span className="text-[#2d343e] text-[10px] font-bold tracking-[0.2em] uppercase font-serif italic">{dest.name}</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-8">
+            <button className="bg-[#2d343e] hover:bg-black text-white text-[10px] tracking-[0.3em] font-bold py-4 px-12 rounded-sm transition-all duration-300 uppercase">VIEW ALL DESTINATIONS</button>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+      {/* Google Reviews Section */}
       <section className="bg-white py-8 md:py-12 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center">
           <div className="pt-0 -mt-6 md:-mt-10 mb-8 flex flex-col items-center">
             <div className="w-[180px] md:w-[240px] h-16 md:h-24 flex justify-center items-center mx-auto">
               <img src={logo} alt="Indeora Logo" className="max-h-full w-auto object-contain" />
             </div>
-            {/* <p className="text-[10px] md:text-[11px] tracking-[0.4em] text-[#A88B52] font-bold uppercase mt-2">
-            
-            </p> */}
           </div>
 
           <div className="relative w-full flex-grow flex items-center overflow-hidden py-4">
@@ -252,196 +378,8 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
           </div>
         </div>
       </section>
-
-      {/* 3. Meet the Team Section */}
-      <section className="bg-[#60727a] pt-1 md:pt-2 pb-8 md:pb-10 px-6 text-white overflow-hidden">
-        <div className="max-w-6xl mx-auto">
-          {/* Header Content */}
-          <div className="flex flex-col items-center mb-6 md:mb-8 text-center max-w-3xl mx-auto">
-            <span className="text-white/60 text-[10px] md:text-[11px] tracking-[0.2em] uppercase mb-2">
-              L'art du voyage sur mesure en Inde
-            </span>
-            <h2 className="text-xl md:text-2xl font-serif italic text-[#D7CBB3] mb-2 leading-tight">
-              NOTRE VISION DU VOYAGE
-            </h2>
-            <p className="text-white/80 text-[12px] md:text-[13px] leading-relaxed font-medium max-w-xl">
-              Voyager en Inde, c'est découvrir bien plus qu'une destination. C'est ressentir une émotion, vivre des rencontres sincères and s'ouvrir à une culture parmi les plus fascinantes au monde.
-            </p>
-          </div>
-
-          {/* Team Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
-            {/* Vishnu Swami */}
-            <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
-              <div className="flex items-center gap-4 md:gap-6 mb-4">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shadow-2xl border-2 border-white/20 shrink-0">
-                  <img src={dipeshImg} alt="Vishnu Swami" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <h3 className="text-[#D7CBB3] text-lg md:text-xl font-serif italic mb-1">Vishnu Swami</h3>
-                  <p className="text-white font-bold text-[13px] md:text-[14px] tracking-wide">Fondateur and accompagnateur francophone</p>
-                </div>
-              </div>
-              <div className="text-white/80 text-[13px] md:text-[14px] leading-relaxed flex flex-col h-full">
-                <p className="flex-grow">
-                  Passionné de voyages depuis toujours, Vishnu Swami a d’abord exploré le monde au-delà de l’Inde. Il a vécu plusieurs années en France où il a appris le français qu’il parle couramment, and s’est imprégné de la culture européenne.
-                  {showFullVishnu && (
-                    <>
-                      {" "}Directeur de notre agence à Delhi, Vishnu incarne la promesse d'authenticité. Sa connaissance du terrain and sa passion pour le principe de Atithi Devo Bhava garantissent une immersion profonde.
-                    </>
-                  )}
-                  {!showFullVishnu && "..."}
-                </p>
-                <a
-                  href="/about"
-                  className="text-[10px] tracking-[0.3em] font-bold text-white/40 hover:text-white uppercase flex items-center gap-2 mt-4 transition-all duration-300"
-                >
-                  LIRE LA SUITE <span>↓</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Amandine Fastré */}
-            <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
-              <div className="flex items-center gap-4 md:gap-6 mb-4">
-                <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden shadow-2xl border-2 border-white/20 shrink-0">
-                  <img src={alessiaImg} alt="Amandine Fastré" className="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <h3 className="text-[#D7CBB3] text-lg md:text-xl font-serif italic mb-1">Amandine Fastré</h3>
-                  <p className="text-white font-bold text-[13px] md:text-[14px] tracking-wide">Créatrice d'itinéraires sur mesure</p>
-                </div>
-              </div>
-              <div className="text-white/80 text-[13px] md:text-[14px] leading-relaxed flex flex-col h-full">
-                <p className="flex-grow">
-                  Amandine est une véritable passionnée de l’Inde, un pays où elle a vécu plus de 18 ans en tant que créatrice de voyages sur mesure. Durant ces années, elle a sillonné de nombreuses régions and exploré des lieux authentiques.
-                  {showFullAlessia && (
-                    <>
-                      {" "}Basée en France, Amandine est votre premier point de contact and l'architecte de votre voyage. Elle transforme vos envies en itinéraire sur mesure, alliant découvertes culturelles and organisation fluide.
-                    </>
-                  )}
-                  {!showFullAlessia && "..."}
-                </p>
-                <a
-                  href="/about"
-                  className="text-[10px] tracking-[0.3em] font-bold text-white/40 hover:text-white uppercase flex items-center gap-2 mt-4 transition-all duration-300"
-                >
-                  LIRE LA SUITE <span>↓</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex justify-center mt-8 md:mt-10">
-            <a href="/about" className="bg-[#B54118] hover:bg-[#963512] text-white text-[9px] md:text-[10px] tracking-[0.2em] font-bold py-2.5 px-8 rounded-full transition-all duration-300 shadow-lg border border-white/10 uppercase">
-              Explorer Notre Agence
-            </a>
-          </div>
-        </div>
-      </section>
-
-
-      {/* 4. Our Unique Network (Tan) */}
-      <section className="bg-[#D7CBB3] py-8 md:py-10 px-6 text-white overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start gap-8 md:gap-12">
-          <div className="w-full md:w-1/2 order-2 md:order-2 md:-ml-20">
-            <h3 className="text-[12px] md:text-[15px] tracking-[0.4em] font-bold opacity-60 mb-2 uppercase">
-              L'art du voyage sur mesure en Inde
-            </h3>
-            <h2 className="text-2xl md:text-3xl font-serif italic mb-6 leading-tight">
-              NOTRE VISION DU VOYAGE
-            </h2>
-            <div className="space-y-6 md:space-y-7 text-white/90 leading-relaxed text-[14px] font-medium pr-[30px]">
-              <p>Voyager en Inde, c'est découvrir bien plus qu'une destination. C'est ressentir une émotion, vivre des rencontres sincères and s'ouvrir à une culture parmi les plus fascinantes au monde.</p>
-              <div className="pt-4">
-                <button onClick={() => setShowFullVision(!showFullVision)} className="text-[10px] tracking-[0.3em] font-bold text-white/60 hover:text-white uppercase flex items-center gap-2 transition-all duration-300">
-                  {showFullVision ? 'LIRE MOINS' : 'LIRE LA SUITE'} <span>↓</span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="w-full md:w-1/2 relative order-1 md:order-1 flex justify-center md:sticky md:top-32">
-            <div className="relative z-10 w-full max-w-[300px]">
-              <div className="relative z-10 w-full rounded-sm border border-white/10 overflow-hidden">
-                <img src="https://indeoravoyages.com/wp-content/uploads/elementor/thumbs/varanasi-13-1-1-rbmynfyklq4sh4uv8ixv7hr2yzu63nyen7aoyqx8ag.jpg" alt="Varanasi" className="w-full h-auto block brightness-95" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      {/* 5. Featured Destinations */}
-      <section className="bg-white py-6 md:py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-[9px] md:text-[10px] tracking-[0.4em] font-bold text-[#2d343e]/40 mb-2 uppercase">DISCOVER THE BEST OF INDIA</h3>
-          <h2 className="text-[9px] md:text-[10px] tracking-[0.2em] font-bold text-[#A88B52] mb-8 uppercase">THIS MONTH'S FEATURED DESTINATIONS</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {[
-              { name: 'Rajasthan', img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Kerala', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Taj Mahal', img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Varanasi', img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Gujarat', img: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=800&q=80' },
-            ].map((dest, i) => (
-              <div key={i} className="flex flex-col items-center group cursor-pointer">
-                <div className="relative w-full h-[280px] md:h-[320px] overflow-hidden shadow-lg mb-4">
-                  <img src={dest.img} alt={dest.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                </div>
-                <span className="text-[#2d343e] text-[10px] font-bold tracking-[0.2em] uppercase font-serif italic">{dest.name}</span>
-              </div>
-            ))}
-          </div>
-          <div className="mt-8">
-            <button className="bg-[#2d343e] hover:bg-black text-white text-[10px] tracking-[0.3em] font-bold py-4 px-12 rounded-sm transition-all duration-300 uppercase">VIEW ALL DESTINATIONS</button>
-          </div>
-        </div>
-      </section>
-      <PourquoiVoyager />
-
-
-      {/* 6. Monthly Feature (Tan) */}
-      <section className="bg-[#D7CBB3] pt-8 md:pt-10 pb-10 md:pb-14 px-6 text-white">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 md:gap-20 ">
-          {/* Left Text Content */}
-          <div className="w-full md:w-1/2 order-2 md:order-2">
-            <h3 className="text-[9px] md:text-[10px] tracking-[0.4em] font-bold opacity-60 mb-6 uppercase">
-              L'art du voyage sur mesure en Inde
-            </h3>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif italic mb-8 leading-tight">
-              NOTRE VISION DU VOYAGE
-            </h2>
-            <div className="space-y-6 text-white/90 leading-relaxed text-[14px] font-medium">
-              <p>
-                Chez Indeora Voyages, agence locale en Inde, nous croyons qu'un voyage réussi repose sur l'expertise, la proximité and la passion. Forte de several décennies d'experience, notre équipe franco-indienne a fait de l'Inde sa seconde maison.
-              </p>
-
-              <div className="pt-8">
-                <button className="bg-[#2d343e] hover:bg-black text-white text-[10px] tracking-[0.3em] font-bold py-4 px-12 rounded-sm transition-all duration-300 uppercase">
-                  LEARN MORE
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Image */}
-          <div className="w-full md:w-1/2 relative order-1 md:order-1 flex justify-center">
-            <div className="relative z-10 w-full max-w-[250px] md:max-w-[290px]">
-              {/* Main Image Layer */}
-              <div className="relative z-10 w-full rounded-sm border border-white/10 overflow-hidden shadow-2xl">
-                <img
-                  src="https://indeoravoyages.com/wp-content/uploads/2025/08/pexels-abhi31-27554038-scaled.jpg"
-                  alt="Buddha"
-                  className="w-full h-auto block grayscale-[20%] hover:grayscale-0 transition-all duration-700 brightness-95"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <EspritIndeora />
-
+      
+              
       <Footer />
     </>
   );

@@ -313,33 +313,6 @@ const ContactRapide = () => {
       </div>
 
       <PourquoiVoyager />
-      {/* Luxury Chandelier Banner (Synchronized) */}
-      <section className="relative min-h-[320px] py-16 md:py-0 flex items-center overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <img
-            src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=2000&q=80"
-            alt="Luxury Interior"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40"></div>
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between w-full gap-8 md:gap-0">
-          <div className="max-w-2xl text-center md:text-left">
-            <h2 className="text-white text-3xl md:text-5xl lg:text-6xl font-serif italic mb-6 leading-tight">
-              Redefining Luxury Travel
-            </h2>
-            <p className="text-white/90 text-sm md:text-base leading-relaxed mb-6 md:mb-10 max-w-xl">
-              Indeora Voyages has over 25 years combined experience in providing award winning, bespoke itineraries and unparalleled luxury DMC India travel services to the most discerning clientele. Contact us today for a quote.
-            </p>
-          </div>
-          <div className="pt-4 md:pt-0">
-            <button className="border-2 border-[#A88B52] text-[#A88B52] text-[10px] tracking-[0.3em] font-bold py-5 px-12 hover:bg-[#A88B52] hover:text-white transition-all duration-300 uppercase whitespace-nowrap">
-              LIVE THE INDEORA PROMISE
-            </button>
-          </div>
-        </div>
-      </section>
-
       <Footer />
     </div>
   );
