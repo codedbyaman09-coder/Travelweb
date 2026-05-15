@@ -7,9 +7,9 @@ const VisionSection = () => {
       <div className="flex flex-col md:flex-row items-stretch h-auto md:h-[220px]">
         {/* Left Side: Image */}
         <div className="w-full md:w-[60%] h-[180px] md:h-full">
-          <img 
-            src={visionImg} 
-            alt="Notre Vision du Voyage" 
+          <img
+            src={visionImg}
+            alt="Notre Vision du Voyage"
             className="w-full h-full object-cover"
           />
         </div>
@@ -27,12 +27,12 @@ const VisionSection = () => {
               <div className="w-8 h-[1px] bg-[#A88B52] mt-2 opacity-30"></div>
             </div>
             <p className="text-[#2d343e]/70 text-[11px] md:text-[12px] leading-relaxed mb-4 max-w-lg">
-              Voyager en Inde, c'est découvrir bien plus qu'une destination. 
-              C'est ressentir une émotion, vivre des rencontres sincères 
+              Voyager en Inde, c'est découvrir bien plus qu'une destination.
+              C'est ressentir une émotion, vivre des rencontres sincères
               et s'ouvrir à une culture parmi les plus fascinantes au monde.
             </p>
-            <a 
-              href="/about" 
+            <a
+              href="/about"
               className="text-[9px] tracking-[0.2em] font-bold text-[#A88B52] hover:text-[#2d343e] uppercase flex items-center gap-2 transition-all duration-300 group"
             >
               LIRE LA SUITE <span className="text-[12px] group-hover:translate-x-1 transition-transform">→</span>

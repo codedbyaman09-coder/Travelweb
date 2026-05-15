@@ -2,8 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Footer from '../components/Footer';
-import PourquoiVoyager from '../components/PourquoiVoyager';
 import EspritIndeora from '../components/EspritIndeora';
+import EnviesGrid from '../components/EnviesGrid';
+import FAQSection from '../components/FAQSection';
 import dipeshImg from '../assets/team/dipesh.png';
 import alessiaImg from '../assets/team/alessia.png';
 import rajanImg from '../assets/team/rajan.jpg';
@@ -202,13 +203,13 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
           {/* Header Content */}
           <div className="flex flex-col items-center mb-4 md:mb-8 text-center max-w-3xl mx-auto">
             <span className="text-white/60 text-[8px] md:text-[9px] tracking-[0.2em] uppercase mb-1">
-              L'art du voyage sur mesure en Inde
+              L’Inde, une émotion avant tout
             </span>
             <h2 className="text-lg md:text-xl font-serif italic text-[#D7CBB3] mb-2 leading-tight">
-              NOTRE VISION DU VOYAGE
+              L’art du voyage sur mesure en Inde
             </h2>
             <p className="text-white/80 text-[11px] md:text-[12px] leading-relaxed font-medium max-w-xl">
-              Voyager en Inde, c'est découvrir bien plus qu'une destination. C'est ressentir une émotion.
+              L’Inde se découvre avec émotion, authenticité et liberté, au rythme de vos envies.
             </p>
           </div>
 
@@ -285,36 +286,106 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
 
       <InteractiveMap />
-      <EnviesVoyage />
+      <EnviesGrid />
       <VisionSection />
-      <PourquoiVoyager />
+
+      <EnviesVoyage />
+      {/* <VisionSection /> */}
 
       {/* 5. Featured Destinations */}
-      <section className="bg-white py-6 md:py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h3 className="text-[9px] md:text-[10px] tracking-[0.4em] font-bold text-[#2d343e]/40 mb-2 uppercase">DISCOVER THE BEST OF INDIA</h3>
-          <h2 className="text-[9px] md:text-[10px] tracking-[0.2em] font-bold text-[#A88B52] mb-8 uppercase">THIS MONTH'S FEATURED DESTINATIONS</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4">
-            {[
-              { name: 'Rajasthan', img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Kerala', img: 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Taj Mahal', img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Varanasi', img: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=800&q=80' },
-              { name: 'Gujarat', img: 'https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&w=800&q=80' },
-            ].map((dest, i) => (
-              <div key={i} className="flex flex-col items-center group cursor-pointer">
-                <div className="relative w-full h-[160px] md:h-[220px] overflow-hidden shadow-lg mb-3">
-                  <img src={dest.img} alt={dest.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                </div>
-                <span className="text-[#2d343e] text-[10px] font-bold tracking-[0.2em] uppercase font-serif italic">{dest.name}</span>
-              </div>
-            ))}
+      <section className="bg-white py-10 md:py-14 px-6">
+        <div className="max-w-[1500px] mx-auto text-center">
+          {/* Top Heading */}
+          <p className="text-[11px] md:text-[13px] tracking-[0.55em] font-bold text-[#2d343e]/40 uppercase mb-3">
+            L’INDE AUTREMENT
+          </p>
+
+          <h2 className="font-serif text-[26px] md:text-[36px] lg:text-[42px] text-[#6b4632] leading-tight mb-4">
+            Des expériences uniques, des souvenirs pour la vie.
+          </h2>
+
+          <div className="flex items-center justify-center mb-3">
+            <span className="w-14 h-px bg-[#c5a15c]/60"></span>
+            <span className="mx-4 text-[#c5a15c] text-3xl leading-none">♧</span>
+            <span className="w-14 h-px bg-[#c5a15c]/60"></span>
           </div>
-          <div className="mt-8">
-            <button className="bg-[#2d343e] hover:bg-black text-white text-[10px] tracking-[0.3em] font-bold py-4 px-12 rounded-sm transition-all duration-300 uppercase">VIEW ALL DESTINATIONS</button>
+
+          {/* Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 md:gap-3">
+            {[
+              {
+                title: "BIEN-ÊTRE, YOGA\n& AYURVEDA",
+                icon: "♧",
+                desc: "Yoga, méditation et soins ayurvédiques.",
+                img: "/src/assets/image copy 9.png",
+              },
+              {
+                title: "HORS DES\nSENTIERS BATTUS",
+                icon: "△",
+                desc: "Régions préservées et beauté de l’Inde.",
+                img: "/src/assets/image copy 10.png",
+              },
+              {
+                title: "RENCONTRES\nETHNIQUES",
+                icon: "☟",
+                desc: "Communautés locales et traditions.",
+                img: "/src/assets/image copy 11.png",
+              },
+              {
+                title: "FAMILLE &\nLUNE DE MIEL",
+                icon: "♥",
+                desc: "Expériences sur mesure et moments magiques.",
+                img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=90",
+              },
+              {
+                title: "NATURE &\nVIE SAUVAGE",
+                icon: "♣",
+                desc: "Nature sauvage, safaris et parcs nationaux.",
+                img: "/src/assets/image copy 12.png",
+              },
+            ].map((item, i) => (
+        <div
+          key={i}
+          className="relative h-[340px] md:h-[380px] lg:h-[420px] bg-white overflow-hidden group shadow-sm border border-[#eadfce]/20"
+        >
+          {/* Image - Maximized height */}
+          <img
+            src={item.img}
+            alt={item.title}
+            className="absolute top-0 left-0 w-full h-[85%] object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+
+          {/* Smooth fade into white */}
+          <div className="absolute left-0 right-0 top-[55%] h-[35%] bg-gradient-to-b from-transparent via-white/80 to-white"></div>
+
+          {/* Compact White bottom */}
+          <div className="absolute left-0 right-0 bottom-0 h-[15%] bg-white"></div>
+
+          {/* Content - Compressed at the bottom */}
+          <div className="absolute left-0 right-0 bottom-0 px-3 pb-3 text-center flex flex-col items-center">
+            {/* Gold Lotus SVG */}
+            <div className="text-[#A88B52] mb-2 opacity-90 scale-90">
+               <svg className="w-8 h-8 fill-current" viewBox="0 0 24 24">
+                <path d="M12,22C12,22 12,18 15,15C18,12 22,12 22,12C22,12 18,12 15,9C12,6 12,2 12,2C12,2 12,6 9,9C6,12 2,12 2,12C2,12 6,12 9,15C12,18 12,22 12,22Z" />
+              </svg>
+            </div>
+
+            <h3 className="font-serif text-[14px] md:text-[16px] text-[#5e412f] font-bold leading-tight tracking-[0.03em] uppercase whitespace-pre-line mb-1">
+              {item.title}
+            </h3>
+
+            <p className="hidden md:block text-[11px] leading-tight text-[#2d343e]/70 font-medium max-w-[180px] mx-auto line-clamp-1 mb-1">
+              {item.desc}
+            </p>
+
+            <div className="w-8 h-[0.5px] bg-[#c5a15c]/30 mx-auto"></div>
+          </div>
+        </div>
+            ))}
           </div>
         </div>
       </section>
+      <FAQSection />
 
 
 
@@ -323,11 +394,18 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       {/* Google Reviews Section */}
       <section className="bg-white py-8 md:py-12 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center">
-          <div className="pt-0 -mt-6 md:-mt-10 mb-8 flex flex-col items-center">
+          {/* <div className="pt-0 -mt-6 md:-mt-10 mb-8 flex flex-col items-center">
             <div className="w-[180px] md:w-[240px] h-16 md:h-24 flex justify-center items-center mx-auto">
               <img src={logo} alt="Indeora Logo" className="max-h-full w-auto object-contain" />
             </div>
+          </div> */}
+          <div className="w-full text-left mb-8">
+            <h2 className="text-[#2d343e] font-serif text-[22px] md:text-[28px] italic opacity-90">
+              Ils ont aimé voyager avec nous
+            </h2>
+            <div className="w-12 h-[1px] bg-[#A88B52] mt-2"></div>
           </div>
+
 
           <div className="relative w-full flex-grow flex items-center overflow-hidden py-4">
             <div className="flex animate-marquee-cards gap-8 whitespace-nowrap">
@@ -378,8 +456,8 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
           </div>
         </div>
       </section>
-      
-              
+
+
       <Footer />
     </>
   );

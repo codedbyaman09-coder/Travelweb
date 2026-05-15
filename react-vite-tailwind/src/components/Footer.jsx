@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import footerLogo from '../assets/png .png';
 import footerBannerImg from '../assets/ChatGPT Image May 11, 2026, 10_27_35 PM.png';
 
 const Footer = () => {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
+
   return (
     <>
       <div className="bg-white pb-6 pt-10">
@@ -128,31 +132,193 @@ const Footer = () => {
       </footer>
 
       {/* Fixed Bottom Contact Bar */}
-      <div className="fixed bottom-0 left-0 w-full bg-[#5B6D75] py-2 px-6 border-t border-white/5 z-[9998] shadow-[0_-4px_20px_rgba(0,0,0,0.2)]">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-1.5 md:gap-2 text-[9px] md:text-[11px] text-[#C6A46D] tracking-wide">
-          <Link to="/contact-rapide" className="hidden md:block hover:text-white transition-colors cursor-pointer">
-            Contacter un spécialiste local francophone
-          </Link>
-          <div className="flex items-center justify-center w-full md:w-auto gap-4 md:gap-6 font-medium">
-            <a href="tel:+917023016044" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <i className="fas fa-phone-alt text-[8px]"></i>
-              <span className="whitespace-nowrap">+91 9 35 14 21 959</span>
-            </a>
-            <a href="tel:+917023016044" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <i className="fas fa-phone-alt text-[8px]"></i>
-              <span className="whitespace-nowrap">+33 6 16 64 26 26</span>
-            </a>
-            <span className="opacity-20">|</span>
-            {/* <a href="mailto:contact@indeoravoyages.com" className="hover:text-white transition-colors flex items-center gap-1.5">
-              <i className="fas fa-envelope text-[8px]"></i>
-              <span className="whitespace-nowrap">contact@indeoravoyages.com</span>
-            </a> */}
-            <span className="opacity-20">|</span>
-            <Link to="/contact-rapide" className="hover:text-white transition-all flex items-center gap-1.5 border border-[#C6A46D]/30 px-3 py-1 rounded-sm hover:border-[#C6A46D]">
-              <i className="fas fa-paper-plane text-[8px]"></i>
-              <span className="whitespace-nowrap">DEMANDER UN DEVIS</span>
-            </Link>
+      <div className="fixed bottom-0 left-0 w-full bg-white border-t border-gray-100 z-[9999] shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+
+        {/* Callback Panel (Left) */}
+        <div className={`absolute bottom-full left-0 w-full md:w-[450px] bg-[#f8fafb] border-t border-r border-gray-100 transition-all duration-500 overflow-hidden z-[10000] shadow-[10px_-10px_30px_rgba(0,0,0,0.05)] ${isContactOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="px-8 py-10">
+            <div className="flex flex-col items-center text-center">
+              {/* Custom Map Icon */}
+              <div className="mb-6">
+                <svg className="w-14 h-14 text-[#2D5C64]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
+                  <path d="M12 2C8.13401 2 5 5.13401 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13401 15.866 2 12 2Z" />
+                  <path d="M12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11Z" />
+                  <path d="M7 16L5 18M17 16L19 18M12 4V2M4 12H2M22 12H20" strokeLinecap="round" />
+                </svg>
+              </div>
+
+              <h3 className="text-[#2D5C64] text-[22px] font-serif italic font-light mb-8">Faites-vous rappeler par nos experts</h3>
+
+              <div className="w-full space-y-6">
+                {/* Phone Input with Dark Background */}
+                <div className="flex rounded-sm overflow-hidden shadow-sm">
+                  <div className="w-20 bg-white border border-gray-200 flex items-center justify-center text-gray-400 text-sm font-light">
+                    +33
+                  </div>
+                  <input
+                    type="tel"
+                    placeholder="Numéro de téléphone"
+                    className="flex-1 bg-[#3a3a3a] text-white px-6 py-4 text-sm outline-none placeholder:text-gray-400 font-light"
+                  />
+                </div>
+
+                <div className="text-center">
+                  <p className="text-[#2D5C64]/70 text-[13px] mb-5 font-light tracking-wide italic">Quand souhaitez-vous être appelé ?</p>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="relative">
+                      <select className="w-full px-4 py-3.5 bg-white border border-gray-200 text-sm appearance-none outline-none focus:border-[#2D5C64] cursor-pointer text-gray-400 font-light rounded-sm">
+                        <option>Any Day</option>
+                        <option>Sunday</option>
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                        <option>Saturday</option>
+                      </select>
+                      <svg className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                    <div className="relative">
+                      <select className="w-full px-4 py-3.5 bg-white border border-gray-200 text-sm appearance-none outline-none focus:border-[#2D5C64] cursor-pointer text-gray-400 font-light rounded-sm">
+                        <option>Any Time</option>
+                        <option>Morning</option>
+                        <option>Afternoon</option>
+                        <option>Evening</option>
+                      </select>
+                      <svg className="w-4 h-4 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md mt-4 text-center">
+                  APPELEZ-MOI
+                </button>
+              </div>
+            </div>
           </div>
+        </div>
+
+        {/* Newsletter Panel (Right-ish) */}
+        <div className={`absolute bottom-full right-[200px] w-full md:w-[450px] bg-[#f8fafb] border-t border-x border-gray-100 transition-all duration-500 overflow-hidden z-[10000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] ${isAppointmentOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="px-8 md:px-12 py-12">
+            {/* Newsletter Section */}
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-6">
+                <svg className="w-14 h-14 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p className="text-[#2D5C64] text-sm leading-relaxed mb-10 max-w-sm font-light">
+                Voyages thématiques, itinéraires originaux et conseils exclusifs... Recevez notre newsletter
+              </p>
+
+              <div className="w-full space-y-6">
+                <input
+                  type="email"
+                  placeholder="Adresse email"
+                  className="w-full px-6 py-4 bg-white border border-gray-200 text-sm outline-none focus:border-[#2D5C64] transition-colors placeholder:text-gray-300 rounded-sm font-light shadow-sm"
+                />
+                <button className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md">
+                  JE M'INSCRIS
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Newsletter Panel (Right-ish) */}
+        <div className={`absolute bottom-full right-[200px] w-full md:w-[450px] bg-[#f8fafb] border-t border-x border-gray-100 transition-all duration-500 overflow-hidden z-[10000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] ${isAppointmentOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className="px-8 md:px-12 py-12">
+            {/* Newsletter Section */}
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-6">
+                <svg className="w-14 h-14 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <p className="text-[#2D5C64] text-sm leading-relaxed mb-10 max-w-sm font-light">
+                Voyages thématiques, itinéraires originaux et conseils exclusifs... Recevez notre newsletter
+              </p>
+
+              <div className="w-full space-y-6">
+                <input
+                  type="email"
+                  placeholder="Adresse email"
+                  className="w-full px-6 py-4 bg-white border border-gray-200 text-sm outline-none focus:border-[#2D5C64] transition-colors placeholder:text-gray-300 rounded-sm font-light shadow-sm"
+                />
+                <button className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md">
+                  CONTACTEZ MOI
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row items-stretch h-auto md:h-[60px]">
+
+
+          {/* Info Sections */}
+          <div className="flex-1 flex items-center divide-x divide-gray-100">
+            {/* Contacter un specialiste francophone */}
+            <div
+              className="flex-1 flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors"
+              onClick={() => setIsContactOpen(!isContactOpen)}
+            >
+              <div className="relative">
+                <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5">
+                  <svg className={`w-3 h-3 text-[#2D5C64] transition-transform duration-300 ${isContactOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
+              <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Contacter un specialiste francophone</span>
+            </div>
+
+            {/* Phone Section */}
+            <div className="flex-[1.2] flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors">
+              <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-6 6" />
+              </svg>
+              <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
+                <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Contact :</span>
+                <div className="flex items-center gap-3">
+                  <a href="https://wa.me/919351421959" className="text-[#2D5C64] text-[11px] md:text-[13px] font-bold tracking-wider whitespace-nowrap hover:underline">+91 93514 21959</a>
+                  <span className="text-[#2D5C64]/20 hidden md:block">|</span>
+                  <a href="tel:+33616642626" className="text-[#2D5C64] text-[11px] md:text-[13px] font-bold tracking-wider whitespace-nowrap hover:underline">+33 6 16 64 26 26</a>
+                </div>
+              </div>
+            </div>
+
+            {/* Appointment Section */}
+            <div
+              className="flex-1 flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors"
+              onClick={() => {
+                setIsAppointmentOpen(!isAppointmentOpen);
+                setIsContactOpen(false);
+              }}
+            >
+              <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Prendre rendez-vous</span>
+              <svg className={`w-3 h-3 text-[#2D5C64] transition-transform duration-300 ${isAppointmentOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </div>
+
+          {/* CTA Button */}
+          <Link to="/contact-rapide" className="bg-[#2D5C64] px-8 md:px-12 py-4 md:py-0 flex items-center justify-center cursor-pointer hover:bg-[#234b51] transition-all duration-300 group">
+            <span className="text-white text-[12px] md:text-[14px] font-bold tracking-[0.15em] uppercase whitespace-nowrap">DEMANDER UN DEVIS</span>
+          </Link>
         </div>
       </div>
     </>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
+import InteractiveMap from '../components/InteractiveMap';
+import EnviesGrid from '../components/EnviesGrid';
 
 const DestinationDetail = () => {
   const { id } = useParams();
@@ -300,6 +302,8 @@ const DestinationDetail = () => {
           </section>
         )}
 
+        <InteractiveMap />
+        <EnviesGrid />
         <EspritIndeora />
 
         <Footer />
@@ -313,6 +317,8 @@ const DestinationDetail = () => {
         <div className="absolute inset-0 z-0"><img src={data.heroImg} alt={data.title} className="w-full h-full object-cover" /><div className="absolute inset-0 bg-black/30"></div></div>
         <div className="relative z-10 px-6"><h1 className="text-white text-5xl md:text-7xl font-bold">{data.title}</h1></div>
       </section>
+      <InteractiveMap />
+      <EnviesGrid />
       <EspritIndeora />
 
       <Footer />

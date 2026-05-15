@@ -114,7 +114,7 @@ const EspritIndeora = () => {
 
           <button
             onClick={() => navigate('/contact-rapide')}
-            className="bg-[#a94f2d] text-white border-[1px] border-[#d8b08b] px-4 py-1.5 rounded-md uppercase tracking-tight text-[11px] md:text-[12px] font-semibold shadow-sm hover:bg-[#8e3f22] transition-all duration-300"
+            className="bg-[#f2bd80] text-white border-[1px] border-[#d8b08b] px-4 py-1.5 rounded-md uppercase tracking-tight text-[11px] md:text-[12px] font-semibold shadow-sm hover:bg-[#8e3f22] transition-all duration-300"
           >
             ❁ &nbsp; Faites imaginer votre voyage en Inde
           </button>

@@ -9,6 +9,7 @@ import Destinations from './pages/Destinations';
 import DestinationDetail from './pages/DestinationDetail';
 import Blog from './pages/Blog';
 import AvantDePartir from './pages/AvantDePartir';
+import Testing from './pages/Testing';
 import ContactRapide from './pages/ContactRapide';
 import './App.css';
 
@@ -70,6 +71,7 @@ const AppContent = () => {
           <Route path="/press" element={<div className="pt-32 text-center">Press Page</div>} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/avant-de-partir" element={<AvantDePartir />} />
+          <Route path="/testing" element={<Testing />} />
           <Route path="/contact-rapide" element={<ContactRapide />} />
           <Route path="/contact" element={<div className="pt-32 text-center">Contact Page</div>} />
         </Routes>
