@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import countryData from '../data/countries';
+const allCountries = countryData.allCountries || [];
 import footerLogo from '../assets/png .png';
 import footerBannerImg from '../assets/ChatGPT Image May 11, 2026, 10_27_35 PM.png';
 
 const Footer = () => {
+  const [footerPhone, setFooterPhone] = useState('');
+  const [footerCountryCode, setFooterCountryCode] = useState('+33');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
 
@@ -152,12 +156,27 @@ const Footer = () => {
               <div className="w-full space-y-6">
                 {/* Phone Input with Dark Background */}
                 <div className="flex rounded-sm overflow-hidden shadow-sm">
-                  <div className="w-20 bg-white border border-gray-200 flex items-center justify-center text-gray-400 text-sm font-light">
-                    +33
+                  <div className="relative w-24 bg-white border border-gray-200 flex items-center">
+                    <select
+                      value={footerCountryCode}
+                      onChange={(e) => setFooterCountryCode(e.target.value)}
+                      className="w-full h-full bg-transparent pl-3 pr-6 text-[12px] text-gray-500 outline-none appearance-none cursor-pointer font-light"
+                    >
+                      {allCountries.map((country, index) => (
+                        <option key={index} value={`+${country.dialCode}`}>
+                          {country.iso2.toUpperCase()} +{country.dialCode}
+                        </option>
+                      ))}
+                    </select>
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
+                      <svg className="w-2 h-2 text-gray-400" fill="currentColor" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z" /></svg>
+                    </div>
                   </div>
                   <input
                     type="tel"
                     placeholder="Numéro de téléphone"
+                    value={footerPhone}
+                    onChange={(e) => setFooterPhone(e.target.value)}
                     className="flex-1 bg-[#3a3a3a] text-white px-6 py-4 text-sm outline-none placeholder:text-gray-400 font-light"
                   />
                 </div>
@@ -316,7 +335,7 @@ const Footer = () => {
           </div>
 
           {/* CTA Button */}
-          <Link to="/contact-rapide" className="bg-[#2D5C64] px-8 md:px-12 py-4 md:py-0 flex items-center justify-center cursor-pointer hover:bg-[#234b51] transition-all duration-300 group">
+          <Link to="/demander-un-devis" className="bg-[#2D5C64] px-8 md:px-12 py-4 md:py-0 flex items-center justify-center cursor-pointer hover:bg-[#234b51] transition-all duration-300 group">
             <span className="text-white text-[12px] md:text-[14px] font-bold tracking-[0.15em] uppercase whitespace-nowrap">DEMANDER UN DEVIS</span>
           </Link>
         </div>

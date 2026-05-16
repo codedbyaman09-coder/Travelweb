@@ -1,22 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Footer from '../components/Footer';
-import expertIcon from '../assets/ChatGPT Image May 14, 2026, 01_29_59 PM.png';
-import CustomIcon from '../assets/ChatGPT Image May 14, 2026, 01_34_31 PM.png';
-import guideIcon from '../assets/ChatGPT Image May 14, 2026, 01_37_59 PM.png';
-import assistanceIcon from '../assets/ChatGPT Image May 14, 2026, 01_40_49 PM.png';
-import featureBanner from '../assets/image copy 19.png';
-import archIcon from '../assets/ChatGPT Image May 14, 2026, 05_53_26 PM.png';
-import img21 from '../assets/image copy 21.png';
-import img22 from '../assets/image copy 22.png';
-import img23 from '../assets/image copy 23.png';
-import img24 from '../assets/image copy 24.png';
-import img25 from '../assets/image copy 25.png';
-import img26 from '../assets/image copy 26.png';
-import img27 from '../assets/image copy 27.png';
-import img28 from '../assets/image copy 28.png';
-import img29 from '../assets/image copy 29.png';
-import img30 from '../assets/image copy 30.png';
+import Footer from "../components/Footer";
+
+import expertIcon from "../assets/ChatGPT Image May 14, 2026, 01_29_59 PM.png";
+import CustomIcon from "../assets/ChatGPT Image May 14, 2026, 01_34_31 PM.png";
+import guideIcon from "../assets/ChatGPT Image May 14, 2026, 01_37_59 PM.png";
+import assistanceIcon from "../assets/ChatGPT Image May 14, 2026, 01_40_49 PM.png";
+
+import featureBanner from "../assets/image copy 19.png";
+import archIcon from "../assets/ChatGPT Image May 14, 2026, 05_53_26 PM.png";
+
+import nordIcon from "../assets/image copy 31.png";
+import keralaIcon from "../assets/image copy 32.png";
+import himalayaIcon from "../assets/image copy 33.png";
+import sudIcon from "../assets/image copy 34.png";
+import centraleIcon from "../assets/image copy 35.png";
+
+import img21 from "../assets/image copy 21.png";
+import img22 from "../assets/image copy 22.png";
+import img23 from "../assets/image copy 23.png";
+import img24 from "../assets/image copy 24.png";
+import img25 from "../assets/image copy 25.png";
+import img26 from "../assets/image copy 26.png";
+import img27 from "../assets/image copy 27.png";
+import img28 from "../assets/image copy 28.png";
+import img29 from "../assets/image copy 29.png";
+import img30 from "../assets/image copy 30.png";
 
 const Destinations = () => {
   const features = [
@@ -44,54 +53,64 @@ const Destinations = () => {
 
   const destinations = [
     {
-      name: "Voyage photo  expéditions visuelles",
+      name: "Rajasthan Authentique  Varanasi",
       desc: "Capturez l’âme de l’Inde à travers l’objectif avec nos photographes experts.",
       img: img21,
+      link: "/voyage-photo-expeditions",
     },
     {
-      name: "Immersion dans les villages indiens",
+      name: "Rajasthan Rural  Inde Authentique",
       desc: "Vivez au rythme des communautés locales pour une expérience humaine profonde.",
       img: img22,
+      link: "/immersion-villages-indiens",
     },
     {
-      name: "Art, artisanat  savoir-faire traditionnels",
+      name: "Rajasthan  Gujarat",
       desc: "Découvrez les techniques ancestrales des artisans indiens, du tissage à la poterie.",
       img: img23,
+      link: "/art-artisanat-savoir-faire",
     },
     {
-      name: "Spiritualité, yoga  Ayurveda",
-      desc: "Retrouvez l’équilibre du corps et de l’esprit dans les berceaux du bien-être.",
+      name: "Inde Spirituelle  Bien-Être",
+      desc: "Retrouvez l’équilibre à travers le yoga, la méditation et les soins ayurvédiques.",
       img: img24,
+      link: "/spiritualite-yoga-ayurveda",
     },
     {
-      name: "Safaris  vie sauvage",
+      name: "Inde Sauvage Tigres du Bengale",
       desc: "Observez le tigre du Bengale et la biodiversité exceptionnelle des parcs nationaux.",
       img: img25,
+      link: "/safaris-vie-sauvage",
     },
     {
-      name: "Lune de miel  escapades romantiques",
+      name: "Rajasthan Romantique Kerala",
       desc: "Célébrez votre union dans les décors somptueux des palais de maharajas.",
       img: img26,
+      link: "/lune-de-miel-escapades-romantiques",
     },
     {
-      name: "Rencontres ethniques  cultures locales",
+      name: "Rajasthan, Gujarat  Inde Tribale",
       desc: "Explorez la diversité culturelle des peuples de l’Inde et leurs traditions uniques.",
       img: img27,
+      link: "/rencontres-ethniques-cultures-locales",
     },
     {
-      name: "Himalaya  aventures hors des sentiers battus",
+      name: "Leh, Nubra Valley  Pangong Lake",
       desc: "Dépassez vos limites dans les paysages grandioses des hautes altitudes.",
       img: img28,
+      link: "/himalaya-aventures-hors-sentiers-battus",
     },
     {
-      name: "Croisières  backwaters du Kerala",
+      name: "Kerala Tropical  Houseboat Experience",
       desc: "Naviguez paisiblement sur les canaux tropicaux à bord d’un kettuvalam traditionnel.",
       img: img29,
+      link: "/croisieres-backwaters-kerala",
     },
     {
       name: "Festivals, couleurs  traditions indiennes",
       desc: "Plongez dans l’effervescence des plus grandes célébrations religieuses et culturelles.",
       img: img30,
+      link: "/festivals-couleurs-traditions-indiennes",
     },
   ];
 
@@ -99,29 +118,34 @@ const Destinations = () => {
     {
       title: "Voyage en couple",
       img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=500&q=90",
+      link: "/demander-un-devis",
     },
     {
       title: "Voyage en famille",
       img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=90",
+      link: "/demander-un-devis",
     },
     {
       title: "Safaris & nature",
       img: "https://images.unsplash.com/photo-1549366021-9f761d040a94?auto=format&fit=crop&w=500&q=90",
+      link: "/demander-un-devis",
     },
     {
       title: "Spiritualité & bien-être",
       img: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=500&q=90",
+      link: "/demander-un-devis",
     },
     {
       title: "Culture & patrimoine",
       img: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=500&q=90",
+      link: "/demander-un-devis",
     },
     {
       title: "Photographie & paysages",
       img: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=500&q=90",
+      link: "/demander-un-devis",
     },
   ];
-
 
   return (
     <div className="w-full min-h-screen bg-[#f6efe3] text-[#102d45] overflow-hidden">
@@ -163,106 +187,166 @@ const Destinations = () => {
             <div className="w-16 h-px bg-[#c58b32] mb-6 mx-auto" />
 
             <p className="text-[14px] md:text-[16px] leading-relaxed text-white/90 max-w-[500px] mx-auto drop-shadow-md">
-              Des régions fascinantes, des cultures uniques et des expériences inoubliables.
+              Des régions fascinantes, des cultures uniques et des expériences
+              inoubliables.
             </p>
           </div>
         </div>
       </section>
 
-
-      {/* FEATURE BANNER - Requested Complete WhatsApp Image with Overlay */}
+      {/* FEATURE BANNER */}
       <section className="relative w-full bg-white overflow-hidden">
-        <img
-          src={featureBanner}
-          alt="Explore India"
-          className="w-full h-[720px] object-cover object-top"
-        />
+        {/* WHITE HEADING TOP */}
+        <div className="relative z-20 w-full bg-white pt-[25px] pb-[18px] text-center">
+          <p className="text-[#9b5a24] text-[13px] md:text-[15px] font-bold tracking-[0.35em] uppercase mb-[8px]">
+            DÉCOUVREZ LES RÉGIONS DE L'INDE
+          </p>
 
-        {/* 7-Column Grid Overlay to match the banner regions */}
-        <div className="absolute inset-0 grid grid-cols-7 pointer-events-none">
-          {/* Col 1: Rajasthan */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src={archIcon} alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#462d14] font-bold tracking-[0.1em] uppercase mb-1">
-              Rajasthan
-            </h2>
-            <div className="w-6 h-px bg-[#462d14]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#462d14]/80 font-medium leading-tight max-w-[100px]">
-              Palais majestueux, déserts dorés et héritage royal.
-            </p>
+          <div className="flex items-center justify-center gap-[14px] mb-[8px]">
+            <span className="w-[90px] h-[1px] bg-[#b98b55]" />
+            <span className="text-[#b98b55] text-[22px] leading-none">❧</span>
+            <span className="w-[90px] h-[1px] bg-[#b98b55]" />
           </div>
 
-          {/* Col 2: Nord */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src="src\assets\image copy 18.png" alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#102d45] font-bold tracking-[0.1em] uppercase mb-1">
-              Inde du Nord
-            </h2>
-            <div className="w-6 h-px bg-[#102d45]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#102d45]/80 font-medium leading-tight max-w-[100px]">
-              Villes sacrées, traditions ancestrales et spiritualité.
-            </p>
-          </div>
+          <h2 className="font-serif text-[#153d2f] text-[30px] md:text-[36px] lg:text-[40px] leading-[1.1] font-bold tracking-[0.08em] uppercase">
+            L’INDE, UNE TERRE AUX MILLE VISAGES
+          </h2>
 
-          {/* Col 3: Kerala */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src={archIcon} alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#2d4a1c] font-bold tracking-[0.1em] uppercase mb-1">
-              Kerala
-            </h2>
-            <div className="w-6 h-px bg-[#2d4a1c]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#2d4a1c]/80 font-medium leading-tight max-w-[100px]">
-              Backwaters paisibles, plages et nature luxuriante.
-            </p>
-          </div>
+          <p className="text-[#5f6263] text-[14px] md:text-[16px] mt-[8px] font-medium">
+            Des régions uniques, des cultures vibrantes, des paysages
+            inoubliables.
+          </p>
+        </div>
 
-          {/* Col 4: Map Space */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src={archIcon} alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#2d1a4a] font-bold tracking-[0.1em] uppercase mb-1">
-              Himalaya
-            </h2>
-            <div className="w-6 h-px bg-[#2d1a4a]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#2d1a4a]/80 font-medium leading-tight max-w-[100px]">
-              Montagnes majestueuses et aventures en altitude.
-            </p>
-          </div>
-          {/* <div /> */}
+        <div className="relative w-full h-[720px] overflow-hidden bg-white">
+          <img
+            src={featureBanner}
+            alt="Explore India"
+            className="absolute inset-0 w-full h-full object-cover object-top"
+          />
 
-          {/* Col 5: Himalaya */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src={archIcon} alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#2d1a4a] font-bold tracking-[0.1em] uppercase mb-1">
-              Himalaya
-            </h2>
-            <div className="w-6 h-px bg-[#2d1a4a]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#2d1a4a]/80 font-medium leading-tight max-w-[100px]">
-              Montagnes majestueuses et aventures en altitude.
-            </p>
-          </div>
+          {/* 7-Column Grid Overlay */}
+          <div className="absolute inset-0 grid grid-cols-7 pointer-events-none pl-[30px]">
+            {/* Col 1: Rajasthan */}
+            <Link
+              to="/voyage-photo-expeditions"
+              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 translate-x-[18px] pointer-events-auto group cursor-pointer"
+            >
+              <img
+                src={archIcon}
+                alt=""
+                className="w-8 md:w-12 h-auto mb-2 drop-shadow-md transition-transform group-hover:scale-110"
+              />
+              <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#462d14] font-bold tracking-[0.1em] uppercase mb-1">
+                Rajasthan
+              </h2>
+              <div className="w-6 h-px bg-[#462d14]/30 mb-1.5" />
+              <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#462d14]/80 font-medium leading-tight max-w-[100px]">
+                Palais majestueux, déserts dorés et héritage royal.
+              </p>
+            </Link>
 
-          {/* Col 6: Sud */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src={archIcon} alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#6b4c1e] font-bold tracking-[0.1em] uppercase mb-1">
-              Inde du Sud
-            </h2>
-            <div className="w-6 h-px bg-[#6b4c1e]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#6b4c1e]/80 font-medium leading-tight max-w-[100px]">
-              Temples grandioses, culture et art de vivre unique.
-            </p>
-          </div>
+            {/* Col 2: Inde du Nord */}
+            <Link
+              to="/immersion-villages-indiens"
+              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 pointer-events-auto group cursor-pointer"
+            >
+              <img
+                src={nordIcon}
+                alt=""
+                className="w-8 md:w-12 h-auto mb-2 drop-shadow-md transition-transform group-hover:scale-110"
+              />
+              <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#102d45] font-bold tracking-[0.1em] uppercase mb-1">
+                Inde du Nord
+              </h2>
+              <div className="w-6 h-px bg-[#102d45]/30 mb-1.5" />
+              <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#102d45]/80 font-medium leading-tight max-w-[100px]">
+                Villes sacrées, traditions ancestrales et spiritualité.
+              </p>
+            </Link>
 
-          {/* Col 7: Centrale */}
-          <div className="flex flex-col items-center justify-start pt-[350px] text-center px-1">
-            <img src={archIcon} alt="" className="w-8 md:w-12 h-auto mb-2 drop-shadow-md" />
-            <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#0f3d3d] font-bold tracking-[0.1em] uppercase mb-1">
-              Inde Centrale
-            </h2>
-            <div className="w-6 h-px bg-[#0f3d3d]/30 mb-1.5" />
-            <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#0f3d3d]/80 font-medium leading-tight max-w-[100px]">
-              Tribus, nature sauvage et trésors cachés.
-            </p>
+            {/* Col 3: Kerala */}
+            <Link
+              to="/croisieres-backwaters-kerala"
+              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 -translate-x-[18px] pointer-events-auto group cursor-pointer"
+            >
+              <img
+                src={keralaIcon}
+                alt=""
+                className="w-8 md:w-12 h-auto mb-2 drop-shadow-md transition-transform group-hover:scale-110"
+              />
+              <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#2d4a1c] font-bold tracking-[0.1em] uppercase mb-1">
+                Kerala
+              </h2>
+              <div className="w-6 h-px bg-[#2d4a1c]/30 mb-1.5" />
+              <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#2d4a1c]/80 font-medium leading-tight max-w-[100px]">
+                Backwaters paisibles, plages et nature luxuriante.
+              </p>
+            </Link>
+
+            {/* Col 4: Map Space */}
+            <div className="flex flex-col items-center justify-start pt-[220px] text-center px-1">
+              <div className="w-6 h-px bg-transparent mb-1.5" />
+            </div>
+
+            {/* Col 5: Himalaya */}
+            {/* Col 5: Himalaya */}
+            <Link
+              to="/himalaya-aventures-hors-sentiers-battus"
+              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 translate-x-[55px] pointer-events-auto group cursor-pointer"
+            >
+              <img
+                src={himalayaIcon}
+                alt=""
+                className="w-8 md:w-12 h-auto mb-2 drop-shadow-md transition-transform group-hover:scale-110"
+              />
+              <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#2d1a4a] font-bold tracking-[0.1em] uppercase mb-1">
+                Himalaya
+              </h2>
+              <div className="w-6 h-px bg-[#2d1a4a]/30 mb-1.5" />
+              <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#2d1a4a]/80 font-medium leading-tight max-w-[100px]">
+                Montagnes majestueuses et aventures en altitude.
+              </p>
+            </Link>
+
+            {/* Col 6: Inde du Sud */}
+            {/* Col 6: Inde du Sud */}
+            <Link
+              to="/lune-de-miel-escapades-romantiques"
+              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 translate-x-[25px] pointer-events-auto group cursor-pointer"
+            >
+              <img
+                src={sudIcon}
+                alt=""
+                className="w-8 md:w-12 h-auto mb-2 drop-shadow-md transition-transform group-hover:scale-110"
+              />
+              <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#6b4c1e] font-bold tracking-[0.1em] uppercase mb-1">
+                Inde du Sud
+              </h2>
+              <div className="w-6 h-px bg-[#6b4c1e]/30 mb-1.5" />
+              <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#6b4c1e]/80 font-medium leading-tight max-w-[100px]">
+                Temples grandioses, culture et art de vivre unique.
+              </p>
+            </Link>
+
+            {/* Col 7: Inde Centrale */}
+            <Link
+              to="/rencontres-ethniques-cultures-locales"
+              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 pointer-events-auto group cursor-pointer"
+            >
+              <img
+                src={centraleIcon}
+                alt=""
+                className="w-8 md:w-12 h-auto mb-2 drop-shadow-md transition-transform group-hover:scale-110"
+              />
+              <h2 className="font-serif text-[10px] md:text-[13px] lg:text-[15px] text-[#0f3d3d] font-bold tracking-[0.1em] uppercase mb-1">
+                Inde Centrale
+              </h2>
+              <div className="w-6 h-px bg-[#0f3d3d]/30 mb-1.5" />
+              <p className="text-[7px] md:text-[9px] lg:text-[10px] text-[#0f3d3d]/80 font-medium leading-tight max-w-[100px]">
+                Tribus, nature sauvage et trésors cachés.
+              </p>
+            </Link>
           </div>
         </div>
       </section>
@@ -290,7 +374,7 @@ const Destinations = () => {
             {destinations.map((item, index) => (
               <Link
                 key={index}
-                to="/destinations"
+                to={item.link}
                 className="group bg-[#fffdf8] rounded-[8px] overflow-hidden border border-[#eadfce] shadow-[0_8px_24px_rgba(70,45,20,0.06)] hover:-translate-y-1 hover:shadow-[0_16px_35px_rgba(70,45,20,0.14)] transition-all duration-300"
               >
                 <div className="h-[150px] md:h-[165px] overflow-hidden">
@@ -322,16 +406,14 @@ const Destinations = () => {
 
       {/* USP BANNER */}
       <section className="relative w-full py-8 md:py-10 bg-[#0a0f14] overflow-hidden">
-        {/* Background Image */}
         <img
           src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=2000&q=90"
           alt="Unique India"
           className="absolute inset-0 w-full h-full object-cover opacity-100"
         />
-        {/* Dark Overlay */}
+
         <div className="absolute inset-0 bg-black/35"></div>
 
-        {/* Content */}
         <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 py-6 md:py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 text-center">
             {features.map((item, index) => (
@@ -339,7 +421,6 @@ const Destinations = () => {
                 key={index}
                 className="flex flex-col items-center justify-start text-white"
               >
-                {/* Icon */}
                 <div className="h-[70px] md:h-[90px] flex items-end justify-center mb-3">
                   <img
                     src={item.img}
@@ -348,12 +429,10 @@ const Destinations = () => {
                   />
                 </div>
 
-                {/* Title */}
                 <h3 className="font-serif font-bold text-[18px] md:text-[20px] lg:text-[22px] leading-tight drop-shadow-md mb-2">
                   {item.title}
                 </h3>
 
-                {/* Text */}
                 <p className="max-w-[280px] text-[12px] md:text-[13px] leading-relaxed font-medium text-white/90 drop-shadow-md">
                   {item.text}
                 </p>
@@ -362,6 +441,7 @@ const Destinations = () => {
           </div>
         </div>
       </section>
+
       {/* THEME SECTION */}
       <section className="px-3 md:px-6 mt-6">
         <div className="max-w-[1180px] mx-auto grid lg:grid-cols-[330px_1fr] gap-5">
@@ -392,8 +472,8 @@ const Destinations = () => {
             {themes.map((item, index) => (
               <Link
                 key={index}
-                to="/experiences"
-                className="relative h-[185px] rounded-[10px] overflow-hidden group shadow-[0_8px_24px_rgba(70,45,20,0.12)]"
+                to={item.link}
+                className="relative h-[380px] rounded-[10px] overflow-hidden group shadow-[0_8px_24px_rgba(70,45,20,0.12)]"
               >
                 <img
                   src={item.img}
@@ -415,79 +495,6 @@ const Destinations = () => {
       </section>
 
       <Footer />
-
-      {/* FOOTER */}
-      {/* <footer className="mt-6 bg-[#fffaf2] border-t border-[#eadfce] px-6 md:px-10 py-10">
-        <div className="max-w-[1180px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
-          <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 rounded-full border border-[#c58b32] flex items-center justify-center text-[#c58b32] font-serif text-xl">
-                IV
-              </div>
-
-              <div>
-                <div className="font-serif text-[24px] text-[#102d45] leading-none">
-                  Indeora
-                </div>
-                <p className="text-[9px] tracking-[0.22em] uppercase text-[#c58b32]">
-                  Voyages
-                </p>
-              </div>
-            </div>
-
-            <p className="text-[11px] leading-5 text-[#102d45]/65">
-              Agence locale francophone en Inde spécialisée dans les voyages sur
-              mesure, authentiques et responsables.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#c58b32] mb-4">
-              Liens rapides
-            </h3>
-
-            <ul className="space-y-2 text-[12px] text-[#102d45]/70">
-              <li>Destinations</li>
-              <li>Expériences</li>
-              <li>À propos</li>
-              <li>Avant de partir</li>
-              <li>Contact</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#c58b32] mb-4">
-              Informations
-            </h3>
-
-            <ul className="space-y-2 text-[12px] text-[#102d45]/70">
-              <li>📍 Bikaner, Rajasthan, Inde</li>
-              <li>☎ +91 70 230 16044</li>
-              <li>✉ contact@indeoravoyages.com</li>
-              <li>WhatsApp</li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-[10px] tracking-[0.25em] uppercase font-bold text-[#c58b32] mb-4">
-              Newsletter
-            </h3>
-
-            <p className="text-[12px] leading-5 text-[#102d45]/65 mb-4">
-              Recevez nos inspirations de voyage et nos offres exclusives.
-            </p>
-
-            <div className="flex h-10 border border-[#eadfce] bg-white">
-              <input
-                type="email"
-                placeholder="Votre email"
-                className="flex-1 px-3 text-[11px] bg-transparent outline-none"
-              />
-              <button className="w-10 text-[#c58b32]">→</button>
-            </div>
-          </div>
-        </div>
-      </footer> */}
 
       <style>{`
         .vertical-text {

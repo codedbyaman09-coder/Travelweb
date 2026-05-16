@@ -119,6 +119,7 @@ const Navbar = () => {
 
           <Link to="/blog" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Blog</Link>
           <Link to="/avant-de-partir" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Avant de partir</Link>
+          <Link to="/demander-un-devis" className="text-[11px] font-bold tracking-[0.3em] text-white bg-[#C6A46D] px-4 py-2 rounded-sm text-center uppercase transition-colors" onClick={() => setIsOpen(false)}>Demander un devis</Link>
           <Link to="/contact-rapide" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Contact rapide</Link>
         </div>
       )}

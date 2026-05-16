@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
@@ -318,35 +318,41 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
                 icon: "♧",
                 desc: "Yoga, méditation et soins ayurvédiques.",
                 img: "/src/assets/image copy 9.png",
+                link: "/spiritualite-yoga-ayurveda",
               },
               {
                 title: "HORS DES\nSENTIERS BATTUS",
                 icon: "△",
                 desc: "Régions préservées et beauté de l’Inde.",
                 img: "/src/assets/image copy 10.png",
+                link: "/himalaya-aventures-hors-sentiers-battus",
               },
               {
                 title: "RENCONTRES\nETHNIQUES",
                 icon: "☟",
                 desc: "Communautés locales et traditions.",
                 img: "/src/assets/image copy 11.png",
+                link: "/rencontres-ethniques-cultures-locales",
               },
               {
                 title: "FAMILLE &\nLUNE DE MIEL",
                 icon: "♥",
-                desc: "Expériences sur mesure et moments magiques.",
+                desc: "Expériences sur mesure and moments magiques.",
                 img: "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=90",
+                link: "/lune-de-miel-escapades-romantiques",
               },
               {
                 title: "NATURE &\nVIE SAUVAGE",
                 icon: "♣",
-                desc: "Nature sauvage, safaris et parcs nationaux.",
+                desc: "Nature sauvage, safaris and parcs nationaux.",
                 img: "/src/assets/image copy 12.png",
+                link: "/safaris-vie-sauvage",
               },
             ].map((item, i) => (
-        <div
+        <Link
           key={i}
-          className="relative h-[340px] md:h-[380px] lg:h-[420px] bg-white overflow-hidden group shadow-sm border border-[#eadfce]/20"
+          to={item.link}
+          className="relative h-[340px] md:h-[380px] lg:h-[420px] bg-white overflow-hidden group shadow-sm border border-[#eadfce]/20 block cursor-pointer"
         >
           {/* Image - Maximized height */}
           <img
@@ -380,7 +386,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
             <div className="w-8 h-[0.5px] bg-[#c5a15c]/30 mx-auto"></div>
           </div>
-        </div>
+        </Link>
             ))}
           </div>
         </div>
