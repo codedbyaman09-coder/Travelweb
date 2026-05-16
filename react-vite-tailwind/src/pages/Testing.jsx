@@ -1,9 +1,10 @@
 import React from "react";
 import yogaBanner from "../assets/image copy 37.png";
 import shivaImg from "../assets/image copy 38.png";
-// import itineraryRishikesh from "../assets/itinerary_rishikesh_1778933920513.png";
-// import itineraryKerala from "../assets/itinerary_kerala_1778933936136.png";
-// import itineraryHimalaya from "../assets/itinerary_himalaya_1778933951970.png";
+import itineraryRishikesh from "../assets/image copy 34.png";
+import itineraryKerala from "../assets/image copy 35.png";
+import itineraryHimalaya from "../assets/image copy 36.png";
+import bottomBanner from "../assets/image copy 39.png";
 import Footer from "../components/Footer";
 
 const LotusIconMain = ({ className = "w-20 h-20" }) => (
@@ -130,15 +131,15 @@ const InfoItemLeft = ({ title, content, icon: Icon }) => (
 
 const ItineraryCard = ({ number, title, duration, description, image, features }) => (
   <div className="bg-white rounded-[20px] overflow-hidden shadow-sm flex flex-col h-full border border-[#1c2d24]/5">
-    <div className="relative h-[220px] overflow-hidden">
+    <div className="relative h-[160px] overflow-hidden">
       <img src={image} alt={title} className="w-full h-full object-cover" />
       <div className="absolute top-4 left-4 w-8 h-8 rounded-full bg-[#1c2d24] text-white flex items-center justify-center text-[14px] font-bold">
         {number}
       </div>
     </div>
 
-    <div className="p-8 flex flex-col items-center text-center flex-1">
-      <h4 className="text-[18px] md:text-[20px] font-serif font-bold text-[#1c2d24] mb-2 uppercase tracking-wide">
+    <div className="p-5 flex flex-col items-center text-center flex-1">
+      <h4 className="text-[16px] md:text-[18px] font-serif font-bold text-[#1c2d24] mb-1 uppercase tracking-wide">
         {title}
       </h4>
 
@@ -150,19 +151,32 @@ const ItineraryCard = ({ number, title, duration, description, image, features }
         {description}
       </p>
 
-      <div className="mt-auto pt-6 border-t border-[#1c2d24]/10 w-full grid grid-cols-4 gap-2">
+      <div className="mt-auto pt-6 border-t border-[#1c2d24]/10 w-full flex justify-between items-start">
         {features.map((feature, idx) => {
-          const Icon = [FeatureIcons.Yoga, FeatureIcons.Om, FeatureIcons.Nature, FeatureIcons.Bowl][idx % 4];
+          let Icon = FeatureIcons.Yoga;
+          const lower = feature.toLowerCase();
+          if (lower.includes("spiritualité") || lower.includes("om")) Icon = FeatureIcons.Om;
+          else if (lower.includes("nature") || lower.includes("himalaya")) Icon = FeatureIcons.Nature;
+          else if (lower.includes("détox") || lower.includes("bowl")) Icon = FeatureIcons.Bowl;
+          else if (lower.includes("ayurveda")) Icon = FeatureIcons.Ayurveda;
+          else if (lower.includes("massage") || lower.includes("person")) Icon = FeatureIcons.Person;
+          else if (lower.includes("méditation")) Icon = FeatureIcons.Target; // Use Target for Meditation as per current icon set
+          else if (lower.includes("éveil")) Icon = FeatureIcons.Temple;
 
           return (
-            <div key={idx} className="flex flex-col items-center gap-2">
-              <div className="text-[#1c2d24]/80">
-                <Icon />
+            <React.Fragment key={idx}>
+              <div className="flex flex-col items-center gap-2 flex-1 px-1">
+                <div className="text-[#1c2d24]/80">
+                  <Icon />
+                </div>
+                <span className="text-[9px] font-bold text-[#1c2d24]/60 uppercase text-center leading-tight min-h-[24px] flex items-center justify-center">
+                  {feature}
+                </span>
               </div>
-              <span className="text-[8px] md:text-[9px] font-bold text-[#1c2d24]/60 uppercase text-center leading-tight">
-                {feature}
-              </span>
-            </div>
+              {idx < features.length - 1 && (
+                <div className="w-px h-10 bg-[#1c2d24]/10 self-center" />
+              )}
+            </React.Fragment>
           );
         })}
       </div>
@@ -277,7 +291,7 @@ const Testing = () => {
                 </div>
               </div>
 
-              <div className="mt-12 md:mt-16 lg:mt-20 flex flex-row flex-nowrap items-center gap-x-4 md:gap-x-6 lg:gap-x-8 text-[#1c2d24] whitespace-nowrap w-full md:w-auto overflow-hidden -ml-8 md:-ml-16 lg:-ml-24">
+              <div className="mt-12 md:mt-16 lg:mt-20 flex flex-row flex-nowrap items-center gap-x-4 md:gap-x-6 lg:gap-x-12 text-[#1c2d24] whitespace-nowrap w-full md:w-auto overflow-hidden ml-0 md:ml-4 lg:ml-8">
                 <div className="flex items-center gap-2 md:gap-3">
                   <FeatureIcons.Yoga />
                   <span className="text-[10px] md:text-[12px] lg:text-[13px] font-bold leading-tight">
@@ -368,7 +382,7 @@ const Testing = () => {
             </div>
           </div>
 
-          <div className="mt-32">
+          <div className="mt-48">
             <InfoItemLeft
               title="Yoga traditionnel vs moderne"
               content="Le yoga traditionnel inclut spiritualité, méditation, respiration et philosophie. Le yoga moderne est souvent centré sur le corps."
@@ -394,7 +408,7 @@ const Testing = () => {
           <img
             src={shivaImg}
             alt="Lord Shiva Meditating"
-            className="absolute top-[-12rem] lg:top-[-10rem] right-0 h-[60%] md:h-[70%] lg:h-[80%] w-auto object-contain opacity-80 lg:opacity-90 mix-blend-multiply pointer-events-none"
+            className="absolute top-[-20rem] lg:top-[-18rem] right-0 h-[60%] md:h-[70%] lg:h-[80%] w-auto object-contain opacity-80 lg:opacity-90 mix-blend-multiply pointer-events-none"
           />
         </div>
 
@@ -430,9 +444,9 @@ const Testing = () => {
       </section>
 
       {/* 3 ITINÉRAIRES SECTION */}
-      <section className="bg-[#f5f1e8] py-20 px-6 md:px-16">
-        <div className="max-w-[1440px] mx-auto">
-          <div className="flex flex-col items-center mb-16">
+      <section className="bg-[#f5f1e8] py-4 px-6 md:px-16">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="flex flex-col items-center mb-4">
             <div className="flex items-center gap-6 mb-4">
               <div className="rotate-180 opacity-40">
                 <Flourish />
@@ -456,6 +470,7 @@ const Testing = () => {
               title="Yoga & Spiritualité à Rishikesh"
               duration="7 Jours / 6 Nuits"
               description="Yoga quotidien, méditation, Aarti au Gange, visites d'ashrams et nature inspirante."
+              image={itineraryRishikesh}
               features={["Yoga & Méditation", "Spiritualité", "Nature", "Détox & Bien-être"]}
             />
 
@@ -464,6 +479,7 @@ const Testing = () => {
               title="Yoga & Ayurveda au Kerala"
               duration="8 Jours / 7 Nuits"
               description="Yoga, soins ayurvédiques, alimentation saine, détente et rajeunissement complet."
+              image={itineraryKerala}
               features={["Yoga", "Ayurveda", "Massage", "Détox"]}
             />
 
@@ -472,8 +488,105 @@ const Testing = () => {
               title="Yoga & Himalaya"
               duration="9 Jours / 8 Nuits"
               description="Yoga en montagne, méditation profonde, randonnées, silence et reconnexion intérieure."
+              image={itineraryHimalaya}
               features={["Yoga", "Méditation", "Nature", "Éveil intérieur"]}
             />
+          </div>
+        </div>
+      </section>
+
+      {/* BOTTOM IMAGE BANNER WITH OVERLAY */}
+      <section className="relative w-full h-[300px] md:h-[400px] lg:h-[450px] overflow-hidden flex items-center justify-center">
+        <img
+          src={bottomBanner}
+          alt="Yoga Spirit India"
+          className="absolute inset-0 w-full h-full object-cover object-left"
+        />
+
+        {/* Dark Overlay for readability */}
+        <div className="absolute inset-0 bg-black/30" />
+
+        <div className="relative z-10 w-full max-w-[1800px] px-6 md:px-16 lg:pl-[320px] lg:pr-12 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
+          {/* LEFT TEXT CONTENT */}
+          <div className="flex-1 max-w-[600px] flex flex-col items-center text-center text-[#f5f1e8] -mt-24">
+            <div className="flex flex-col items-center mb-4">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-8 h-px bg-[#d4af37]/40" />
+                <LotusIconMain className="w-6 h-6 md:w-8 md:h-8 text-[#d4af37]" />
+                <div className="w-8 h-px bg-[#d4af37]/40" />
+              </div>
+
+              <h2 className="text-[18px] md:text-[20px] lg:text-[22px] font-serif font-bold leading-[1.2] uppercase tracking-widest mb-3">
+                Votre voyage intérieur <br />
+                commence ici
+              </h2>
+
+              <p className="text-[9px] md:text-[10px] lg:text-[10px] max-w-[450px] leading-relaxed opacity-90 font-medium">
+                Offrez-vous une expérience transformante en Inde, <br className="hidden md:block" />
+                berceau du yoga, de la sagesse et de la paix intérieure.
+              </p>
+            </div>
+
+            {/* BOTTOM FEATURE BAR */}
+            <div className="mt-5 md:mt-6 flex flex-row flex-nowrap justify-center lg:justify-start items-center gap-x-2 md:gap-x-3">
+              <div className="flex flex-row items-center gap-1 px-2 border-r border-[#f5f1e8]/20 last:border-0 whitespace-nowrap">
+                <div className="scale-45 opacity-80 flex-shrink-0">
+                  <FeatureIcons.Person />
+                </div>
+                <span className="text-[5px] md:text-[6px] font-bold uppercase tracking-widest leading-tight">
+                  Enseignants expérimentés
+                </span>
+              </div>
+              <div className="flex flex-row items-center gap-1 px-2 border-r border-[#f5f1e8]/20 last:border-0 whitespace-nowrap">
+                <div className="scale-45 opacity-80 flex-shrink-0">
+                  <FeatureIcons.Temple />
+                </div>
+                <span className="text-[5px] md:text-[6px] font-bold uppercase tracking-widest leading-tight">
+                  Hébergements paisibles
+                </span>
+              </div>
+              <div className="flex flex-row items-center gap-1 px-2 border-r border-[#f5f1e8]/20 last:border-0 whitespace-nowrap">
+                <div className="scale-45 opacity-80 flex-shrink-0">
+                  <FeatureIcons.Bowl />
+                </div>
+                <span className="text-[5px] md:text-[6px] font-bold uppercase tracking-widest leading-tight">
+                  Cuisine saine végétarienne
+                </span>
+              </div>
+              <div className="flex flex-row items-center gap-1 px-2 last:border-0 whitespace-nowrap">
+                <div className="scale-45 opacity-80 flex-shrink-0">
+                  <FeatureIcons.Globe />
+                </div>
+                <span className="text-[5px] md:text-[6px] font-bold uppercase tracking-widest leading-tight">
+                  Accompagnement personnalisé
+                </span>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT FLOATING CTA CARD */}
+          <div className="w-full max-w-[500px] bg-[#f2eee3] rounded-[24px] px-10 py-6 shadow-2xl flex flex-col items-center text-center text-[#1c2d24]">
+            <div className="text-[#1c2d24]/60 mb-4 scale-100">
+              <LotusIconMain className="w-6 h-6 text-[#1c2d24]/40" />
+            </div>
+
+            <h3 className="text-[17px] md:text-[10px] font-serif font-bold mb-5 leading-tight uppercase tracking-widest">
+              Prêt à commencer votre transformation ?
+            </h3>
+
+            <button className="w-full max-w-[320px] bg-[#1c2d24] text-white py-3.5 rounded-lg font-bold uppercase tracking-widest text-[10px] hover:bg-[#2a4235] transition-all duration-300 mb-5 shadow-lg active:scale-95">
+              Réserver ma retraite
+            </button>
+
+            <p className="text-[10px] md:text-[11px] leading-relaxed text-[#1c2d24]/70 mb-4 font-medium">
+              Reconnectez-vous à vous-même, retournez chez vous transformé.
+            </p>
+
+            <div className="text-[#1c2d24]/20">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
+              </svg>
+            </div>
           </div>
         </div>
       </section>
