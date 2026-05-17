@@ -5,7 +5,7 @@ import mapImg from '../assets/ChatGPT Image May 11, 2026, 11_05_10 PM.png';
 const destinations = [
   {
     id: 'rajasthan',
-    title: 'L’Inde du Nord : le Rajasthan et ses palais',
+    title: 'Rajasthan Royal Taj Mahal — 15 Jours',
     subtitle: 'Des palais raffinés de Jaipur aux ruelles bleues de Jodhpur, le Rajasthan offre une immersion unique au cœur de .',
     desc: 'Villes historiques, forts majestueux, désert du Thar, culture vivante et hospitalité légendaire.',
     img: 'https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=400&q=80',
@@ -13,8 +13,8 @@ const destinations = [
   },
   {
     id: 'triangle-or',
-    title: "LE TRIANGLE D’OR Delhi, Agra & Jaipur",
-    subtitle: 'Des ruelles animées de Delhi aux palais du Rajasthan en passant par l’inoubliable Taj Mahal, le Triangle d’Or est une ',
+    title: 'Delhi, Jaipur Agra — 8 Jours',
+    subtitle: "Des ruelles animées de Delhi aux palais roses de Jaipur en passant par l’inoubliable Taj Mahal d'Agra.",
     desc: "Les incontournables de l'Inde du Nord : Taj Mahal, palais des maharajas et marchés colorés.",
     img: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=400&q=80',
     side: 'left'
@@ -114,8 +114,9 @@ const InteractiveMap = () => {
           {/* Left Column (Desktop Only) */}
           <div className="hidden lg:block w-[22%] space-y-5 z-10">
             {leftDests.map((dest) => (
-              <div
+              <Link
                 key={dest.id}
+                to={`/destinations/${dest.id}`}
                 className="flex gap-3 group cursor-pointer items-center transition-transform duration-300 hover:translate-x-1"
                 onMouseEnter={() => setHoveredDest(dest.id)}
                 onMouseLeave={() => setHoveredDest(null)}
@@ -126,11 +127,11 @@ const InteractiveMap = () => {
                 <div className="flex flex-col">
                   <h3 className="text-[13px] font-bold tracking-wider text-[#2d343e] mb-0.5 group-hover:text-[#A88B52] transition-colors">{dest.title}</h3>
                   <p className="text-[11px] font-bold text-[#A88B52]/80 group-hover:text-[#A88B52] mb-1 leading-tight transition-colors">{dest.subtitle}</p>
-                  <Link to={`/destinations/${dest.id}`} className="text-[10px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 group-hover:translate-x-1 duration-300">
+                  <span className="text-[10px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 group-hover:translate-x-1 duration-300">
                     IDÉES <span className="font-serif italic ml-1">→</span>
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 
@@ -162,8 +163,9 @@ const InteractiveMap = () => {
           {/* Right Column (Desktop Only) */}
           <div className="hidden lg:block w-[22%] space-y-5 z-10">
             {rightDests.map((dest) => (
-              <div
+              <Link
                 key={dest.id}
+                to={`/destinations/${dest.id}`}
                 className="flex gap-3 group cursor-pointer text-right flex-row-reverse items-center transition-transform duration-300 hover:-translate-x-1"
                 onMouseEnter={() => setHoveredDest(dest.id)}
                 onMouseLeave={() => setHoveredDest(null)}
@@ -174,11 +176,11 @@ const InteractiveMap = () => {
                 <div className="flex flex-col items-end">
                   <h3 className="text-[13px] font-bold tracking-wider text-[#2d343e] mb-0.5 group-hover:text-[#A88B52] transition-colors">{dest.title}</h3>
                   <p className="text-[11px] font-bold text-[#A88B52]/80 group-hover:text-[#A88B52] mb-1 leading-tight transition-colors">{dest.subtitle}</p>
-                  <Link to={`/destinations/${dest.id}`} className="text-[10px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 flex-row-reverse group-hover:-translate-x-1 duration-300">
-                    IDÉES <span className="font-serif italic ml-1">←</span>
-                  </Link>
+                  <span className="text-[10px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 flex-row-reverse group-hover:-translate-x-1 duration-300">
+                    IDÉES <span className="font-serif italic ml-1">→</span>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
 

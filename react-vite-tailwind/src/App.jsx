@@ -13,6 +13,12 @@ import Testing from './pages/Testing';
 import FestivalsCouleursTraditionsIndiennes from './pages/FestivalsCouleursTraditionsIndiennes';
 import CroisieresBackwatersKerala from './pages/CroisieresBackwatersKerala';
 import HimalayaAventuresHorsSentiersBattus from './pages/HimalayaAventuresHorsSentiersBattus';
+import LIndeNordRajasthanPalais from './pages/LIndeNordRajasthanPalais';
+import TriangleOrDelhiAgraJaipur from './pages/LE TRIANGLE D’OR Delhi, Agra & Jaipur';
+import LeLadakhEtLesContrefortsHimalayens from './pages/Le Ladakh et les contreforts himalayens';
+import LaValleeDuGangeEtVaranasi from './pages/La Vallée du Gange et Varanasi';
+import LIndeDuSudKeralaEtTamilNadu from './pages/L’Inde du Sud Kerala et Tamil Nadu';
+import CalcuttaEtLIndeCentrale from './pages/Calcutta et l’Inde centrale';
 import RencontresEthniquesCulturesLocales from './pages/RencontresEthniquesCulturesLocales';
 import LuneDeMielEscapadesRomantiques from './pages/LuneDeMielEscapadesRomantiques';
 import SafarisVieSauvage from './pages/SafarisVieSauvage';
@@ -42,6 +48,8 @@ const AppContent = () => {
     if (path === '/festivals-couleurs-traditions-indiennes') return 'Festivals Traditions';
     if (path === '/croisieres-backwaters-kerala') return 'Kerala Experience';
     if (path === '/himalaya-aventures-hors-sentiers-battus') return 'Leh Ladakh';
+    if (path === '/destinations/rajasthan') return 'Rajasthan Palais';
+    if (path === '/destinations/triangle-or') return 'Triangle d’Or';
     if (path === '/rencontres-ethniques-cultures-locales') return 'Rencontres Ethniques';
     if (path === '/lune-de-miel-escapades-romantiques') return 'Lune de Miel';
     if (path === '/safaris-vie-sauvage') return 'Inde Sauvage Safaris';
@@ -88,6 +96,12 @@ const AppContent = () => {
           <Route path="/about" element={<About />} />
           <Route path="/promise" element={<div className="pt-32 text-center">Our Promise Page</div>} />
           <Route path="/destinations" element={<Destinations />} />
+          <Route path="/destinations/rajasthan" element={<LIndeNordRajasthanPalais />} />
+          <Route path="/destinations/triangle-or" element={<TriangleOrDelhiAgraJaipur />} />
+          <Route path="/destinations/himalaya" element={<LeLadakhEtLesContrefortsHimalayens />} />
+          <Route path="/destinations/varanasi" element={<LaValleeDuGangeEtVaranasi />} />
+          <Route path="/destinations/kerala" element={<LIndeDuSudKeralaEtTamilNadu />} />
+          <Route path="/destinations/inde-nord-est" element={<CalcuttaEtLIndeCentrale />} />
           <Route path="/destinations/:id" element={<DestinationDetail />} />
           <Route path="/experiences" element={<div className="pt-32 text-center">Experiences Page</div>} />
           <Route path="/magazine" element={<div className="pt-32 text-center">Magazine Page</div>} />
