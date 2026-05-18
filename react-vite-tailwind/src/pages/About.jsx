@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import logo from "../assets/png .png";
+import bgHistoryImg from "../assets/image copy 40.jpeg";
+import bgValuesImg from "../assets/image copy 41.jpeg";
 
 const About = () => {
+  const [isPhilosophieOpen, setIsPhilosophieOpen] = useState(false);
+  const [isParcoursOpen, setIsParcoursOpen] = useState(false);
+  const [isVishnuOpen, setIsVishnuOpen] = useState(false);
+  const [isAmandineOpen, setIsAmandineOpen] = useState(false);
   const team = [
     {
       name: "Vishnu Swami",
@@ -57,7 +63,7 @@ const About = () => {
   return (
     <div className="w-full bg-[#f7f3ed] text-[#161c20] overflow-hidden font-sans">
       {/* HEADER + HERO */}
-      <section className="relative min-h-[630px] md:min-h-[720px] flex items-center justify-center text-white overflow-hidden">
+      <section className="relative min-h-[480px] md:min-h-[560px] flex items-center justify-center text-white overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=2000&q=90"
           alt="Indeora hero"
@@ -173,7 +179,10 @@ const About = () => {
               </p>
             </div>
 
-            <button className="mt-8 bg-[#b89450] text-white text-[10px] tracking-[0.35em] uppercase font-bold px-8 py-4 hover:bg-[#9f7d3e] transition">
+            <button
+              onClick={() => setIsPhilosophieOpen(true)}
+              className="mt-8 bg-[#b89450] text-white text-[10px] tracking-[0.35em] uppercase font-bold px-8 py-4 hover:bg-[#9f7d3e] transition"
+            >
               Notre philosophie
             </button>
           </div>
@@ -189,8 +198,18 @@ const About = () => {
       </section>
 
       {/* HISTOIRE + MAP */}
-      <section className="bg-[#11191d] text-white py-16 md:py-20 px-6">
-        <div className="max-w-[1160px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+      <section className="relative text-white py-6 md:py-8 px-6 overflow-hidden">
+        {/* Background Image with Black Filter Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={bgHistoryImg}
+            alt="Background history"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/75" />
+        </div>
+
+        <div className="relative z-10 max-w-[1160px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
           <div>
             <p className="text-[#b89450] text-[11px] tracking-[0.35em] uppercase font-bold mb-4">
               Notre histoire
@@ -219,12 +238,15 @@ const About = () => {
               </p>
             </div>
 
-            <button className="mt-8 bg-[#b89450] text-white text-[10px] tracking-[0.35em] uppercase font-bold px-8 py-4 hover:bg-[#9f7d3e] transition">
+            <button
+              onClick={() => setIsParcoursOpen(true)}
+              className="mt-8 bg-[#b89450] text-white text-[10px] tracking-[0.35em] uppercase font-bold px-8 py-4 hover:bg-[#9f7d3e] transition"
+            >
               Notre parcours
             </button>
           </div>
 
-          <div className="relative w-full max-w-[500px] aspect-[4/5] flex items-center justify-center bg-[#11191d]">
+          <div className="relative w-full max-w-[360px] md:max-w-[400px] aspect-[4/5] flex items-center justify-center bg-transparent mx-auto">
             {/* The Map Background */}
             <img
               src="src/assets/ChatGPT Image May 13, 2026, 09_36_16 PM.png"
@@ -330,6 +352,22 @@ const About = () => {
                   <p className="text-[13px] leading-6 text-[#273137]/75">
                     {person.text}
                   </p>
+                  {person.name === "Vishnu Swami" && (
+                    <button
+                      onClick={() => setIsVishnuOpen(true)}
+                      className="mt-2 text-[#b89450] hover:text-[#9f7d3e] text-[10px] tracking-[0.15em] uppercase font-bold flex items-center gap-1.5 transition-colors group cursor-pointer"
+                    >
+                      Lire la suite <span className="text-[10px] group-hover:translate-y-0.5 transition-transform">↓</span>
+                    </button>
+                  )}
+                  {person.name === "Amandine Fastré" && (
+                    <button
+                      onClick={() => setIsAmandineOpen(true)}
+                      className="mt-2 text-[#b89450] hover:text-[#9f7d3e] text-[10px] tracking-[0.15em] uppercase font-bold flex items-center gap-1.5 transition-colors group cursor-pointer"
+                    >
+                      Lire la suite <span className="text-[10px] group-hover:translate-y-0.5 transition-transform">↓</span>
+                    </button>
+                  )}
                 </div>
               </div>
             ))}
@@ -338,8 +376,18 @@ const About = () => {
       </section>
 
       {/* VALUES */}
-      <section className="bg-[#11191d] text-white py-14 md:py-16 px-6">
-        <div className="max-w-[1180px] mx-auto text-center">
+      <section className="relative text-white py-14 md:py-16 px-6 overflow-hidden">
+        {/* Background Image with Black Filter Overlay */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={bgValuesImg}
+            alt="Background values"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/75" />
+        </div>
+
+        <div className="relative z-10 max-w-[1180px] mx-auto text-center">
           <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
             Nos valeurs
           </p>
@@ -489,7 +537,245 @@ const About = () => {
         </div>
       </section>
 
+      {/* Premium Philosophy Modal */}
+      {isPhilosophieOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300"
+          onClick={() => setIsPhilosophieOpen(false)}
+        >
+          <div
+            className="relative bg-[#fcf9f5] border-t-4 border-[#b89450] max-w-2xl w-full rounded-sm shadow-[0_24px_54px_rgba(0,0,0,0.3)] p-8 md:p-12 animate-fadeIn overflow-y-auto max-h-[90vh] -translate-y-8 md:-translate-y-16"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsPhilosophieOpen(false)}
+              className="absolute top-4 right-5 text-gray-400 hover:text-[#b89450] transition-colors text-xl font-bold p-2"
+              aria-label="Fermer"
+            >
+              ✕
+            </button>
+
+            <div className="text-center mb-8">
+              <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
+                Notre mission
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#161c20] italic">
+                Créer des voyages qui ont du sens
+              </h2>
+              <div className="w-24 h-[1px] bg-[#b89450]/30 mx-auto mt-4" />
+            </div>
+
+            <div className="font-serif italic text-base md:text-lg leading-relaxed text-[#b89450] mb-8 text-center px-2">
+              "Nous croyons qu’un beau voyage ne se résume pas à une liste de monuments à visiter ou de photos à rapporter. Un véritable voyage est une émotion. Une rencontre. Un souvenir qui reste longtemps après le retour."
+            </div>
+
+            <div className="space-y-6 text-sm md:text-base leading-relaxed text-[#273137]/90 font-medium">
+              <p>
+                Notre mission est de vous faire découvrir l’Inde autrement — une Inde plus humaine, plus sincère et profondément vivante. Loin des circuits impersonnels et du tourisme standardisé, nous imaginons des voyages uniques, pensés selon votre personnalité, votre rythme et votre manière de ressentir le monde.
+              </p>
+              <p>
+                Chaque itinéraire est conçu comme une expérience à vivre pleinement : partager un thé avec une famille dans un village du Rajasthan, assister à une cérémonie au lever du soleil sur les rives du Gange, traverser les paysages paisibles du Kerala ou écouter les histoires d’un guide passionné au cœur des anciens palais indiens.
+              </p>
+              <p>
+                À travers Indeora Voyages, nous souhaitons créer des moments vrais, des émotions profondes et des souvenirs qui marquent durablement. Parce que voyager en Inde, ce n’est pas seulement découvrir un pays — c’est apprendre à le ressentir, à le comprendre et parfois même à se redécouvrir soi-même.
+              </p>
+            </div>
+
+            <div className="mt-10 text-center">
+              <button
+                onClick={() => setIsPhilosophieOpen(false)}
+                className="bg-[#b89450] text-white text-[9px] tracking-[0.3em] font-bold py-3.5 px-8 hover:bg-[#9f7d3e] transition uppercase"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Premium Parcours Modal */}
+      {isParcoursOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300"
+          onClick={() => setIsParcoursOpen(false)}
+        >
+          <div
+            className="relative bg-[#fcf9f5] border-t-4 border-[#b89450] max-w-2xl w-full rounded-sm shadow-[0_24px_54px_rgba(0,0,0,0.3)] p-8 md:p-12 animate-fadeIn overflow-y-auto max-h-[90vh] -translate-y-8 md:-translate-y-16"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsParcoursOpen(false)}
+              className="absolute top-4 right-5 text-gray-400 hover:text-[#b89450] transition-colors text-xl font-bold p-2"
+              aria-label="Fermer"
+            >
+              ✕
+            </button>
+
+            <div className="text-center mb-8">
+              <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
+                Notre histoire
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#161c20] italic">
+                Une passion franco-indienne
+              </h2>
+              <div className="w-24 h-[1px] bg-[#b89450]/30 mx-auto mt-4" />
+            </div>
+
+            <div className="font-serif italic text-base md:text-lg leading-relaxed text-[#b89450] mb-8 text-center px-2">
+              "Indeora Voyages est née de la rencontre entre deux cultures, deux regards sur le voyage et une même passion profonde pour l’Inde."
+            </div>
+
+            <div className="space-y-6 text-sm md:text-base leading-relaxed text-[#273137]/90 font-medium">
+              <p>
+                D’un côté, l’amour du voyage, du partage et de la découverte. De l’autre, une connaissance intime du terrain, des traditions et de l’âme véritable de l’Inde. Ensemble, ces expériences ont donné naissance à une agence franco-indienne pensée autrement : plus humaine, plus proche et plus authentique.
+              </p>
+              <p>
+                Après plusieurs années consacrées au tourisme et à la création de voyages sur mesure, nous avons ressenti l’envie de proposer une approche différente. Une agence à taille humaine, fondée sur l’écoute, la confiance et la passion du voyage vécu avec sincérité.
+              </p>
+              <p>
+                Au fil du temps, nous avons parcouru l’Inde bien au-delà des itinéraires classiques, explorant des régions méconnues, rencontrant des familles, des artisans, des guides passionnés et des lieux encore préservés du tourisme de masse. Cette immersion nous a permis de construire un réseau local solide et précieux, basé sur des relations humaines et durables.
+              </p>
+              <p>
+                Aujourd’hui, cette double culture franco-indienne nous permet de comprendre les attentes des voyageurs francophones tout en leur ouvrant les portes d’une Inde authentique, chaleureuse et profondément vivante.
+              </p>
+              <p>
+                À travers Indeora Voyages, nous ne souhaitons pas simplement organiser des séjours. Nous voulons transmettre une émotion, partager une vision du voyage et faire découvrir une Inde que l’on ne regarde pas seulement avec les yeux, mais que l’on ressent avec le cœur.
+              </p>
+            </div>
+
+            <div className="mt-10 text-center">
+              <button
+                onClick={() => setIsParcoursOpen(false)}
+                className="bg-[#b89450] text-white text-[9px] tracking-[0.3em] font-bold py-3.5 px-8 hover:bg-[#9f7d3e] transition uppercase"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Premium Vishnu Swami Modal */}
+      {isVishnuOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300"
+          onClick={() => setIsVishnuOpen(false)}
+        >
+          <div
+            className="relative bg-[#fcf9f5] border-t-4 border-[#b89450] max-w-2xl w-full rounded-sm shadow-[0_24px_54px_rgba(0,0,0,0.3)] p-8 md:p-12 animate-fadeIn overflow-y-auto max-h-[90vh] -translate-y-8 md:-translate-y-16 text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsVishnuOpen(false)}
+              className="absolute top-4 right-5 text-gray-400 hover:text-[#b89450] transition-colors text-xl font-bold p-2"
+              aria-label="Fermer"
+            >
+              ✕
+            </button>
+
+            <div className="text-center mb-8">
+              <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
+                Fondateur francophone
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#161c20] italic">
+                Vishnu Swami
+              </h2>
+              <div className="w-24 h-[1px] bg-[#b89450]/30 mx-auto mt-4" />
+            </div>
+
+            <div className="font-serif italic text-base md:text-lg leading-relaxed text-[#b89450] mb-8 text-center px-2">
+              "Passionné de voyages depuis toujours, Vishnu Swami a d’abord exploré le monde bien au-delà de l’Inde."
+            </div>
+
+            <div className="space-y-6 text-sm md:text-base leading-relaxed text-[#273137]/90 font-medium">
+              <p>
+                Après avoir vécu plusieurs années en France, où il s’est profondément imprégné de la culture européenne et de l’art de voyager des Français, une évidence s’est imposée à lui : créer un véritable pont entre ces deux cultures.
+              </p>
+              <p>
+                C’est ainsi qu’est née Indeora Voyages, avec l’envie de faire découvrir une Inde authentique, humaine et profondément immersive. Pas simplement visiter l’Inde, mais la vivre, la ressentir et explorer son âme à travers des rencontres sincères, des traditions vivantes et des expériences loin du tourisme classique.
+              </p>
+            </div>
+
+            <div className="mt-10 text-center">
+              <button
+                onClick={() => setIsVishnuOpen(false)}
+                className="bg-[#b89450] text-white text-[9px] tracking-[0.3em] font-bold py-3.5 px-8 hover:bg-[#9f7d3e] transition uppercase"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Premium Amandine Fastré Modal */}
+      {isAmandineOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300"
+          onClick={() => setIsAmandineOpen(false)}
+        >
+          <div
+            className="relative bg-[#fcf9f5] border-t-4 border-[#b89450] max-w-2xl w-full rounded-sm shadow-[0_24px_54px_rgba(0,0,0,0.3)] p-8 md:p-12 animate-fadeIn overflow-y-auto max-h-[90vh] -translate-y-8 md:-translate-y-16 text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsAmandineOpen(false)}
+              className="absolute top-4 right-5 text-gray-400 hover:text-[#b89450] transition-colors text-xl font-bold p-2"
+              aria-label="Fermer"
+            >
+              ✕
+            </button>
+
+            <div className="text-center mb-8">
+              <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
+                Créatrice d’itinéraires
+              </p>
+              <h2 className="font-serif text-3xl md:text-4xl text-[#161c20] italic">
+                Amandine Fastré
+              </h2>
+              <div className="w-24 h-[1px] bg-[#b89450]/30 mx-auto mt-4" />
+            </div>
+
+            <div className="font-serif italic text-base md:text-lg leading-relaxed text-[#b89450] mb-8 text-center px-2">
+              "Amandine est une véritable passionnée de l’Inde, un pays où elle a vécu plus de 18 ans en tant que créatrice de voyages sur mesure."
+            </div>
+
+            <div className="space-y-6 text-sm md:text-base leading-relaxed text-[#273137]/90 font-medium">
+              <p>
+                Au fil des années, elle a parcouru de nombreuses régions, exploré des lieux authentiques et développé une connaissance profonde du pays, de ses cultures et de ses traditions.
+              </p>
+              <p>
+                À travers Indeora Voyages, elle souhaite aujourd’hui partager une Inde sincère et inspirante, loin des itinéraires classiques, en imaginant des expériences humaines, élégantes et profondément immersives pour les voyageurs francophones.
+              </p>
+            </div>
+
+            <div className="mt-10 text-center">
+              <button
+                onClick={() => setIsAmandineOpen(false)}
+                className="bg-[#b89450] text-white text-[9px] tracking-[0.3em] font-bold py-3.5 px-8 hover:bg-[#9f7d3e] transition uppercase"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <Footer />
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: scale(0.95) translateY(10px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .animate-fadeIn {
+          animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
     </div>
   );
 };

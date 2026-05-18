@@ -1,6 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
+import blogHeroImg from '../assets/image copy 44.png';
 
 const Blog = () => {
   const posts = [
@@ -9,7 +11,8 @@ const Blog = () => {
       title: "Rajasthan Royale",
       category: "Heritage & Culture",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2WaN4uFLmSnMZh46fxzWRdxJJ8iKUVZn9kw&s",
-      description: "Experience the majestic forts and palaces of India's desert kingdom."
+      description: "Experience the majestic forts and palaces of India's desert kingdom.",
+      link: "/blog/rajasthan-royale"
     },
     {
       id: 2,
@@ -75,43 +78,48 @@ const Blog = () => {
       <div className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=2000&q=80"
+            src={blogHeroImg}
             alt="Blog Hero"
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-[75%_center]"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-black/50"></div>
         </div>
 
-        <div className="relative z-10 text-center px-6 max-w-4xl pt-20 md:pt-32">
-          <h1 className="text-white text-5xl sm:text-7xl md:text-9xl font-serif italic mb-6 md:mb-8 animate-fadeInUp drop-shadow-2xl">
-            Inspirations
-          </h1>
-          <p className="text-white/90 text-xs md:text-[16px] tracking-[0.3em] md:tracking-[0.4em] uppercase mb-10 md:mb-12 animate-fadeInUp font-light leading-relaxed" style={{ animationDelay: '200ms' }}>
-            Discover incredible stories and hidden gems from the heart of India, <br className="hidden md:block" /> brimming with culture and heritage all-year round.
-          </p>
-          <div className="animate-fadeInUp" style={{ animationDelay: '400ms' }}>
-            <button className="bg-transparent border border-white/40 text-white text-[11px] tracking-[0.4em] font-bold py-6 px-14 hover:bg-white hover:text-black transition-all duration-700 uppercase rounded-sm backdrop-blur-[2px]">
-              Book Your Voyage
-            </button>
+        <div className="relative z-10 text-center px-12 max-w-4xl pt-20 md:pt-32">
+          <div className="md:translate-x-72 lg:translate-x-[33rem] translate-y-32 md:translate-y-[15rem] animate-fadeInUp text-center max-w-2xl mx-auto" style={{ animationDelay: '200ms' }}>
+            <h1 className="text-white text-[9.5px] md:text-[11.5px] lg:text-[13px] tracking-[0.25em] md:tracking-[0.3em] uppercase font-medium leading-relaxed mb-5 max-w-md mx-auto">
+              Récits de voyage, inspirations, <br className="hidden md:block" /> conseils et regards authentiques sur l’Inde.
+            </h1>
+            <p className="text-white/80 text-[7.5px] md:text-[9px] tracking-[0.18em] md:tracking-[0.22em] uppercase font-light leading-relaxed max-w-lg mx-auto">
+              À travers nos carnets, découvrez une Inde élégante, humaine et profondément inspirante,<br className="hidden md:block" />
+              racontée au fil des rencontres, des émotions et des experiences vécues sur le terrain.
+            </p>
           </div>
+
+
         </div>
       </div>
 
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24">
         {/* Header */}
         <div className="text-center mb-16 md:mb-24 animate-fadeIn">
-          <h2 className="text-[10px] md:text-[12px] font-bold tracking-[0.5em] text-[#A88B52] uppercase mb-4">Inspiration</h2>
+          <h2 className="text-[9px] md:text-[14px] lg:text-[17px] font-bold tracking-[0.25em] md:tracking-[0.35em] lg:tracking-[0.45em] text-[#A88B52] uppercase mb-4 w-full whitespace-nowrap">“Plus qu’une destination, l’Inde est une émotion qui se raconte.”
+          </h2>
           <div className="w-24 h-[1px] bg-[#A88B52] mx-auto mt-6 md:mt-8 opacity-30"></div>
         </div>
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-          {posts.map((post, index) => (
-            <div
-              key={post.id}
-              className="group cursor-pointer animate-fadeInUp"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
+          {posts.map((post, index) => {
+            const CardComponent = post.link ? Link : 'div';
+            const extraProps = post.link ? { to: post.link } : {};
+            return (
+              <CardComponent
+                key={post.id}
+                className="group cursor-pointer animate-fadeInUp block"
+                style={{ animationDelay: `${index * 100}ms` }}
+                {...extraProps}
+              >
               <div className="relative overflow-hidden aspect-[3/4] mb-8 shadow-sm">
                 <img
                   src={post.image}
@@ -145,8 +153,9 @@ const Blog = () => {
                   <div className="h-[1px] w-8 bg-[#A88B52]/30"></div>
                 </div>
               </div>
-            </div>
-          ))}
+              </CardComponent>
+            );
+          })}
         </div>
 
         {/* Footer CTA */}

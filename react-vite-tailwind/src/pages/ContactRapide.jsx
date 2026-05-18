@@ -2,6 +2,7 @@ import React from 'react';
 import Footer from '../components/Footer';
 import PourquoiVoyager from '../components/PourquoiVoyager';
 import VotreVoyageForm from '../components/VotreVoyageForm';
+import contactHeroImg from '../assets/image copy 43.png';
 
 const ContactRapide = () => {
   return (
@@ -10,7 +11,7 @@ const ContactRapide = () => {
       <div className="relative h-[85vh] w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=2000&q=80"
+            src={contactHeroImg}
             alt="Contact Hero"
             className="w-full h-full object-cover"
           />
@@ -18,9 +19,7 @@ const ContactRapide = () => {
         </div>
 
         <div className="relative z-10 text-center px-6 max-w-4xl pt-20 md:pt-32">
-          <h1 className="text-white text-5xl sm:text-7xl md:text-9xl font-serif italic mb-6 md:mb-8 drop-shadow-2xl">
-            Contact
-          </h1>
+
           <p className="text-white/90 text-xs md:text-[16px] tracking-[0.3em] md:tracking-[0.4em] uppercase mb-10 md:mb-12 font-light leading-relaxed">
             NOUS SOMMES À VOTRE ÉCOUTE POUR CRÉER <br className="hidden md:block" /> LE VOYAGE DE VOS RÊVES EN INDE.
           </p>
@@ -37,9 +36,13 @@ const ContactRapide = () => {
 
       {/* Header Section */}
       <div className="max-w-7xl mx-auto px-6 text-center py-16 md:py-24" id="contact-form">
-        <h2 className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-[#A88B52] mb-6 md:mb-8 uppercase">REDEFINING LUXURY TRAVEL</h2>
+        <h2 className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-[#A88B52] mb-6 md:mb-8 uppercase">UNE AUTRE FAÇON DE DÉCOUVRIR L’INDE</h2>
         <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed md:leading-[1.8] max-w-4xl mx-auto font-medium opacity-80">
-          Indeora Voyages offers over 25 years of combined luxury travel experience as India's premiere DMC working with discerning agencies and directly with high-profile clients. Our team is here on-the-ground in India working with only the finest vetted networks, luxury accommodations and local, knowledgeable guides. Contact us below to request a custom quote.
+          Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les voyageurs francophones en quête d’authenticité, d’élégance et d’expériences profondément humaines.
+
+Présente directement sur le terrain, notre équipe franco-indienne sélectionne avec soin des hébergements de charme, des guides francophones passionnés et des expériences uniques afin de vous faire découvrir une Inde vraie, loin des voyages standardisés.
+
+Contactez notre équipe pour imaginer ensemble un voyage entièrement pensé selon vos envies, votre rythme et votre manière de voyager.
         </p>
       </div>
 

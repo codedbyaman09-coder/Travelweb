@@ -9,6 +9,7 @@ import assistanceIcon from "../assets/ChatGPT Image May 14, 2026, 01_40_49 PM.pn
 
 import featureBanner from "../assets/image copy 19.png";
 import archIcon from "../assets/ChatGPT Image May 14, 2026, 05_53_26 PM.png";
+import bgUSPImg from "../assets/image copy 42.jpeg";
 
 import nordIcon from "../assets/image copy 31.png";
 import keralaIcon from "../assets/image copy 32.png";
@@ -405,14 +406,14 @@ const Destinations = () => {
       </section>
 
       {/* USP BANNER */}
-      <section className="relative w-full py-8 md:py-10 bg-[#0a0f14] overflow-hidden">
+      <section className="relative w-full py-8 md:py-10 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?auto=format&fit=crop&w=2000&q=90"
+          src={bgUSPImg}
           alt="Unique India"
-          className="absolute inset-0 w-full h-full object-cover opacity-100"
+          className="absolute inset-0 w-full h-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-black/35"></div>
+        <div className="absolute inset-0 bg-black/75"></div>
 
         <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 py-6 md:py-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 text-center">
