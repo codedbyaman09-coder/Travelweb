@@ -230,7 +230,7 @@ const Destinations = () => {
             {/* Col 1: Rajasthan */}
             <Link
               to="/voyage-photo-expeditions"
-              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 translate-x-[18px] pointer-events-auto group cursor-pointer"
+              className="flex flex-col items-center justify-start pt-[180px] text-center px-1 translate-x-[0px] pointer-events-auto group cursor-pointer"
             >
               <img
                 src={archIcon}
@@ -249,7 +249,7 @@ const Destinations = () => {
             {/* Col 2: Inde du Nord */}
             <Link
               to="/immersion-villages-indiens"
-              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 pointer-events-auto group cursor-pointer"
+              className="flex flex-col items-center justify-start pt-[180px] text-center px-1 pointer-events-auto group cursor-pointer"
             >
               <img
                 src={nordIcon}
@@ -268,7 +268,7 @@ const Destinations = () => {
             {/* Col 3: Kerala */}
             <Link
               to="/croisieres-backwaters-kerala"
-              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 -translate-x-[18px] pointer-events-auto group cursor-pointer"
+              className="flex flex-col items-center justify-start pt-[180px] text-center px-1 -translate-x-[18px] pointer-events-auto group cursor-pointer"
             >
               <img
                 src={keralaIcon}
@@ -285,7 +285,7 @@ const Destinations = () => {
             </Link>
 
             {/* Col 4: Map Space */}
-            <div className="flex flex-col items-center justify-start pt-[220px] text-center px-1">
+            <div className="flex flex-col items-center justify-start pt-[180px] text-center px-1">
               <div className="w-6 h-px bg-transparent mb-1.5" />
             </div>
 
@@ -293,7 +293,7 @@ const Destinations = () => {
             {/* Col 5: Himalaya */}
             <Link
               to="/himalaya-aventures-hors-sentiers-battus"
-              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 translate-x-[55px] pointer-events-auto group cursor-pointer"
+              className="flex flex-col items-center justify-start pt-[180px] text-center px-1 translate-x-[35px] pointer-events-auto group cursor-pointer"
             >
               <img
                 src={himalayaIcon}
@@ -313,7 +313,7 @@ const Destinations = () => {
             {/* Col 6: Inde du Sud */}
             <Link
               to="/lune-de-miel-escapades-romantiques"
-              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 translate-x-[25px] pointer-events-auto group cursor-pointer"
+              className="flex flex-col items-center justify-start pt-[180px] text-center px-1 translate-x-[25px] pointer-events-auto group cursor-pointer"
             >
               <img
                 src={sudIcon}
@@ -332,7 +332,7 @@ const Destinations = () => {
             {/* Col 7: Inde Centrale */}
             <Link
               to="/rencontres-ethniques-cultures-locales"
-              className="flex flex-col items-center justify-start pt-[220px] text-center px-1 pointer-events-auto group cursor-pointer"
+              className="flex flex-col items-center justify-start pt-[180px] text-center px-1 pointer-events-auto group cursor-pointer"
             >
               <img
                 src={centraleIcon}
