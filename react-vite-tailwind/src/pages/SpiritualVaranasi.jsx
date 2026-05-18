@@ -11,25 +11,21 @@ const SpiritualVaranasi = () => {
 
   const faqs = [
     {
-      question: "Quelle est la meilleure période pour faire une croisière dans les backwaters ?",
-      answer: "La meilleure période se situe entre octobre et mars, lorsque le climat est sec et les températures sont douces au Kerala."
+      question: "Pourquoi l’Inde change profondément les voyageurs ?",
+      answer: "Parce que l’Inde est une destination profondément émotionnelle et humaine, où les rencontres,les contrastes et la spiritualité créent une expérience intense."
     },
     {
-      question: "Qu'est-ce qu'un houseboat (Kettuvallam) ?",
-      answer: "Les houseboats sont d'anciens bateaux traditionnels de transport d'épices reconvertis en hébergements flottants tout confort avec cabines privées et personnel de bord."
+      question: "L’Inde est-elle difficile pour un premier voyage ?",
+      answer: "Avec un itinéraire bien pensé et un accompagnement local, le voyage devient fluide et enrichissant."
     },
     {
-      question: "Combien de jours faut-il consacrer à la visite du Kerala ?",
-      answer: "Nous recommandons généralement d'y passer entre 8 et 12 jours pour combiner la fraîcheur des plantations de Munnar, la croisière sur les canaux et la détente sur les plages."
+      question: "Quelle région choisir pour découvrir l’Inde ?",
+      answer: "Le Rajasthan est idéal pour une première découverte, tandis que le Kerala séduit par son atmosphère paisible"
     },
     {
-      question: "La nourriture au Kerala est-elle très épicée ?",
-      answer: "La cuisine du Kerala est réputée pour sa douceur, ses saveurs de noix de coco fraîche, de cardamome et de gingembre, parfaitement adaptée aux goûts de nos voyageurs."
+      question: "Pourquoi les voyageurs parlent-ils d’un avant et d’un après l’Inde ?",
+      answer: "Pourquoi les voyageurs parlent-ils d’un avant et d’un après l’Inde ?"
     },
-    {
-      question: "Peut-on faire une cure ayurvédique authentique au Kerala ?",
-      answer: "Oui, le Kerala est la terre d'origine historique de l'Ayurveda. Nous proposons des séjours alliant soins quotidiens, yoga et alimentation saine dans des centres spécialisés de confiance."
-    }
   ];
 
   return (
@@ -134,15 +130,12 @@ const SpiritualVaranasi = () => {
                 </div>
 
                 <p className="font-light italic leading-loose text-justify text-gray-600 first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:text-[#A88B52] first-letter:mr-3 first-letter:float-left first-letter:mt-1">
-                  Il existe en Inde une région qui semble tout droit sortie d’un autre temps. Une terre où les
-                  palais flottent au-dessus des lacs, où les forts dominent le désert et où les traditions
-                  continuent de vivre au rythme des couleurs, des fêtes et des marchés animés. Bienvenue au
-                  Rajasthan. Pour beaucoup de voyageurs francophones, un voyage au Rajasthan représente
-                  la première rencontre avec l’Inde rêvée. Celle des maharajas, des palais majestueux, des
-                  saris colorés et des cités royales baignées de lumière dorée au coucher du soleil. Mais
-                  au-delà des images iconiques, le Rajasthan possède surtout une atmosphère unique. Une
-                  élégance intemporelle mêlée à une culture profondément vivante et à une chaleur humaine
-                  qui marque durablement ceux qui la découvrent.
+                  Certaines destinations offrent de beaux paysages. D’autres permettent simplement de
+changer d’air quelques jours. Mais l’Inde laisse une trace bien plus profonde. Pour beaucoup
+de voyageurs, un premier voyage en Inde commence avec des images en tête : les palais du
+Rajasthan, les couleurs des marchés, les cérémonies sur le Gange ou les paysages
+majestueux de l’Himalaya. Pourtant, une fois sur place, quelque chose change. Le voyage
+devient émotion.
                 </p>
               </div>
 
@@ -152,7 +145,7 @@ const SpiritualVaranasi = () => {
                 {/* Subsection 1 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Pourquoi voyager au Rajasthan ?
+                    Une intensité unique
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -164,20 +157,19 @@ const SpiritualVaranasi = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Le Rajasthan est souvent considéré comme l’une des plus belles régions d’Inde pour une
-                    première découverte du pays. Cette région concentre toute la richesse culturelle et historique
-                    de l’Inde du Nord : palais de maharajas, forts majestueux, villages traditionnels, marchés
-                    colorés, désert du Thar, temples anciens et artisanat raffiné. Chaque ville possède sa propre
-                    identité et raconte une histoire différente. Le Rajasthan n’est pas seulement une destination
-                    culturelle. C’est une immersion dans une Inde élégante, vibrante et profondément
-                    authentique.
+                    Dans les rues animées de Delhi, entre les rickshaws, les parfums d’épices et les scènes de
+vie fascinantes, le voyageur découvre une énergie impossible à comparer avec un autre
+pays. Pourtant, au milieu de cette agitation, apparaissent aussi des instants de calme
+presque irréels : une cérémonie au bord du Gange, un coucher de soleil dans le désert du
+Rajasthan ou le silence d’un temple ancien.
+
                   </p>
                 </div>
 
                 {/* Subsection 2 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Jaipur : la ville rose du Rajasthan
+                    Le voyage devient plus humain
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -189,18 +181,17 @@ const SpiritualVaranasi = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Capitale du Rajasthan, Jaipur fascine immédiatement par son architecture, ses palais et son
-                    énergie. Le Palais des Vents, le City Palace ou encore le Fort d’Amber témoignent du passé
-                    prestigieux des anciens royaumes rajpoutes. Dans les bazars animés, les voyageurs
-                    découvrent bijoux traditionnels, tissus colorés, artisanat local et parfums d’épices. Jaipur
-                    représente souvent la première grande émotion d’un voyage au Rajasthan.
+                   Ce qui marque profondément les voyageurs, ce ne sont pas uniquement les lieux célèbres.
+Ce sont souvent les moments les plus simples : une invitation spontanée à partager un chai,
+une discussion improvisée avec un artisan ou un repas partagé avec une famille locale.
+
                   </p>
                 </div>
 
                 {/* Subsection 3 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Udaipur : romantisme et palais au bord des lacs
+                    Une autre manière de voyager
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -212,18 +203,17 @@ const SpiritualVaranasi = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Surnommée la “Venise de l’Orient”, Udaipur offre une atmosphère totalement différente.
-                    Entre palais blancs, hôtels de charme et couchers de soleil sur le lac Pichola, la ville séduit
-                    particulièrement les couples et les voyageurs à la recherche d’une Inde plus élégante et
-                    paisible. Flâner dans les ruelles anciennes ou dîner face au City Palace fait partie des
-                    expériences les plus mémorables d’un voyage au Rajasthan.
+                  En Inde, tout ne se passe pas toujours comme prévu. Et c’est précisément ce qui transforme
+le voyage. Peu à peu, on apprend à ralentir, à accepter l’imprévu et à observer davantage
+plutôt que vouloir tout contrôler.
+
                   </p>
                 </div>
 
                 {/* Subsection 4 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Le désert du Thar : une autre vision de l’Inde
+                    Chaque région raconte une émotion
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -235,18 +225,16 @@ const SpiritualVaranasi = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Au-delà des palais et des villes historiques, le Rajasthan révèle aussi des paysages
-                    désertiques fascinants. Dormir dans le désert du Thar, assister à un coucher de soleil sur les
-                    dunes ou partager une soirée autour de la musique traditionnelle reste souvent un moment
-                    fort du voyage. Le désert offre une atmosphère plus silencieuse, plus lente et profondément
-                    dépaysante.
+                  Le Rajasthan évoque l’élégance des palais et les lumières dorées du désert. Le Kerala
+apaise avec ses paysages tropicaux. Varanasi fascine par sa spiritualité et l’Himalaya invite
+au silence et à la contemplation
                   </p>
                 </div>
 
                 {/* Subsection 5 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Le vrai luxe au Rajasthan
+                  Le vrai luxe en Inde
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -258,11 +246,9 @@ const SpiritualVaranasi = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Le véritable luxe au Rajasthan ne réside pas uniquement dans les palais ou les hôtels
-                    prestigieux. Il se trouve dans les expériences vécues : un dîner sous les étoiles dans le
-                    désert, une balade dans les vieux bazars, le calme d’un palais au bord d’un lac ou encore
-                    une rencontre inattendue avec une famille locale. Le Rajasthan possède cette capacité rare
-                    de mêler élégance, émotion et authenticité.
+                 Le véritable luxe en Inde ne réside pas seulement dans les hôtels raffinés. Il se trouve dans
+les émotions vécues : un lever de soleil sur le Gange, une nuit sous les étoiles dans le désert
+ou une rencontre inattendue dans un village
                   </p>
                 </div>
               </div>
@@ -270,7 +256,7 @@ const SpiritualVaranasi = () => {
               {/* Subsection 6: FAQ Accordion */}
               <div className="mt-20 pt-16 border-t border-gray-100">
                 <h2 className="font-serif text-[26px] md:text-[32px] text-[#A88B52] italic mb-10 text-center">
-                  FAQ — Voyage au Rajasthan
+                  FAQ — Pourquoi l’Inde change profondément les
                 </h2>
 
                 <div className="space-y-4 max-w-3xl mx-auto">
@@ -380,16 +366,15 @@ const SpiritualVaranasi = () => {
           </span>
 
           <h2 className="font-serif text-[24px] md:text-[34px] lg:text-[40px] text-white uppercase tracking-wider mb-6 italic">
-            ENVIE DE DÉCOUVRIR LE RAJASTHAN AUTREMENT ?
+            ENVIE DE DÉCOUVRIR L’INDE AUTREMENT ?
           </h2>
 
           <div className="w-16 h-[1.5px] bg-[#A88B52] mx-auto mb-8"></div>
 
           <p className="text-[13px] md:text-[16px] leading-[1.8] text-gray-300 font-light italic mb-12 max-w-3xl mx-auto">
-            Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure au Rajasthan et à
-            travers toute l’Inde pour les voyageurs francophones en quête d’authenticité, d’émotions et
-            d’expériences profondément humaines. Contactez notre équipe pour créer un voyage unique
-            au cœur des palais, des traditions et des paysages fascinants du Rajasthan.
+            Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les
+voyageurs francophones en quête d’authenticité, d’émotions et d’expériences profondément
+humaines.
           </p>
         </div>
       </section>
