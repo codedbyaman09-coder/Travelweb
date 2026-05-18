@@ -10,6 +10,8 @@ const Footer = () => {
   const [footerCountryCode, setFooterCountryCode] = useState('+33');
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
+  const [isPhoneDropdownOpen, setIsPhoneDropdownOpen] = useState(false);
+  const [isFooterPhoneOpen, setIsFooterPhoneOpen] = useState(false);
 
   return (
     <>
@@ -58,13 +60,44 @@ const Footer = () => {
               </p>
               <div className="flex gap-4">
                 {[
-                  { icon: 'fab fa-facebook-f', link: '#' },
-                  { icon: 'fab fa-instagram', link: '#' },
-                  { icon: 'fab fa-whatsapp', link: '#' },
-                  { icon: 'far fa-envelope', link: '#' }
+                  {
+                    icon: (
+                      <svg className="w-3.5 h-3.5 fill-[#C5A46D] group-hover:fill-white transition-colors" viewBox="0 0 24 24">
+                        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.717-1.456L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.37 9.864-9.799.002-2.63-1.023-5.101-2.885-6.97C16.59 2.028 14.11 1.002 11.49 1.002 6.062 1.002 1.637 5.37 1.633 10.8c-.001 1.73.46 3.42 1.337 4.927-.393 1.428-1.082 3.95-1.082 3.95l4.093-1.056c1.51.82 3.09 1.229 4.664 1.233zM18.02 14.73c-.328-.163-1.942-.947-2.242-1.056-.302-.109-.522-.163-.74.163-.219.324-.849 1.056-1.04 1.272-.191.218-.383.245-.71.082-1.56-.783-2.73-1.36-3.81-3.21-.285-.49.285-.455.815-1.52.088-.182.043-.341-.021-.477-.064-.136-.522-1.248-.716-1.716-.19-.454-.383-.391-.523-.399-.136-.008-.291-.01-.447-.01-.156 0-.411.058-.627.291-.216.233-.825.797-.825 1.944 0 1.147.844 2.253.962 2.41.118.159 1.662 2.507 4.025 3.511.562.24 1.002.383 1.345.491.565.177 1.079.153 1.485.093.453-.067 1.942-.787 2.215-1.547.273-.76.273-1.41.191-1.546-.082-.136-.301-.218-.629-.382z"/>
+                      </svg>
+                    ),
+                    link: 'https://wa.me/919351421959'
+                  },
+                  {
+                    icon: (
+                      <svg className="w-3.5 h-3.5 fill-[#C5A46D] group-hover:fill-white transition-colors" viewBox="0 0 24 24">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                      </svg>
+                    ),
+                    link: '#'
+                  },
+                  {
+                    icon: (
+                      <svg className="w-3.5 h-3.5 stroke-[#C5A46D] group-hover:stroke-white fill-none transition-colors" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                      </svg>
+                    ),
+                    link: '#'
+                  },
+                  {
+                    icon: (
+                      <svg className="w-3.5 h-3.5 stroke-[#C5A46D] group-hover:stroke-white fill-none transition-colors" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                    ),
+                    link: 'mailto:contact@indeoravoyages.com'
+                  }
                 ].map((social, i) => (
-                  <a key={i} href={social.link} className="w-8 h-8 rounded-full border border-[#C5A46D]/30 flex items-center justify-center text-[#C5A46D]/60 hover:text-[#C5A46D] hover:border-[#C5A46D] transition-all">
-                    <i className={social.icon + " text-[10px]"}></i>
+                  <a key={i} href={social.link} className="w-8 h-8 rounded-full border border-[#C5A46D]/30 flex items-center justify-center hover:bg-[#C5A46D] hover:border-[#C5A46D] transition-all group">
+                    {social.icon}
                   </a>
                 ))}
               </div>
@@ -75,7 +108,6 @@ const Footer = () => {
               <h3 className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#C5A46D] uppercase mb-8">LIENS RAPIDES</h3>
               <ul className="space-y-3.5 text-[#C5A46D] text-[12px] md:text-[13px] font-light">
                 <li><Link to="/destinations" className="hover:text-white transition-colors">Destinations</Link></li>
-                <li><Link to="/experiences" className="hover:text-white transition-colors">Expériences</Link></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">À propos</Link></li>
                 <li><Link to="/avant-de-partir" className="hover:text-white transition-colors">Avant de partir</Link></li>
                 <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
@@ -90,10 +122,40 @@ const Footer = () => {
                   <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
                   <span>Bikaner, Rajasthan, Inde</span>
                 </li>
-                <li className="flex items-center justify-center md:justify-start gap-3 hover:text-white transition-colors cursor-pointer group">
-                  <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                  <span>+91 70 230 16044</span>
+
+                {/* Dropdown for Phone Numbers in Footer List */}
+                <li className="relative max-w-[240px] mx-auto md:mx-0">
+                  <button
+                    onClick={() => setIsFooterPhoneOpen(!isFooterPhoneOpen)}
+                    className="flex items-center justify-between w-full text-left gap-3 text-[#C5A46D] hover:text-white transition-colors cursor-pointer group py-1 outline-none"
+                  >
+                    <div className="flex items-center gap-3">
+                      <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                      <span className="font-light">Téléphones</span>
+                    </div>
+                    <svg className={`w-3 h-3 text-[#C5A46D] transition-transform duration-300 ${isFooterPhoneOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+
+                  <div className={`transition-all duration-500 overflow-hidden ${isFooterPhoneOpen ? 'max-h-[160px] opacity-100 mt-3 space-y-3 pl-6 border-l border-[#C5A46D]/20 text-left' : 'max-h-0 opacity-0'}`}>
+                    <div className="flex items-center gap-3">
+                      <img src="https://flagcdn.com/w20/fr.png" alt="France" className="w-4 h-auto shadow-sm opacity-80" />
+                      <a href="tel:+33616642626" className="text-[#C5A46D]/80 hover:text-white transition-colors">+33 6 16 64 26 26</a>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <img src="https://flagcdn.com/w20/in.png" alt="Inde" className="w-4 h-auto shadow-sm opacity-80" />
+                      <a href="tel:+911514050559" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 151 405 0559</a>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <img src="https://flagcdn.com/w20/in.png" alt="Inde Mobile" className="w-4 h-auto shadow-sm opacity-80" />
+                      <a href="tel:+919351421959" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 93514 21959</a>
+                    </div>
+                  </div>
                 </li>
+
                 <li className="flex items-center justify-center md:justify-start gap-3 hover:text-white transition-colors cursor-pointer group">
                   <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                   <span>contact@indeoravoyages.com</span>
@@ -249,30 +311,50 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Newsletter Panel (Right-ish) */}
-        <div className={`absolute bottom-full right-[200px] w-full md:w-[450px] bg-[#f8fafb] border-t border-x border-gray-100 transition-all duration-500 overflow-hidden z-[10000] shadow-[0_-10px_30px_rgba(0,0,0,0.05)] ${isAppointmentOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-          <div className="px-8 md:px-12 py-12">
-            {/* Newsletter Section */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-6">
-                <svg className="w-14 h-14 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
+        {/* Contact Numbers Dropdown Panel */}
+        <div className={`absolute bottom-full left-[25%] md:left-[35%] w-[330px] bg-white border border-gray-100 rounded-sm shadow-[0_-10px_30px_rgba(0,0,0,0.08)] transition-all duration-500 overflow-hidden z-[10000] ${isPhoneDropdownOpen ? 'max-h-[300px] opacity-100 py-6 px-6' : 'max-h-0 opacity-0 py-0 px-6'}`}>
+          <h4 className="text-[#2D5C64] font-serif italic text-lg mb-4 border-b border-gray-100 pb-2">Nos numéros de contact</h4>
+          <div className="space-y-4">
+            {/* France */}
+            <div className="flex items-center justify-between group">
+              <div className="flex items-center gap-3">
+                <img src="https://flagcdn.com/w20/fr.png" alt="France" className="w-5 h-auto shadow-sm" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-gray-400 uppercase tracking-wider font-light">France</span>
+                  <a href="tel:+33616642626" className="text-[#2D5C64] text-[13px] font-bold hover:underline">+33 6 16 64 26 26</a>
+                </div>
               </div>
-              <p className="text-[#2D5C64] text-sm leading-relaxed mb-10 max-w-sm font-light">
-                Voyages thématiques, itinéraires originaux et conseils exclusifs... Recevez notre newsletter
-              </p>
+              <a href="tel:+33616642626" className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-[#2D5C64] hover:bg-[#2D5C64] hover:text-white transition-all shadow-sm">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              </a>
+            </div>
 
-              <div className="w-full space-y-6">
-                <input
-                  type="email"
-                  placeholder="Adresse email"
-                  className="w-full px-6 py-4 bg-white border border-gray-200 text-sm outline-none focus:border-[#2D5C64] transition-colors placeholder:text-gray-300 rounded-sm font-light shadow-sm"
-                />
-                <button className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md">
-                  CONTACTEZ MOI
-                </button>
+            {/* India Landline */}
+            <div className="flex items-center justify-between group">
+              <div className="flex items-center gap-3">
+                <img src="https://flagcdn.com/w20/in.png" alt="India" className="w-5 h-auto shadow-sm" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-gray-400 uppercase tracking-wider font-light">India</span>
+                  <a href="tel:+911514050559" className="text-[#2D5C64] text-[13px] font-bold hover:underline">+91 151 405 0559</a>
+                </div>
               </div>
+              <a href="tel:+911514050559" className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-[#2D5C64] hover:bg-[#2D5C64] hover:text-white transition-all shadow-sm">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+              </a>
+            </div>
+
+            {/* India Mobile */}
+            <div className="flex items-center justify-between group">
+              <div className="flex items-center gap-3">
+                <img src="https://flagcdn.com/w20/in.png" alt="India Mobile" className="w-5 h-auto shadow-sm" />
+                <div className="flex flex-col">
+                  <span className="text-[10px] text-gray-400 uppercase tracking-wider font-light">India Mobile</span>
+                  <a href="https://wa.me/919351421959" className="text-[#2D5C64] text-[13px] font-bold hover:underline">+91 93514 21959</a>
+                </div>
+              </div>
+              <a href="https://wa.me/919351421959" className="w-8 h-8 rounded-full bg-green-50 flex items-center justify-center text-green-600 hover:bg-green-600 hover:text-white transition-all shadow-sm">
+                <i className="fab fa-whatsapp text-[15px]"></i>
+              </a>
             </div>
           </div>
         </div>
@@ -285,7 +367,11 @@ const Footer = () => {
             {/* Contacter un specialiste francophone */}
             <div
               className="flex-1 flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors"
-              onClick={() => setIsContactOpen(!isContactOpen)}
+              onClick={() => {
+                setIsContactOpen(!isContactOpen);
+                setIsAppointmentOpen(false);
+                setIsPhoneDropdownOpen(false);
+              }}
             >
               <div className="relative">
                 <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -300,20 +386,27 @@ const Footer = () => {
               <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Contacter un specialiste francophone</span>
             </div>
 
-            {/* Phone Section */}
-            <div className="flex-[1.2] flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors">
-              <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1.01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-6 6" />
-              </svg>
-              <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-3">
-                <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Contact :</span>
-                <div className="flex items-center gap-3">
-                  <a href="https://wa.me/919351421959" className="text-[#2D5C64] text-[11px] md:text-[13px] font-bold tracking-wider whitespace-nowrap hover:underline">+91 93514 21959</a>
-                  <span className="text-[#2D5C64]/20 hidden md:block">|</span>
-                  <a href="tel:+33616642626" className="text-[#2D5C64] text-[11px] md:text-[13px] font-bold tracking-wider whitespace-nowrap hover:underline">+33 6 16 64 26 26</a>
+            {/* Phone Section (Dropdown Trigger Button) */}
+            <div
+              className="flex-[1.2] flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors"
+              onClick={() => {
+                setIsPhoneDropdownOpen(!isPhoneDropdownOpen);
+                setIsContactOpen(false);
+                setIsAppointmentOpen(false);
+              }}
+            >
+              <div className="relative">
+                <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-6 6" />
+                </svg>
+                <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5">
+                  <svg className={`w-3 h-3 text-[#2D5C64] transition-transform duration-300 ${isPhoneDropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                  </svg>
                 </div>
               </div>
+              <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Contactez nos experts</span>
             </div>
 
             {/* Appointment Section */}
@@ -322,6 +415,7 @@ const Footer = () => {
               onClick={() => {
                 setIsAppointmentOpen(!isAppointmentOpen);
                 setIsContactOpen(false);
+                setIsPhoneDropdownOpen(false);
               }}
             >
               <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-const RajasthanRoyale = () => {
+const KeralaBackwaters = () => {
   const [openFaq, setOpenFaq] = useState(null);
 
   const toggleFaq = (index) => {
@@ -11,24 +11,24 @@ const RajasthanRoyale = () => {
 
   const faqs = [
     {
-      question: "Quelle est la meilleure ville à visiter au Rajasthan ?",
-      answer: "Jaipur, Udaipur et Jodhpur sont souvent considérées comme les villes incontournables pour un premier voyage au Rajasthan."
+      question: "Quelle est la meilleure période pour faire une croisière dans les backwaters ?",
+      answer: "La meilleure période se situe entre octobre et mars, lorsque le climat est sec et les températures sont douces au Kerala."
     },
     {
-      question: "Combien de jours faut-il prévoir pour visiter le Rajasthan?",
-      answer: "Nous recommandons généralement entre 10 et 15 jours afin de découvrir plusieurs villes sansprécipitation"
+      question: "Qu'est-ce qu'un houseboat (Kettuvallam) ?",
+      answer: "Les houseboats sont d'anciens bateaux traditionnels de transport d'épices reconvertis en hébergements flottants tout confort avec cabines privées et personnel de bord."
     },
     {
-      question: "Quelle est la meilleure période pour voyager au Rajasthan ?",
-      answer: "Quelle est la meilleure période pour voyager au Rajasthan ?"
+      question: "Combien de jours faut-il consacrer à la visite du Kerala ?",
+      answer: "Nous recommandons généralement d'y passer entre 8 et 12 jours pour combiner la fraîcheur des plantations de Munnar, la croisière sur les canaux et la détente sur les plages."
     },
     {
-      question: "Le Rajasthan est-il adapté pour un premier voyage en Inde ?",
-      answer: "Le Rajasthan est-il adapté pour un premier voyage en Inde ?"
+      question: "La nourriture au Kerala est-elle très épicée ?",
+      answer: "La cuisine du Kerala est réputée pour sa douceur, ses saveurs de noix de coco fraîche, de cardamome et de gingembre, parfaitement adaptée aux goûts de nos voyageurs."
     },
     {
-      question: "Peut-on dormir dans un palais au Rajasthan ?",
-      answer: "Oui, de nombreux anciens palais de maharajas ont été transformés en hôtels de charme ou en hébergements de luxe."
+      question: "Peut-on faire une cure ayurvédique authentique au Kerala ?",
+      answer: "Oui, le Kerala est la terre d'origine historique de l'Ayurveda. Nous proposons des séjours alliant soins quotidiens, yoga et alimentation saine dans des centres spécialisés de confiance."
     }
   ];
 
@@ -170,7 +170,7 @@ const RajasthanRoyale = () => {
                     colorés, désert du Thar, temples anciens et artisanat raffiné. Chaque ville possède sa propre
                     identité et raconte une histoire différente. Le Rajasthan n’est pas seulement une destination
                     culturelle. C’est une immersion dans une Inde élégante, vibrante et profondément
-                    authentique
+                    authentique.
                   </p>
                 </div>
 
@@ -178,7 +178,6 @@ const RajasthanRoyale = () => {
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
                     Jaipur : la ville rose du Rajasthan
-
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -195,7 +194,6 @@ const RajasthanRoyale = () => {
                     prestigieux des anciens royaumes rajpoutes. Dans les bazars animés, les voyageurs
                     découvrent bijoux traditionnels, tissus colorés, artisanat local et parfums d’épices. Jaipur
                     représente souvent la première grande émotion d’un voyage au Rajasthan.
-
                   </p>
                 </div>
 
@@ -219,7 +217,6 @@ const RajasthanRoyale = () => {
                     particulièrement les couples et les voyageurs à la recherche d’une Inde plus élégante et
                     paisible. Flâner dans les ruelles anciennes ou dîner face au City Palace fait partie des
                     expériences les plus mémorables d’un voyage au Rajasthan.
-
                   </p>
                 </div>
 
@@ -243,7 +240,6 @@ const RajasthanRoyale = () => {
                     dunes ou partager une soirée autour de la musique traditionnelle reste souvent un moment
                     fort du voyage. Le désert offre une atmosphère plus silencieuse, plus lente et profondément
                     dépaysante.
-
                   </p>
                 </div>
 
@@ -266,7 +262,7 @@ const RajasthanRoyale = () => {
                     prestigieux. Il se trouve dans les expériences vécues : un dîner sous les étoiles dans le
                     désert, une balade dans les vieux bazars, le calme d’un palais au bord d’un lac ou encore
                     une rencontre inattendue avec une famille locale. Le Rajasthan possède cette capacité rare
-                    de mêler élégance, émotion et authenticité
+                    de mêler élégance, émotion et authenticité.
                   </p>
                 </div>
               </div>
@@ -393,7 +389,7 @@ const RajasthanRoyale = () => {
             Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure au Rajasthan et à
             travers toute l’Inde pour les voyageurs francophones en quête d’authenticité, d’émotions et
             d’expériences profondément humaines. Contactez notre équipe pour créer un voyage unique
-            au cœur des palais, des traditions et des paysages fascinants du Rajasthan.
+            au cœur des palais, des traditions et des paysages fascinants du Rajasthan
           </p>
         </div>
       </section>
@@ -403,4 +399,4 @@ const RajasthanRoyale = () => {
   );
 };
 
-export default RajasthanRoyale;
+export default KeralaBackwaters;

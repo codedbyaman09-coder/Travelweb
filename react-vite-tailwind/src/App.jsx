@@ -29,6 +29,8 @@ import VoyagePhotoExpeditions from './pages/VoyagePhotoExpeditions';
 import DemanderUnDevis from './pages/DemanderUnDevis';
 import ContactRapide from './pages/ContactRapide';
 import RajasthanRoyale from './pages/RajasthanRoyale';
+import KeralaBackwaters from './pages/KeralaBackwaters';
+import SpiritualVaranasi from './pages/SpiritualVaranasi';
 import TopBar from './components/TopBar';
 import './App.css';
 
@@ -59,6 +61,8 @@ const AppContent = () => {
     if (path === '/immersion-villages-indiens') return 'Rajasthan Rural';
     if (path === '/voyage-photo-expeditions') return 'Rajasthan Varanasi';
     if (path === '/blog/rajasthan-royale') return 'Rajasthan Royale';
+    if (path === '/blog/kerala-backwaters') return 'Kerala Backwaters';
+    if (path === '/blog/spiritual-varanasi') return 'Spiritual Varanasi';
 
     // Exact matching for Destinations from Dropdown
     if (path === "/destinations/visites-par-région") return "Visites par Région";
@@ -110,6 +114,8 @@ const AppContent = () => {
           <Route path="/press" element={<div className="pt-32 text-center">Press Page</div>} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/rajasthan-royale" element={<RajasthanRoyale />} />
+          <Route path="/blog/kerala-backwaters" element={<KeralaBackwaters />} />
+          <Route path="/blog/spiritual-varanasi" element={<SpiritualVaranasi />} />
           <Route path="/avant-de-partir" element={<AvantDePartir />} />
           <Route path="/testing" element={<Testing />} />
           <Route path="/festivals-couleurs-traditions-indiennes" element={<FestivalsCouleursTraditionsIndiennes />} />

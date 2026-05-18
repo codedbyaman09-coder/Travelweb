@@ -40,9 +40,9 @@ const ContactRapide = () => {
         <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed md:leading-[1.8] max-w-4xl mx-auto font-medium opacity-80">
           Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les voyageurs francophones en quête d’authenticité, d’élégance et d’expériences profondément humaines.
 
-Présente directement sur le terrain, notre équipe franco-indienne sélectionne avec soin des hébergements de charme, des guides francophones passionnés et des expériences uniques afin de vous faire découvrir une Inde vraie, loin des voyages standardisés.
+          Présente directement sur le terrain, notre équipe franco-indienne sélectionne avec soin des hébergements de charme, des guides francophones passionnés et des expériences uniques afin de vous faire découvrir une Inde vraie, loin des voyages standardisés.
 
-Contactez notre équipe pour imaginer ensemble un voyage entièrement pensé selon vos envies, votre rythme et votre manière de voyager.
+          Contactez notre équipe pour imaginer ensemble un voyage entièrement pensé selon vos envies, votre rythme et votre manière de voyager.
         </p>
       </div>
 

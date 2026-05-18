@@ -19,14 +19,16 @@ const Blog = () => {
       title: "Kerala Backwaters",
       category: "Nature & Wellness",
       image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
-      description: "Drift through the serene waterways on a luxury houseboat."
+      description: "Drift through the serene waterways on a luxury houseboat.",
+      link: "/blog/kerala-backwaters"
     },
     {
       id: 3,
       title: "Spiritual Varanasi",
       category: "Spirituality",
       image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
-      description: "Witness the eternal rituals on the banks of the sacred Ganges."
+      description: "Witness the eternal rituals on the banks of the sacred Ganges.",
+      link: "/blog/spiritual-varanasi"
     },
     {
       id: 4,
