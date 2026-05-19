@@ -31,6 +31,7 @@ import ContactRapide from './pages/ContactRapide';
 import RajasthanRoyale from './pages/RajasthanRoyale';
 import KeralaBackwaters from './pages/KeralaBackwaters';
 import SpiritualVaranasi from './pages/SpiritualVaranasi';
+import Faq from './pages/Faq';
 import TopBar from './components/TopBar';
 import './App.css';
 
@@ -47,6 +48,7 @@ const AppContent = () => {
     if (path === '/destinations') return 'Destinations';
     if (path === '/blog') return 'Blog';
     if (path === '/avant-de-partir') return 'Avant de partir';
+    if (path === '/faq' || path === '/Faq' || path === '/FAQ') return 'Questions Fréquentes';
     if (path === '/contact-rapide') return 'Contact Rapide';
     if (path === '/festivals-couleurs-traditions-indiennes') return 'Festivals Traditions';
     if (path === '/croisieres-backwaters-kerala') return 'Kerala Experience';
@@ -63,6 +65,7 @@ const AppContent = () => {
     if (path === '/blog/rajasthan-royale') return 'Rajasthan Royale';
     if (path === '/blog/kerala-backwaters') return 'Kerala Backwaters';
     if (path === '/blog/spiritual-varanasi') return 'Spiritual Varanasi';
+    if (path.toLowerCase() === '/testing') return 'Retraite Yoga';
 
     // Exact matching for Destinations from Dropdown
     if (path === "/destinations/visites-par-région") return "Visites par Région";
@@ -118,6 +121,7 @@ const AppContent = () => {
           <Route path="/blog/spiritual-varanasi" element={<SpiritualVaranasi />} />
           <Route path="/avant-de-partir" element={<AvantDePartir />} />
           <Route path="/testing" element={<Testing />} />
+          <Route path="/Testing" element={<Testing />} />
           <Route path="/festivals-couleurs-traditions-indiennes" element={<FestivalsCouleursTraditionsIndiennes />} />
           <Route path="/croisieres-backwaters-kerala" element={<CroisieresBackwatersKerala />} />
           <Route path="/himalaya-aventures-hors-sentiers-battus" element={<HimalayaAventuresHorsSentiersBattus />} />
@@ -130,6 +134,9 @@ const AppContent = () => {
           <Route path="/voyage-photo-expeditions" element={<VoyagePhotoExpeditions />} />
           <Route path="/demander-un-devis" element={<DemanderUnDevis />} />
           <Route path="/contact-rapide" element={<ContactRapide />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/Faq" element={<Faq />} />
+          <Route path="/FAQ" element={<Faq />} />
           <Route path="/contact" element={<div className="pt-32 text-center">Contact Page</div>} />
         </Routes>
       </main>

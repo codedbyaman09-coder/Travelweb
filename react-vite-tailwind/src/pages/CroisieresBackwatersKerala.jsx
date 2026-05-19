@@ -107,9 +107,9 @@ const CroisieresBackwatersKerala = () => {
                 Kerala Tropical  Houseboat Experience — 13 Jours
               </h2>
               <p className="text-[#000] font-['Montserrat'] leading-[1.8] text-[15px] max-w-3xl">
-              Un voyage au rythme lent du Kerala, entre nature luxuriante, villages paisibles, Ayurveda et célèbres backwaters.
-Découvrez une Inde tropicale et apaisante à travers des croisières privées, des plantations de thé, des plages
-bordées de cocotiers et une immersion authentique dans la vie locale du sud de l’Inde.
+                Un voyage au rythme lent du Kerala, entre nature luxuriante, villages paisibles, Ayurveda et célèbres backwaters.
+                Découvrez une Inde tropicale et apaisante à travers des croisières privées, des plantations de thé, des plages
+                bordées de cocotiers et une immersion authentique dans la vie locale du sud de l’Inde.
 
               </p>
             </div>
@@ -213,7 +213,7 @@ bordées de cocotiers et une immersion authentique dans la vie locale du sud de 
                 <p>• Découverte des jardins d’épices.</p>
                 <p>• Points de vue panoramiques.</p>
                 <p>• Temps libre dans la nature.</p>
-              
+
                 <p className="mt-6 font-medium italic text-[#102d45] text-[16px]">Une journée paisible au cœur des paysages tropicaux.</p>
               </div>
             )
@@ -237,7 +237,7 @@ bordées de cocotiers et une immersion authentique dans la vie locale du sud de 
                 <p>• Découverte des épices du Kerala.</p>
                 <p>• Safari nature ou balade en bateau.</p>
                 <p>• Temps libre et détente.</p>
-              
+
                 <p className="mt-6 font-medium italic text-[#102d45] text-[16px]">Une immersion tropicale et apaisante.</p>
               </div>
             )
@@ -461,7 +461,7 @@ bordées de cocotiers et une immersion authentique dans la vie locale du sud de 
               <div className="bg-white border-l-4 border-[#b7772e] p-6 shadow-sm">
                 <h4 className="font-bold text-[#102d45] mb-2 uppercase text-sm">Style du voyage</h4>
                 <p className="text-gray-600 text-sm leading-relaxed italic">Voyage privé et relaxant entre nature tropicale, Ayurveda et croisières paisibles
-                 </p>
+                </p>
               </div>
             </div>
           </div>

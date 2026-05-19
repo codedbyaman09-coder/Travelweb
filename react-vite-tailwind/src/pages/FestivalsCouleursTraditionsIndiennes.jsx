@@ -97,6 +97,57 @@ const FestivalsCouleursTraditionsIndiennes = () => {
     }
   ];
 
+  const reviews = [
+    {
+      author: "Fanny Cabe",
+      text: `Superbe voyage dans le Kerala organisé par Le Passage en Inde.
+Amandine et Vishnu nous ont accompagnés du début à la fin et nous nous sommes sentis pleinement confiants comme en famille.
+Le guide et le chauffeur étaient tout aussi parfaits.
+Nous n’hésiterons pas à les rappeler pour notre prochain voyage.
+`,
+      rating: 5
+    },
+    {
+      author: "Marie Constans",
+      text: `Un super séjour de 13 jours avec un groupe de 8 femmes. Que dis je, 9 femmes dont notre formidable guide Shabi, dynamic, toujours présente pour nous, à l'écoute de nos envies et à se plier en 4 pour nous.
+Amandine a été le début de notre super séjour en Inde et la clé indispensable à notre départ.
+L'organisation de ce séjour correspondait à nos idées de ce séjour.
+Nous avons rencontres que des personnes adorables, professionnelles, de confiance et disponible à toutes nos questions et inquiétudes diverses.
+Cette expérience, ce voyage a était superbe sur tous les points.
+Je recommande "le passage en Inde" les yeux fermés. 🙏`,
+      rating: 5
+    },
+    {
+      author: "helene Thiercelin",
+      text: `15 jours merveilleusement préparés et guidés. Le passage en Inde a été très à l’écoute de nos attentes et a su créer ce voyage exceptionnel sur mesure. Nous avons été très heureuses du professionnalisme et du savoir de Vishnu 🙏`,
+      rating: 5
+    },
+    {
+      author: "Carole VIDAL",
+      text: `J’ai fait appel au "Passage en Inde", une micro-agence de voyages, pour organiser un séjour hors des sentiers battus, et j’en suis absolutely ravie !
+Amandine a été d’un professionnalisme exemplaire : de très bons conseils, disponible, chaleureuse et toujours à l’écoute. Elle nous a accompagnées du début à la fin, ce qui a vraiment fait la différence.
+
+Notre guide sur place, Rakesh a également été fantastique : bienveillant, attentionné, toujours prêt à répondre à nos attentes et à partager ses connaissances. Grâce à eux, nous avons vécu un voyage unique, authentique and perfectly organisé.
+
+Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde" à nouveau. Je recommande cette agence les yeux fermés !
+`,
+      rating: 5
+    },
+    {
+      author: "Olivia RUIZ",
+      text: "Après une visite du Rajasthan il y a deux ans (avec une autre agence), nous voulions explorer le Bengale occidental. Nous avions quelques envies que nous avons transmises à Amandine qui nous a concocté un voyage sur mesure (pour un prix très raisonnable). Nous étions 3 plus Rakesh notre génial guide. Tout a été parfait 🤩 Je recommande vivement 👍😊",
+      rating: 5
+    }
+  ];
+
+  const royalToursUrl = 'https://www.royaltours.fr/agences-de-voyage/12202-rodez/bdfeigihfiejdcdbdebc.htm';
+  const agenceContactUrl = 'https://agence-de-voyages.agence.contact/le-passage-en-inde-private-limited-2902445.html';
+  const getReviewUrl = (review, index) => {
+    if (review.author === 'Carole VIDAL') return royalToursUrl;
+    if (review.author === 'Olivia RUIZ') return agenceContactUrl;
+    return index % 2 === 0 ? royalToursUrl : agenceContactUrl;
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "ITINÉRAIRE":

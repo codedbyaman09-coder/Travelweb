@@ -4,8 +4,37 @@ import Footer from "../components/Footer";
 import logo from "../assets/png .png";
 import bgHistoryImg from "../assets/image copy 40.jpeg";
 import bgValuesImg from "../assets/image copy 41.jpeg";
+import expertIcon from "../assets/ChatGPT Image May 14, 2026, 01_29_59 PM.png";
+import CustomIcon from "../assets/ChatGPT Image May 14, 2026, 01_34_31 PM.png";
+import guideIcon from "../assets/ChatGPT Image May 14, 2026, 01_37_59 PM.png";
+import assistanceIcon from "../assets/ChatGPT Image May 14, 2026, 01_40_49 PM.png";
+import bgUSPImg from "../assets/image copy 42.jpeg";
+
 
 const About = () => {
+  const features = [
+    {
+      title: "Experts Locaux",
+      text: "Nos spécialistes du voyage connaissent l’Inde sur le bout des doigts et conçoivent des itinéraires fondés sur des expériences authentiques.",
+      img: expertIcon,
+    },
+    {
+      title: "Voyages Sur Mesure",
+      text: "Chaque itinéraire est conçu autour de vos centres d’intérêt, de votre style de voyage et de votre rythme.",
+      img: CustomIcon,
+    },
+    {
+      title: "Guides Privés",
+      text: "Profitez de visites enrichissantes avec des guides expérimentés, anglophones et francophones.",
+      img: guideIcon,
+    },
+    {
+      title: "Assistance Voyage 24h/24 Et 7j/7",
+      text: "Notre équipe est disponible à tout moment durant votre voyage pour vous garantir une expérience fluide et sans souci.",
+      img: assistanceIcon,
+    },
+  ];
+
   const [isPhilosophieOpen, setIsPhilosophieOpen] = useState(false);
   const [isParcoursOpen, setIsParcoursOpen] = useState(false);
   const [isVishnuOpen, setIsVishnuOpen] = useState(false);
@@ -472,70 +501,9 @@ const About = () => {
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="relative py-14 md:py-16 px-6 text-white overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1800&q=90"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-black/75" />
-
-        <div className="relative max-w-[1160px] mx-auto text-center">
-          <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-10">
-            Pourquoi voyager avec Indéora Voyages ?
-          </p>
-
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
-            {[
-              ["10+", "Années d’expérience"],
-              ["2500+", "Voyageurs accompagnés"],
-              ["15+", "Destinations en Inde"],
-              ["98%", "Voyageurs satisfaits"],
-              ["100%", "Voyages sur mesure"],
-            ].map(([num, label], index) => (
-              <div
-                key={index}
-                className={`${index !== 0 ? "md:border-l border-white/20" : ""
-                  }`}
-              >
-                <div className="font-serif text-[#d2aa5c] text-4xl md:text-5xl mb-3">
-                  {num}
-                </div>
-                <p className="text-[10px] tracking-[0.22em] uppercase font-bold leading-5">
-                  {label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* TRUST */}
-      <section className="bg-[#fbf8f2] py-12 px-6">
-        <div className="max-w-[1050px] mx-auto text-center">
-          <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-10">
-            Ils nous font confiance
-          </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-10 items-center opacity-55 grayscale">
-            <div className="text-2xl font-bold tracking-[0.2em]">
-              AROUT
-              <br />
-              FRANCE
-            </div>
-            <div className="text-3xl font-bold">IATA</div>
-            <div className="font-serif text-2xl">
-              Les Entreprises
-              <br />
-              du Voyage
-            </div>
-            <div className="font-serif text-4xl">APST</div>
-            <div className="text-3xl font-bold">USTOA</div>
-          </div>
-        </div>
-      </section>
 
       {/* Premium Philosophy Modal */}
       {isPhilosophieOpen && (
@@ -764,6 +732,44 @@ const About = () => {
           </div>
         </div>
       )}
+
+      {/* USP BANNER */}
+      <section className="relative w-full py-8 md:py-10 overflow-hidden">
+        <img
+          src={bgValuesImg}
+          alt="Unique India"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-black/75"></div>
+
+        <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 py-6 md:py-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 text-center">
+            {features.map((item, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-start text-white"
+              >
+                <div className="h-[70px] md:h-[90px] flex items-end justify-center mb-3">
+                  <img
+                    src={item.img}
+                    alt={item.title}
+                    className="w-[60px] md:w-[80px] h-auto object-contain drop-shadow-[0_8px_10px_rgba(0,0,0,0.45)]"
+                  />
+                </div>
+
+                <h3 className="font-serif font-bold text-[18px] md:text-[20px] lg:text-[22px] leading-tight drop-shadow-md mb-2">
+                  {item.title}
+                </h3>
+
+                <p className="max-w-[280px] text-[12px] md:text-[13px] leading-relaxed font-medium text-white/90 drop-shadow-md">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <Footer />
 

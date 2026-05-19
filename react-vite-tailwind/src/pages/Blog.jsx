@@ -19,69 +19,69 @@ const Blog = () => {
   const posts = [
     {
       id: 1,
-      title: "Rajasthan Royale",
-      category: "Heritage & Culture",
+      title: "RAJASTHAN : L’INDE DES PALAIS ET DES MAHARAJAS",
+      category: "Patrimoine & Culture",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2WaN4uFLmSnMZh46fxzWRdxJJ8iKUVZn9kw&s",
-      description: "Experience the majestic forts and palaces of India's desert kingdom.",
+      description: "Découvrez les majestueux forts et palais du royaume du désert de l'Inde.",
       link: "/blog/rajasthan-royale"
     },
     {
       id: 2,
       title: "VOYAGE EN INDE : LE GUIDE COMPLET POUR UN PREMIER VOYAGE",
-      category: "Nature & Wellness",
+      category: "Nature & Bien-être",
       image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
-      description: "Drift through the serene waterways on a luxury houseboat.",
+      description: "Laissez-vous dériver sur les canaux sereins du Kerala à bord d'un houseboat de luxe.",
       link: "/blog/kerala-backwaters"
     },
     {
       id: 3,
       title: "POURQUOI L’INDE CHANGE PROFONDÉMENT CEUX QUI LA DÉCOUVRENT",
-      category: "Spirituality",
+      category: "Spiritualité",
       image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
-      description: "Witness the eternal rituals on the banks of the sacred Ganges.",
+      description: "Assistez aux rituels éternels sur les rives du Gange sacré à Varanasi.",
       link: "/blog/spiritual-varanasi"
     },
     {
       id: 4,
       title: "Ladakh Heights",
-      category: "Adventure",
+      category: "Aventure",
       image: "https://images.unsplash.com/photo-1581791534721-e599df4417f7?auto=format&fit=crop&q=80&w=800",
-      description: "Journey through the high-altitude deserts and mountain passes."
+      description: "Voyagez à travers les déserts de haute altitude et les cols montagneux spectaculaires."
     },
     {
       id: 5,
       title: "Goan Serenity",
-      category: "Beach & Leisure",
+      category: "Plage & Détente",
       image: "https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&q=80&w=800",
-      description: "Relax on pristine white sands and enjoy Portuguese architecture."
+      description: "Détendez-vous sur des plages de sable blanc immaculé et admirez l'architecture coloniale."
     },
     {
       id: 6,
       title: "Hampi Echoes",
-      category: "Ancient Ruins",
+      category: "Ruines Antiques",
       image: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?auto=format&fit=crop&q=80&w=800",
-      description: "Explore the boulder-strewn landscapes of the Vijayanagara Empire."
+      description: "Explorez les paysages parsemés de rochers de l'ancien empire de Vijayanagara."
     },
     {
       id: 7,
       title: "Munnar Mist",
       category: "Nature",
       image: "https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&q=80&w=800",
-      description: "Lose yourself in the rolling tea gardens and misty mountains."
+      description: "Perdez-vous dans les plantations de thé verdoyantes et les montagnes brumeuses."
     },
     {
       id: 8,
       title: "Udaipur Romance",
-      category: "Luxury",
+      category: "Luxe",
       image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&q=80&w=800",
-      description: "The city of lakes offers a perfect blend of luxury and romance."
+      description: "La ville des lacs offre une harmonie parfaite entre luxe royal et romantisme éternel."
     },
     {
       id: 9,
       title: "Rishikesh Retreat",
-      category: "Yoga & Wellness",
+      category: "Yoga & Bien-être",
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2WaN4uFLmSnMZh46fxzWRdxJJ8iKUVZn9kw&s",
-      description: "Find inner peace in the yoga capital of the world."
+      description: "Trouvez la paix intérieure dans la capitale mondiale du yoga au pied de l'Himalaya."
     }
   ];
 
@@ -177,12 +177,14 @@ const Blog = () => {
                   <span className="text-[10px] font-bold tracking-[0.3em] text-[#A88B52] uppercase mb-3 block">
                     {post.category}
                   </span>
-                  <h3 className="text-2xl font-serif text-gray-800 mb-4 group-hover:text-[#A88B52] transition-colors duration-300 italic">
+                  <h3 className="text-[18px] md:text-[20px] font-serif text-gray-800 mb-4 group-hover:text-[#A88B52] transition-colors duration-300 tracking-wide leading-snug">
                     {post.title}
                   </h3>
-                  <p className="text-[14px] text-gray-500 leading-relaxed font-light line-clamp-2 italic opacity-80">
-                    "{post.description}"
-                  </p>
+                  {post.description && (
+                    <p className="text-[14px] text-gray-500 leading-relaxed font-light line-clamp-2 italic opacity-80">
+                      {post.description}
+                    </p>
+                  )}
 
                   <div className="mt-8 flex justify-center items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <div className="h-[1px] w-8 bg-[#A88B52]/30"></div>

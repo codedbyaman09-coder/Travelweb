@@ -491,8 +491,8 @@ const ArtArtisanatSavoirFaire = () => {
             <h1 className="font-serif text-[46px] md:text-[62px] lg:text-[76px] leading-[1.1] text-white mb-8 drop-shadow-lg uppercase tracking-tight">Rajasthan Gujarat 14 Jours</h1>
             <div className="w-16 h-px bg-[#c58b32] mb-6 mx-auto" />
             <p className="text-[14px] md:text-[16px] leading-relaxed text-white/90 max-w-[800px] mx-auto drop-shadow-md">Un voyage immersif à travers les régions les plus artistiques de l’Inde. Découvrez les métiers ancestraux, les
-palais royaux, les marchés colorés et les villages d’artisans où les traditions se transmettent depuis des
-générations.</p>
+              palais royaux, les marchés colorés et les villages d’artisans où les traditions se transmettent depuis des
+              générations.</p>
 
           </div>
         </div>

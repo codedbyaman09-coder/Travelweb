@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import countryData from '../data/countries';
-const allCountries = countryData.allCountries || [];
 import footerLogo from '../assets/png .png';
 import footerBannerImg from '../assets/ChatGPT Image May 11, 2026, 10_27_35 PM.png';
+
+const allCountries = countryData.allCountries || [];
 
 const Footer = () => {
   const [footerPhone, setFooterPhone] = useState('');
@@ -37,12 +38,12 @@ const Footer = () => {
           <p className="text-[#F3EAD3]/90 text-[11px] md:text-[14px] mb-8 tracking-wide font-light max-w-2xl mx-auto">
             Parlons ensemble de votre projet de voyage sur mesure.
           </p>
-          <a
-            href="#"
+          <Link
+            to="/contact-rapide"
             className="inline-block bg-[#A88B52] hover:bg-[#8e7646] text-white text-[10px] md:text-[12px] font-bold py-3.5 px-10 md:px-14 rounded-sm transition-all duration-300 uppercase tracking-[0.2em] shadow-lg"
           >
             Créer mon voyage
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -73,7 +74,7 @@ const Footer = () => {
                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                       </svg>
                     ),
-                    link: '#'
+                    link: 'https://www.facebook.com/indeoravoyages/'
                   },
                   {
                     icon: (
@@ -83,7 +84,7 @@ const Footer = () => {
                         <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                       </svg>
                     ),
-                    link: '#'
+                    link: 'https://www.instagram.com/indeoravoyages/'
                   },
                   {
                     icon: (
@@ -108,8 +109,8 @@ const Footer = () => {
               <ul className="space-y-3.5 text-[#C5A46D] text-[12px] md:text-[13px] font-light">
                 <li><Link to="/destinations" className="hover:text-white transition-colors">Destinations</Link></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">À propos</Link></li>
-                <li><Link to="/avant-de-partir" className="hover:text-white transition-colors">Avant de partir</Link></li>
-                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link to="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
+                <li><Link to="/contact-rapide" className="hover:text-white transition-colors">Contact</Link></li>
               </ul>
             </div>
 
@@ -146,7 +147,7 @@ const Footer = () => {
                     </div>
                     <div className="flex items-center gap-3">
                       <img src="https://flagcdn.com/w20/in.png" alt="Inde" className="w-4 h-auto shadow-sm opacity-80" />
-                      <a href="tel:+911514050559" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 151 405 0559</a>
+                      <a href="tel:+919351421959" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 93514 21959</a>
                     </div>
                     <div className="flex items-center gap-3">
                       <img src="https://flagcdn.com/w20/in.png" alt="Inde Mobile" className="w-4 h-auto shadow-sm opacity-80" />
@@ -345,7 +346,7 @@ const Footer = () => {
                 <a href="tel:+33616642626" className="font-bold hover:underline text-[#2D5C64]">+33 6 16 64 26 26</a>
                 <span className="text-gray-300 mx-1">|</span>
                 <span>IND :</span>
-                <a href="tel:+911514050559" className="font-bold hover:underline text-[#2D5C64]">+91 151 405 0559</a>
+                <a href="tel:+919351421959" className="font-bold hover:underline text-[#2D5C64]">+91 93514 21959</a>
               </div>
             </div>
 

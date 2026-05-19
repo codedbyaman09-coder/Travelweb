@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import yogaBanner from "../assets/image copy 37.png";
 import Footer from "../components/Footer";
 import shivaImg from "../assets/image copy 38.png";
@@ -161,7 +162,7 @@ const QuestionItem = ({ no, title, text, icon: Icon }) => (
 );
 
 const ItineraryCard = ({ no, image, title, duration, desc, features }) => (
-  <div className="bg-white rounded-[7px] overflow-hidden border border-[#213528]/15 shadow-[0_1px_4px_rgba(0,0,0,0.28)]">
+  <Link to="/spiritualite-yoga-ayurveda" className="block bg-white rounded-[7px] overflow-hidden border border-[#213528]/15 shadow-[0_1px_4px_rgba(0,0,0,0.28)] transition-all duration-300 hover:shadow-lg hover:scale-[1.01] cursor-pointer no-underline hover:no-underline text-inherit">
     <div className="relative h-[98px]">
       <img src={image} alt={title} className="w-full h-full object-cover" />
 
@@ -210,7 +211,7 @@ const ItineraryCard = ({ no, image, title, duration, desc, features }) => (
         })}
       </div>
     </div>
-  </div>
+  </Link>
 );
 
 const Testing = () => {
@@ -464,8 +465,8 @@ const Testing = () => {
               <ItineraryCard
                 no="1"
                 image={itineraryRishikesh}
-                title="Yoga & Spiritualité à Rishikesh"
-                duration="7 Jours / 6 Nuits"
+                title="Inde Spirituelle Bien-Être 14 Jours"
+                
                 desc="Yoga quotidien, méditation, Aarti au Gange, visites d'ashrams et nature inspirante."
                 features={["Yoga & Méditation", "Spiritualité", "Nature", "Détox & Bien-être"]}
               />

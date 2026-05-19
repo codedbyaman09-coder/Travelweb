@@ -97,6 +97,57 @@ const HimalayaAventuresHorsSentiersBattus = () => {
     }
   ];
 
+  const reviews = [
+    {
+      author: "Fanny Cabe",
+      text: `Superbe voyage dans le Kerala organisé par Le Passage en Inde.
+Amandine et Vishnu nous ont accompagnés du début à la fin et nous nous sommes sentis pleinement confiants comme en famille.
+Le guide et le chauffeur étaient tout aussi parfaits.
+Nous n’hésiterons pas à les rappeler pour notre prochain voyage.
+`,
+      rating: 5
+    },
+    {
+      author: "Marie Constans",
+      text: `Un super séjour de 13 jours avec un groupe de 8 femmes. Que dis je, 9 femmes dont notre formidable guide Shabi, dynamique, toujours présente pour nous, à l'écoute de nos envies et à se plier en 4 pour nous.
+Amandine a été le début de notre super séjour en Inde et la clé indispensable à notre départ.
+L'organisation de ce séjour correspondait à nos idées de ce séjour.
+Nous avons rencontrés que des personnes adorables, professionnelles, de confiance et disponible à toutes nos questions et inquiétudes diverses.
+Cette expérience, ce voyage a était superbe sur tous les points.
+Je recommande "le passage en Inde" les yeux fermés. 🙏`,
+      rating: 5
+    },
+    {
+      author: "helene Thiercelin",
+      text: `15 jours merveilleusement préparés et guidés. Le passage en Inde a été très à l’écoute de nos attentes et a su créer ce voyage exceptionnel sur mesure. Nous avons été très heureuses du professionnalisme et du savoir de Vishnu 🙏`,
+      rating: 5
+    },
+    {
+      author: "Carole VIDAL",
+      text: `J’ai fait appel au "Passage en Inde", une micro-agence de voyages, pour organiser un séjour hors des sentiers battus, et j’en suis absolutely ravie !
+Amandine a été d’un professionnalisme exemplaire : de très bons conseils, disponible, chaleureuse et toujours à l’écoute. Elle nous a accompagnées du début à la fin, ce qui a vraiment fait la différence.
+
+Notre guide sur place, Rakesh a également été fantastique : bienveillant, attentionné, toujours prêt à répondre à nos attentes et à partager ses connaissances. Grâce à eux, nous avons vécu un voyage unique, authentique and perfectly organisé.
+
+Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde" à nouveau. Je recommande cette agence les yeux fermés !
+`,
+      rating: 5
+    },
+    {
+      author: "Olivia RUIZ",
+      text: "Après une visite du Rajasthan il y a deux ans (avec une autre agence), nous voulions explorer le Bengale occidental. Nous avions quelques envies que nous avons transmises à Amandine qui nous a concocté un voyage sur mesure (pour un prix très raisonnable). Nous étions 3 plus Rakesh notre génial guide. Tout a été parfait 🤩 Je recommande vivement 👍😊",
+      rating: 5
+    }
+  ];
+
+  const royalToursUrl = 'https://www.royaltours.fr/agences-de-voyage/12202-rodez/bdfeigihfiejdcdbdebc.htm';
+  const agenceContactUrl = 'https://agence-de-voyages.agence.contact/le-passage-en-inde-private-limited-2902445.html';
+  const getReviewUrl = (review, index) => {
+    if (review.author === 'Carole VIDAL') return royalToursUrl;
+    if (review.author === 'Olivia RUIZ') return agenceContactUrl;
+    return index % 2 === 0 ? royalToursUrl : agenceContactUrl;
+  };
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "ITINÉRAIRE":
@@ -573,32 +624,61 @@ const HimalayaAventuresHorsSentiersBattus = () => {
         </div>
       </div>
 
-      <section className="bg-[#f0f2f4] py-8 px-6 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto text-center relative">
-          <h2 className="font-serif text-[24px] md:text-[30px] text-[#102d45] mb-4 font-bold">Les avis de nos voyageurs</h2>
-          <div className="flex flex-col items-center gap-1 mb-6">
-            <span className="text-[#b7772e] font-bold text-sm">5/5</span>
-            <div className="flex gap-0.5 text-[#b7772e]">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+      <section className="bg-white py-8 md:py-12 px-6 overflow-hidden">
+        <div className="max-w-7xl mx-auto text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center">
+          <div className="w-full text-left mb-8">
+            <h2 className="text-[#2d343e] font-serif text-[22px] md:text-[28px] italic opacity-90">
+              Ils ont aimé voyager avec nous
+            </h2>
+            <div className="w-12 h-[1px] bg-[#A88B52] mt-2"></div>
+          </div>
+
+          <div className="relative w-full flex-grow flex items-center overflow-hidden py-4">
+            <div className="flex animate-marquee-cards gap-8 whitespace-nowrap">
+              {[...reviews, ...reviews, ...reviews].map((review, i) => (
+                <a
+                  key={i}
+                  href={getReviewUrl(review, i)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block w-[350px] md:w-[550px] bg-[#fcfbf9] p-10 border border-[#A88B52]/10 rounded-sm shadow-sm whitespace-normal text-left cursor-pointer hover:shadow-md transition-shadow duration-300"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-xs">
+                        <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="G" className="w-4 h-auto" />
+                      </div>
+                      <div className="flex text-[#A88B52] text-sm tracking-tighter">★★★★★</div>
+                    </div>
+                    <span className="text-[9px] font-bold text-[#2d343e]/30 uppercase tracking-widest">Google Review</span>
+                  </div>
+                  <p className="text-[#2d343e]/80 text-[14px] md:text-[16px] italic leading-relaxed mb-6 font-medium line-clamp-4">"{review.text}"</p>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-[1px] bg-[#A88B52]/40"></div>
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-[#2d343e] uppercase">{review.author}</span>
+                  </div>
+                </a>
               ))}
             </div>
           </div>
-          <div className="relative max-w-2xl mx-auto px-8 md:px-12 py-4">
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.02]"><span className="text-[160px] font-serif font-bold text-gray-800 leading-none -translate-y-4">"</span></div>
-            <button className="absolute left-0 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-[#b7772e] transition-colors"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 19l-7-7 7-7" /></svg></button>
-            <div className="relative z-10">
-              <p className="text-[13px] md:text-[14px] leading-[1.6] text-[#555] font-medium italic mb-6 px-2">un voyage merveilleux ,très confortable, bien encadré mis avec la possibilité de quand même découvrir l'âme de L'Inde par soi-même en gardant des moments de découverte personnelle . On a adoré la spiritualité et la ferveur du Rajasthan . Sa population est souriante et accueillante. Ses temples et son architecture sont éblouissants. les vieux centres ville restent uniques et très dépaysants.</p>
-              <div className="space-y-0.5">
-                <p className="text-[12px] font-bold tracking-[0.2em] text-[#102d45] uppercase">- DORIANE ET PAULINE -</p>
-                <p className="text-[11px] text-gray-400">Avril 2026</p>
+
+          <div className="flex flex-col items-center gap-4 pb-2">
+            <a href="https://www.google.com/search?q=le+passage+en+inde+rodez" target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-4 group">
+              <div className="w-12 h-12 rounded-full border-2 border-[#A88B52] flex items-center justify-center p-1 group-hover:scale-110 transition-transform duration-300">
+                <div className="w-full h-full rounded-full bg-white flex items-center justify-center shadow-sm overflow-hidden">
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Reviews" className="w-6 h-6" />
+                </div>
               </div>
-              <div className="mt-6 space-y-1.5">
-                <p className="text-[11px] text-gray-400">Avis relatif au voyage "L'Inde du Nord au Sud en circuit"</p>
-                <div className="flex items-center justify-center gap-2 text-[11px] text-gray-400"><span>Note satisfaction Inde en liberté :</span><span className="text-[#b7772e] font-bold">/5</span><div className="flex gap-0.5">{[...Array(5)].map((_, i) => (<svg key={i} className="w-2.5 h-2.5 text-gray-200 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>))}</div><span>basée sur</span></div>
+              <div className="flex items-center gap-2 -mt-2 group-hover:opacity-80 transition-opacity">
+                <span className="text-[12px] md:text-[14px] font-bold text-[#2d343e]">5.0</span>
+                <div className="flex text-[#f4b400] text-[10px] md:text-[12px]">★★★★★</div>
+                <span className="text-[10px] md:text-[11px] font-medium text-[#2d343e]/60">41 reviews</span>
               </div>
+            </a>
+            <div className="text-center">
+              <p className="text-[9px] font-bold tracking-[0.2em] text-[#2d343e] uppercase">Anciennement</p>
+              <p className="text-[9px] font-medium tracking-[0.2em] text-[#2d343e]/40 uppercase">LE PASSAGE EN INDE</p>
             </div>
-            <button className="absolute right-0 top-1/2 -translate-y-1/2 p-1 text-gray-400 hover:text-[#b7772e] transition-colors"><svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 5l7 7-7 7" /></svg></button>
           </div>
         </div>
       </section>
@@ -633,6 +713,16 @@ const HimalayaAventuresHorsSentiersBattus = () => {
         .animate-fadeIn { animation: fadeIn 0.5s ease-out forwards; }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes marqueeHorizontal {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-marquee-cards {
+          animation: marqueeHorizontal 35s linear infinite;
+        }
+        .animate-marquee-cards:hover {
+          animation-play-state: paused;
+        }
       `}</style>
     </div>
   );

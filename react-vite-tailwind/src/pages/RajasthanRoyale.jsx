@@ -52,7 +52,7 @@ const RajasthanRoyale = () => {
             L'Inde d'Exception
           </span>
           <h1 className="font-serif text-[32px] md:text-[50px] lg:text-[64px] leading-tight md:leading-[1.15] text-white uppercase tracking-wider mb-6 max-w-4xl mx-auto drop-shadow-md">
-            RAJASTHAN : L’INDE DES PALAIS ET DES MAHARAJAS
+            RAJASTHAN : L’INDE DES PALAIS ET DES MAHARAJAS  
           </h1>
           <div className="w-24 h-[1px] bg-[#A88B52] mx-auto mb-6 opacity-80"></div>
           <p className="text-[12px] md:text-[15px] lg:text-[17px] font-serif italic text-gray-200 tracking-wide max-w-2xl mx-auto font-light leading-relaxed">

@@ -128,7 +128,7 @@ const Destinations = () => {
     },
     {
       title: "Safaris & nature",
-      img: "https://images.unsplash.com/photo-1549366021-9f761d040a94?auto=format&fit=crop&w=500&q=90",
+      img: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=500&q=90",
       link: "/demander-un-devis",
     },
     {

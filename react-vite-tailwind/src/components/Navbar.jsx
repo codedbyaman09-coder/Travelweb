@@ -41,15 +41,31 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             {isDestOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 w-72 bg-[#313c45] shadow-2xl rounded-xl border border-gray-100/10 py-6 px-2 animate-fadeIn">
-                {destinations.map((dest, i) => (
-                  <Link
-                    key={i}
-                    to={`/destinations/${dest.toLowerCase().replace(/,/g, '').replace(/ /g, '-')}`}
-                    className="block px-6 py-3 text-[11px] font-medium text-[#C6A46D]/80 hover:text-white hover:bg-white/5 transition-all rounded-lg"
-                  >
-                    {dest}
-                  </Link>
-                ))}
+                {destinations.map((dest, i) => {
+                  let targetUrl = `/destinations/${dest.toLowerCase().replace(/,/g, '').replace(/ /g, '-')}`;
+                  if (dest === "Visites par Région" || dest === "Idées de circuits") {
+                    targetUrl = "/destinations";
+                  } else if (dest === "Bien être, Yoga et Ayurveda") {
+                    targetUrl = "/Testing";
+                  } else if (dest === "Hors des Sentiers Battus") {
+                    targetUrl = "/himalaya-aventures-hors-sentiers-battus";
+                  } else if (dest === "Rencontres Ethniques") {
+                    targetUrl = "/rencontres-ethniques-cultures-locales";
+                  } else if (dest === "En Famille, Lune de Miel") {
+                    targetUrl = "/lune-de-miel-escapades-romantiques";
+                  } else if (dest === "Nature et Vie Sauvage") {
+                    targetUrl = "/safaris-vie-sauvage";
+                  }
+                  return (
+                    <Link
+                      key={i}
+                      to={targetUrl}
+                      className="block px-6 py-3 text-[11px] font-medium text-[#C6A46D]/80 hover:text-white hover:bg-white/5 transition-all rounded-lg"
+                    >
+                      {dest}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -69,7 +85,7 @@ const Navbar = () => {
         {/* Right Menu */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-10">
           <Link to="/blog" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Blog</Link>
-          <Link to="/avant-de-partir" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Avant de partir</Link>
+          <Link to="/faq" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">FAQ</Link>
           <Link to="/contact-rapide" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Contact rapide</Link>
         </div>
 
@@ -100,25 +116,41 @@ const Navbar = () => {
 
             {isMobileDestOpen && (
               <div className="pl-5 flex flex-col gap-4 border-l border-[#C6A46D]/20 mt-2 animate-fadeIn">
-                {destinations.map((dest, i) => (
-                  <Link
-                    key={i}
-                    to={`/destinations/${dest.toLowerCase().replace(/,/g, '').replace(/ /g, '-')}`}
-                    className="text-[12px] font-medium text-[#C6A46D]/70 hover:text-white transition-colors"
-                    onClick={() => {
-                      setIsOpen(false);
-                      setIsMobileDestOpen(false);
-                    }}
-                  >
-                    {dest}
-                  </Link>
-                ))}
+                {destinations.map((dest, i) => {
+                  let targetUrl = `/destinations/${dest.toLowerCase().replace(/,/g, '').replace(/ /g, '-')}`;
+                  if (dest === "Visites par Région" || dest === "Idées de circuits") {
+                    targetUrl = "/destinations";
+                  } else if (dest === "Bien être, Yoga et Ayurveda") {
+                    targetUrl = "/Testing";
+                  } else if (dest === "Hors des Sentiers Battus") {
+                    targetUrl = "/himalaya-aventures-hors-sentiers-battus";
+                  } else if (dest === "Rencontres Ethniques") {
+                    targetUrl = "/rencontres-ethniques-cultures-locales";
+                  } else if (dest === "En Famille, Lune de Miel") {
+                    targetUrl = "/lune-de-miel-escapades-romantiques";
+                  } else if (dest === "Nature et Vie Sauvage") {
+                    targetUrl = "/safaris-vie-sauvage";
+                  }
+                  return (
+                    <Link
+                      key={i}
+                      to={targetUrl}
+                      className="text-[12px] font-medium text-[#C6A46D]/70 hover:text-white transition-colors"
+                      onClick={() => {
+                        setIsOpen(false);
+                        setIsMobileDestOpen(false);
+                      }}
+                    >
+                      {dest}
+                    </Link>
+                  );
+                })}
               </div>
             )}
           </div>
 
           <Link to="/blog" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Blog</Link>
-          <Link to="/avant-de-partir" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Avant de partir</Link>
+          <Link to="/faq" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>FAQ</Link>
           <Link to="/demander-un-devis" className="text-[11px] font-bold tracking-[0.3em] text-white bg-[#C6A46D] px-4 py-2 rounded-sm text-center uppercase transition-colors" onClick={() => setIsOpen(false)}>Demander un devis</Link>
           <Link to="/contact-rapide" className="text-[11px] font-bold tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors" onClick={() => setIsOpen(false)}>Contact rapide</Link>
         </div>

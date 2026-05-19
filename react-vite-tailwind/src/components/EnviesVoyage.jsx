@@ -17,6 +17,7 @@ import {
   Star,
   ChevronRight
 } from 'lucide-react';
+import namasteIcon from '../assets/ChatGPT Image May 14, 2026, 01_29_59 PM.png';
 
 const EnviesVoyage = () => {
   return (
@@ -109,7 +110,8 @@ const EnviesVoyage = () => {
                   Chaque saison révèle une Inde différente. Choisissons ensemble le moment idéal selon vos envies.
                 </p>
                 <div className="flex justify-center">
-                  <Link to="/testing" className="text-[10px] font-bold tracking-[0.2em] text-[#C2A36B] uppercase flex items-center gap-2 hover:translate-x-2 transition-transform">
+                  <Link to="/avant-de-partir" className="text-[10px] font-bold tracking-[0.2em] text-[#C2A36B] uppercase flex items-center gap-2 hover:translate-x-2 transition-transform">
+
                     EN SAVOIR PLUS <ChevronRight size={14} />
                   </Link>
                 </div>
@@ -189,7 +191,8 @@ const EnviesVoyage = () => {
                   Des informations essentielles pour voyager sereinement et profiter pleinement de l'Inde.
                 </p>
                 <div className="flex justify-center">
-                  <Link to="/testing" className="text-[10px] font-bold tracking-[0.2em] text-[#C2A36B] uppercase flex items-center gap-2 hover:translate-x-2 transition-transform">
+                  <Link to="/avant-de-partir" className="text-[10px] font-bold tracking-[0.2em] text-[#C2A36B] uppercase flex items-center gap-2 hover:translate-x-2 transition-transform">
+
                     EN SAVOIR PLUS <ChevronRight size={14} />
                   </Link>
                 </div>
@@ -269,7 +272,7 @@ const EnviesVoyage = () => {
                   Parce qu’avec Indeora Voyages, chaque voyage devient une expérience authentique, humaine
                 </p>
                 <div className="flex justify-center">
-                  <Link to="/testing" className="text-[10px] font-bold tracking-[0.2em] text-[#C2A36B] uppercase flex items-center gap-2 hover:translate-x-2 transition-transform">
+                  <Link to="/contact-rapide" className="text-[10px] font-bold tracking-[0.2em] text-[#C2A36B] uppercase flex items-center gap-2 hover:translate-x-2 transition-transform">
                     EN SAVOIR PLUS SUR INDEORA VOYAGES <ChevronRight size={14} />
                   </Link>
                 </div>
@@ -290,8 +293,8 @@ const EnviesVoyage = () => {
           <div className="absolute inset-0 bg-black/30 backdrop-blur-[1px] z-10"></div>
 
           <div className="relative z-20 flex items-center gap-6">
-            <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center flex-shrink-0">
-              <Compass size={16} className="text-white/40" />
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20 flex items-center justify-center flex-shrink-0">
+              <img src={namasteIcon} alt="Advisor" className="w-full h-full object-cover" />
             </div>
             <div className="h-6 w-[1px] bg-white/20 hidden md:block"></div>
             <div>
@@ -301,9 +304,9 @@ const EnviesVoyage = () => {
               </p>
             </div>
           </div>
-          <button className="relative z-20 text-[10px] font-bold tracking-[0.2em] text-white uppercase border-b border-[#C2A36B] pb-0.5 hover:text-[#C2A36B] transition-colors whitespace-nowrap">
+          <Link to="/demander-un-devis" className="relative z-20 text-[10px] font-bold tracking-[0.2em] text-white uppercase border-b border-[#C2A36B] pb-0.5 hover:text-[#C2A36B] transition-colors whitespace-nowrap">
             PARLEZ À UN EXPERT →
-          </button>
+          </Link>
         </div>
       </div>
     </section>
