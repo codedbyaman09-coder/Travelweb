@@ -64,7 +64,7 @@ const SpiritualVaranasi = () => {
           {/* Left Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[825px]">
+            <div className="lg:mt-[652px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[245px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&q=80&w=800"
@@ -75,7 +75,7 @@ const SpiritualVaranasi = () => {
             </div>
 
             {/* Card 2: Flanking Section 2 Image */}
-            <div className="lg:mt-[445px]">
+            <div className="lg:mt-[353px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
@@ -86,7 +86,7 @@ const SpiritualVaranasi = () => {
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
-            <div className="lg:mt-[433px]">
+            <div className="lg:mt-[323px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
@@ -96,7 +96,7 @@ const SpiritualVaranasi = () => {
               </div>
             </div>
             {/* Card 4: Flanking Section 4 Image */}
-            <div className="lg:mt-[435px]">
+            <div className="lg:mt-[293px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
@@ -106,7 +106,7 @@ const SpiritualVaranasi = () => {
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            <div className="lg:mt-[354px]">
+            <div className="lg:mt-[293px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
@@ -131,11 +131,11 @@ const SpiritualVaranasi = () => {
 
                 <p className="font-light italic leading-loose text-justify text-gray-600 first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:text-[#A88B52] first-letter:mr-3 first-letter:float-left first-letter:mt-1">
                   Certaines destinations offrent de beaux paysages. D’autres permettent simplement de
-changer d’air quelques jours. Mais l’Inde laisse une trace bien plus profonde. Pour beaucoup
-de voyageurs, un premier voyage en Inde commence avec des images en tête : les palais du
-Rajasthan, les couleurs des marchés, les cérémonies sur le Gange ou les paysages
-majestueux de l’Himalaya. Pourtant, une fois sur place, quelque chose change. Le voyage
-devient émotion.
+                  changer d’air quelques jours. Mais l’Inde laisse une trace bien plus profonde. Pour beaucoup
+                  de voyageurs, un premier voyage en Inde commence avec des images en tête : les palais du
+                  Rajasthan, les couleurs des marchés, les cérémonies sur le Gange ou les paysages
+                  majestueux de l’Himalaya. Pourtant, une fois sur place, quelque chose change. Le voyage
+                  devient émotion.
                 </p>
               </div>
 
@@ -158,10 +158,10 @@ devient émotion.
 
                   <p className="leading-loose font-light mb-4 text-justify">
                     Dans les rues animées de Delhi, entre les rickshaws, les parfums d’épices et les scènes de
-vie fascinantes, le voyageur découvre une énergie impossible à comparer avec un autre
-pays. Pourtant, au milieu de cette agitation, apparaissent aussi des instants de calme
-presque irréels : une cérémonie au bord du Gange, un coucher de soleil dans le désert du
-Rajasthan ou le silence d’un temple ancien.
+                    vie fascinantes, le voyageur découvre une énergie impossible à comparer avec un autre
+                    pays. Pourtant, au milieu de cette agitation, apparaissent aussi des instants de calme
+                    presque irréels : une cérémonie au bord du Gange, un coucher de soleil dans le désert du
+                    Rajasthan ou le silence d’un temple ancien.
 
                   </p>
                 </div>
@@ -181,9 +181,9 @@ Rajasthan ou le silence d’un temple ancien.
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                   Ce qui marque profondément les voyageurs, ce ne sont pas uniquement les lieux célèbres.
-Ce sont souvent les moments les plus simples : une invitation spontanée à partager un chai,
-une discussion improvisée avec un artisan ou un repas partagé avec une famille locale.
+                    Ce qui marque profondément les voyageurs, ce ne sont pas uniquement les lieux célèbres.
+                    Ce sont souvent les moments les plus simples : une invitation spontanée à partager un chai,
+                    une discussion improvisée avec un artisan ou un repas partagé avec une famille locale.
 
                   </p>
                 </div>
@@ -203,9 +203,9 @@ une discussion improvisée avec un artisan ou un repas partagé avec une famille
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                  En Inde, tout ne se passe pas toujours comme prévu. Et c’est précisément ce qui transforme
-le voyage. Peu à peu, on apprend à ralentir, à accepter l’imprévu et à observer davantage
-plutôt que vouloir tout contrôler.
+                    En Inde, tout ne se passe pas toujours comme prévu. Et c’est précisément ce qui transforme
+                    le voyage. Peu à peu, on apprend à ralentir, à accepter l’imprévu et à observer davantage
+                    plutôt que vouloir tout contrôler.
 
                   </p>
                 </div>
@@ -225,16 +225,16 @@ plutôt que vouloir tout contrôler.
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                  Le Rajasthan évoque l’élégance des palais et les lumières dorées du désert. Le Kerala
-apaise avec ses paysages tropicaux. Varanasi fascine par sa spiritualité et l’Himalaya invite
-au silence et à la contemplation
+                    Le Rajasthan évoque l’élégance des palais et les lumières dorées du désert. Le Kerala
+                    apaise avec ses paysages tropicaux. Varanasi fascine par sa spiritualité et l’Himalaya invite
+                    au silence et à la contemplation
                   </p>
                 </div>
 
                 {/* Subsection 5 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                  Le vrai luxe en Inde
+                    Le vrai luxe en Inde
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -246,9 +246,9 @@ au silence et à la contemplation
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                 Le véritable luxe en Inde ne réside pas seulement dans les hôtels raffinés. Il se trouve dans
-les émotions vécues : un lever de soleil sur le Gange, une nuit sous les étoiles dans le désert
-ou une rencontre inattendue dans un village
+                    Le véritable luxe en Inde ne réside pas seulement dans les hôtels raffinés. Il se trouve dans
+                    les émotions vécues : un lever de soleil sur le Gange, une nuit sous les étoiles dans le désert
+                    ou une rencontre inattendue dans un village
                   </p>
                 </div>
               </div>
@@ -293,7 +293,7 @@ ou une rencontre inattendue dans un village
           {/* Right Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[826px]">
+            <div className="lg:mt-[654px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800"
@@ -304,7 +304,7 @@ ou une rencontre inattendue dans un village
             </div>
 
             {/* Card 2: Flanking Section 2 Image */}
-            <div className="lg:mt-[452px]">
+            <div className="lg:mt-[356px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
@@ -315,7 +315,7 @@ ou une rencontre inattendue dans un village
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
-            <div className="lg:mt-[432px]">
+            <div className="lg:mt-[324px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
@@ -326,7 +326,7 @@ ou une rencontre inattendue dans un village
             </div>
 
             {/* Card 4: Flanking Section 4 Image */}
-            <div className="lg:mt-[432px]">
+            <div className="lg:mt-[292px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
@@ -336,7 +336,7 @@ ou une rencontre inattendue dans un village
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            <div className="lg:mt-[356px]">
+            <div className="lg:mt-[291px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
@@ -373,8 +373,8 @@ ou une rencontre inattendue dans un village
 
           <p className="text-[13px] md:text-[16px] leading-[1.8] text-gray-300 font-light italic mb-12 max-w-3xl mx-auto">
             Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les
-voyageurs francophones en quête d’authenticité, d’émotions et d’expériences profondément
-humaines.
+            voyageurs francophones en quête d’authenticité, d’émotions et d’expériences profondément
+            humaines.
           </p>
         </div>
       </section>

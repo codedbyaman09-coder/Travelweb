@@ -629,12 +629,13 @@ const VotreVoyageForm = () => {
 
             <div className="flex flex-col items-center text-center gap-4">
               <div className="w-16 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="none" stroke="currentColor" strokeWidth="1">
-                  <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z" />
+                <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
               </div>
               <p className="text-[11px] uppercase tracking-wider text-black font-bold leading-tight">
-                Vols A/R
+                Conseiller dédié
               </p>
             </div>
 
