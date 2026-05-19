@@ -80,43 +80,87 @@ const RajasthanRoyale = () => {
 
             {/* Card 2: Flanking Section 2 Image */}
             <div className="lg:mt-[445px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
             <div className="lg:mt-[433px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Card 4: Flanking Section 4 Image */}
             <div className="lg:mt-[435px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
             <div className="lg:mt-[354px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -323,44 +367,88 @@ const RajasthanRoyale = () => {
 
             {/* Card 2: Flanking Section 2 Image */}
             <div className="lg:mt-[452px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
             <div className="lg:mt-[432px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card 4: Flanking Section 4 Image */}
             <div className="lg:mt-[432px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
             <div className="lg:mt-[356px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

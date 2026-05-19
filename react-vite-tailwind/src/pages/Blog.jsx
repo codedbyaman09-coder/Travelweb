@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
 import blogHeroImg from '../assets/image copy 44.png';
 
 const Blog = () => {
+  const [visiblePosts, setVisiblePosts] = useState(6);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setVisiblePosts(prev => prev + 3);
+      setIsLoadingMore(false);
+    }, 1500);
+  };
+
   const posts = [
     {
       id: 1,
@@ -16,7 +27,7 @@ const Blog = () => {
     },
     {
       id: 2,
-      title: "Kerala Backwaters",
+      title: "VOYAGE EN INDE : LE GUIDE COMPLET POUR UN PREMIER VOYAGE",
       category: "Nature & Wellness",
       image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
       description: "Drift through the serene waterways on a luxury houseboat.",
@@ -24,7 +35,7 @@ const Blog = () => {
     },
     {
       id: 3,
-      title: "Spiritual Varanasi",
+      title: "POURQUOI L’INDE CHANGE PROFONDÉMENT CEUX QUI LA DÉCOUVRENT",
       category: "Spirituality",
       image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
       description: "Witness the eternal rituals on the banks of the sacred Ganges.",
@@ -112,7 +123,7 @@ const Blog = () => {
 
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-          {posts.map((post, index) => {
+          {posts.slice(0, visiblePosts).map((post, index) => {
             const CardComponent = post.link ? Link : 'div';
             const extraProps = post.link ? { to: post.link } : {};
             return (
@@ -122,50 +133,92 @@ const Blog = () => {
                 style={{ animationDelay: `${index * 100}ms` }}
                 {...extraProps}
               >
-              <div className="relative overflow-hidden aspect-[3/4] mb-8 shadow-sm">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                <div className="relative overflow-hidden aspect-[3/4] mb-8 shadow-sm">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
 
-                {/* Hover Details */}
-                <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black/60 to-transparent">
-                  <button className="text-white text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/50 pb-1">
-                    Découvrir l'article
-                  </button>
+                  {post.link ? (
+                    /* Hover Details for real articles */
+                    <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-full group-hover:translate-y-0 transition-transform duration-500 bg-gradient-to-t from-black/60 to-transparent">
+                      <button className="text-white text-[10px] font-bold tracking-[0.2em] uppercase border-b border-white/50 pb-1">
+                        Découvrir l'article
+                      </button>
+                    </div>
+                  ) : (
+                    /* Hover/Permanent state for unlinked cards */
+                    <>
+                      {/* Dark overlay on hover */}
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center">
+                        {/* Smooth gradient circular loading spinner in the center on hover */}
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                          <svg className="animate-spin h-10 w-10 text-white/90" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                            <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                          </svg>
+                        </div>
+                      </div>
+
+                      {/* Permanent PROCHAINEMENT text at the bottom left */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
+                      <div className="absolute bottom-52 left-8 z-10">
+                        <span className="text-white text-[16px] md:text-[20px] lg:text-[22px] font-bold tracking-[0.25em] uppercase border-b-[3px] border-white/70 pb-2">
+                          PROCHAINEMENT
+                        </span>
+                      </div>
+                    </>
+                  )}
                 </div>
-              </div>
 
-              <div className="text-center px-4">
-                <span className="text-[10px] font-bold tracking-[0.3em] text-[#A88B52] uppercase mb-3 block">
-                  {post.category}
-                </span>
-                <h3 className="text-2xl font-serif text-gray-800 mb-4 group-hover:text-[#A88B52] transition-colors duration-300 italic">
-                  {post.title}
-                </h3>
-                <p className="text-[14px] text-gray-500 leading-relaxed font-light line-clamp-2 italic opacity-80">
-                  "{post.description}"
-                </p>
+                <div className="text-center px-4">
+                  <span className="text-[10px] font-bold tracking-[0.3em] text-[#A88B52] uppercase mb-3 block">
+                    {post.category}
+                  </span>
+                  <h3 className="text-2xl font-serif text-gray-800 mb-4 group-hover:text-[#A88B52] transition-colors duration-300 italic">
+                    {post.title}
+                  </h3>
+                  <p className="text-[14px] text-gray-500 leading-relaxed font-light line-clamp-2 italic opacity-80">
+                    "{post.description}"
+                  </p>
 
-                <div className="mt-8 flex justify-center items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="h-[1px] w-8 bg-[#A88B52]/30"></div>
-                  <span className="text-[10px] font-medium text-gray-400 uppercase tracking-[0.3em]">Lire la suite</span>
-                  <div className="h-[1px] w-8 bg-[#A88B52]/30"></div>
+                  <div className="mt-8 flex justify-center items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="h-[1px] w-8 bg-[#A88B52]/30"></div>
+                    <span className="text-[13px] md:text-[15px] font-bold text-gray-400 uppercase tracking-[0.3em]">
+                      {post.link ? "Lire la suite" : "PROCHAINEMENT"}
+                    </span>
+                    <div className="h-[1px] w-8 bg-[#A88B52]/30"></div>
+                  </div>
                 </div>
-              </div>
               </CardComponent>
             );
           })}
         </div>
 
         {/* Footer CTA */}
-        <div className="mt-32 text-center">
-          <button className="px-14 py-6 border border-[#A88B52]/30 text-[#A88B52] text-[11px] font-bold tracking-[0.4em] uppercase hover:bg-[#A88B52] hover:text-white transition-all duration-500 rounded-full">
-            Charger plus d'articles
-          </button>
-        </div>
+        {visiblePosts < posts.length && (
+          <div className="mt-32 text-center">
+            <button
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
+              className="px-14 py-6 border border-[#A88B52]/30 text-[#A88B52] text-[11px] font-bold tracking-[0.4em] uppercase hover:bg-[#A88B52] hover:text-white transition-all duration-500 rounded-full inline-flex items-center justify-center min-w-[280px]"
+            >
+              {isLoadingMore ? (
+                <span className="flex items-center justify-center gap-3">
+                  <svg className="animate-spin h-5 w-5 text-[#A88B52]" viewBox="0 0 24 24" fill="none">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                    <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                  </svg>
+                  <span className="ml-1">Chargement...</span>
+                </span>
+              ) : (
+                "Charger plus d'articles"
+              )}
+            </button>
+          </div>
+        )}
       </div>
       <EspritIndeora />
 

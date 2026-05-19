@@ -11,25 +11,22 @@ const KeralaBackwaters = () => {
 
   const faqs = [
     {
-      question: "Quelle est la meilleure période pour faire une croisière dans les backwaters ?",
-      answer: "La meilleure période se situe entre octobre et mars, lorsque le climat est sec et les températures sont douces au Kerala."
+      question: "Quelle est la meilleure région pour un premier voyage en Inde ?",
+      answer: "Le Rajasthan est souvent la meilleure destination pour une première découverte grâce à sespalais, ses forts et sa richesse culturelle."
     },
     {
-      question: "Qu'est-ce qu'un houseboat (Kettuvallam) ?",
-      answer: "Les houseboats sont d'anciens bateaux traditionnels de transport d'épices reconvertis en hébergements flottants tout confort avec cabines privées et personnel de bord."
+      question: "Combien de jours faut-il prévoir pour visiter l’Inde ",
+      answer: "Pour un premier voyage, nous recommandons généralement entre 10 et 15 jours afin de profiter pleinement d’une région sans précipitation."
     },
     {
-      question: "Combien de jours faut-il consacrer à la visite du Kerala ?",
-      answer: "Nous recommandons généralement d'y passer entre 8 et 12 jours pour combiner la fraîcheur des plantations de Munnar, la croisière sur les canaux et la détente sur les plages."
+      question: "Quelle est la meilleure période pour voyager en Inde ?",
+      answer: "La période idéale pour visiter le Rajasthan, Delhi, Agra ou le Kerala se situe généralement entre octobre et mars."
     },
     {
-      question: "La nourriture au Kerala est-elle très épicée ?",
-      answer: "La cuisine du Kerala est réputée pour sa douceur, ses saveurs de noix de coco fraîche, de cardamome et de gingembre, parfaitement adaptée aux goûts de nos voyageurs."
+      question: "Pourquoi voyager avec une agence locale en Inde ?",
+      answer: "Une agence locale spécialisée permet de bénéficier d’une meilleure organisation, d’expériencesplus authentiques et d’un accompagnement personnalisé sur place.",
     },
-    {
-      question: "Peut-on faire une cure ayurvédique authentique au Kerala ?",
-      answer: "Oui, le Kerala est la terre d'origine historique de l'Ayurveda. Nous proposons des séjours alliant soins quotidiens, yoga et alimentation saine dans des centres spécialisés de confiance."
-    }
+    
   ];
 
   return (
@@ -52,11 +49,12 @@ const KeralaBackwaters = () => {
             L'Inde d'Exception
           </span>
           <h1 className="font-serif text-[32px] md:text-[50px] lg:text-[64px] leading-tight md:leading-[1.15] text-white uppercase tracking-wider mb-6 max-w-4xl mx-auto drop-shadow-md">
-            RAJASTHAN : L’INDE DES PALAIS ET DES MAHARAJAS
+            VOYAGE EN INDE : LE GUIDE COMPLET POUR UN PREMIERV VOYAGE
+
           </h1>
           <div className="w-24 h-[1px] bg-[#A88B52] mx-auto mb-6 opacity-80"></div>
           <p className="text-[12px] md:text-[15px] lg:text-[17px] font-serif italic text-gray-200 tracking-wide max-w-2xl mx-auto font-light leading-relaxed">
-            Les Carnets d’Indeora — Voyage au cœur des palais, des traditions et des émotions
+            Les Carnets d’Indeora — Guide premium pour les voyageurs francophones
           </p>
         </div>
       </section>
@@ -68,8 +66,8 @@ const KeralaBackwaters = () => {
           {/* Left Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[825px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[245px] mx-auto">
+            <div className="lg:mt-[838px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[238px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 1"
@@ -79,46 +77,72 @@ const KeralaBackwaters = () => {
             </div>
 
             {/* Card 2: Flanking Section 2 Image */}
-            <div className="lg:mt-[445px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto">
+            <div className="lg:mt-[561px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
-            <div className="lg:mt-[433px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[454px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Card 4: Flanking Section 4 Image */}
-            <div className="lg:mt-[435px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[419px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            <div className="lg:mt-[354px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
-                <img
-                  src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
-                  alt="Rajasthan Royale Left Featured 2"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+            
+            
           </div>
           {/* Center Column: Main overlapping white editorial card */}
           <div className="lg:col-span-6">
@@ -134,15 +158,15 @@ const KeralaBackwaters = () => {
                 </div>
 
                 <p className="font-light italic leading-loose text-justify text-gray-600 first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:text-[#A88B52] first-letter:mr-3 first-letter:float-left first-letter:mt-1">
-                  Il existe en Inde une région qui semble tout droit sortie d’un autre temps. Une terre où les
-                  palais flottent au-dessus des lacs, où les forts dominent le désert et où les traditions
-                  continuent de vivre au rythme des couleurs, des fêtes et des marchés animés. Bienvenue au
-                  Rajasthan. Pour beaucoup de voyageurs francophones, un voyage au Rajasthan représente
-                  la première rencontre avec l’Inde rêvée. Celle des maharajas, des palais majestueux, des
-                  saris colorés et des cités royales baignées de lumière dorée au coucher du soleil. Mais
-                  au-delà des images iconiques, le Rajasthan possède surtout une atmosphère unique. Une
-                  élégance intemporelle mêlée à une culture profondément vivante et à une chaleur humaine
-                  qui marque durablement ceux qui la découvrent.
+                Un premier voyage en Inde ne ressemble à aucun autre voyage. L’Inde ne se visite pas
+simplement. Elle se ressent, s’écoute et se vit intensément. Avant même d’y poser les pieds,
+beaucoup imaginent déjà les palais du Rajasthan, les cérémonies du Gange, les marchés
+colorés ou les paysages majestueux de l’Himalaya. Pourtant, une fois sur place, le voyage
+devient bien plus profond que ce que l’on avait imaginé. L’Inde possède cette capacité rare
+de transformer un simple séjour en expérience profondément humaine. Chaque région
+raconte une histoire différente, chaque rencontre laisse une émotion particulière et chaque
+journée semble offrir une nouvelle manière de regarder le monde.
+
                 </p>
               </div>
 
@@ -152,7 +176,7 @@ const KeralaBackwaters = () => {
                 {/* Subsection 1 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Pourquoi voyager au Rajasthan ?
+                    Pourquoi choisir l’Inde pour un premier grand voyage ?
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -164,20 +188,22 @@ const KeralaBackwaters = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Le Rajasthan est souvent considéré comme l’une des plus belles régions d’Inde pour une
-                    première découverte du pays. Cette région concentre toute la richesse culturelle et historique
-                    de l’Inde du Nord : palais de maharajas, forts majestueux, villages traditionnels, marchés
-                    colorés, désert du Thar, temples anciens et artisanat raffiné. Chaque ville possède sa propre
-                    identité et raconte une histoire différente. Le Rajasthan n’est pas seulement une destination
-                    culturelle. C’est une immersion dans une Inde élégante, vibrante et profondément
-                    authentique.
+                   L’Inde est l’un des pays les plus fascinants au monde par sa diversité culturelle, ses
+paysages et la richesse de ses traditions. En quelques jours seulement, vous pouvez passer
+des palais majestueux du Rajasthan aux paysages tropicaux du Kerala, des cérémonies
+spirituelles de Varanasi aux villages paisibles de l’Himalaya. Mais ce qui rend un voyage en
+Inde réellement unique, ce ne sont pas seulement les lieux visités. Ce sont surtout les
+émotions vécues sur place : le parfum des épices dans les marchés, les sourires échangés
+dans un village, le silence d’un temple au lever du soleil ou encore l’énergie vibrante des
+grandes villes indiennes.
+
                   </p>
                 </div>
 
                 {/* Subsection 2 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Jaipur : la ville rose du Rajasthan
+                    Quelle région choisir pour un premier voyage en Inde ?
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -189,18 +215,22 @@ const KeralaBackwaters = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Capitale du Rajasthan, Jaipur fascine immédiatement par son architecture, ses palais et son
-                    énergie. Le Palais des Vents, le City Palace ou encore le Fort d’Amber témoignent du passé
-                    prestigieux des anciens royaumes rajpoutes. Dans les bazars animés, les voyageurs
-                    découvrent bijoux traditionnels, tissus colorés, artisanat local et parfums d’épices. Jaipur
-                    représente souvent la première grande émotion d’un voyage au Rajasthan.
+                  Le Rajasthan reste souvent la meilleure porte d’entrée vers l’Inde. Entre forts majestueux,
+palais de maharajas, désert du Thar et villes historiques comme Jaipur, Jodhpur ou Udaipur,
+cette région concentre toute la magie de l’Inde du Nord. Le Kerala séduit quant à lui par une
+ambiance plus tropicale et apaisante. Les backwaters, les plantations de thé et l’Ayurveda
+attirent les voyageurs en quête de nature et de bien-être. Pour les amateurs de spiritualité,
+Varanasi et Rishikesh offrent une immersion fascinante au cœur des traditions sacrées
+indiennes.
+
+
                   </p>
                 </div>
 
                 {/* Subsection 3 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Udaipur : romantisme et palais au bord des lacs
+                    Quand partir en Inde ?
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -212,18 +242,19 @@ const KeralaBackwaters = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Surnommée la “Venise de l’Orient”, Udaipur offre une atmosphère totalement différente.
-                    Entre palais blancs, hôtels de charme et couchers de soleil sur le lac Pichola, la ville séduit
-                    particulièrement les couples et les voyageurs à la recherche d’une Inde plus élégante et
-                    paisible. Flâner dans les ruelles anciennes ou dîner face au City Palace fait partie des
-                    expériences les plus mémorables d’un voyage au Rajasthan.
+                   La meilleure période pour voyager en Inde dépend principalement des régions visitées.
+D’octobre à mars, les conditions sont idéales pour découvrir le Rajasthan, Delhi, Agra,
+Varanasi ainsi que le Kerala et l’Inde du Sud. Entre avril et juillet, les régions himalayennes
+comme le Ladakh deviennent particulièrement agréables. Pendant la mousson, certaines
+régions comme le Kerala ou le Nord-Est indien révèlent des paysages luxuriants et une
+atmosphère totalement différente.
                   </p>
                 </div>
 
                 {/* Subsection 4 */}
                 <div className="mb-16">
                   <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Le désert du Thar : une autre vision de l’Inde
+                    Le vrai luxe en Inde
                   </h2>
 
                   <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
@@ -235,36 +266,18 @@ const KeralaBackwaters = () => {
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                    Au-delà des palais et des villes historiques, le Rajasthan révèle aussi des paysages
-                    désertiques fascinants. Dormir dans le désert du Thar, assister à un coucher de soleil sur les
-                    dunes ou partager une soirée autour de la musique traditionnelle reste souvent un moment
-                    fort du voyage. Le désert offre une atmosphère plus silencieuse, plus lente et profondément
-                    dépaysante.
+                   Le véritable luxe en Inde ne réside pas uniquement dans les hôtels prestigieux ou les palais
+transformés en hébergements de charme. Il se trouve dans les émotions vécues : un
+coucher de soleil dans le désert du Rajasthan, une cérémonie au bord du Gange, un repas
+partagé avec une famille locale ou encore le silence des montagnes himalayennes. Ce sont
+ces instants profondément humains qui rendent un voyage en Inde réellement inoubliable.
+
+
                   </p>
                 </div>
 
                 {/* Subsection 5 */}
-                <div className="mb-16">
-                  <h2 className="font-serif text-[24px] md:text-[30px] text-[#A88B52] italic mb-6">
-                    Le vrai luxe au Rajasthan
-                  </h2>
-
-                  <div className="relative overflow-hidden aspect-[16/9] mb-8 border border-[#A88B52]/20 p-1 bg-white">
-                    <img
-                      src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=1200"
-                      alt="Luxury suite heritage"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-
-                  <p className="leading-loose font-light mb-4 text-justify">
-                    Le véritable luxe au Rajasthan ne réside pas uniquement dans les palais ou les hôtels
-                    prestigieux. Il se trouve dans les expériences vécues : un dîner sous les étoiles dans le
-                    désert, une balade dans les vieux bazars, le calme d’un palais au bord d’un lac ou encore
-                    une rencontre inattendue avec une famille locale. Le Rajasthan possède cette capacité rare
-                    de mêler élégance, émotion et authenticité.
-                  </p>
-                </div>
+               
               </div>
 
               {/* Subsection 6: FAQ Accordion */}
@@ -307,7 +320,7 @@ const KeralaBackwaters = () => {
           {/* Right Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[826px]">
+            <div className="lg:mt-[836px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800"
@@ -318,47 +331,72 @@ const KeralaBackwaters = () => {
             </div>
 
             {/* Card 2: Flanking Section 2 Image */}
-            <div className="lg:mt-[452px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[561Px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
-            <div className="lg:mt-[432px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[452px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Card 4: Flanking Section 4 Image */}
-            <div className="lg:mt-[432px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[420Px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
+                <div className="absolute inset-3 bg-black/0 group-hover:bg-black/45 transition-colors duration-500 flex items-center justify-center rounded-sm">
+                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center gap-3">
+                    <span className="text-white text-[11px] md:text-[13px] font-bold tracking-[0.25em] uppercase border-b border-white/40 pb-1">
+                      PROCHAINEMENT
+                    </span>
+                    <svg className="animate-spin h-7 w-7 text-white/90" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3"></circle>
+                      <path className="opacity-75" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" d="M12 2a10 10 0 0110 10"></path>
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            <div className="lg:mt-[356px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
-                <img
-                  src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
-                  alt="Rajasthan Royale Right Featured 2"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
+            
           </div>
 
 
@@ -380,16 +418,17 @@ const KeralaBackwaters = () => {
           </span>
 
           <h2 className="font-serif text-[24px] md:text-[34px] lg:text-[40px] text-white uppercase tracking-wider mb-6 italic">
-            ENVIE DE DÉCOUVRIR LE RAJASTHAN AUTREMENT ?
+            ENVIE DE DÉCOUVRIR L’INDE AUTREMENT ?
+
           </h2>
 
           <div className="w-16 h-[1.5px] bg-[#A88B52] mx-auto mb-8"></div>
 
           <p className="text-[13px] md:text-[16px] leading-[1.8] text-gray-300 font-light italic mb-12 max-w-3xl mx-auto">
-            Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure au Rajasthan et à
-            travers toute l’Inde pour les voyageurs francophones en quête d’authenticité, d’émotions et
-            d’expériences profondément humaines. Contactez notre équipe pour créer un voyage unique
-            au cœur des palais, des traditions et des paysages fascinants du Rajasthan
+           Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les
+voyageurs francophones en quête d’authenticité, d’émotions et d’expériences profondément
+humaines. Contactez notre équipe pour créer un voyage entièrement pensé selon vos
+envies, votre rythme et votre manière de voyager.
           </p>
         </div>
       </section>
