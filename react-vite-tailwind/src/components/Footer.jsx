@@ -12,6 +12,9 @@ const Footer = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [isFooterPhoneOpen, setIsFooterPhoneOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isLegalOpen, setIsLegalOpen] = useState(false);
+  const [isCancelOpen, setIsCancelOpen] = useState(false);
 
   return (
     <>
@@ -190,8 +193,33 @@ const Footer = () => {
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-[10px] md:text-[11px] text-[#C5A46D]/50 font-light gap-6 md:gap-4 text-center">
             <p>© 2024 Indeora Voyages. Tous droits réservés.</p>
             <div className="flex items-center gap-6">
-              <a href="#" className="hover:text-white transition-colors">Mentions légales</a>
-              <a href="#" className="hover:text-white transition-colors">Politique de confidentialité</a>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsLegalOpen(true);
+                }}
+                className="hover:text-white transition-colors bg-transparent border-none p-0 outline-none cursor-pointer"
+              >
+                Mentions légales
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsPrivacyOpen(true);
+                }}
+                className="hover:text-white transition-colors bg-transparent border-none p-0 outline-none cursor-pointer"
+              >
+                Politique de confidentialité
+              </button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsCancelOpen(true);
+                }}
+                className="hover:text-white transition-colors bg-transparent border-none p-0 outline-none cursor-pointer"
+              >
+                Conditions d’annulation
+              </button>
             </div>
           </div>
         </div>
@@ -374,6 +402,545 @@ const Footer = () => {
           </Link>
         </div>
       </div>
+
+      {/* Privacy Policy Modal */}
+      {isPrivacyOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100000] flex items-center justify-center p-4 md:p-6 transition-all duration-300 animate-in fade-in duration-200">
+          <div className="bg-[#fcfbfa] rounded-sm shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-[#C5A46D]/20 animate-in fade-in zoom-in-95 duration-200">
+            {/* Modal Header */}
+            <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-white">
+              <div className="flex flex-col text-left">
+                <h3 className="text-lg md:text-xl font-serif text-[#1b2228] font-light tracking-wide">
+                  Politique de confidentialité                </h3>
+                <span className="text-[10px] uppercase tracking-widest text-[#C5A46D] mt-0.5">Indeora Voyages</span>
+              </div>
+              <button
+                onClick={() => setIsPrivacyOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1.5 rounded-full hover:bg-gray-100 outline-none cursor-pointer"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-8 py-8 overflow-y-auto text-gray-700 text-sm leading-relaxed space-y-6 font-light scrollbar-thin text-left">
+              <p className="italic text-[#1b2228]/80 text-[13px] border-l-2 border-[#C5A46D] pl-4">
+                Protection de vos données personnelles et confidentialité des informations partagées avec
+                Indeora Voyages.
+              </p>
+
+              <div className="space-y-6 mt-4">
+                {/* Section 1 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    1. Responsable du traitement des données
+                  </h4>
+                  <div className="pl-4 text-gray-600 space-y-1 text-[13px]">
+                    <p className="font-medium text-[#1b2228]">Indeora Voyages Pvt. Ltd.</p>
+                    <p>107, 1st Floor, Shanti Tower</p>
+                    <p>Bikaner, Rajasthan (Inde)</p>
+                    <p className="pt-1">Téléphone : +91 93514 21959 +91 15140 50559</p>
+                    <p>Email : <a href="mailto:contact@indeoravoyages.com" className="text-[#2D5C64] hover:underline font-normal">contact@indeoravoyages.com</a></p>
+                  </div>
+                </div>
+
+                {/* Section 2 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    2. Données collectées
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    Lors de votre navigation sur notre site ou lors d’une demande de voyage, nous pouvons être
+                    amenés à collecter certaines informations personnelles, notamment : • nom et prénom,
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px]">
+                    <li>• adresse email,</li>
+                    <li>• numéro de téléphone,</li>
+                    <li>• pays de résidence,</li>
+                    <li>• informations liées à votre projet de voyage,</li>
+                    <li>• préférences de voyage,</li>
+                    <li>• données de navigation et statistiques du site.</li>
+                  </ul>
+                </div>
+
+                {/* Section 3 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    3. Utilisation des données
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    Les informations collectées sont utilisées afin de : • répondre à vos demandes de contact,
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px] mb-3">
+                    <li>• préparer des propositions de voyages sur mesure,</li>
+                    <li>• assurer le suivi de votre voyage,</li>
+                    <li>• améliorer l’expérience utilisateur sur le site,</li>
+                    <li>• envoyer des informations liées à nos services,</li>
+                    <li>• améliorer nos contenus et services. Indeora Voyages s’engage à ne jamais vendre ou céder vos données personnelles à des tiers sans votre consentement.</li>
+                  </ul>
+
+                </div>
+
+                {/* Section 4 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    4. Conservation des données
+
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Les données personnelles sont conservées uniquement pendant la durée nécessaire au
+                    traitement de votre demande ou conformément aux obligations légales applicables.
+                  </p>
+                </div>
+
+                {/* Section 5 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    5. Sécurité des données
+
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Indeora Voyages met en œuvre des mesures techniques et organisationnelles afin de protéger
+                    vos données personnelles contre toute perte, accès non autorisé, divulgation ou utilisation
+                    abusive.                  </p>
+                </div>
+
+                {/* Section 6 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    6. Cookies
+
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    Le site Indeora Voyages peut utiliser des cookies afin : • d’améliorer la navigation,
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px] mb-2">
+                    <li>• de mesurer l’audience du site,</li>
+                    <li>• d’analyser le comportement des visiteurs,</li>
+                    <li>• d’optimiser l’expérience utilisateur. L’utilisateur peut modifier les paramètres liés aux cookies
+                      directement depuis son navigateur internet.</li>
+                  </ul>
+
+                </div>
+
+                {/* Section 7 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    7. Liens externes
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Le site peut contenir des liens vers des sites externes. Indeora Voyages ne peut être tenu
+                    responsable des politiques de confidentialité ou du contenu de ces sites tiers.
+                  </p>
+                </div>
+
+                {/* Section 8 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    8. Vos droits
+
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    Conformément à la réglementation applicable, vous disposez d’un droit : • d’accès à vos
+                    données,
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px] mb-2">
+                    <li>• de rectification,</li>
+                    <li>de rectification,</li>
+                    <li>• de suppression,</li>
+
+                  </ul>
+                  <p className="text-gray-600 text-[13px]">
+                    • d’opposition au traitement de certaines données. Pour toute demande concernant vos données
+                    personnelles, vous pouvez nous contacter à : <a href="mailto:contact@indeoravoyages.com" className="text-[#2D5C64] hover:underline font-normal">contact@indeoravoyages.com</a>
+                  </p>
+                </div>
+
+                {/* Section 9 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    9. Modification de la politique de confidentialité
+
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Indeora Voyages peut être amené à modifier cette politique de confidentialité à tout moment afin
+                    de garantir sa conformité avec les évolutions légales ou techniques.
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Quote section */}
+              <div className="pt-6 border-t border-gray-100 mt-8 text-center">
+                <h5 className="text-[#1b2228] font-serif italic text-base mb-2 font-light">
+                  Une autre manière de découvrir l’Inde
+
+                </h5>
+                <p className="text-gray-500 text-[12px] max-w-lg mx-auto font-light leading-relaxed">
+                  Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde mêlant
+                  authenticité, élégance et expériences profondément humaines pour les voyageurs francophones.                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-gray-100 bg-white flex justify-end">
+              <button
+                onClick={() => setIsPrivacyOpen(false)}
+                className="bg-[#2D5C64] hover:bg-[#234b51] text-white text-[11px] font-bold py-2.5 px-8 rounded-sm transition-all duration-300 uppercase tracking-widest outline-none cursor-pointer"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mentions Légales Modal */}
+      {isLegalOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100000] flex items-center justify-center p-4 md:p-6 transition-all duration-300 animate-in fade-in duration-200">
+          <div className="bg-[#fcfbfa] rounded-sm shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-[#C5A46D]/20 animate-in fade-in zoom-in-95 duration-200">
+            {/* Modal Header */}
+            <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-white">
+              <div className="flex flex-col text-left">
+                <h3 className="text-lg md:text-xl font-serif text-[#1b2228] font-light tracking-wide">
+                  Mentions légales
+                </h3>
+                <span className="text-[10px] uppercase tracking-widest text-[#C5A46D] mt-0.5">Indeora Voyages</span>
+              </div>
+              <button
+                onClick={() => setIsLegalOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1.5 rounded-full hover:bg-gray-100 outline-none cursor-pointer"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-8 py-8 overflow-y-auto text-gray-700 text-sm leading-relaxed space-y-6 font-light scrollbar-thin text-left">
+              <p className="italic text-[#1b2228]/80 text-[13px] border-l-2 border-[#C5A46D] pl-4">
+                Informations légales relatives au site Indeora Voyages.
+              </p>
+
+              <div className="space-y-6 mt-4">
+                {/* Section 1 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Éditeur du site
+
+                  </h4>
+                  <div className="pl-4 text-gray-600 space-y-1 text-[13px]">
+                    <p className="font-medium text-[#1b2228]">Indeora Voyages Pvt. Ltd.</p>
+                    <p>107, 1st Floor, Shanti Tower</p>
+                    <p>Bikaner, Rajasthan (Inde)</p>
+                    <p className="pt-1">Téléphone : +91 93514 21959 - +91 15140 50559</p>
+                    <p>Email : <a href="mailto:contact@indeoravoyages.com" className="text-[#2D5C64] hover:underline font-normal"> contact@indeoravoyages.com</a></p>
+                    <p>Site internet : <a href="https://indeoravoyages.com" target="_blank" rel="noopener noreferrer" className="text-[#2D5C64] hover:underline font-normal"> https://indeoravoyages.com</a></p>
+                  </div>
+                </div>
+
+                {/* Section 2 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Informations de la société
+                  </h4>
+                  <div className="pl-4 text-gray-600 space-y-1 text-[13px]">
+                    <p className="font-medium text-[#1b2228]">Indeora Voyages Pvt. Ltd. au capital de 10,00,000 ■₹</p>
+                    <p>CIN : U52291RJ2026PTC114099</p>
+                    <p>TAN : JDHI03035E</p>
+                    <p className="pt-1 font-medium text-[#1b2228]">Siège social :</p>
+                    <p>107, 1st Floor, Shanti Tower</p>
+                    <p>Bikaner, Rajasthan (Inde)</p>
+                  </div>
+                </div>
+
+                {/* Section 3 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Directeur de la publication
+                  </h4>
+                  <div className="pl-4 text-gray-600 space-y-1 text-[13px]">
+                    <p className="font-medium text-[#1b2228]">Vishnu Swami</p>
+                    <p className="italic">Fondateur d’Indeora Voyages Pvt. Ltd.</p>
+                  </div>
+                </div>
+
+                {/* Section 4 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Responsabilité
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Indeora Voyages s’efforce d’assurer l’exactitude et la mise à jour des informations diffusées sur
+                    ce site. Toutefois, l’agence ne saurait être tenue responsable d’éventuelles erreurs ou omissions.
+
+                  </p>
+                </div>
+
+                {/* Section 5 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Propriété intellectuelle
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    L’ensemble du contenu du site Indeora Voyages (textes, images, photographies, logos, éléments
+                    graphiques, vidéos et contenus rédactionnels) est protégé par les lois relatives à la propriété
+                    intellectuelle. Toute reproduction totale ou partielle sans autorisation préalable est strictement
+                    interdite.
+
+                  </p>
+                </div>
+
+                {/* Section 6 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Données personnelles
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Les données collectées via les formulaires du site sont utilisées uniquement dans le cadre des
+                    échanges avec Indeora Voyages. Aucune donnée personnelle n’est vendue ou transmise à des
+                    tiers sans consentement préalable. Pour toute demande relative à vos données personnelles :
+                    <a href="mailto:[EMAIL_ADDRESS]" className="text-[#2D5C64] hover:underline font-normal">contact@indeoravoyages.com</a>
+
+                  </p>
+                </div>
+
+                {/* Section 7 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    Cookies
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Le site Indeora Voyages peut utiliser des cookies afin d’améliorer l’expérience utilisateur et
+                    mesurer l’audience du site. L’utilisateur peut modifier les paramètres des cookies directement
+                    depuis son navigateur.
+
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Quote section */}
+              <div className="pt-6 border-t border-gray-100 mt-8 text-center">
+                <h5 className="text-[#1b2228] font-serif italic text-base mb-2 font-light">
+                  Une autre manière de découvrir l’Inde
+                </h5>
+                <p className="text-gray-500 text-[12px] max-w-lg mx-auto font-light leading-relaxed">
+                  Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde mêlant
+                  authenticité, élégance et expériences profondément humaines pour les voyageurs francophones.
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-gray-100 bg-white flex justify-end">
+              <button
+                onClick={() => setIsLegalOpen(false)}
+                className="bg-[#2D5C64] hover:bg-[#234b51] text-white text-[11px] font-bold py-2.5 px-8 rounded-sm transition-all duration-300 uppercase tracking-widest outline-none cursor-pointer"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Conditions d'annulation Modal */}
+      {isCancelOpen && (
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100000] flex items-center justify-center p-4 md:p-6 transition-all duration-300 animate-in fade-in duration-200">
+          <div className="bg-[#fcfbfa] rounded-sm shadow-2xl max-w-3xl w-full max-h-[85vh] flex flex-col overflow-hidden border border-[#C5A46D]/20 animate-in fade-in zoom-in-95 duration-200">
+            {/* Modal Header */}
+            <div className="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-white">
+              <div className="flex flex-col text-left">
+                <h3 className="text-lg md:text-xl font-serif text-[#1b2228] font-light tracking-wide">
+                  Conditions d’annulation
+                </h3>
+                <span className="text-[10px] uppercase tracking-widest text-[#C5A46D] mt-0.5">Indeora Voyages</span>
+              </div>
+              <button
+                onClick={() => setIsCancelOpen(false)}
+                className="text-gray-400 hover:text-gray-600 transition-colors p-1.5 rounded-full hover:bg-gray-100 outline-none cursor-pointer"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+
+            {/* Modal Body */}
+            <div className="px-8 py-8 overflow-y-auto text-gray-700 text-sm leading-relaxed space-y-6 font-light scrollbar-thin text-left">
+              <p className="italic text-[#1b2228]/80 text-[13px] border-l-2 border-[#C5A46D] pl-4">
+                Conditions générales d’annulation et de modification de voyage.
+              </p>
+
+              <div className="space-y-6 mt-4">
+                {/* Section 1 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    1. Confirmation de réservation
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    La réservation d’un voyage est considérée comme confirmée après :
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px]">
+                    <li>• validation du programme de voyage,</li>
+                    <li>• acceptation du devis,</li>
+                    <li>• réception de l’acompte demandé par Indeora Voyages.</li>
+                  </ul>
+                </div>
+
+                {/* Section 2 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    2. Paiement
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Un acompte est demandé afin de confirmer définitivement les prestations réservées. Le solde du
+                    voyage devra être réglé avant le départ selon les modalités précisées lors de la réservation.
+                  </p>
+                </div>
+
+                {/* Section 3 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    3. Conditions d’annulation par le voyageur
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-3">
+                    Toute demande d’annulation doit être communiquée par écrit à Indeora Voyages par email. Les
+                    frais d’annulation applicables sont généralement les suivants :
+                  </p>
+                  <ul className="pl-6 list-disc space-y-2 text-gray-600 text-[13px]">
+                    <li>
+                      <span className="font-medium text-[#1b2228]">Plus de 45 jours avant le départ</span>
+                      <p className="pl-4 text-gray-500 mt-0.5">Retenue de l’acompte versé et frais engagés auprès des prestataires.</p>
+                    </li>
+                    <li>
+                      <span className="font-medium text-[#1b2228]">Entre 45 et 30 jours avant le départ</span>
+                      <p className="pl-4 text-gray-500 mt-0.5">50 % du montant total du voyage pourra être retenu.</p>
+                    </li>
+                    <li>
+                      <span className="font-medium text-[#1b2228]">Entre 30 et 15 jours avant le départ</span>
+                      <p className="pl-4 text-gray-500 mt-0.5">75 % du montant total du voyage pourra être retenu.</p>
+                    </li>
+                    <li>
+                      <span className="font-medium text-[#1b2228]">Moins de 15 jours avant le départ ou non-présentation</span>
+                      <p className="pl-4 text-gray-500 mt-0.5">100 % du montant total du voyage sera retenu.</p>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* Section 4 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    4. Prestations non remboursables
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    Certaines prestations réservées auprès de partenaires externes peuvent être non modifiables et
+                    non remboursables :
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px] mb-2">
+                    <li>• billets d’avion,</li>
+                    <li>• trains,</li>
+                    <li>• hôtels spécifiques,</li>
+                    <li>• permis spéciaux,</li>
+                    <li>• activités réservées à l’avance.</li>
+                  </ul>
+                  <p className="text-gray-600 text-[13px]">
+                    Les conditions particulières de ces prestataires pourront s’appliquer.
+                  </p>
+                </div>
+
+                {/* Section 5 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    5. Modification du voyage
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Toute modification demandée après confirmation du voyage pourra entraîner des frais
+                    supplémentaires selon les disponibilités et les conditions des prestataires. Indeora Voyages fera
+                    son maximum pour proposer des solutions adaptées selon les possibilités disponibles.
+                  </p>
+                </div>
+
+                {/* Section 6 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    6. Annulation ou modification par Indeora Voyages
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Dans des circonstances exceptionnelles indépendantes de notre volonté (conditions climatiques,
+                    problèmes politiques, restrictions gouvernementales, catastrophes naturelles, sécurité ou force
+                    majeure), Indeora Voyages se réserve le droit de modifier certaines prestations ou itinéraires afin
+                    d’assurer la sécurité et le bon déroulement du voyage. Dans ce cas, des solutions alternatives
+                    seront proposées dans la mesure du possible.                  </p>
+                </div>
+
+                {/* Section 7 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    7. Assurance voyage
+                  </h4>
+                  <p className="text-gray-600 text-[13px] mb-2">
+                    Nous recommandons fortement à chaque voyageur de souscrire une assurance voyage couvrant
+                  </p>
+                  <ul className="pl-6 list-disc space-y-1 text-gray-600 text-[13px]">
+                    <li>• l’annulation,</li>
+                    <li>• l’assistance médicale,</li>
+                    <li>• le rapatriement,</li>
+                    <li>• la perte de bagages,</li>
+                    <li>• les imprévus liés au voyage.</li>
+                  </ul>
+                </div>
+
+                {/* Section 8 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    8. Responsabilité
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Indeora Voyages agit en qualité d’organisateur de voyages et intermédiaire auprès de différents
+                    prestataires locaux. L’agence ne pourra être tenue responsable des retards, annulations ou
+                    perturbations causés par des circonstances extérieures indépendantes de sa volonté.
+                  </p>
+                </div>
+
+                {/* Section 9 */}
+                <div>
+                  <h4 className="text-[#C5A46D] font-medium text-[13px] uppercase tracking-wider font-serif mb-2">
+                    9. Acceptation des conditions
+
+                  </h4>
+                  <p className="text-gray-600 text-[13px]">
+                    Toute réservation effectuée auprès d’Indeora Voyages implique l’acceptation pleine et entière
+                    des présentes conditions d’annulation.
+                  </p>
+                </div>
+              </div>
+
+              {/* Bottom Quote section */}
+              <div className="pt-6 border-t border-gray-100 mt-8 text-center">
+                <h5 className="text-[#1b2228] font-serif italic text-base mb-2 font-light">
+                  Une autre manière de découvrir l’Inde
+                </h5>
+                <p className="text-gray-500 text-[12px] max-w-lg mx-auto font-light leading-relaxed">
+                  Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde mêlant
+                  authenticité, élégance et expériences profondément humaines pour les voyageurs francophones.                </p>
+              </div>
+            </div>
+
+            {/* Modal Footer */}
+            <div className="px-6 py-4 border-t border-gray-100 bg-white flex justify-end">
+              <button
+                onClick={() => setIsCancelOpen(false)}
+                className="bg-[#2D5C64] hover:bg-[#234b51] text-white text-[11px] font-bold py-2.5 px-8 rounded-sm transition-all duration-300 uppercase tracking-widest outline-none cursor-pointer"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
