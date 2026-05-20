@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
@@ -7,6 +7,23 @@ import blogHeroImg from '../assets/image copy 44.png';
 const Blog = () => {
   const [visiblePosts, setVisiblePosts] = useState(6);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [dbBlogs, setDbBlogs] = useState([]);
+
+  // Fetch dynamic blogs from database
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/blogs');
+        const data = await response.json();
+        if (data.success) {
+          setDbBlogs(data.blogs);
+        }
+      } catch (err) {
+        console.error('Fetch blogs error on Blog page:', err);
+      }
+    };
+    fetchBlogs();
+  }, []);
 
   const handleLoadMore = () => {
     setIsLoadingMore(true);
@@ -17,30 +34,45 @@ const Blog = () => {
   };
 
   const posts = [
-    {
-      id: 1,
-      title: "RAJASTHAN : L’INDE DES PALAIS ET DES MAHARAJAS",
-      category: "Patrimoine & Culture",
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2WaN4uFLmSnMZh46fxzWRdxJJ8iKUVZn9kw&s",
-      description: "Découvrez les majestueux forts et palais du royaume du désert de l'Inde.",
-      link: "/blog/rajasthan-royale"
-    },
-    {
-      id: 2,
-      title: "VOYAGE EN INDE : LE GUIDE COMPLET POUR UN PREMIER VOYAGE",
-      category: "Nature & Bien-être",
-      image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
-      description: "Laissez-vous dériver sur les canaux sereins du Kerala à bord d'un houseboat de luxe.",
-      link: "/blog/kerala-backwaters"
-    },
-    {
-      id: 3,
-      title: "POURQUOI L’INDE CHANGE PROFONDÉMENT CEUX QUI LA DÉCOUVRENT",
-      category: "Spiritualité",
-      image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
-      description: "Assistez aux rituels éternels sur les rives du Gange sacré à Varanasi.",
-      link: "/blog/spiritual-varanasi"
-    },
+    // Dynamic Blogs from backend MySQL Database
+    ...dbBlogs.map((b) => ({
+      id: `db-${b.id}`,
+      title: b.title.toUpperCase(),
+      category: b.category,
+      image: b.image_url,
+      description: b.excerpt,
+      link: `/blog/${b.slug}`
+    })),
+    // Fallback/standard static blogs (filtered out if loaded from DB to prevent duplication)
+    ...([
+      {
+        id: 1,
+        title: "RAJASTHAN : L’INDE DES PALAIS ET DES MAHARAJAS",
+        slug: "rajasthan-royale",
+        category: "Patrimoine & Culture",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2WaN4uFLmSnMZh46fxzWRdxJJ8iKUVZn9kw&s",
+        description: "Découvrez les majestueux forts et palais du royaume du désert de l'Inde.",
+        link: "/blog/rajasthan-royale"
+      },
+      {
+        id: 2,
+        title: "VOYAGE EN INDE : LE GUIDE COMPLET POUR UN PREMIER VOYAGE",
+        slug: "kerala-backwaters",
+        category: "Nature & Bien-être",
+        image: "https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800",
+        description: "Laissez-vous dériver sur les canaux sereins du Kerala à bord d'un houseboat de luxe.",
+        link: "/blog/kerala-backwaters"
+      },
+      {
+        id: 3,
+        title: "POURQUOI L’INDE CHANGE PROFONDÉMENT CEUX QUI LA DÉCOUVRENT",
+        slug: "spiritual-varanasi",
+        category: "Spiritualité",
+        image: "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&q=80&w=800",
+        description: "Assistez aux rituels éternels sur les rives du Gange sacré à Varanasi.",
+        link: "/blog/spiritual-varanasi"
+      }
+    ].filter(sp => !dbBlogs.some(dbb => dbb.slug === sp.slug))),
     {
       id: 4,
       title: "Ladakh Heights",

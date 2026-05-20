@@ -33,6 +33,12 @@ import KeralaBackwaters from './pages/KeralaBackwaters';
 import SpiritualVaranasi from './pages/SpiritualVaranasi';
 import Faq from './pages/Faq';
 import TopBar from './components/TopBar';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Profile from './pages/Profile';
+import AdminDashboard from './pages/AdminDashboard';
+import BlogDetail from './pages/BlogDetail';
+import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
 // Sub-component to handle route changes and loader trigger
@@ -43,6 +49,11 @@ const AppContent = () => {
 
   // Map paths to Page Names
   const getPageName = (path) => {
+    if (path === '/login') return 'Connexion';
+    if (path === '/register') return 'Inscription';
+    if (path === '/profile') return 'Mon Compte';
+    if (path === '/admin') return 'Tableau de Bord Admin';
+    if (path.startsWith('/blog/')) return 'Blog Article';
     if (path === '/') return 'Accueil';
     if (path === '/about') return 'À propos';
     if (path === '/destinations') return 'Destinations';
@@ -139,6 +150,11 @@ const AppContent = () => {
           <Route path="/faq" element={<Faq />} />
           <Route path="/Faq" element={<Faq />} />
           <Route path="/FAQ" element={<Faq />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/contact" element={<div className="pt-32 text-center">Contact Page</div>} />
         </Routes>
       </main>
@@ -148,9 +164,11 @@ const AppContent = () => {
 
 function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   );
 }
 
