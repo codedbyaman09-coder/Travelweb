@@ -12,6 +12,8 @@ import {
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import imageCopy45 from "../assets/image copy 45.jpg";
+import { Link } from "react-router-dom";
 
 const faqData = [
   {
@@ -21,7 +23,11 @@ const faqData = [
     questions: [
       {
         q: "Faut-il un visa pour voyager en Inde ?",
-        a: "Oui, les voyageurs français doivent obtenir un visa avant leur départ. Le e-visa touristique est généralement la solution la plus simple et rapide pour découvrir l’Inde. "
+        a: (
+          <>
+            Oui, les voyageurs français doivent obtenir un visa avant leur départ. Le e-visa touristique est généralement la solution la plus simple et rapide pour découvrir l’Inde. <strong>pour voir plus des info</strong> - <img src={imageCopy45} alt="pointer" className="inline-block h-[15px] w-auto mx-1.5 align-middle" /> <a href="https://www.diplomatie.gouv.fr/fr/information-par-pays/inde/conseils-aux-voyageurs-entree-sejour" target="_blank" rel="noopener noreferrer" className="text-[#bd8a3a] hover:underline font-bold">cliquez ici</a>
+          </>
+        )
       },
       {
         q: "Quelle est la meilleure période pour voyager en Inde ?",
@@ -52,7 +58,11 @@ const faqData = [
     questions: [
       {
         q: "Peut-on manger facilement en Inde sans être malade ?",
-        a:" Oui, avec quelques précautions simples et une bonne sélection d’adresses, il est tout à fait possible de profiter pleinement de la cuisine indienne pendant votre voyage."
+        a: (
+          <>
+            Oui, avec quelques précautions simples et une bonne sélection d’adresses, il est tout à fait possible de profiter pleinement de la cuisine indienne pendant votre voyage. <strong>pour voir plus des info</strong> - <img src={imageCopy45} alt="pointer" className="inline-block h-[15px] w-auto mx-1.5 align-middle" /> <a href="https://www.service-public.gouv.fr/particuliers/vosdroits/F1109" target="_blank" rel="noopener noreferrer" className="text-[#bd8a3a] hover:underline font-bold">cliquez ici</a>
+          </>
+        )
       },
       {
         q: "L’eau est-elle potable en Inde ?",
@@ -63,7 +73,7 @@ const faqData = [
         a: "Nous conseillons de prévoir une petite trousse de voyage avec les médicaments habituels ainsi qu’un traitement basique contre les troubles digestifs. "
       },
       {
-        q: "Les hôtels en Inde sont-ils confortables ?", 
+        q: "Les hôtels en Inde sont-ils confortables ?",
         a: "Oui. Indeora Voyages sélectionne des hôtels de charme, palais historiques et hébergements soigneusement choisis pour leur confort, leur atmosphère et la qualité de leur accueil."
       }
     ],
@@ -82,10 +92,7 @@ const faqData = [
         q: "Les chauffeurs sont-ils privés ?",
         a: "Oui, nos circuits sont organisés avec chauffeurs privés expérimentés afin de garantir confort,sécurité et liberté tout au long du voyage."
       },
-      {
-        q: "Les chauffeurs sont-ils privés ?",
-        a: "Oui, vous disposez d'un véhicule climatisé privatif avec un chauffeur professionnel dédié tout au long de votre voyage pour un confort optimal."
-      },
+      
       {
         q: "Quels types d’hébergements proposez-vous ?",
         a: "Nous sélectionnons des hôtels de charme, palais historiques, boutique hôtels et hébergements authentiques selon le style de voyage recherché."
@@ -177,9 +184,8 @@ const FaqBox = ({ item }) => {
               <Plus
                 size={17}
                 strokeWidth={1.35}
-                className={`ml-4 shrink-0 text-[#b98534] transition-transform duration-300 ${
-                  open === index ? "rotate-45" : ""
-                }`}
+                className={`ml-4 shrink-0 text-[#b98534] transition-transform duration-300 ${open === index ? "rotate-45" : ""
+                  }`}
               />
             </button>
 
@@ -209,8 +215,8 @@ const FaqBox = ({ item }) => {
 
             <p className="mt-[13px] max-w-[300px] text-[12px] leading-[1.55] text-[#575757]">
               Chez Indeora Voyages, nous croyons qu’un beau voyage ne se résume pas à une liste de lieux à
-visiter. Notre mission est de vous faire découvrir une Inde élégante, authentique et profondément
-humaine à travers des expériences pensées selon votre manière de voyager.
+              visiter. Notre mission est de vous faire découvrir une Inde élégante, authentique et profondément
+              humaine à travers des expériences pensées selon votre manière de voyager.
             </p>
 
             <button className="mt-[14px] rounded-[2px] bg-[#b98231] px-[26px] py-[10px] text-[10px] font-bold uppercase tracking-[0.12em] text-white">

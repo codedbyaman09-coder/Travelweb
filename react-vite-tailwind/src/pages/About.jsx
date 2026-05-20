@@ -9,6 +9,8 @@ import CustomIcon from "../assets/ChatGPT Image May 14, 2026, 01_34_31 PM.png";
 import guideIcon from "../assets/ChatGPT Image May 14, 2026, 01_37_59 PM.png";
 import assistanceIcon from "../assets/ChatGPT Image May 14, 2026, 01_40_49 PM.png";
 import bgUSPImg from "../assets/image copy 42.jpeg";
+import amandineImg from "../assets/image copy 46.jpeg";
+import dipeshImg from "../assets/team/dipesh.png";
 
 
 const About = () => {
@@ -43,13 +45,13 @@ const About = () => {
     {
       name: "Vishnu Swami",
       role: "Fondateur francophone",
-      img: "https://indeoravoyages.com/wp-content/uploads/2025/08/rajan-768x611.jpg",
+      img: dipeshImg,
       text: "Passionné de voyages depuis toujours, Vishnu Swami a d’abord exploré le monde au-delà de l’Inde. Il a vécu plusieurs années en France où il a appris le français qu’il parle couramment.",
     },
     {
       name: "Amandine Fastré",
       role: "Créatrice d’itinéraires",
-      img: "https://indeoravoyages.com/wp-content/uploads/2025/08/amandine-indeora-voyages-1.jpg",
+      img: amandineImg,
       text: "Amandine est une véritable passionnée de l’Inde, un pays où elle a vécu plus de 15 ans en tant que créatrice de voyages sur mesure.",
     },
   ];

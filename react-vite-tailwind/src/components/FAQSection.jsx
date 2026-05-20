@@ -20,7 +20,7 @@ Notre équipe imagine ensuite un itinéraire sur mesure mêlant découvertes cul
 Avec Indeora Voyages, vous profitez d’un accompagnement humain et personnalisé du premier contact jusqu’à votre retour.
 `
 
-},
+    },
     {
       question: "Qu’est-ce qui rend un voyage avec Indeora Voyages unique ?",
       answer: `Voyager avec Indeora Voyages, c’est vivre l’Inde autrement. Nous privilégions les expériences sincères, les adresses authentiques et les itinéraires équilibrés pour permettre une immersion réelle dans la culture indienne.
@@ -30,7 +30,7 @@ Des palais du Rajasthan aux backwaters du Kerala, des villages traditionnels aux
     },
     {
       question: "Quels types de voyages sur mesure en Inde proposons-nous ?",
-      answer:`Nous organisons différents styles de voyages personnalisés en Inde :
+      answer: `Nous organisons différents styles de voyages personnalisés en Inde :
 
 Circuits privés au Rajasthan
 Voyages culturels en Inde du Nord
@@ -71,7 +71,7 @@ Chez Indeora Voyages, nous adaptons chaque circuit selon votre style de voyage a
           <h1 className="text-xl md:text-2xl font-bold text-[#b07a34] tracking-tight mb-0.5">
             FAQ
           </h1>
-          
+
           <div className="flex items-center justify-center gap-2 mb-1.5">
             <div className="w-12 h-[0.5px] bg-[#b07a34]/30" />
             <div className="text-[#b07a34] text-sm">
@@ -83,7 +83,7 @@ Chez Indeora Voyages, nous adaptons chaque circuit selon votre style de voyage a
           <h2 className="text-lg md:text-xl font-serif text-[#1a1a1a] mb-1 leading-tight">
             Voyage sur mesure en Inde
           </h2>
-          
+
           <p className="text-[10px] md:text-[11px] text-[#2d343e]/70 font-medium">
             Toutes les réponses à vos questions avec <span className="text-[#b07a34]">Indeora Voyages</span>
           </p>
@@ -92,8 +92,8 @@ Chez Indeora Voyages, nous adaptons chaque circuit selon votre style de voyage a
         {/* FAQ List */}
         <div className="space-y-4">
           {faqs.map((faq, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="bg-white border border-[#f0ede8] rounded-xl overflow-hidden shadow-sm transition-all duration-300"
             >
               <button
@@ -107,11 +107,10 @@ Chez Indeora Voyages, nous adaptons chaque circuit selon votre style de voyage a
                   <Plus size={14} className="text-[#b07a34]" />
                 </div>
               </button>
-              
-              <div 
-                className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                  openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
-                }`}
+
+              <div
+                className={`overflow-hidden transition-all duration-500 ease-in-out ${openIndex === index ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                  }`}
               >
                 <div className="p-3 md:p-3.5 pt-0 text-[10px] md:text-[11px] leading-relaxed text-[#2d343e]/60 border-t border-[#f0ede8]/50">
                   {faq.answer}

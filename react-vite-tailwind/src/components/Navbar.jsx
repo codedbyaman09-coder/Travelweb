@@ -46,7 +46,7 @@ const Navbar = () => {
                   if (dest === "Visites par Région" || dest === "Idées de circuits") {
                     targetUrl = "/destinations";
                   } else if (dest === "Bien être, Yoga et Ayurveda") {
-                    targetUrl = "/Testing";
+                    targetUrl = "/yoga";
                   } else if (dest === "Hors des Sentiers Battus") {
                     targetUrl = "/himalaya-aventures-hors-sentiers-battus";
                   } else if (dest === "Rencontres Ethniques") {
@@ -121,7 +121,7 @@ const Navbar = () => {
                   if (dest === "Visites par Région" || dest === "Idées de circuits") {
                     targetUrl = "/destinations";
                   } else if (dest === "Bien être, Yoga et Ayurveda") {
-                    targetUrl = "/Testing";
+                    targetUrl = "/yoga";
                   } else if (dest === "Hors des Sentiers Battus") {
                     targetUrl = "/himalaya-aventures-hors-sentiers-battus";
                   } else if (dest === "Rencontres Ethniques") {

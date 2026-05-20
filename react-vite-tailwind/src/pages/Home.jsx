@@ -6,7 +6,7 @@ import EspritIndeora from '../components/EspritIndeora';
 import EnviesGrid from '../components/EnviesGrid';
 import FAQSection from '../components/FAQSection';
 import dipeshImg from '../assets/team/dipesh.png';
-import alessiaImg from '../assets/team/alessia.png';
+import amandineImg from '../assets/image copy 46.jpeg';
 import rajanImg from '../assets/team/rajan.jpg';
 import InteractiveMap from '../components/InteractiveMap';
 import VisionSection from '../components/VisionSection';
@@ -30,10 +30,16 @@ const Home = () => {
 
   const videoRef = React.useRef(null);
 
-  // Sync text changes exactly to the video's playback position
+  // Sync text changes exactly to the video's playback position (or fallback timer if using YouTube iframe)
   React.useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video) {
+      // Fallback timer for YouTube iframe
+      const interval = setInterval(() => {
+        setTextIndex((prev) => (prev + 1) % heroTexts.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
 
     let animId;
     let lastIndex = 0;
@@ -122,18 +128,17 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
     <>
       {/* 1. Hero Section */}
       <div className="relative min-h-screen w-full overflow-hidden">
-        {/* Background Video */}
-        <div className="absolute inset-0 z-0">
-          <video
-            ref={videoRef}
-            className="w-full h-full object-cover"
-            autoPlay
-            muted
-            playsInline
-            loop
-            src="https://indeoravoyages.com/wp-content/uploads/2025/09/Design-sans-titre-2.mp4"
-          ></video>
-          <div className="absolute inset-0 bg-black/20"></div>
+        {/* Background YouTube Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+          <iframe
+            className="w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
+            src="https://www.youtube.com/embed/4hIXWVt8Rrk?autoplay=1&mute=1&loop=1&playlist=4hIXWVt8Rrk&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            title="Background Video"
+          ></iframe>
+          <div className="absolute inset-0 bg-black/25 z-10 pointer-events-auto"></div>
         </div>
 
         {/* Hero Text Content (Bottom Right) */}
@@ -239,7 +244,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
             <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
               <div className="flex items-center gap-4 mb-2">
                 <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
-                  <img src={alessiaImg} alt="Amandine Fastré" className="w-full h-full object-cover" />
+                  <img src={amandineImg} alt="Amandine Fastré" className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">Amandine Fastré</h3>
@@ -308,7 +313,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
                 icon: "♧",
                 desc: "Yoga, méditation et soins ayurvédiques.",
                 img: "/src/assets/image copy 9.png",
-                link: "/Testing",
+                link: "/yoga",
               },
               {
                 title: "HORS DES\nSENTIERS BATTUS",

@@ -9,7 +9,7 @@ import Destinations from './pages/Destinations';
 import DestinationDetail from './pages/DestinationDetail';
 import Blog from './pages/Blog';
 import AvantDePartir from './pages/AvantDePartir';
-import Testing from './pages/Testing';
+import Yoga from './pages/Yoga';
 import FestivalsCouleursTraditionsIndiennes from './pages/FestivalsCouleursTraditionsIndiennes';
 import CroisieresBackwatersKerala from './pages/CroisieresBackwatersKerala';
 import HimalayaAventuresHorsSentiersBattus from './pages/HimalayaAventuresHorsSentiersBattus';
@@ -65,7 +65,7 @@ const AppContent = () => {
     if (path === '/blog/rajasthan-royale') return 'Rajasthan Royale';
     if (path === '/blog/kerala-backwaters') return 'Kerala Backwaters';
     if (path === '/blog/spiritual-varanasi') return 'Spiritual Varanasi';
-    if (path.toLowerCase() === '/testing') return 'Retraite Yoga';
+    if (path.toLowerCase() === '/yoga' || path.toLowerCase() === '/testing') return 'Retraite Yoga';
 
     // Exact matching for Destinations from Dropdown
     if (path === "/destinations/visites-par-région") return "Visites par Région";
@@ -120,8 +120,10 @@ const AppContent = () => {
           <Route path="/blog/kerala-backwaters" element={<KeralaBackwaters />} />
           <Route path="/blog/spiritual-varanasi" element={<SpiritualVaranasi />} />
           <Route path="/avant-de-partir" element={<AvantDePartir />} />
-          <Route path="/testing" element={<Testing />} />
-          <Route path="/Testing" element={<Testing />} />
+          <Route path="/yoga" element={<Yoga />} />
+          <Route path="/Yoga" element={<Yoga />} />
+          <Route path="/testing" element={<Yoga />} />
+          <Route path="/Testing" element={<Yoga />} />
           <Route path="/festivals-couleurs-traditions-indiennes" element={<FestivalsCouleursTraditionsIndiennes />} />
           <Route path="/croisieres-backwaters-kerala" element={<CroisieresBackwatersKerala />} />
           <Route path="/himalaya-aventures-hors-sentiers-battus" element={<HimalayaAventuresHorsSentiersBattus />} />
