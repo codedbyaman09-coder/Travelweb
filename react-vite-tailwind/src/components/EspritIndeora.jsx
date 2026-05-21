@@ -16,25 +16,25 @@ const EspritIndeora = () => {
       title: "Où vous voulez",
       color: "#496344",
       icon: "/src/assets/image.png",
-      text: "Des itinéraires imaginés selon vos inspirations, vos passions et votre rythme. Palais du Rajasthan, backwaters du Kerala, Himalaya, spiritualité, nature ou expériences locales : chaque voyage est entièrement personnalisé pour vous faire vivre une Inde qui vous ressemble."
+      text: "Des itinéraires imaginés selon vos inspirations, vos passions et votre rythme. Palais du Rajasthan, backwatersdu Kerala, Himalaya, spiritualité, nature ou expériences locales : chaque voyage est entièrement personnalisé pour vous faire vivre une Inde qui vous ressemble. "
     },
     {
       title: "Quand vous voulez",
       color: "#a34f2c",
       icon: "/src/assets/image copy.png",
-      text: "Des itinéraires imaginés selon vos inspirations, vos passions et votre rythme. Palais du Rajasthan, backwaters du Kerala, Himalaya, spiritualité, nature ou expériences locales : chaque voyage est entièrement personnalisé pour vous faire vivre une Inde qui vous ressemble."
+      text: "Avant, pendant et après votre séjour, notre équipe reste à vos côtés.  Conseiller dédié, assistance francophone, chauffeurs privés expérimentés et accompagnement local : voyager librement tout en étant parfaitement entouré."
     },
     {
       title: "Comme vous aimez voyager",
       color: "#12264a",
       icon: "/src/assets/image copy 3.png",
-      text: "Des itinéraires imaginés selon vos inspirations, vos passions et votre rythme. Palais du Rajasthan, backwaters du Kerala, Himalaya, spiritualité, nature ou expériences locales : chaque voyage est entièrement personnalisé pour vous faire vivre une Inde qui vous ressemble."
+      text: "En couple, en famille, entre amis ou en solo. Road trip au Rajasthan, voyage en train à travers l’Inde, séjour immersif, hôtels de charme ou escapade plus confortable : chaque détail s’adapte à votre façon de voyager. "
     },
     {
-      title: "Une autre vision",
+      title: "Une autre vision de l’Inde",
       color: "#496344",
       icon: "/src/assets/image copy 4.png",
-      text: "Des itinéraires imaginés selon vos inspirations, vos passions et votre rythme. Palais du Rajasthan, backwaters du Kerala, Himalaya, spiritualité, nature ou expériences locales : chaque voyage est entièrement personnalisé pour vous faire vivre une Inde qui vous ressemble."
+      text: "Nous croyons qu’un beau voyage ne se résume pas à visiter des lieux. Il doit faire ressentir une émotion, créer des rencontres sincères et laisser des souvenirs profonds. C’est cette Inde plus humaine, élégante et authentique que nous aimons partager.la, Himalaya, spiritualité, nature ou expériences locales : chaque voyage est entièrement personnalisé pour vous faire vivre une Inde qui vous ressemble."
     }
   ];
 

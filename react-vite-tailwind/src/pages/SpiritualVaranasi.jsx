@@ -30,7 +30,7 @@ const SpiritualVaranasi = () => {
 
   return (
     <div className="bg-[#FAF9F6] min-h-screen font-light">
-      {/* <Navbar /> */}
+      {/* <Navbar />   */}
 
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[75vh] lg:h-[85vh] overflow-hidden flex items-center justify-center">
