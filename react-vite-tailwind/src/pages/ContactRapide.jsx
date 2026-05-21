@@ -35,7 +35,7 @@ const ContactRapide = () => {
       </div>
 
       {/* Header Section */}
-      <div className="max-w-7xl mx-auto px-6 text-center py-16 md:py-24" id="contact-form">
+      <div className="text-center py-16 md:py-24 w-full max-w-[1440px] mx-auto px-[40px]" id="contact-form">
         <h2 className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-[#A88B52] mb-6 md:mb-8 uppercase">UNE AUTRE FAÇON DE DÉCOUVRIR L’INDE</h2>
         <p className="text-gray-600 text-sm md:text-[15px] leading-relaxed md:leading-[1.8] max-w-4xl mx-auto font-medium opacity-80">
           Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les voyageurs francophones en quête d’authenticité, d’élégance et d’expériences profondément humaines.
@@ -51,7 +51,7 @@ const ContactRapide = () => {
 
       {/* Nos coordonnées Section */}
       <div className="bg-blue-50 py-4 md:py-6 px-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full max-w-[1440px] mx-auto px-[40px]">
           <h2 className="text-3xl md:text-5xl font-serif text-[#2d343e] text-center mb-4 md:mb-6 italic">Nos coordonnées</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -69,12 +69,12 @@ const ContactRapide = () => {
                 <div className="flex items-start gap-4 text-[#2d343e]">
                   <img src="https://flagcdn.com/w20/in.png" alt="India" className="mt-1 w-5" />
                   <span className="text-[13px] font-medium leading-relaxed">
-                    Alpesh Trading, Bikaner, Rajasthan 334001, India
+                    INDEORA VOYAGES, Bikaner, Rajasthan 334001, India
                   </span>
                 </div>
                 <div className="flex items-center gap-4 text-[#2d343e]">
                   <svg className="w-4 h-4 text-[#A88B52]" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" /></svg>
-                  <span className="text-[13px] font-medium">+91 70 230 16044</span>
+                  <span className="text-[13px] font-medium">+91 93514 21959</span>
                 </div>
                 <div className="flex items-center gap-4 text-[#2d343e]">
                   <svg className="w-4 h-4 text-[#A88B52]" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" /></svg>
@@ -88,7 +88,7 @@ const ContactRapide = () => {
 
               <div className="w-full h-[300px] md:h-[400px] rounded-sm overflow-hidden border border-gray-100 shadow-md">
                 <iframe
-                  src="https://www.google.com/maps?q=Alpesh+Trading,+Bikaner,+Rajasthan+334001,+India&output=embed"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6104.419158273716!2d73.31993271792733!3d28.02009685969809!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e08edcd9da98535%3A0xdea99cf3a46df3c4!2sINDEORA%20VOYAGES!5e0!3m2!1sen!2sin!4v1779356710556!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}

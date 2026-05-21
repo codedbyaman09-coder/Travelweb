@@ -5,7 +5,7 @@ const PourquoiVoyager = () => {
 
   return (
     <section className="bg-[#f7f5f2] py-10 md:py-14 px-6">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
         <h2 className="text-[13px] md:text-[15px] tracking-[0.3em] font-bold text-[#2d343e] uppercase mb-10 md:mb-14">
           VOYAGER EN INDE
         </h2>
@@ -68,7 +68,7 @@ const PourquoiVoyager = () => {
 
       {showMore && (
         <div className="mt-10 md:mt-14 space-y-10 md:space-y-14">
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
               {/* Service Sur Mesure */}
               <div className="flex flex-col items-center text-center">
@@ -125,7 +125,7 @@ const PourquoiVoyager = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
               {/* Service Sur Mesure */}
               <div className="flex flex-col items-center text-center">
@@ -182,7 +182,7 @@ const PourquoiVoyager = () => {
               </div>
             </div>
           </div>
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8">
               {/* Service Sur Mesure */}
               <div className="flex flex-col items-center text-center">
@@ -243,7 +243,7 @@ const PourquoiVoyager = () => {
         </div>
       )}
 
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 mt-8">
           <div className="hidden lg:block lg:col-span-5"></div>
           <div className="col-span-2 sm:col-span-3 lg:col-span-1 flex justify-center">

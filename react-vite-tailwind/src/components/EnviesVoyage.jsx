@@ -21,7 +21,7 @@ import namasteIcon from '../assets/ChatGPT Image May 14, 2026, 01_29_59 PM.png';
 
 const EnviesVoyage = () => {
   return (
-    <section className="bg-[#f8f6f3] relative overflow-hidden py-10 md:py-16 px-6">
+    <section className="bg-[#f8f6f3] relative overflow-hidden py-10 md:py-16 px-[40px] w-full">
       {/* Decorative Background Elements */}
       {/* <div className="absolute left-0 top-0 h-full w-[15%] opacity-10 pointer-events-none hidden md:block">
         <img 
@@ -45,7 +45,7 @@ const EnviesVoyage = () => {
         />
       </div> */}
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-[40px]">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 xl:gap-8">
 
           {/* Column 1: Saison Idéale */}

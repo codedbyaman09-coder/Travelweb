@@ -39,34 +39,34 @@ const EspritIndeora = () => {
   ];
 
   return (
-    <section className="bg-[#fbfaf7] py-2 md:py-3 px-6 overflow-hidden">
-      <div className="max-w-5xl mx-auto text-center">
+    <section className="bg-[#fbfaf7] py-6 md:py-8 px-[40px] overflow-hidden w-full">
+      <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
 
         {/* Top Decoration */}
-        <div className="flex items-center justify-center gap-2 text-[#c59a5b] mb-0.5">
+        <div className="flex items-center justify-center gap-2 text-[#c59a5b] mb-2">
           <span className="w-6 h-[1px] bg-[#c59a5b]"></span>
           <span className="text-sm leading-none">❁</span>
           <span className="w-6 h-[1px] bg-[#c59a5b]"></span>
         </div>
 
-        <h2 className="font-serif text-[#2b1414] text-[18px] md:text-[24px] leading-none mb-1">
+        <h2 className="font-serif text-[#2b1414] text-[18px] md:text-[24px] leading-none mb-3">
           L’esprit Indeora
         </h2>
 
-        <div className="flex items-center justify-center gap-2 text-[#c59a5b] mb-2">
+        <div className="flex items-center justify-center gap-2 text-[#c59a5b] mb-4">
           <span className="w-12 h-[1px] bg-[#c59a5b]"></span>
           <span className="text-xs">◇</span>
           <span className="w-12 h-[1px] bg-[#c59a5b]"></span>
         </div>
 
-        <p className="text-[#161616] text-[11px] md:text-[13px] leading-snug mb-2.5 opacity-90">
+        <p className="text-[#161616] text-[11px] md:text-[13px] leading-snug mb-8 opacity-90">
           Le voyage sur mesure, pensé selon vos envies et <br />votre manière de découvrir l’Inde
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-x-4">
           {cards.map((card, idx) => (
-            <div key={idx} className={`px-4 ${idx !== cards.length - 1 ? 'lg:border-r border-[#ded2bd]' : ''}`}>
-              <div className="w-14 h-14 mx-auto mb-2 rounded-full bg-[#f4efe8] flex items-center justify-center overflow-hidden p-2">
+            <div key={idx} className={`px-4 md:px-6 lg:px-8 ${idx !== cards.length - 1 ? 'lg:border-r border-[#ded2bd]' : ''}`}>
+              <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-[#f4efe8] flex items-center justify-center overflow-hidden p-3 md:p-4">
                 <img src={card.icon} alt={card.title} className={`w-full h-full object-contain scale-110 ${idx === 0 ? 'translate-x-1.5' : ''}`} />
               </div>
 
@@ -108,7 +108,7 @@ const EspritIndeora = () => {
         </div>
 
         {/* Bottom Button */}
-        <div className="mt-2 flex items-center justify-center gap-3">
+        <div className="mt-20 mb-4 flex items-center justify-center gap-3">
           <span className="hidden md:block w-8 h-[1px] bg-[#c59a5b]"></span>
           <span className="hidden md:block text-[#c59a5b] text-base">❧</span>
 

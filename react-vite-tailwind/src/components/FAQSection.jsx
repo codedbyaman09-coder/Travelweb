@@ -64,7 +64,7 @@ Chez Indeora Voyages, nous adaptons chaque circuit selon votre style de voyage a
   ];
 
   return (
-    <section className="bg-[#fcfaf7] py-4 md:py-6 px-6 overflow-hidden">
+    <section className="bg-[#fcfaf7] py-4 md:py-6 px-[40px] overflow-hidden w-full">
       <div className="max-w-2xl mx-auto">
         {/* Header */}
         <div className="text-center mb-4">

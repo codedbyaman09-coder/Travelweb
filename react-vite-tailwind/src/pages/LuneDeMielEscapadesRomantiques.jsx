@@ -540,7 +540,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       <section className="relative h-[500px] md:h-[650px] lg:h-[720px] overflow-hidden">
         <img src="src\assets\image copy 20.png" alt="Nos destinations" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 max-w-[1180px] mx-auto h-full flex flex-col items-center justify-center px-6 md:px-10 text-center">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center md: text-center w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="max-w-[800px]">
             <h1 className="font-serif text-[46px] md:text-[62px] lg:text-[76px] leading-[1.1] text-white mb-8 drop-shadow-lg uppercase tracking-tight">Rajasthan Romantique  Kerala 14 Jours</h1>
             <div className="w-16 h-px bg-[#c58b32] mb-6 mx-auto" />
@@ -552,7 +552,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
         </div>
       </section>
 
-      <div className="relative z-30 mt-12 pb-24 px-4 max-w-7xl mx-auto">
+      <div className="relative z-30 mt-12 pb-24 w-full max-w-[1440px] mx-auto px-[40px]">
         <div className="lg:flex lg:gap-8 items-start">
           <div className="flex-1 bg-white shadow-2xl rounded-sm overflow-hidden min-h-[600px]">
             <div className="flex bg-[#fcfcfc] border-b border-gray-200">
@@ -631,7 +631,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       </div>
 
       <section className="bg-white py-8 md:py-12 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center">
+        <div className="text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="w-full text-left mb-8">
             <h2 className="text-[#2d343e] font-serif text-[22px] md:text-[28px] italic opacity-90">
               Ils ont aimé voyager avec nous
@@ -690,7 +690,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       </section>
 
       <section className="py-20 px-6 bg-[#f7f3f0]">
-        <div className="max-w-7xl mx-auto text-center">
+        <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
           <h2 className="font-serif text-[32px] md:text-[42px] text-[#b7772e] mb-2 font-bold italic">Découvrez d'autres voyages en Inde</h2>
           <div className="flex justify-center mb-16 opacity-70"><div className="w-64 h-[1.5px] bg-[#333]" style={{ clipPath: "polygon(0% 45%, 15% 55%, 30% 40%, 50% 60%, 70% 35%, 85% 50%, 100% 40%, 100% 60%, 85% 55%, 70% 65%, 50% 40%, 30% 60%, 15% 45%, 0% 55%)" }} /></div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

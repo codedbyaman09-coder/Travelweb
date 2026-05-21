@@ -234,7 +234,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="w-full min-h-screen bg-[#fcfbf9] text-[#161c20] flex flex-col justify-between pt-24 font-sans">
-      <div className="max-w-7xl mx-auto px-6 py-12 w-full flex-grow">
+      <div className="py-12 flex-grow w-full max-w-[1440px] mx-auto px-[40px]">
         {/* Header Dashboard */}
         <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-gray-200 pb-6 mb-10 gap-4">
           <div>

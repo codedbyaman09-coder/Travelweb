@@ -145,7 +145,7 @@ const Blog = () => {
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24">
+      <div className="lg: py-24 w-full max-w-[1440px] mx-auto px-[40px]">
         {/* Header */}
         <div className="text-center mb-16 md:mb-24 animate-fadeIn">
           <h2 className="text-[9px] md:text-[14px] lg:text-[17px] font-bold tracking-[0.25em] md:tracking-[0.35em] lg:tracking-[0.45em] text-[#A88B52] uppercase mb-4 w-full whitespace-nowrap">“Plus qu’une destination, l’Inde est une émotion qui se raconte.”

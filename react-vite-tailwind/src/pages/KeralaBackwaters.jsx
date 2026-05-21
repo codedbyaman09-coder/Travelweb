@@ -44,7 +44,7 @@ const KeralaBackwaters = () => {
           <div className="absolute inset-0 bg-black/40 backdrop-blur-[1px]"></div>
         </div>
 
-        <div className="relative z-10 max-w-[1100px] mx-auto px-6 text-center text-white mt-16 md:mt-24">
+        <div className="relative z-10 text-center text-white mt-16 md:mt-24 w-full max-w-[1440px] mx-auto px-[40px]">
           <span className="text-[10px] md:text-[12px] font-bold tracking-[0.4em] text-[#A88B52] uppercase mb-4 md:mb-6 block animate-fadeIn">
             L'Inde d'Exception
           </span>
@@ -60,7 +60,7 @@ const KeralaBackwaters = () => {
       </section>
 
       {/* Editorial Content Container */}
-      <div className="relative z-25 max-w-[1350px] mx-auto px-4 md:px-6 -mt-4 md:-mt-8 mb-24 animate-fadeIn">
+      <div className="relative z-25 md: -mt-4 md:-mt-8 mb-24 animate-fadeIn w-full max-w-[1440px] mx-auto px-[40px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
 
           {/* Left Column: Flanking cards for all Subsections */}

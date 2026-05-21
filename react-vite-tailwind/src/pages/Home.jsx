@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
 import EnviesGrid from '../components/EnviesGrid';
 import FAQSection from '../components/FAQSection';
-import dipeshImg from '../assets/team/dipesh.png';
+import dipeshImg from '../assets/image copy 47.jpeg';
 import amandineImg from '../assets/image copy 46.jpeg';
 import rajanImg from '../assets/team/rajan.jpg';
 import InteractiveMap from '../components/InteractiveMap';
@@ -128,10 +128,13 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
     <>
       {/* 1. Hero Section */}
       <div className="relative min-h-screen w-full overflow-hidden">
+
+
+
         {/* Background YouTube Video */}
         <div className="absolute inset-0 z-0 overflow-hidden bg-black">
           <iframe
-            className="w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
+            className="w-full h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
             src="https://www.youtube.com/embed/4hIXWVt8Rrk?autoplay=1&mute=1&loop=1&playlist=4hIXWVt8Rrk&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -193,28 +196,28 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       <EspritIndeora />
 
       {/* 3. Meet the Team Section */}
-      <section className="bg-[#60727a] py-3 md:py-4 px-6 text-white overflow-hidden">
-        <div className="max-w-6xl mx-auto">
+      <section className="bg-[#60727a] py-3 md:py-4 px-[40px] text-white overflow-hidden w-full">
+        <div className="w-full max-w-[1440px] mx-auto px-[40px]">
           {/* Header Content */}
-          <div className="flex flex-col items-center mb-4 md:mb-8 text-center max-w-3xl mx-auto">
-            <span className="text-white/60 text-[8px] md:text-[9px] tracking-[0.2em] uppercase mb-1">
+          <div className="flex flex-col items-center mb-4 md:mb-8 mt-8 md:mt-12 text-center max-w-3xl mx-auto">
+            <span className="text-white/60 text-[10px] md:text-[11px] tracking-[0.2em] uppercase mb-3 md:mb-4">
               L’Inde, une émotion avant tout
             </span>
-            <h2 className="text-lg md:text-xl font-serif italic text-[#D7CBB3] mb-2 leading-tight">
+            <h2 className="text-xl md:text-2xl font-serif italic text-[#D7CBB3] mb-4 leading-tight">
               L’art du voyage sur mesure en Inde
             </h2>
-            <p className="text-white/80 text-[11px] md:text-[12px] leading-relaxed font-medium max-w-xl">
+            <p className="text-white/80 text-[12px] md:text-[14px] leading-relaxed font-medium max-w-xl">
               L’Inde se découvre avec émotion, authenticité et liberté, au rythme de vos envies.
             </p>
           </div>
 
           {/* Team Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 pt-12 md:pt-16 pb-12 md:pb-16">
             {/* Vishnu Swami */}
             <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
               <div className="flex items-center gap-4 mb-2">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
-                  <img src={dipeshImg} alt="Vishnu Swami" className="w-full h-full object-cover" />
+                <div className="w-20 h-20 md:w-28 md:h-28 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
+                  <img src={dipeshImg} alt="Vishnu Swami" className="w-full h-full object-cover object-[25%_75%] scale-[2.5]" />
                 </div>
                 <div>
                   <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">Vishnu Swami</h3>
@@ -242,13 +245,17 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
             {/* Amandine Fastré */}
             <div className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
-              <div className="flex items-center gap-4 mb-2">
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
-                  <img src={amandineImg} alt="Amandine Fastré" className="w-full h-full object-cover" />
-                </div>
-                <div>
+              <div className="flex items-center gap-8 mb-2 ml-[120px] md:ml-[230px]">
+                <div className="text-right">
                   <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">Amandine Fastré</h3>
                   <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide">Créatrice d'itinéraires</p>
+                </div>
+                <div className="w-22 h-20 md:w-28 md:h-28 rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0">
+                  <img
+                    src={amandineImg}
+                    alt="Amandine Fastré"
+                    className="w-full h-full object-cover object-[33%_-15%] scale-[2.1] translate-y-9"
+                  />
                 </div>
               </div>
               <div className="text-white/80 text-[13px] md:text-[14px] leading-relaxed flex flex-col h-full">
@@ -288,8 +295,8 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       {/* <VisionSection /> */}
 
       {/* 5. Featured Destinations */}
-      <section className="bg-white py-10 md:py-14 px-6">
-        <div className="max-w-[1500px] mx-auto text-center">
+      <section className="bg-white py-10 md:py-14 px-[40px] w-full">
+        <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
           {/* Top Heading */}
           <p className="text-[11px] md:text-[13px] tracking-[0.55em] font-bold text-[#2d343e]/40 uppercase mb-3">
             L’INDE AUTREMENT
@@ -393,8 +400,8 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
 
       {/* Google Reviews Section */}
-      <section className="bg-white py-8 md:py-12 px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center">
+      <section className="bg-white py-8 md:py-12 px-[40px] overflow-hidden w-full">
+        <div className="text-center h-[380px] md:h-[420px] flex flex-col justify-between items-center w-full max-w-[1440px] mx-auto px-[40px]">
           {/* <div className="pt-0 -mt-6 md:-mt-10 mb-8 flex flex-col items-center">
             <div className="w-[180px] md:w-[240px] h-16 md:h-24 flex justify-center items-center mx-auto">
               <img src={logo} alt="Indeora Logo" className="max-h-full w-auto object-contain" />
@@ -458,6 +465,18 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
         </div>
       </section>
 
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/919928605746"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-16 md:bottom-20 left-4 md:left-6 z-[100] bg-[#25D366] text-white p-2.5 md:p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center"
+        aria-label="Contact us on WhatsApp"
+      >
+        <svg className="w-6 h-6 md:w-7 md:h-7" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12.031 0C5.385 0 0 5.385 0 12.031c0 2.12.553 4.185 1.603 6.002L.031 24l6.113-1.605c1.761.94 3.766 1.436 5.887 1.436 6.646 0 12.031-5.385 12.031-12.031S18.677 0 12.031 0zm0 21.868c-1.802 0-3.564-.484-5.111-1.401l-.367-.217-3.79 1.002 1.01-3.69-.238-.379c-1.008-1.597-1.54-3.447-1.54-5.353 0-5.545 4.512-10.057 10.057-10.057 5.544 0 10.057 4.512 10.057 10.057 0 5.546-4.513 10.058-10.057 10.058zm5.54-7.558c-.304-.152-1.799-.887-2.077-.988-.278-.101-.481-.152-.683.152-.202.304-.784.988-.961 1.191-.177.203-.354.228-.658.076-.304-.152-1.284-.473-2.447-1.511-.905-.808-1.516-1.806-1.693-2.11-.177-.304-.019-.469.133-.62.138-.138.304-.354.456-.532.152-.177.202-.304.303-.506.101-.203.051-.38-.025-.532-.076-.152-.683-1.646-.936-2.253-.246-.593-.497-.513-.683-.523-.177-.008-.38-.01-.582-.01-.202 0-.531.076-.81.38-.278.304-1.063 1.038-1.063 2.532 0 1.494 1.088 2.937 1.24 3.14.152.202 2.144 3.275 5.195 4.59.726.313 1.293.5 1.737.64.729.231 1.393.198 1.916.12.585-.087 1.799-.735 2.052-1.444.253-.709.253-1.317.177-1.444-.076-.127-.278-.203-.582-.355z" />
+        </svg>
+      </a>
 
       <Footer />
     </>

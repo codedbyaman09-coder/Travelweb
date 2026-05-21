@@ -27,7 +27,7 @@
         <Navbar />
 
         {/* Main Container */}
-        <div className="max-w-[1600px] mx-auto px-4 md:px-8 py-12">
+        <div className="md: py-12 w-full max-w-[1440px] mx-auto px-[40px]">
           
           {/* Header Logo */}
           <div className="flex flex-col items-center mb-20">

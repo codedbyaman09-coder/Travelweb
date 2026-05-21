@@ -11,7 +11,7 @@ const LuxuryBanner = () => {
         />
         <div className="absolute inset-0 bg-black/40"></div>
       </div>
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-center justify-between w-full gap-6 md:gap-0">
+      <div className="relative z-10 md: flex flex-col md:flex-row items-center justify-between gap-6 md:gap-0 w-full max-w-[1440px] mx-auto px-[40px]">
         <div className="max-w-xl text-center md:text-left">
           <h2 className="text-white text-2xl md:text-4xl lg:text-5xl font-serif italic mb-4 leading-tight">
             Redéfinir le Voyage de Luxe

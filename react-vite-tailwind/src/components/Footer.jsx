@@ -19,7 +19,7 @@ const Footer = () => {
   return (
     <>
       <div className="bg-white pb-6 pt-10">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="text-[#1b2228]/30 text-[8px] md:text-[9px] tracking-[0.15em] uppercase text-center leading-relaxed">
             Agence de voyage Inde Paris • Agence locale Inde du Sud • Agence de voyage Inde du Nord • Agence locale francophone Inde • Receptif inde • Agence locale Rajasthan • agence de voyage en inde • Agence de voyage spécialisée pour l'Inde • Meilleure agence de voyage inde
           </div>
@@ -51,7 +51,7 @@ const Footer = () => {
       </section>
 
       <footer className="bg-[#1b2228] pt-16 pb-12 px-6 font-sans">
-        <div className="max-w-7xl mx-auto">
+        <div className="w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-16">
             {/* Column 1: Logo & Socials */}
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
@@ -341,7 +341,7 @@ const Footer = () => {
 
         {/* Contacter un specialiste francophone callback panel remains if needed, but phone numbers dropdown panel is removed */}
 
-        <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row items-stretch h-auto md:h-[60px]">
+        <div className="flex flex-col md:flex-row items-stretch h-auto md:h-[60px] w-full max-w-[1440px] mx-auto px-[40px]">
 
 
           {/* Info Sections */}
@@ -373,7 +373,7 @@ const Footer = () => {
                 <span>France :</span>
                 <a href="tel:+33616642626" className="font-bold hover:underline text-[#2D5C64]">+33 6 16 64 26 26</a>
                 <span className="text-gray-300 mx-1">|</span>
-                <span>IND :</span>
+                <span>INDE :</span>
                 <a href="tel:+919351421959" className="font-bold hover:underline text-[#2D5C64]">+91 93514 21959</a>
               </div>
             </div>

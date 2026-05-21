@@ -95,8 +95,8 @@ const InteractiveMap = () => {
   };
 
   return (
-    <section className="bg-[#f3ede2] py-6 md:py-10 px-6 overflow-hidden relative">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-[#f3ede2] py-6 md:py-10 px-[40px] overflow-hidden relative w-full">
+      <div className="w-full max-w-[1440px] mx-auto px-[40px]">
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
           <p className="text-[10px] tracking-[0.4em] text-[#A88B52] font-bold uppercase mb-2">
@@ -112,22 +112,22 @@ const InteractiveMap = () => {
 
         <div className="relative flex flex-col lg:flex-row items-center justify-between gap-4">
           {/* Left Column (Desktop Only) */}
-          <div className="hidden lg:block w-[22%] space-y-5 z-10">
+          <div className="hidden lg:block w-[26%] space-y-12 z-10">
             {leftDests.map((dest) => (
               <Link
                 key={dest.id}
                 to={`/destinations/${dest.id}`}
-                className="flex gap-3 group cursor-pointer items-center transition-transform duration-300 hover:translate-x-1"
+                className="flex gap-8 md:gap-12 group cursor-pointer items-end transition-transform duration-300 hover:translate-x-1"
                 onMouseEnter={() => setHoveredDest(dest.id)}
                 onMouseLeave={() => setHoveredDest(null)}
               >
-                <div className="w-20 h-20 shrink-0 overflow-hidden rounded-sm shadow-md ring-1 ring-black/5 group-hover:ring-[#A88B52]/30 transition-all">
+                <div className="w-28 h-36 shrink-0 overflow-hidden rounded-sm shadow-md ring-1 ring-black/5 group-hover:ring-[#A88B52]/30 transition-all">
                   <img src={dest.img} alt={dest.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <div className="flex flex-col">
-                  <h3 className="text-[13px] font-bold tracking-wider text-[#2d343e] mb-0.5 group-hover:text-[#A88B52] transition-colors">{dest.title}</h3>
-                  <p className="text-[11px] font-bold text-[#A88B52]/80 group-hover:text-[#A88B52] mb-1 leading-tight transition-colors">{dest.subtitle}</p>
-                  <span className="text-[10px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 group-hover:translate-x-1 duration-300">
+                  <h3 className="text-[12px] font-bold tracking-wider text-[#2d343e] mb-1 group-hover:text-[#A88B52] transition-colors">{dest.title}</h3>
+                  <p className="text-[10px] font-bold text-[#A88B52]/80 group-hover:text-[#A88B52] mb-2 leading-tight transition-colors">{dest.subtitle}</p>
+                  <span className="text-[9px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 group-hover:translate-x-1 duration-300">
                     IDÉES <span className="font-serif italic ml-1">→</span>
                   </span>
                 </div>
@@ -141,7 +141,7 @@ const InteractiveMap = () => {
               <img
                 src={mapImg}
                 alt="Carte de l'Inde"
-                className="max-w-[95%] md:max-w-[75%] h-auto object-contain drop-shadow-2xl transition-all duration-700"
+                className="max-w-full md:max-w-[95%] h-auto object-contain drop-shadow-2xl transition-all duration-700"
                 style={{ filter: hoveredDest ? 'sepia(20%) brightness(1.05)' : 'none' }}
               />
 
@@ -161,22 +161,22 @@ const InteractiveMap = () => {
           </div>
 
           {/* Right Column (Desktop Only) */}
-          <div className="hidden lg:block w-[22%] space-y-5 z-10">
+          <div className="hidden lg:block w-[26%] space-y-12 z-10">
             {rightDests.map((dest) => (
               <Link
                 key={dest.id}
                 to={`/destinations/${dest.id}`}
-                className="flex gap-3 group cursor-pointer text-right flex-row-reverse items-center transition-transform duration-300 hover:-translate-x-1"
+                className="flex gap-8 md:gap-12 group cursor-pointer text-right flex-row-reverse items-end transition-transform duration-300 hover:-translate-x-1"
                 onMouseEnter={() => setHoveredDest(dest.id)}
                 onMouseLeave={() => setHoveredDest(null)}
               >
-                <div className="w-20 h-20 shrink-0 overflow-hidden rounded-sm shadow-md ring-1 ring-black/5 group-hover:ring-[#A88B52]/30 transition-all">
+                <div className="w-28 h-36 shrink-0 overflow-hidden rounded-sm shadow-md ring-1 ring-black/5 group-hover:ring-[#A88B52]/30 transition-all">
                   <img src={dest.img} alt={dest.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 </div>
                 <div className="flex flex-col items-end">
-                  <h3 className="text-[13px] font-bold tracking-wider text-[#2d343e] mb-0.5 group-hover:text-[#A88B52] transition-colors">{dest.title}</h3>
-                  <p className="text-[11px] font-bold text-[#A88B52]/80 group-hover:text-[#A88B52] mb-1 leading-tight transition-colors">{dest.subtitle}</p>
-                  <span className="text-[10px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 flex-row-reverse group-hover:-translate-x-1 duration-300">
+                  <h3 className="text-[12px] font-bold tracking-wider text-[#2d343e] mb-1 group-hover:text-[#A88B52] transition-colors">{dest.title}</h3>
+                  <p className="text-[10px] font-bold text-[#A88B52]/80 group-hover:text-[#A88B52] mb-2 leading-tight transition-colors">{dest.subtitle}</p>
+                  <span className="text-[9px] font-bold tracking-widest text-[#A88B52] hover:text-[#2d343e] transition-colors flex items-center gap-1.5 flex-row-reverse group-hover:-translate-x-1 duration-300">
                     IDÉES <span className="font-serif italic ml-1">→</span>
                   </span>
                 </div>
@@ -193,7 +193,7 @@ const InteractiveMap = () => {
                   className="min-w-[85vw] snap-center bg-white/40 backdrop-blur-sm p-4 flex gap-4 rounded-sm border border-[#A88B52]/10"
                   onClick={() => setHoveredDest(dest.id === hoveredDest ? null : dest.id)}
                 >
-                  <div className="w-24 h-32 shrink-0 overflow-hidden rounded-sm shadow-sm">
+                  <div className="w-28 h-36 shrink-0 overflow-hidden rounded-sm shadow-sm">
                     <img src={dest.img} alt={dest.title} className="w-full h-full object-cover" />
                   </div>
                   <div className="flex flex-col justify-center flex-1 overflow-hidden">

@@ -19,7 +19,7 @@ const Navbar = () => {
 
   return (
     <nav className="absolute top-2 md:top-6 left-2 md:left-10 right-2 md:left-10 z-50 bg-[#313c45] rounded-[12px] md:rounded-[20px] shadow-xl border border-gray-100/10 transition-all duration-300">
-      <div className="max-w-[1500px] mx-auto px-4 md:px-8 h-16 md:h-24 flex items-center justify-between lg:justify-center lg:gap-12 xl:gap-16 relative">
+      <div className="md: h-16 md:h-24 flex items-center justify-between lg:justify-center lg:gap-12 xl:gap-16 relative w-full max-w-[1440px] mx-auto px-[40px]">
         {/* Left Menu */}
         <div className="hidden lg:flex items-center gap-6 xl:gap-10">
           <Link to="/" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Accueil</Link>

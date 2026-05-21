@@ -244,7 +244,7 @@ const Faq = () => {
 
         <div className="absolute inset-0 bg-gradient-to-r from-[#fbf8f1] via-[#fbf8f1]/75 to-transparent" />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-[1230px] items-center px-6 py-4">
+        <div className="relative z-10 flex h-full items-center py-4 w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="pt-[10px]">
             <p className="mb-[8px] font-serif text-[22px] text-[#bd8a3a]">
               FAQ
@@ -276,7 +276,7 @@ const Faq = () => {
       </section>
 
       {/* FAQ CONTENT */}
-      <main className="mx-auto max-w-[1120px] px-6 py-[45px]">
+      <main className="py-[45px] w-full max-w-[1440px] mx-auto px-[40px]">
         <div className="grid grid-cols-1 gap-x-[58px] gap-y-[54px] lg:grid-cols-2">
           <FaqBox item={faqData[0]} />
           <FaqBox item={faqData[1]} />

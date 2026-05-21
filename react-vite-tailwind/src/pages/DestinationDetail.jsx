@@ -231,7 +231,7 @@ const DestinationDetail = () => {
       <div className="pt-0 bg-white min-h-screen">
         <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0"><img src={data.heroImg} alt={data.title} className="w-full h-full object-cover" key={data.heroImg} /><div className="absolute inset-0 bg-black/20"></div></div>
-          <div className="relative z-10 text-center px-6 max-w-5xl mx-auto text-white pt-32 md:pt-40">
+          <div className="relative z-10 text-center text-white pt-32 md:pt-40 w-full max-w-[1440px] mx-auto px-[40px]">
             <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-[100px] font-serif italic mb-6 drop-shadow-2xl leading-none">{data.title}</h1>
             <p className="text-[12px] md:text-[14px] font-bold tracking-[0.05em] mb-12 max-w-4xl mx-auto opacity-90 leading-relaxed drop-shadow-md">{data.subtitle}</p>
             <div className="pt-4"><button className="bg-black text-white text-[10px] tracking-[0.3em] font-bold py-5 px-12 border border-white/60 hover:bg-white hover:text-black transition-all duration-500 uppercase">{data.buttonText}</button></div>
@@ -246,7 +246,7 @@ const DestinationDetail = () => {
 
         {data.gridFirst && data.gridImages && (
           <section className="pt-20 pb-0 px-6" style={{ backgroundColor: data.bg }}>
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-[1440px] mx-auto px-[40px]">
               {data.gridImages.map((img, i) => (
                 <div key={i} className="aspect-square overflow-hidden shadow-sm hover:shadow-xl transition-all duration-700 group"><img src={img} alt="Lifestyle" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /></div>
               ))}
@@ -255,7 +255,7 @@ const DestinationDetail = () => {
         )}
 
         <section className="py-20 md:py-40 px-6 md:px-24" style={{ backgroundColor: data.bg }}>
-          <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+          <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start w-full max-w-[1440px] mx-auto px-[40px]">
             <div className={`space-y-8 md:space-y-12 leading-relaxed text-base md:text-[17px] font-medium ${data.bg === '#c2af8a' ? 'text-white' : 'text-gray-800'}`}>
               <div className="relative overflow-hidden">
                 {data.dropcap && <span className={`float-left text-7xl md:text-[180px] font-serif italic mr-6 md:mr-8 mt-6 md:mt-10 leading-none select-none ${data.dropcapColor === 'black' ? 'text-black opacity-100' : 'text-white'}`}>{data.dropcap}</span>}
@@ -273,7 +273,7 @@ const DestinationDetail = () => {
 
         {!data.gridFirst && data.gridImages && (
           <section className="pb-32 px-6 bg-white">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-[1440px] mx-auto px-[40px]">
               {data.gridImages.map((img, i) => (
                 <div key={i} className="aspect-square overflow-hidden shadow-sm hover:shadow-xl transition-all duration-700 group"><img src={img} alt="Lifestyle" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" /></div>
               ))}
@@ -283,7 +283,7 @@ const DestinationDetail = () => {
 
         {data.hotels && (
           <section className="py-20 md:py-32 px-6 border-t border-gray-100" style={{ backgroundColor: data.hotelBg || 'white' }}>
-            <div className="max-w-7xl mx-auto text-center">
+            <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
               <div className={`flex justify-center mb-8 md:mb-10 ${data.hotelBg === '#c2af8a' ? 'text-white/40' : 'text-[#A88B23]'} opacity-60 tracking-[0.5em] text-xl md:text-2xl font-light select-none`}>//////////</div>
               <h2 className={`text-3xl md:text-5xl font-serif italic mb-8 md:mb-12 tracking-wide leading-tight px-4 max-w-4xl mx-auto ${data.hotelBg === '#c2af8a' ? 'text-white' : 'text-gray-800'}`}>{data.hotelSectionTitle}</h2>
               {data.hotelSectionDesc && <p className={`text-sm md:text-[16px] max-w-4xl mx-auto mb-16 md:mb-20 leading-relaxed px-4 ${data.hotelBg === '#c2af8a' ? 'text-white/80' : 'text-gray-600'}`}>{data.hotelSectionDesc}</p>}

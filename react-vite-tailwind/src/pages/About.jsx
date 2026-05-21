@@ -106,7 +106,7 @@ const About = () => {
 
         {/* Navbar */}
         {/* <header className="absolute top-0 left-0 w-full z-20 px-6 md:px-16 py-5">
-          <nav className="max-w-[1280px] mx-auto flex items-center justify-between text-[10px] tracking-[0.26em] font-bold uppercase">
+          <nav className="flex items-center justify-between text-[10px] tracking-[0.26em] font-bold uppercase w-full max-w-[1440px] mx-auto px-[40px]">
             <div className="hidden lg:flex items-center gap-10">
               <Link to="/" className="hover:text-[#c5a15c]">
                 Accueil
@@ -181,7 +181,7 @@ const About = () => {
 
       {/* MISSION */}
       <section className="bg-[#fbf8f2] py-16 md:py-20 px-6">
-        <div className="max-w-[1160px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center w-full max-w-[1440px] mx-auto px-[40px]">
           <div>
             <p className="text-[#b89450] text-[11px] tracking-[0.35em] uppercase font-bold mb-4">
               Notre mission
@@ -240,7 +240,7 @@ const About = () => {
           <div className="absolute inset-0 bg-black/75" />
         </div>
 
-        <div className="relative z-10 max-w-[1160px] mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+        <div className="relative z-10 grid md:grid-cols-2 gap-12 md:gap-20 items-center w-full max-w-[1440px] mx-auto px-[40px]">
           <div>
             <p className="text-[#b89450] text-[11px] tracking-[0.35em] uppercase font-bold mb-4">
               Notre histoire
@@ -351,7 +351,7 @@ const About = () => {
 
       {/* TEAM */}
       <section className="bg-[#fbf8f2] py-14 md:py-16 px-6">
-        <div className="max-w-[1050px] mx-auto">
+        <div className="w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="text-center mb-12">
             <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
               Notre équipe
@@ -418,7 +418,7 @@ const About = () => {
           <div className="absolute inset-0 bg-black/75" />
         </div>
 
-        <div className="relative z-10 max-w-[1180px] mx-auto text-center">
+        <div className="relative z-10 text-center w-full max-w-[1440px] mx-auto px-[40px]">
           <p className="text-[#b89450] text-[10px] tracking-[0.35em] uppercase font-bold mb-3">
             Nos valeurs
           </p>
@@ -449,7 +449,7 @@ const About = () => {
 
       {/* IMMERSION */}
       <section className="bg-[#fbf8f2] py-16 px-6">
-        <div className="max-w-[1160px] mx-auto grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="grid grid-cols-2 gap-2">
             <img
               src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?auto=format&fit=crop&w=700&q=80"
@@ -745,7 +745,7 @@ const About = () => {
 
         <div className="absolute inset-0 bg-black/75"></div>
 
-        <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 py-6 md:py-8">
+        <div className="relative z-10 md: lg:px-16 py-6 md:py-8 w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 text-center">
             {features.map((item, index) => (
               <div

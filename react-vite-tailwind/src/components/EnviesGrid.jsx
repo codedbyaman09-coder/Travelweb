@@ -61,8 +61,8 @@ const EnviesGrid = () => {
   ];
 
   return (
-    <section className="w-full bg-[#f8f3ec] border-y border-[#e6dac9] py-3 px-6 overflow-hidden">
-      <div className="max-w-[1700px] mx-auto">
+    <section className="w-full bg-[#f8f3ec] border-y border-[#e6dac9] py-16 md:py-24 px-[40px] overflow-hidden">
+      <div className="w-full max-w-[1440px] mx-auto px-[40px]">
         {/* TITLE */}
         <div className="flex items-center justify-center gap-4 mb-5">
           <div className="w-20 h-[1px] bg-[#d4b48a]" />

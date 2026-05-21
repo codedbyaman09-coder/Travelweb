@@ -173,7 +173,6 @@ const countryCodes = [
   { code: '+260', name: 'Zambia', flag: '🇿🇲' },
   { code: '+263', name: 'Zimbabwe', flag: '🇿🇼' }
 ];
-
 const VotreVoyageForm = () => {
   const [knowsDates, setKnowsDates] = useState(true);
   const [adults, setAdults] = useState(1);
@@ -184,15 +183,15 @@ const VotreVoyageForm = () => {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
-  const [viewDate1, setViewDate1] = useState(new Date(2026, 5, 1)); // June 2026
-  const [viewDate2, setViewDate2] = useState(new Date(2026, 6, 1)); // July 2026
+  const [viewDate1, setViewDate1] = useState(new Date(2026, 5, 1));
+  const [viewDate2, setViewDate2] = useState(new Date(2026, 6, 1));
 
   const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
 
   const handleDateClick = (day, month, year) => {
     const clickedDate = new Date(year, month, day);
-    
+
     if (!startDate || (startDate && endDate)) {
       setStartDate(clickedDate);
       setEndDate(null);
@@ -208,20 +207,17 @@ const VotreVoyageForm = () => {
   const getDuration = () => {
     if (!startDate || !endDate) return 0;
     const diffTime = Math.abs(endDate - startDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-  };
-
-  const formatDate = (date) => {
-    if (!date) return 'DD/MM/YYYY';
-    return date.toLocaleDateString('fr-FR');
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   };
 
   const isSelected = (day, month, year) => {
     if (!startDate && !endDate) return false;
     const date = new Date(year, month, day);
-    return (startDate && date.getTime() === startDate.getTime()) || 
-           (endDate && date.getTime() === endDate.getTime());
+
+    return (
+      (startDate && date.getTime() === startDate.getTime()) ||
+      (endDate && date.getTime() === endDate.getTime())
+    );
   };
 
   const isInRange = (day, month, year) => {
@@ -244,7 +240,9 @@ const VotreVoyageForm = () => {
       type === 'start' ? setStartDate(null) : setEndDate(null);
       return;
     }
+
     const d = new Date(val);
+
     if (type === 'start') {
       setStartDate(d);
       setViewDate1(new Date(d.getFullYear(), d.getMonth(), 1));
@@ -253,55 +251,6 @@ const VotreVoyageForm = () => {
       setEndDate(d);
       setViewDate2(new Date(d.getFullYear(), d.getMonth(), 1));
     }
-  };
-
-  const renderCalendarGrid = (viewDate, onDayClick) => {
-    const daysInMonth = getDaysInMonth(viewDate);
-    const firstDay = getFirstDayOfMonth(viewDate);
-    const month = viewDate.getMonth();
-    const year = viewDate.getFullYear();
-    const monthName = viewDate.toLocaleDateString('fr-FR', { month: 'long' });
-
-    return (
-      <div className="flex-1">
-        <div className="flex items-center justify-between mb-6 px-2">
-          <button onClick={() => {
-            const d = new Date(viewDate);
-            d.setMonth(d.getMonth() - 1);
-            viewDate === viewDate1 ? setViewDate1(d) : setViewDate2(d);
-          }} className="text-black hover:text-[#d4a38d] font-bold">←</button>
-          <span className="font-bold text-sm text-black uppercase tracking-widest">{monthName} {year}</span>
-          <button onClick={() => {
-            const d = new Date(viewDate);
-            d.setMonth(d.getMonth() + 1);
-            viewDate === viewDate1 ? setViewDate1(d) : setViewDate2(d);
-          }} className="text-black hover:text-[#d4a38d] font-bold">→</button>
-        </div>
-        <div className="grid grid-cols-7 text-[10px] text-gray-400 mb-2 text-center uppercase font-bold">
-          <span>lun.</span><span>mar.</span><span>mer.</span><span>jeu.</span><span>ven.</span><span>sam.</span><span>dim.</span>
-        </div>
-        <div className="grid grid-cols-7 gap-y-1 text-center text-sm">
-          {[...Array(firstDay)].map((_, i) => <div key={`empty-${i}`} />)}
-          {[...Array(daysInMonth)].map((_, i) => {
-            const day = i + 1;
-            const selected = isSelected(day, month, year);
-            const inRange = isInRange(day, month, year);
-            return (
-              <div 
-                key={day} 
-                onClick={() => handleDateClick(day, month, year)}
-                className={`p-2 cursor-pointer transition-all ${
-                  selected ? 'bg-[#d4a38d] text-white rounded-full font-bold' : 
-                  inRange ? 'bg-[#f2dfd7] text-black' : 'text-black hover:bg-gray-100 rounded-full'
-                }`}
-              >
-                {day}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
   };
 
   const periods = [
@@ -329,342 +278,494 @@ const VotreVoyageForm = () => {
     { id: 'unknown', label: 'Je ne sais pas' },
   ];
 
+  const fieldClass =
+    "w-full bg-white border border-[#ead8cf] rounded-2xl px-5 pt-6 pb-3 text-[15px] text-[#241f1c] outline-none focus:border-[#b8795f] focus:shadow-[0_0_0_4px_rgba(184,121,95,0.12)] transition-all duration-300 placeholder-transparent peer";
+
+  const labelClass =
+    "absolute left-5 top-3 text-[10px] tracking-[0.2em] uppercase text-[#b8795f] font-bold pointer-events-none";
+
+  const sectionCard =
+    "bg-white/75 backdrop-blur-sm border border-white rounded-[28px] shadow-[0_20px_70px_rgba(45,35,30,0.08)] p-5 md:p-8";
+
+  const sectionHeading =
+    "flex items-center justify-between gap-4 border-b border-[#ead8cf] pb-5 mb-8";
+
+  const optionClass = (active) =>
+    `relative rounded-2xl border p-5 text-left transition-all duration-300 ${
+      active
+        ? 'bg-[#b8795f] border-[#b8795f] text-white shadow-[0_14px_35px_rgba(184,121,95,0.28)]'
+        : 'bg-white border-[#ead8cf] text-[#241f1c] hover:border-[#b8795f] hover:-translate-y-1'
+    }`;
+
+  const renderCalendarGrid = (viewDate) => {
+    const daysInMonth = getDaysInMonth(viewDate);
+    const firstDay = getFirstDayOfMonth(viewDate);
+    const month = viewDate.getMonth();
+    const year = viewDate.getFullYear();
+    const monthName = viewDate.toLocaleDateString('fr-FR', { month: 'long' });
+
+    return (
+      <div className="bg-[#fffaf7] rounded-[24px] border border-[#ead8cf] p-5">
+        <div className="flex items-center justify-between mb-6">
+          <button
+            type="button"
+            onClick={() => {
+              const d = new Date(viewDate);
+              d.setMonth(d.getMonth() - 1);
+              viewDate === viewDate1 ? setViewDate1(d) : setViewDate2(d);
+            }}
+            className="w-9 h-9 rounded-full bg-white border border-[#ead8cf] hover:bg-[#b8795f] hover:text-white transition-all"
+          >
+            ←
+          </button>
+
+          <span className="text-[13px] font-bold text-[#241f1c] uppercase tracking-[0.18em]">
+            {monthName} {year}
+          </span>
+
+          <button
+            type="button"
+            onClick={() => {
+              const d = new Date(viewDate);
+              d.setMonth(d.getMonth() + 1);
+              viewDate === viewDate1 ? setViewDate1(d) : setViewDate2(d);
+            }}
+            className="w-9 h-9 rounded-full bg-white border border-[#ead8cf] hover:bg-[#b8795f] hover:text-white transition-all"
+          >
+            →
+          </button>
+        </div>
+
+        <div className="grid grid-cols-7 text-[10px] text-[#8f8178] mb-3 text-center uppercase font-bold">
+          <span>lun.</span>
+          <span>mar.</span>
+          <span>mer.</span>
+          <span>jeu.</span>
+          <span>ven.</span>
+          <span>sam.</span>
+          <span>dim.</span>
+        </div>
+
+        <div className="grid grid-cols-7 gap-y-2 text-center text-sm">
+          {[...Array(firstDay)].map((_, i) => (
+            <div key={`empty-${i}`} />
+          ))}
+
+          {[...Array(daysInMonth)].map((_, i) => {
+            const day = i + 1;
+            const selected = isSelected(day, month, year);
+            const inRange = isInRange(day, month, year);
+
+            return (
+              <button
+                type="button"
+                key={day}
+                onClick={() => handleDateClick(day, month, year)}
+                className={`w-9 h-9 mx-auto rounded-full transition-all ${
+                  selected
+                    ? 'bg-[#b8795f] text-white font-bold shadow-md'
+                    : inRange
+                    ? 'bg-[#f1d7cc] text-[#241f1c]'
+                    : 'text-[#241f1c] hover:bg-white'
+                }`}
+              >
+                {day}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="bg-[#f4e6e0] py-20 px-4 md:px-8 font-serif">
-      <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-16 relative">
-          <div className="absolute top-1/2 left-0 right-0 h-[1px] bg-gray-300 -z-0"></div>
-          <h2 className="bg-[#f4e6e0] relative z-10 inline-block px-10 text-2xl md:text-3xl tracking-[0.3em] uppercase text-black font-light">
-            VOTRE VOYAGE
+    <div className="w-full min-h-screen bg-[#f4e6e0] py-20 px-4 md:px-8 font-serif overflow-x-hidden">
+      <div className="w-full max-w-[1180px] mx-auto">
+        {/* Top Header */}
+        <div className="text-center mb-14">
+          <p className="text-[10px] tracking-[0.45em] uppercase text-[#b8795f] font-bold mb-4">
+            Indeora Voyages
+          </p>
+
+          <h2 className="text-[34px] md:text-[54px] leading-tight text-[#241f1c] font-light tracking-[0.08em] uppercase">
+            Votre Voyage
           </h2>
-        </div>
 
-        <div className="mb-12">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
-            <p className="text-black text-[15px] font-medium italic">
-              Connaissez-vous les dates précises de votre voyage ?
-            </p>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setKnowsDates(true)}
-                className={`px-12 py-3 text-sm tracking-widest uppercase transition-all border ${
-                  knowsDates 
-                    ? 'bg-[#d4a38d] text-white border-[#d4a38d]' 
-                    : 'bg-white text-black border-gray-200 hover:border-[#d4a38d]'
-                }`}
-              >
-                Oui
-              </button>
-              <button
-                onClick={() => setKnowsDates(false)}
-                className={`px-12 py-3 text-sm tracking-widest uppercase transition-all border ${
-                  !knowsDates 
-                    ? 'bg-[#d4a38d] text-white border-[#d4a38d]' 
-                    : 'bg-white text-black border-gray-200 hover:border-[#d4a38d]'
-                }`}
-              >
-                Non
-              </button>
-            </div>
+          <div className="flex items-center justify-center mt-5">
+            <span className="w-14 h-px bg-[#b8795f]/50"></span>
+            <span className="mx-4 text-[#b8795f] text-xl">✦</span>
+            <span className="w-14 h-px bg-[#b8795f]/50"></span>
           </div>
 
-          {knowsDates ? (
-            <div className="bg-white/50 border border-gray-200 p-8 rounded-sm mb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
-                <div>
-                  <div className="flex flex-col gap-4 mb-8">
-                    <label className="text-[12px] font-bold uppercase tracking-[0.2em] text-black">Date de départ *</label>
-                    <div className="relative">
-                      <input 
-                        type="date" 
-                        value={startDate ? startDate.toISOString().split('T')[0] : ''} 
-                        onChange={(e) => handleInputChange('start', e.target.value)}
-                        onClick={(e) => e.target.showPicker && e.target.showPicker()}
-                        className="bg-white border border-gray-300 p-4 focus:outline-none focus:border-[#d4a38d] text-sm text-black rounded-sm w-full shadow-sm pr-12 cursor-pointer"
-                      />
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  {renderCalendarGrid(viewDate1, (d) => handleDateClick(d, viewDate1.getMonth(), viewDate1.getFullYear()))}
-                </div>
-
-                <div>
-                  <div className="flex flex-col gap-4 mb-8">
-                    <label className="text-[12px] font-bold uppercase tracking-[0.2em] text-black">Date de retour *</label>
-                    <div className="relative">
-                      <input 
-                        type="date" 
-                        value={endDate ? endDate.toISOString().split('T')[0] : ''} 
-                        onChange={(e) => handleInputChange('end', e.target.value)}
-                        onClick={(e) => e.target.showPicker && e.target.showPicker()}
-                        className="bg-white border border-gray-300 p-4 focus:outline-none focus:border-[#d4a38d] text-sm text-black rounded-sm w-full shadow-sm pr-12 cursor-pointer"
-                      />
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                        <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                  {renderCalendarGrid(viewDate2, (d) => handleDateClick(d, viewDate2.getMonth(), viewDate2.getFullYear()))}
-                </div>
-              </div>
-              
-              <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-                <span className="text-sm text-black italic font-bold uppercase tracking-[0.2em] bg-[#f2dfd7] px-8 py-3 rounded-full shadow-sm">
-                  Durée du voyage : {getDuration()} jour{getDuration() > 1 ? 's' : ''}
-                </span>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-12 mb-12">
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-6 border-b border-gray-300 pb-2">
-                  Période envisagée *
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {periods.map((p) => (
-                    <button
-                      key={p.id}
-                      onClick={() => setSelectedPeriod(p.id)}
-                      className={`flex items-center gap-4 p-4 border transition-all ${
-                        selectedPeriod === p.id 
-                          ? 'border-[#d4a38d] bg-white shadow-sm' 
-                          : 'border-gray-200 bg-white/50 hover:border-[#d4a38d]'
-                      }`}
-                    >
-                      <span className="text-xl">{p.icon}</span>
-                      <span className="text-[14px] text-black font-medium">{p.label}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-6 border-b border-gray-300 pb-2">
-                  Durée du voyage *
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {durations.map((d) => (
-                    <button
-                      key={d}
-                      onClick={() => setSelectedDuration(d)}
-                      className={`p-4 border text-[14px] transition-all ${
-                        selectedDuration === d 
-                          ? 'border-[#d4a38d] bg-white shadow-sm' 
-                          : 'border-gray-200 bg-white/50 hover:border-[#d4a38d]'
-                      }`}
-                    >
-                      <span className="text-black font-medium">{d}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="mb-16">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-6 border-b border-gray-300 pb-2">
-            Voyageurs *
-          </h3>
-          <div className="flex flex-col md:flex-row gap-8">
-            <div className="flex items-center gap-4">
-              <div className="flex border border-gray-200 bg-white shadow-sm">
-                <button 
-                  onClick={() => setAdults(Math.max(1, adults - 1))}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
-                >-</button>
-                  <div className="px-6 py-2 min-w-[60px] text-center text-black font-bold">{adults}</div>
-                  <button 
-                    onClick={() => setAdults(adults + 1)}
-                    className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
-                  >+</button>
-                </div>
-                <span className="text-sm italic text-black font-medium">adulte(s)</span>
-              </div>
-
-            <div className="flex items-center gap-4">
-              <div className="flex border border-gray-200 bg-white shadow-sm">
-                <button 
-                  onClick={() => setChildren(Math.max(0, children - 1))}
-                  className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
-                >-</button>
-                  <div className="px-6 py-2 min-w-[60px] text-center text-black font-bold">{children}</div>
-                  <button 
-                    onClick={() => setChildren(children + 1)}
-                    className="px-4 py-2 bg-gray-100 hover:bg-gray-200"
-                  >+</button>
-                </div>
-                <span className="text-sm italic text-black font-medium">enfant(s) 0-12 ans</span>
-              </div>
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-6 border-b border-gray-300 pb-2">
-            Budget par personne *
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-            {budgets.slice(0, 3).map((b) => (
-              <button
-                key={b.id}
-                onClick={() => setSelectedBudget(b.id)}
-                className={`relative p-4 border text-[13px] transition-all flex items-center justify-center gap-2 ${
-                  selectedBudget === b.id 
-                    ? 'border-[#d4a38d] bg-[#f2dfd7] shadow-sm' 
-                    : 'border-gray-200 bg-white/50 hover:border-[#d4a38d]'
-                }`}
-              >
-                {b.popular && (
-                  <span className="text-[#d4a38d] text-lg">★</span>
-                )}
-                <span className="text-black font-medium">{b.label}</span>
-              </button>
-            ))}
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-             {budgets.slice(3).map((b) => (
-              <button
-                key={b.id}
-                onClick={() => setSelectedBudget(b.id)}
-                className={`p-4 border text-[13px] transition-all ${
-                  selectedBudget === b.id 
-                    ? 'border-[#d4a38d] bg-[#f2dfd7] shadow-sm' 
-                    : 'border-gray-200 bg-white/50 hover:border-[#d4a38d]'
-                }`}
-              >
-                <span className="text-black font-medium">{b.label}</span>
-              </button>
-            ))}
-          </div>
-          <p className="text-[11px] text-black italic">
-            *Un budget de 5 000 € / personne est l'option la plus populaire parmi les clients partant en Inde avec Indeora.
+          <p className="max-w-[640px] mx-auto mt-5 text-[15px] text-[#5e514a] leading-relaxed">
+            Confiez-nous vos envies, vos dates et votre budget. Nous imaginons un voyage sur mesure, fluide et profondément personnel.
           </p>
         </div>
 
-        <div className="mb-16">
-          <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-6 border-b border-gray-300 pb-2">
-            Vos informations de contact *
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-            <div className="space-y-2">
-              <label className="block text-[11px] font-bold uppercase tracking-widest italic text-black">Nom & Prénom *</label>
-              <input type="text" className="w-full bg-white border border-gray-200 p-4 focus:outline-none focus:border-[#d4a38d] transition-all text-black shadow-sm" />
+        <div className="space-y-8">
+          {/* Step 01 */}
+          <section className={sectionCard}>
+            <div className={sectionHeading}>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[#b8795f] font-bold mb-2">
+                  Étape 01
+                </p>
+                <h3 className="text-[24px] md:text-[30px] text-[#241f1c] font-light">
+                  Dates du voyage
+                </h3>
+              </div>
+
+              <div className="hidden md:flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-[#8f8178]">
+                <span className="w-2 h-2 rounded-full bg-[#b8795f]"></span>
+                calendrier
+              </div>
             </div>
-            <div className="space-y-2">
-              <label className="block text-[11px] font-bold uppercase tracking-widest italic text-black">Email *</label>
-              <input type="email" className="w-full bg-white border border-gray-200 p-4 focus:outline-none focus:border-[#d4a38d] transition-all text-black shadow-sm" />
+
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 mb-8">
+              <p className="text-[#241f1c] text-[15px] italic">
+                Connaissez-vous les dates précises de votre voyage ?
+              </p>
+
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  type="button"
+                  onClick={() => setKnowsDates(true)}
+                  className={`px-10 py-3 rounded-full text-[12px] uppercase tracking-[0.2em] font-bold transition-all ${
+                    knowsDates
+                      ? 'bg-[#241f1c] text-white'
+                      : 'bg-white text-[#241f1c] border border-[#ead8cf] hover:border-[#b8795f]'
+                  }`}
+                >
+                  Oui
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setKnowsDates(false)}
+                  className={`px-10 py-3 rounded-full text-[12px] uppercase tracking-[0.2em] font-bold transition-all ${
+                    !knowsDates
+                      ? 'bg-[#241f1c] text-white'
+                      : 'bg-white text-[#241f1c] border border-[#ead8cf] hover:border-[#b8795f]'
+                  }`}
+                >
+                  Non
+                </button>
+              </div>
             </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="space-y-2">
-              <label className="block text-[11px] font-bold uppercase tracking-widest italic text-black">Téléphone *</label>
-              <div className="flex gap-2">
-                <div className="relative w-32">
-                  <div 
-                    onClick={() => setIsCountryCodeOpen(!isCountryCodeOpen)}
-                    className="bg-white border border-gray-200 p-4 focus:outline-none focus:border-[#d4a38d] text-black shadow-sm text-sm cursor-pointer flex justify-between items-center h-full rounded-sm hover:border-[#d4a38d] transition-all"
-                  >
-                    <span className="font-medium">{selectedCountry.flag} {selectedCountry.code}</span>
-                    <svg className={`w-4 h-4 transition-transform duration-300 ${isCountryCodeOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                    </svg>
+
+            {knowsDates ? (
+              <>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                  <div className="relative">
+                    <input
+                      type="date"
+                      value={startDate ? startDate.toISOString().split('T')[0] : ''}
+                      onChange={(e) => handleInputChange('start', e.target.value)}
+                      onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                      className={fieldClass}
+                      placeholder=" "
+                    />
+                    <label className={labelClass}>Date de départ *</label>
                   </div>
-                  
+
+                  <div className="relative">
+                    <input
+                      type="date"
+                      value={endDate ? endDate.toISOString().split('T')[0] : ''}
+                      onChange={(e) => handleInputChange('end', e.target.value)}
+                      onClick={(e) => e.target.showPicker && e.target.showPicker()}
+                      className={fieldClass}
+                      placeholder=" "
+                    />
+                    <label className={labelClass}>Date de retour *</label>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {renderCalendarGrid(viewDate1)}
+                  {renderCalendarGrid(viewDate2)}
+                </div>
+
+                <div className="mt-8 text-center">
+                  <span className="inline-flex items-center justify-center rounded-full bg-[#241f1c] text-white px-8 py-3 text-[12px] uppercase tracking-[0.22em] font-bold">
+                    Durée du voyage : {getDuration()} jour{getDuration() > 1 ? 's' : ''}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="text-[12px] uppercase tracking-[0.22em] text-[#241f1c] font-bold mb-4">
+                    Période envisagée *
+                  </h4>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {periods.map((p) => (
+                      <button
+                        type="button"
+                        key={p.id}
+                        onClick={() => setSelectedPeriod(p.id)}
+                        className={optionClass(selectedPeriod === p.id)}
+                      >
+                        <span className="text-xl mr-3">{p.icon}</span>
+                        <span className="text-[14px] font-medium">{p.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="text-[12px] uppercase tracking-[0.22em] text-[#241f1c] font-bold mb-4">
+                    Durée du voyage *
+                  </h4>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {durations.map((d) => (
+                      <button
+                        type="button"
+                        key={d}
+                        onClick={() => setSelectedDuration(d)}
+                        className={optionClass(selectedDuration === d)}
+                      >
+                        <span className="text-[14px] font-medium">{d}</span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+
+          {/* Step 02 */}
+          <section className={sectionCard}>
+            <div className={sectionHeading}>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[#b8795f] font-bold mb-2">
+                  Étape 02
+                </p>
+                <h3 className="text-[24px] md:text-[30px] text-[#241f1c] font-light">
+                  Voyageurs & budget
+                </h3>
+              </div>
+
+              <div className="hidden md:flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-[#8f8178]">
+                <span className="w-2 h-2 rounded-full bg-[#b8795f]"></span>
+                préférences
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-10">
+              <div>
+                <h4 className="text-[12px] uppercase tracking-[0.22em] text-[#241f1c] font-bold mb-5">
+                  Voyageurs *
+                </h4>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between bg-[#fffaf7] border border-[#ead8cf] rounded-2xl p-4">
+                    <span className="text-[15px] text-[#241f1c] italic">adulte(s)</span>
+
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setAdults(Math.max(1, adults - 1))}
+                        className="w-9 h-9 rounded-full bg-white border border-[#ead8cf] hover:bg-[#241f1c] hover:text-white transition-all"
+                      >
+                        -
+                      </button>
+
+                      <span className="w-9 text-center font-bold text-[#241f1c]">
+                        {adults}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => setAdults(adults + 1)}
+                        className="w-9 h-9 rounded-full bg-white border border-[#ead8cf] hover:bg-[#241f1c] hover:text-white transition-all"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between bg-[#fffaf7] border border-[#ead8cf] rounded-2xl p-4">
+                    <span className="text-[15px] text-[#241f1c] italic">
+                      enfant(s) 0-12 ans
+                    </span>
+
+                    <div className="flex items-center gap-3">
+                      <button
+                        type="button"
+                        onClick={() => setChildren(Math.max(0, children - 1))}
+                        className="w-9 h-9 rounded-full bg-white border border-[#ead8cf] hover:bg-[#241f1c] hover:text-white transition-all"
+                      >
+                        -
+                      </button>
+
+                      <span className="w-9 text-center font-bold text-[#241f1c]">
+                        {children}
+                      </span>
+
+                      <button
+                        type="button"
+                        onClick={() => setChildren(children + 1)}
+                        className="w-9 h-9 rounded-full bg-white border border-[#ead8cf] hover:bg-[#241f1c] hover:text-white transition-all"
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-[12px] uppercase tracking-[0.22em] text-[#241f1c] font-bold mb-5">
+                  Budget par personne *
+                </h4>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {budgets.map((b) => (
+                    <button
+                      type="button"
+                      key={b.id}
+                      onClick={() => setSelectedBudget(b.id)}
+                      className={optionClass(selectedBudget === b.id)}
+                    >
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="text-[14px] font-medium">{b.label}</span>
+                        {b.popular && (
+                          <span className="text-xs bg-white/30 px-3 py-1 rounded-full">
+                            populaire
+                          </span>
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+
+                <p className="text-[11px] text-[#5e514a] italic mt-4">
+                  *Un budget de 5 000 € / personne est l'option la plus populaire parmi les clients partant en Inde avec Indeora.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Step 03 */}
+          <section className={sectionCard}>
+            <div className={sectionHeading}>
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.28em] text-[#b8795f] font-bold mb-2">
+                  Étape 03
+                </p>
+                <h3 className="text-[24px] md:text-[30px] text-[#241f1c] font-light">
+                  Vos informations
+                </h3>
+              </div>
+
+              <div className="hidden md:flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase text-[#8f8178]">
+                <span className="w-2 h-2 rounded-full bg-[#b8795f]"></span>
+                contact
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="relative">
+                <input type="text" className={fieldClass} placeholder=" " />
+                <label className={labelClass}>Nom & Prénom *</label>
+              </div>
+
+              <div className="relative">
+                <input type="email" className={fieldClass} placeholder=" " />
+                <label className={labelClass}>Email *</label>
+              </div>
+
+              <div className="grid grid-cols-[130px_1fr] gap-4">
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setIsCountryCodeOpen(!isCountryCodeOpen)}
+                    className="w-full h-full min-h-[64px] bg-white border border-[#ead8cf] rounded-2xl px-4 pt-5 pb-2 text-left hover:border-[#b8795f] transition-all"
+                  >
+                    <span className="block text-[14px] font-bold text-[#241f1c]">
+                      {selectedCountry.flag} {selectedCountry.code}
+                    </span>
+
+                    <span className="absolute left-4 top-3 text-[10px] tracking-[0.2em] uppercase text-[#b8795f] font-bold">
+                      Code
+                    </span>
+                  </button>
+
                   {isCountryCodeOpen && (
-                    <div className="absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 shadow-xl z-50 max-h-64 overflow-y-auto rounded-sm animate-in fade-in slide-in-from-top-1">
+                    <div className="absolute top-[calc(100%+10px)] left-0 w-[280px] bg-white border border-[#ead8cf] shadow-2xl z-50 max-h-72 overflow-y-auto rounded-2xl">
                       {countryCodes.map((c, idx) => (
-                        <div 
+                        <button
+                          type="button"
                           key={`${c.code}-${idx}`}
                           onClick={() => {
                             setSelectedCountry(c);
                             setIsCountryCodeOpen(false);
                           }}
-                          className={`p-3 hover:bg-[#f2dfd7] cursor-pointer text-sm text-black border-b border-gray-50 flex items-center gap-3 transition-colors ${selectedCountry.code === c.code ? 'bg-[#f4e6e0]' : ''}`}
+                          className={`w-full p-3 hover:bg-[#fff0e8] cursor-pointer text-sm text-[#241f1c] border-b border-[#f4ece7] flex items-center gap-3 transition-colors ${
+                            selectedCountry.code === c.code ? 'bg-[#fff0e8]' : ''
+                          }`}
                         >
                           <span className="text-lg">{c.flag}</span>
                           <span className="font-bold">{c.code}</span>
-                          <span className="text-[10px] text-gray-500 uppercase tracking-tighter truncate">{c.name}</span>
-                        </div>
+                          <span className="text-[10px] text-[#8f8178] uppercase tracking-tighter truncate">
+                            {c.name}
+                          </span>
+                        </button>
                       ))}
                     </div>
                   )}
                 </div>
-                <input type="tel" className="flex-1 bg-white border border-gray-200 p-4 focus:outline-none focus:border-[#d4a38d] transition-all text-black shadow-sm rounded-sm" placeholder="Numéro" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label className="block text-[11px] font-bold uppercase tracking-widest italic text-black">Destination souhaitée</label>
-              <input type="text" className="w-full bg-white border border-gray-200 p-4 focus:outline-none focus:border-[#d4a38d] transition-all text-black shadow-sm" placeholder="Ex: Rajasthan, Kerala..." />
-            </div>
-          </div>
-          <div className="text-center">
-            <button className="bg-[#2d343e] text-white px-16 py-4 text-sm tracking-[0.2em] uppercase hover:bg-[#d4a38d] transition-all duration-500 font-bold shadow-lg">
-              Demander un devis personnalisé
-            </button>
-          </div>
-        </div>
 
-        <div>
-          <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-12 border-b border-gray-300 pb-2">
-            Inclus avec votre agence de voyages Indeora
-          </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="none" stroke="currentColor" strokeWidth="1">
-                  <path d="M12 2C7.03 2 3 6.03 3 11c0 4.97 4.03 9 9 9s9-4.03 9-9c0-4.97-4.03-9-9-9zM12 18c-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7-3.14 7-7 7z" />
-                  <path d="M12 6v10M8 11h8" />
-                </svg>
+                <div className="relative">
+                  <input type="tel" className={fieldClass} placeholder=" " />
+                  <label className={labelClass}>Téléphone *</label>
+                </div>
               </div>
-              <p className="text-[11px] uppercase tracking-wider text-black font-bold leading-tight">
-                Itinéraire haute couture
-              </p>
+
+              <div className="relative">
+                <input type="text" className={fieldClass} placeholder=" " />
+                <label className={labelClass}>Destination souhaitée</label>
+              </div>
             </div>
 
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                  <circle cx="12" cy="7" r="4" />
-                </svg>
-              </div>
-              <p className="text-[11px] uppercase tracking-wider text-black font-bold leading-tight">
-                Conseiller dédié
-              </p>
+            <div className="text-center">
+              <button
+                type="button"
+                className="group relative overflow-hidden bg-[#241f1c] text-white px-10 md:px-16 py-4 rounded-full text-[12px] md:text-sm tracking-[0.22em] uppercase hover:bg-[#b8795f] transition-all duration-500 font-bold shadow-[0_18px_45px_rgba(36,31,28,0.22)]"
+              >
+                Demander un devis personnalisé
+              </button>
             </div>
+          </section>
 
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="none" stroke="currentColor" strokeWidth="1">
-                  <rect x="2" y="7" width="20" height="10" rx="2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                  <path d="M7 7l2-4h6l2 4" />
-                </svg>
-              </div>
-              <p className="text-[11px] uppercase tracking-wider text-black font-bold leading-tight">
-                Chauffeur à disposition
-              </p>
-            </div>
+          {/* Included */}
+          <section className="bg-[#241f1c] text-white rounded-[28px] p-6 md:p-10">
+            <h3 className="text-center text-[13px] font-bold uppercase tracking-[0.28em] mb-10">
+              Inclus avec votre agence de voyages Indeora
+            </h3>
 
-            <div className="flex flex-col items-center text-center gap-4">
-              <div className="w-16 h-16 flex items-center justify-center">
-                <svg viewBox="0 0 24 24" className="w-12 h-12 text-black" fill="none" stroke="currentColor" strokeWidth="1">
-                  <path d="M4 4h16v16H4z" />
-                  <path d="M12 4v16M4 12h16" />
-                </svg>
-              </div>
-              <p className="text-[11px] uppercase tracking-wider text-black font-bold leading-tight">
-                Activités sur place
-              </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+              {[
+                'Itinéraire haute couture',
+                'Conseiller dédié',
+                'Chauffeur à disposition',
+                'Activités sur place',
+              ].map((item, index) => (
+                <div key={index} className="flex flex-col items-center text-center gap-4">
+                  <div className="w-14 h-14 rounded-full border border-white/30 flex items-center justify-center text-[#f1d7cc] text-xl">
+                    ✦
+                  </div>
+
+                  <p className="text-[11px] uppercase tracking-wider font-bold leading-tight text-white/85">
+                    {item}
+                  </p>
+                </div>
+              ))}
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </div>

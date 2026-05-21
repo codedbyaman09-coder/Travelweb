@@ -5,8 +5,8 @@ const VisionSection = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <section className="bg-[#f3ede2] overflow-hidden border-y border-[#A88B52]/10">
-      <div className="flex flex-col md:flex-row items-stretch h-auto md:h-[220px]">
+    <section className="bg-[#f3ede2] overflow-hidden border-y border-[#A88B52]/10 w-full">
+      <div className="flex flex-col md:flex-row items-stretch h-auto md:h-[320px] w-full max-w-[1440px] mx-auto px-[40px]">
         {/* Left Side: Image */}
         <div className="w-full md:w-[60%] h-[180px] md:h-full">
           <img
@@ -17,7 +17,7 @@ const VisionSection = () => {
         </div>
 
         {/* Right Side: Text */}
-        <div className="w-full md:w-[40%] flex items-center px-6 md:px-12 py-6 md:py-0">
+        <div className="w-full md:w-[40%] flex items-center px-6 md:px-12 py-10 md:py-0">
           <div className="max-w-xl">
             <p className="text-[8px] md:text-[9px] tracking-[0.3em] text-[#A88B52] font-bold uppercase mb-2">
               L'ART DU VOYAGE SUR MESURE EN INDE
@@ -28,7 +28,7 @@ const VisionSection = () => {
               </h2>
               <div className="w-8 h-[1px] bg-[#A88B52] mt-2 opacity-30"></div>
             </div>
-            <p className="text-[#2d343e]/70 text-[11px] md:text-[12px] leading-relaxed mb-4 max-w-lg">
+            <p className="text-[#2d343e]/70 text-[11px] md:text-[12px] leading-relaxed mb-6 md:mb-8 max-w-lg">
               Voyager en Inde, c'est découvrir bien plus qu'une destination.
               C'est ressentir une émotion, vivre des rencontres sincères
               et s'ouvrir à une culture parmi les plus fascinantes au monde.
@@ -36,7 +36,7 @@ const VisionSection = () => {
             <a
               href="/about"
               onClick={(e) => { e.preventDefault(); setIsModalOpen(true); }}
-              className="text-[9px] tracking-[0.2em] font-bold text-[#A88B52] hover:text-[#2d343e] uppercase flex items-center gap-2 transition-all duration-300 group cursor-pointer"
+              className="text-[9px] tracking-[0.2em] font-bold text-[#A88B52] hover:text-[#2d343e] uppercase flex items-center gap-2 transition-all duration-300 group cursor-pointer mb-4 md:mb-8"
             >
               LIRE LA SUITE <span className="text-[12px] group-hover:translate-x-1 transition-transform">→</span>
             </a>
@@ -46,11 +46,11 @@ const VisionSection = () => {
 
       {/* Premium Vision Modal */}
       {isModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all duration-300"
           onClick={() => setIsModalOpen(false)}
         >
-          <div 
+          <div
             className="relative bg-[#fcf9f5] border-t-4 border-[#A88B52] max-w-2xl w-full rounded-sm shadow-[0_24px_54px_rgba(0,0,0,0.3)] p-8 md:p-12 animate-fadeIn overflow-y-auto max-h-[90vh] -translate-y-8 md:-translate-y-16 text-left"
             onClick={(e) => e.stopPropagation()}
           >

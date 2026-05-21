@@ -179,7 +179,7 @@ const Destinations = () => {
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
 
-        <div className="relative z-10 max-w-[1180px] mx-auto h-full flex flex-col items-center justify-center px-6 md:px-10 text-center">
+        <div className="relative z-10 h-full flex flex-col items-center justify-center md: text-center w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="max-w-[800px]">
             <h1 className="font-serif text-[46px] md:text-[62px] lg:text-[76px] leading-[1.1] text-white mb-8 drop-shadow-lg">
               Nos destinations <br /> en Inde
@@ -415,7 +415,7 @@ const Destinations = () => {
 
         <div className="absolute inset-0 bg-black/75"></div>
 
-        <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-10 lg:px-16 py-6 md:py-8">
+        <div className="relative z-10 md: lg:px-16 py-6 md:py-8 w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10 text-center">
             {features.map((item, index) => (
               <div
@@ -445,7 +445,7 @@ const Destinations = () => {
 
       {/* THEME SECTION */}
       <section className="px-3 md:px-6 mt-6">
-        <div className="max-w-[1180px] mx-auto grid lg:grid-cols-[330px_1fr] gap-5">
+        <div className="grid lg:grid-cols-[330px_1fr] gap-5 w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="bg-[#fffaf2] rounded-[12px] border border-[#eadfce] p-6 shadow-[0_8px_24px_rgba(70,45,20,0.06)]">
             <p className="text-[#c58b32] text-[10px] tracking-[0.28em] uppercase font-bold mb-3">
               Voyage selon vos envies
