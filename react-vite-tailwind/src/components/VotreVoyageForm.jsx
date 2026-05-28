@@ -189,6 +189,14 @@ const VotreVoyageForm = () => {
   const [isCountryCodeOpen, setIsCountryCodeOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
 
+  // Form states
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [destination, setDestination] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState('');
+
   const handleDateClick = (day, month, year) => {
     const clickedDate = new Date(year, month, day);
 
@@ -250,6 +258,50 @@ const VotreVoyageForm = () => {
     } else {
       setEndDate(d);
       setViewDate2(new Date(d.getFullYear(), d.getMonth(), 1));
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!name || !email || !phone) {
+      setSubmitMessage('Veuillez remplir votre nom, email et téléphone.');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    // Prepare message with all the context
+    let travelDetails = `Période: ${knowsDates ? `Du ${startDate?.toLocaleDateString()} au ${endDate?.toLocaleDateString()}` : selectedPeriod}\n`;
+    travelDetails += `Durée: ${knowsDates ? `${getDuration()} jours` : selectedDuration}\n`;
+    travelDetails += `Voyageurs: ${adults} adulte(s), ${children} enfant(s)\n`;
+    travelDetails += `Budget par personne: ${selectedBudget}\n`;
+    travelDetails += `Destination souhaitée: ${destination || 'Non spécifiée'}\n`;
+
+    try {
+      const res = await fetch('http://127.0.0.1:8000/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone: `${selectedCountry.code} ${phone}`,
+          message: travelDetails
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSubmitMessage('Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.');
+        setName('');
+        setEmail('');
+        setPhone('');
+        setDestination('');
+      } else {
+        setSubmitMessage('Une erreur est survenue.');
+      }
+    } catch (err) {
+      setSubmitMessage('Impossible de contacter le serveur.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -382,22 +434,22 @@ const VotreVoyageForm = () => {
     <div className="w-full min-h-screen bg-[#f4e6e0] py-20 px-4 md:px-8 font-serif overflow-x-hidden">
       <div className="w-full max-w-[1180px] mx-auto">
         {/* Top Header */}
-        <div className="text-center mb-14">
-          <p className="text-[10px] tracking-[0.45em] uppercase text-[#b8795f] font-bold mb-4">
+        <div className="text-center mb-8 md:mb-14">
+          <p className="text-[7.5px] md:text-[10px] tracking-[0.45em] uppercase text-[#b8795f] font-bold mb-2 md:mb-4">
             Indeora Voyages
           </p>
 
-          <h2 className="text-[34px] md:text-[54px] leading-tight text-[#241f1c] font-light tracking-[0.08em] uppercase">
+          <h2 className="text-[26px] md:text-[54px] leading-tight text-[#241f1c] font-light tracking-[0.08em] uppercase">
             Votre Voyage
           </h2>
 
-          <div className="flex items-center justify-center mt-5">
-            <span className="w-14 h-px bg-[#b8795f]/50"></span>
-            <span className="mx-4 text-[#b8795f] text-xl">✦</span>
-            <span className="w-14 h-px bg-[#b8795f]/50"></span>
+          <div className="flex items-center justify-center mt-3 md:mt-5">
+            <span className="w-10 md:w-14 h-px bg-[#b8795f]/50"></span>
+            <span className="mx-3 md:mx-4 text-[#b8795f] text-sm md:text-xl">✦</span>
+            <span className="w-10 md:w-14 h-px bg-[#b8795f]/50"></span>
           </div>
 
-          <p className="max-w-[640px] mx-auto mt-5 text-[15px] text-[#5e514a] leading-relaxed">
+          <p className="max-w-[640px] mx-auto mt-4 md:mt-5 text-[10.5px] md:text-[15px] text-[#5e514a] leading-relaxed px-2 md:px-0">
             Confiez-nous vos envies, vos dates et votre budget. Nous imaginons un voyage sur mesure, fluide et profondément personnel.
           </p>
         </div>
@@ -669,12 +721,12 @@ const VotreVoyageForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="relative">
-                <input type="text" className={fieldClass} placeholder=" " />
+                <input type="text" value={name} onChange={e => setName(e.target.value)} className={fieldClass} placeholder=" " />
                 <label className={labelClass}>Nom & Prénom *</label>
               </div>
 
               <div className="relative">
-                <input type="email" className={fieldClass} placeholder=" " />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={fieldClass} placeholder=" " />
                 <label className={labelClass}>Email *</label>
               </div>
 
@@ -720,23 +772,31 @@ const VotreVoyageForm = () => {
                 </div>
 
                 <div className="relative">
-                  <input type="tel" className={fieldClass} placeholder=" " />
+                  <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} className={fieldClass} placeholder=" " />
                   <label className={labelClass}>Téléphone *</label>
                 </div>
               </div>
 
               <div className="relative">
-                <input type="text" className={fieldClass} placeholder=" " />
+                <input type="text" value={destination} onChange={e => setDestination(e.target.value)} className={fieldClass} placeholder=" " />
                 <label className={labelClass}>Destination souhaitée</label>
               </div>
             </div>
 
+            {submitMessage && (
+              <div className={`mb-6 p-4 rounded-md text-sm text-center ${submitMessage.includes('succès') ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                {submitMessage}
+              </div>
+            )}
+
             <div className="text-center">
               <button
                 type="button"
-                className="group relative overflow-hidden bg-[#241f1c] text-white px-10 md:px-16 py-4 rounded-full text-[12px] md:text-sm tracking-[0.22em] uppercase hover:bg-[#b8795f] transition-all duration-500 font-bold shadow-[0_18px_45px_rgba(36,31,28,0.22)]"
+                onClick={handleSubmit}
+                disabled={isSubmitting}
+                className={`group relative overflow-hidden bg-[#241f1c] text-white px-10 md:px-16 py-4 rounded-full text-[12px] md:text-sm tracking-[0.22em] uppercase transition-all duration-500 font-bold shadow-[0_18px_45px_rgba(36,31,28,0.22)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#b8795f]'}`}
               >
-                Demander un devis personnalisé
+                {isSubmitting ? 'Envoi en cours...' : 'Demander un devis personnalisé'}
               </button>
             </div>
           </section>

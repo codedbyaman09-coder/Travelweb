@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { apiRequest, fetchSettings } from '../lib/api';
 import { Link } from 'react-router-dom';
 import countryData from '../data/countries';
 import footerLogo from '../assets/png .png';
@@ -6,7 +7,83 @@ import footerBannerImg from '../assets/ChatGPT Image May 11, 2026, 10_27_35 PM.p
 
 const allCountries = countryData.allCountries || [];
 
-const Footer = () => {
+const defaultFooterConfig = {
+  style: {
+    backgroundColor: '#1b2228',
+    textColor: '#C5A46D',
+    titleColor: '#C5A46D',
+    paddingTop: '64px',
+    paddingBottom: '48px',
+    mobilePaddingTop: '16px',
+    mobilePaddingBottom: '24px',
+    fontFamily: 'sans-serif',
+    fontSize: '13px',
+    fontWeight: '300',
+    borderColor: 'rgba(255,255,255,0.05)',
+    gap: '64px',
+    mobileGap: '20px',
+  },
+  content: {
+    contactInfo: {
+      address: 'Bikaner, Rajasthan, Inde',
+      phoneFrance: '+33 6 16 64 26 26',
+      phoneIndia: '+91 93514 21959',
+      email: 'contact@indeoravoyages.com'
+    },
+    seoText: "Agence de voyage Inde Paris • Agence locale Inde du Sud • Agence de voyage Inde du Nord • Agence locale francophone Inde • Receptif inde • Agence locale Rajasthan • agence de voyage en inde • Agence de voyage spécialisée pour l'Inde • Meilleure agence de voyage inde",
+    description: "Agence locale francophone en Inde pour des voyages sur mesure, authentiques et responsables.",
+    copyright: "© 2024 Indeora Voyages. Tous droits réservés.",
+    logoAlign: "left",
+    logoUrl: "",
+    bannerUrl: "",
+    ctaTitle: "Prêt à découvrir l'Inde autrement ?",
+    ctaSubtitle: "Parlons ensemble de votre projet de voyage sur mesure.",
+    ctaButtonText: "Créer mon voyage",
+    ctaButtonLink: "/contact-rapide",
+    ctaButtonColor: "#A88B52",
+    ctaButtonHoverColor: "#8e7646",
+    ctaButtonTextColor: "#FFFFFF",
+    bottomLinks: [
+      { label: "Mentions légales", action: "legal" },
+      { label: "Politique de confidentialité", action: "privacy" },
+      { label: "Conditions d’annulation", action: "cancel" }
+    ],
+    socials: [
+      { icon: 'whatsapp', link: 'https://wa.me/919351421959' },
+      { icon: 'facebook', link: 'https://www.facebook.com/indeoravoyages/' },
+      { icon: 'instagram', link: 'https://www.instagram.com/indeoravoyages/' },
+      { icon: 'mail', link: 'mailto:contact@indeoravoyages.com' }
+    ],
+    columns: [
+      {
+        id: 'liens',
+        title: 'LIENS RAPIDES',
+        type: 'links',
+        items: [
+          { label: 'Destinations', link: '/destinations' },
+          { label: 'À propos', link: '/about' },
+          { label: 'FAQ', link: '/faq' },
+          { label: 'Contact', link: '/contact-rapide' }
+        ]
+      },
+      {
+        id: 'infos',
+        title: 'INFORMATIONS',
+        type: 'contact',
+        items: [] 
+      },
+      {
+        id: 'news',
+        title: 'NEWSLETTER',
+        type: 'newsletter',
+        text: "Recevez nos inspirations de voyage et nos offres exclusives."
+      }
+    ]
+  }
+};
+
+
+const Footer = ({ previewConfig }) => {
   const [footerPhone, setFooterPhone] = useState('');
   const [footerCountryCode, setFooterCountryCode] = useState('+33');
   const [isContactOpen, setIsContactOpen] = useState(false);
@@ -16,19 +93,67 @@ const Footer = () => {
   const [isLegalOpen, setIsLegalOpen] = useState(false);
   const [isCancelOpen, setIsCancelOpen] = useState(false);
 
+  const [openSection, setOpenSection] = useState(null);
+  const [settings, setSettings] = useState({});
+  const [dynamicLogo, setDynamicLogo] = useState(footerLogo);
+  const [dynamicBanner, setDynamicBanner] = useState(footerBannerImg);
+
+  useEffect(() => {
+    fetchSettings().then(setSettings).catch(() => {});
+    apiRequest('/content?type=logo')
+      .then((data) => {
+        const items = data.data?.filter((entry) => entry.status === 'active' && entry.media_url) || [];
+        const footerLogoItem = items.find(entry => entry.subtitle?.toLowerCase().includes('footer') || entry.title?.toLowerCase().includes('footer'));
+        const item = footerLogoItem || items[0];
+        if (item?.media_url) setDynamicLogo(item.media_url);
+      })
+      .catch(() => {});
+    apiRequest('/content?type=banner')
+      .then((data) => {
+        const items = data.data?.filter((entry) => entry.status === 'active' && entry.media_url) || [];
+        const footerBanner = items.find((entry) => entry.subtitle?.toLowerCase().includes('footer') || entry.title?.toLowerCase().includes('footer'));
+        if (footerBanner?.media_url) setDynamicBanner(footerBanner.media_url);
+      })
+      .catch(() => {});
+  }, []);
+
+  let footerConfig = defaultFooterConfig;
+  if (previewConfig) {
+    footerConfig = {
+      style: { ...defaultFooterConfig.style, ...previewConfig.style },
+      content: { ...defaultFooterConfig.content, ...previewConfig.content }
+    };
+  } else if (settings.footer_config) {
+    footerConfig = {
+      style: { ...defaultFooterConfig.style, ...settings.footer_config.style },
+      content: { ...defaultFooterConfig.content, ...settings.footer_config.content }
+    };
+  }
+
+  useEffect(() => {
+    if (footerConfig.content?.logoUrl) setDynamicLogo(footerConfig.content.logoUrl);
+    if (footerConfig.content?.bannerUrl) setDynamicBanner(footerConfig.content.bannerUrl);
+  }, [footerConfig.content?.logoUrl, footerConfig.content?.bannerUrl]);
+
+  const phoneIndia = settings.phoneIndia || '+91 93514 21959';
+  const phoneFrance = settings.phoneFrance || '+33 6 16 64 26 26';
+  const contactEmail = settings.contactEmail || 'contact@indeoravoyages.com';
+  const address = settings.address || 'Bikaner, Inde';
+
+
   return (
     <>
       <div className="bg-white pb-6 pt-10">
         <div className="w-full max-w-[1440px] mx-auto px-[40px]">
           <div className="text-[#1b2228]/30 text-[8px] md:text-[9px] tracking-[0.15em] uppercase text-center leading-relaxed">
-            Agence de voyage Inde Paris • Agence locale Inde du Sud • Agence de voyage Inde du Nord • Agence locale francophone Inde • Receptif inde • Agence locale Rajasthan • agence de voyage en inde • Agence de voyage spécialisée pour l'Inde • Meilleure agence de voyage inde
+            {footerConfig.content.seoText}
           </div>
         </div>
       </div>
 
       {/* Footer Banner */}
       <section className="relative w-full h-[220px] md:h-[320px] overflow-hidden flex items-center justify-center">
-        <img src={footerBannerImg} alt="Indeora Voyage" className="absolute inset-0 w-full h-full object-cover" />
+        <img src={dynamicBanner} alt="Indeora Voyage" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-white/10"></div>
 
         {/* Bottom Fade to Footer */}
@@ -36,30 +161,58 @@ const Footer = () => {
 
         <div className="relative z-10 text-center px-6 pt-12">
           <h2 className="text-[#FFFFFF] text-2xl md:text-5xl font-serif font-light italic mb-4 drop-shadow-xl">
-            Prêt à découvrir l'Inde autrement ?
+            {footerConfig.content.ctaTitle}
           </h2>
           <p className="text-[#F3EAD3]/90 text-[11px] md:text-[14px] mb-8 tracking-wide font-light max-w-2xl mx-auto">
-            Parlons ensemble de votre projet de voyage sur mesure.
+            {footerConfig.content.ctaSubtitle}
           </p>
           <Link
-            to="/contact-rapide"
-            className="inline-block bg-[#A88B52] hover:bg-[#8e7646] text-white text-[10px] md:text-[12px] font-bold py-3.5 px-10 md:px-14 rounded-sm transition-all duration-300 uppercase tracking-[0.2em] shadow-lg"
+            to={footerConfig.content.ctaButtonLink}
+            className="inline-block text-[10px] md:text-[12px] font-bold py-3.5 px-10 md:px-14 rounded-sm transition-all duration-300 uppercase tracking-[0.2em] shadow-lg" style={{ backgroundColor: footerConfig.content.ctaButtonColor, color: footerConfig.content.ctaButtonTextColor }}
           >
-            Créer mon voyage
+            {footerConfig.content.ctaButtonText}
           </Link>
         </div>
       </section>
 
-      <footer className="bg-[#1b2228] pt-16 pb-12 px-6 font-sans">
-        <div className="w-full max-w-[1440px] mx-auto px-[40px]">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-16 mb-16">
+      
+      <style>
+        {`
+          .dynamic-footer {
+            background-color: ${footerConfig.style.backgroundColor};
+            color: ${footerConfig.style.textColor};
+            font-family: ${footerConfig.style.fontFamily};
+            padding-top: ${footerConfig.style.mobilePaddingTop};
+            padding-bottom: ${footerConfig.style.mobilePaddingBottom};
+          }
+          @media (min-width: 768px) {
+            .dynamic-footer {
+              padding-top: ${footerConfig.style.paddingTop};
+              padding-bottom: ${footerConfig.style.paddingBottom};
+            }
+            .dynamic-footer-grid {
+              gap: ${footerConfig.style.gap};
+            }
+          }
+          .dynamic-footer-title {
+            color: ${footerConfig.style.titleColor} !important;
+          }
+          .dynamic-footer-border {
+            border-color: ${footerConfig.style.borderColor} !important;
+          }
+        `}
+      </style>
+      <footer className="dynamic-footer px-4 md:px-6 font-sans">
+        <div className="w-full max-w-[1440px] mx-auto px-2 md:px-[40px]">
+          <div className="dynamic-footer-grid grid grid-cols-2 md:grid-cols-4 mb-6 md:mb-16">
+
             {/* Column 1: Logo & Socials */}
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+            <div className={`flex flex-col ${footerConfig.content.logoAlign === 'center' ? 'items-center text-center md:items-center md:text-center' : footerConfig.content.logoAlign === 'right' ? 'items-center text-center md:items-end md:text-right' : 'items-center text-center md:items-start md:text-left'}`}>
               <Link to="/" className="mb-6">
-                <img src={footerLogo} alt="Indeora Voyages Logo" className="h-16 md:h-20 w-auto" />
+                <img src={dynamicLogo} alt="Indeora Voyages Logo" className="h-16 md:h-20 w-auto" />
               </Link>
               <p className="text-[#C5A46D]/80 text-[12px] md:text-[13px] leading-relaxed max-w-[260px] mb-8 font-light">
-                Agence locale francophone en Inde pour des voyages sur mesure, authentiques et responsables.
+                {footerConfig.content.description}
               </p>
               <div className="flex gap-4">
                 {[
@@ -123,7 +276,7 @@ const Footer = () => {
               <ul className="space-y-3.5 text-[#C5A46D] text-[12px] md:text-[13px] font-light">
                 <li className="flex items-center justify-center md:justify-start gap-3 hover:text-white transition-colors cursor-pointer group">
                   <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                  <span>Bikaner, Rajasthan, Inde</span>
+                  <span>{footerConfig.content.contactInfo?.address || "Bikaner, Rajasthan, Inde"}</span>
                 </li>
 
                 {/* Dropdown for Phone Numbers in Footer List */}
@@ -146,26 +299,26 @@ const Footer = () => {
                   <div className={`transition-all duration-500 overflow-hidden ${isFooterPhoneOpen ? 'max-h-[160px] opacity-100 mt-3 space-y-3 pl-6 border-l border-[#C5A46D]/20 text-left' : 'max-h-0 opacity-0'}`}>
                     <div className="flex items-center gap-3">
                       <img src="https://flagcdn.com/w20/fr.png" alt="France" className="w-4 h-auto shadow-sm opacity-80" />
-                      <a href="tel:+33616642626" className="text-[#C5A46D]/80 hover:text-white transition-colors">+33 6 16 64 26 26</a>
+                      <a href={"tel:" + (footerConfig.content.contactInfo?.phoneFrance?.replace(/\s/g, "") || "+33616642626")} className="text-[#C5A46D]/80 hover:text-white transition-colors">{footerConfig.content.contactInfo?.phoneFrance || "+33 6 16 64 26 26"}</a>
                     </div>
                     <div className="flex items-center gap-3">
                       <img src="https://flagcdn.com/w20/in.png" alt="Inde" className="w-4 h-auto shadow-sm opacity-80" />
-                      <a href="tel:+919351421959" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 93514 21959</a>
+                      <a href={"tel:" + (footerConfig.content.contactInfo?.phoneIndia?.replace(/\s/g, "") || "+919351421959")} className="text-[#C5A46D]/80 hover:text-white transition-colors">{footerConfig.content.contactInfo?.phoneIndia || "+91 93514 21959"}</a>
                     </div>
                     <div className="flex items-center gap-3">
                       <img src="https://flagcdn.com/w20/in.png" alt="Inde Mobile" className="w-4 h-auto shadow-sm opacity-80" />
-                      <a href="tel:+919351421959" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 93514 21959</a>
+                      <a href={"tel:" + (footerConfig.content.contactInfo?.phoneIndia?.replace(/\s/g, "") || "+919351421959")} className="text-[#C5A46D]/80 hover:text-white transition-colors">{footerConfig.content.contactInfo?.phoneIndia || "+91 93514 21959"}</a>
                     </div>
                   </div>
                 </li>
 
                 <li className="flex items-center justify-center md:justify-start gap-3 hover:text-white transition-colors cursor-pointer group">
                   <svg className="w-3.5 h-3.5 text-[#C5A46D]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                  <span>contact@indeoravoyages.com</span>
+                  <span>{footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com"}</span>
                 </li>
                 <li className="flex items-center justify-center md:justify-start gap-3 hover:text-white transition-colors cursor-pointer group">
                   <i className="fab fa-whatsapp text-[#C5A46D] text-[14px]"></i>
-                  <span>WhatsApp</span>
+                  <a href={"https://wa.me/" + ((footerConfig.content.contactInfo?.phones?.find(p => p.country === 'in')?.number || footerConfig.content.contactInfo?.phoneIndia || "919351421959").replace(/\s/g, "").replace("+", ""))} target="_blank" rel="noopener noreferrer">WhatsApp</a>
                 </li>
               </ul>
             </div>
@@ -174,7 +327,7 @@ const Footer = () => {
             <div className="text-center md:text-left mt-4 md:mt-0">
               <h3 className="text-[10px] md:text-[11px] font-bold tracking-[0.25em] text-[#C5A46D] uppercase mb-8">NEWSLETTER</h3>
               <p className="text-[#C5A46D] text-[12px] md:text-[13px] mb-8 leading-relaxed font-light">
-                Recevez nos inspirations de voyage et nos offres exclusives.
+                {footerConfig.content.columns?.find(c => c.type === 'newsletter')?.text || "Recevez nos inspirations de voyage et nos offres exclusives."}
               </p>
               <div className="relative border border-[#C6A46D]/30 p-3 flex items-center justify-between group hover:border-[#C6A46D]/60 transition-all max-w-[300px] mx-auto md:mx-0 rounded-sm bg-white/5">
                 <input
@@ -371,10 +524,10 @@ const Footer = () => {
               </svg>
               <div className="flex items-center gap-2 text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">
                 <span>France :</span>
-                <a href="tel:+33616642626" className="font-bold hover:underline text-[#2D5C64]">+33 6 16 64 26 26</a>
+                <a href={"tel:" + (footerConfig.content.contactInfo?.phoneFrance?.replace(/\s/g, "") || "+33616642626")} className="font-bold hover:underline text-[#2D5C64]">{footerConfig.content.contactInfo?.phoneFrance || "+33 6 16 64 26 26"}</a>
                 <span className="text-gray-300 mx-1">|</span>
                 <span>INDE :</span>
-                <a href="tel:+919351421959" className="font-bold hover:underline text-[#2D5C64]">+91 93514 21959</a>
+                <a href={"tel:" + (footerConfig.content.contactInfo?.phoneIndia?.replace(/\s/g, "") || "+919351421959")} className="font-bold hover:underline text-[#2D5C64]">{footerConfig.content.contactInfo?.phoneIndia || "+91 93514 21959"}</a>
               </div>
             </div>
 
@@ -442,7 +595,7 @@ const Footer = () => {
                     <p>107, 1st Floor, Shanti Tower</p>
                     <p>Bikaner, Rajasthan (Inde)</p>
                     <p className="pt-1">Téléphone : +91 93514 21959 +91 15140 50559</p>
-                    <p>Email : <a href="mailto:contact@indeoravoyages.com" className="text-[#2D5C64] hover:underline font-normal">contact@indeoravoyages.com</a></p>
+                    <p>Email : <a href={"mailto:" + (footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com")} className="text-[#2D5C64] hover:underline font-normal">{footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com"}</a></p>
                   </div>
                 </div>
 
@@ -554,7 +707,7 @@ const Footer = () => {
                   </ul>
                   <p className="text-gray-600 text-[13px]">
                     • d’opposition au traitement de certaines données. Pour toute demande concernant vos données
-                    personnelles, vous pouvez nous contacter à : <a href="mailto:contact@indeoravoyages.com" className="text-[#2D5C64] hover:underline font-normal">contact@indeoravoyages.com</a>
+                    personnelles, vous pouvez nous contacter à : <a href={"mailto:" + (footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com")} className="text-[#2D5C64] hover:underline font-normal">{footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com"}</a>
                   </p>
                 </div>
 
@@ -636,7 +789,7 @@ const Footer = () => {
                     <p>107, 1st Floor, Shanti Tower</p>
                     <p>Bikaner, Rajasthan (Inde)</p>
                     <p className="pt-1">Téléphone : +91 93514 21959 - +91 15140 50559</p>
-                    <p>Email : <a href="mailto:contact@indeoravoyages.com" className="text-[#2D5C64] hover:underline font-normal"> contact@indeoravoyages.com</a></p>
+                    <p>Email : <a href={"mailto:" + (footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com")} className="text-[#2D5C64] hover:underline font-normal"> contact@indeoravoyages.com</a></p>
                     <p>Site internet : <a href="https://indeoravoyages.com" target="_blank" rel="noopener noreferrer" className="text-[#2D5C64] hover:underline font-normal"> https://indeoravoyages.com</a></p>
                   </div>
                 </div>
@@ -702,7 +855,7 @@ const Footer = () => {
                     Les données collectées via les formulaires du site sont utilisées uniquement dans le cadre des
                     échanges avec Indeora Voyages. Aucune donnée personnelle n’est vendue ou transmise à des
                     tiers sans consentement préalable. Pour toute demande relative à vos données personnelles :
-                    <a href="mailto:[EMAIL_ADDRESS]" className="text-[#2D5C64] hover:underline font-normal">contact@indeoravoyages.com</a>
+                    <a href="mailto:[EMAIL_ADDRESS]" className="text-[#2D5C64] hover:underline font-normal">{footerConfig.content.contactInfo?.email || "contact@indeoravoyages.com"}</a>
 
                   </p>
                 </div>

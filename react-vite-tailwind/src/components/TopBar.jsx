@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchSettings } from '../lib/api';
 
 const TopBar = () => {
+  const [settings, setSettings] = useState({});
+
+  useEffect(() => {
+    fetchSettings().then(setSettings).catch(() => {});
+  }, []);
+
+  const contactLabel = settings.topBarContactLabel || 'Contacter un specialiste francophone';
+  const phoneIndia = settings.phoneIndia || '+91 93514 21959';
+  const phoneFrance = settings.phoneFrance || '+33 6 16 64 26 26';
+
   return (
     <div className="w-full h-[50px] bg-white border-t border-gray-100 hidden lg:flex items-center justify-between px-10 fixed bottom-0 left-0 right-0 z-[100] shadow-[0_-5px_20px_rgba(0,0,0,0.05)]">
       <div className="flex items-center gap-8 h-full">
@@ -10,7 +21,7 @@ const TopBar = () => {
           <svg className="w-4 h-4 text-[#2D5C64]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
             <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span className="text-[12px] text-gray-600 font-medium group-hover:text-[#2D5C64] transition-colors">Contacter un specialiste francophone</span>
+          <span className="text-[12px] text-gray-600 font-medium group-hover:text-[#2D5C64] transition-colors">{contactLabel}</span>
         </div>
 
         <div className="h-4 w-[1px] bg-gray-200" />
@@ -22,9 +33,9 @@ const TopBar = () => {
           </svg>
           <div className="flex items-center gap-2">
             <span className="text-[11px] text-gray-400 font-bold uppercase tracking-wider">Contact :</span>
-            <span className="text-[12px] text-gray-700 font-bold">+91 93514 21959</span>
+            <span className="text-[12px] text-gray-700 font-bold">{phoneIndia}</span>
             <span className="text-gray-300 mx-1">|</span>
-            <span className="text-[12px] text-gray-700 font-bold">+33 6 16 64 26 26</span>
+            <span className="text-[12px] text-gray-700 font-bold">{phoneFrance}</span>
           </div>
         </div>
       </div>

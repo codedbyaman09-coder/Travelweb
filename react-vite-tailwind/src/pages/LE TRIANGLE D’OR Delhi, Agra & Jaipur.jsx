@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 const LIndeNordRajasthanPalais = () => {
   const [activeTab, setActiveTab] = useState("ITINÉRAIRE");
   const [openDay, setOpenDay] = useState(0); // Default open the first day
+  const [showAllHighlights, setShowAllHighlights] = useState(false);
 
   const tabs = [
     "ITINÉRAIRE",
@@ -387,18 +388,26 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
         return (
           <div className="pt-12 pb-16 px-6 md:px-12 lg:px-16 animate-fadeIn">
             <h2 className="text-[#b7772e] font-serif text-2xl font-bold mb-8 italic">Vos havres de paix</h2>
-            <p className="text-gray-600 mb-10 leading-relaxed">Nous avons sélectionné pour vous des établissements d'exception alliant charme architectural, confort moderne et hospitalité légendaire pour une immersion royale.</p>
+            <p className="text-gray-600 mb-10 leading-relaxed whitespace-pre-wrap">{dynamicContent?.accommodationText || "Nous avons sélectionné pour vous des établissements d'exception alliant charme architectural, confort moderne et hospitalité légendaire pour une immersion royale."}</p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="group cursor-pointer p-8 border border-gray-150 hover:border-[#b7772e]/20 transition-all bg-white shadow-sm">
-                <h4 className="font-bold text-[#102d45] text-[18px] mb-2">Châteaux & Demeures Historiques</h4>
-                <p className="text-[#b7772e] text-[13px] font-bold uppercase tracking-widest">Patrimoine & Charme</p>
-                <p className="text-sm text-gray-500 mt-3 leading-relaxed">Dormez dans d'anciens forts de Maharajas restaurés ou des havelis d'époque pour vivre le rêve princier.</p>
-              </div>
-              <div className="group cursor-pointer p-8 border border-gray-150 hover:border-[#b7772e]/20 transition-all bg-white shadow-sm">
-                <h4 className="font-bold text-[#102d45] text-[18px] mb-2">Hôtels Boutiques & Ecolodges</h4>
-                <p className="text-[#b7772e] text-[13px] font-bold uppercase tracking-widest">Modernité & Confort</p>
-                <p className="text-sm text-gray-500 mt-3 leading-relaxed">Des havres de tranquillité et de design au milieu des oasis de verdure et des paysages désertiques.</p>
-              </div>
+              {(dynamicContent?.accommodations?.length > 0 && typeof dynamicContent.accommodations[0]?.title === 'string' && dynamicContent.accommodations[0].title.trim() !== "" ? dynamicContent.accommodations : [
+                {
+                  title: "Châteaux & Demeures Historiques",
+                  subtitle: "Patrimoine & Charme",
+                  desc: "Dormez dans d'anciens forts de Maharajas restaurés ou des havelis d'époque pour vivre le rêve princier."
+                },
+                {
+                  title: "Hôtels Boutiques & Ecolodges",
+                  subtitle: "Modernité & Confort",
+                  desc: "Des havres de tranquillité et de design au milieu des oasis de verdure et des paysages désertiques."
+                }
+              ]).map((acc, idx) => (
+                <div key={idx} className="group cursor-pointer p-8 border border-gray-150 hover:border-[#b7772e]/20 transition-all bg-white shadow-sm">
+                  <h4 className="font-bold text-[#102d45] text-[18px] mb-2 break-words">{acc.title}</h4>
+                  <p className="text-[#b7772e] text-[13px] font-bold uppercase tracking-widest break-words">{acc.subtitle}</p>
+                  <p className="text-sm text-gray-500 mt-3 leading-relaxed whitespace-pre-wrap break-words">{acc.desc}</p>
+                </div>
+              ))}
             </div>
             <div className="mt-16 flex justify-center border-t border-gray-50 pt-10">
               <button className="bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-4 px-12 rounded-sm shadow-lg transition-all duration-300 uppercase tracking-[0.2em] text-[14px]">
@@ -421,20 +430,24 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
               <div>
                 <h4 className="font-bold text-[#102d45] mb-4 uppercase text-sm tracking-widest border-b border-[#b7772e] pb-2 inline-block">Le prix comprend</h4>
                 <ul className="space-y-2 text-sm text-gray-600 italic">
-                  <li>• L'hébergement de 7 nuits en chambre double de catégorie charme</li>
-                  <li>• Les petits-déjeuners gourmands</li>
-                  <li>• Les transferts en véhicule privé climatisé avec chauffeur dévoué</li>
-                  <li>• Toutes les visites, excursions et entrées mentionnées au programme</li>
-                  <li>• La balade à dos de chameau et la croisière sur le lac Pichola</li>
+                  {(dynamicContent?.priceIncludes ? dynamicContent.priceIncludes.split('\n') : [
+                      "• L'hébergement de 7 nuits en chambre double de catégorie charme",
+                      "• Les petits-déjeuners gourmands",
+                      "• Les transferts en véhicule privé climatisé avec chauffeur dévoué",
+                      "• Toutes les visites, excursions et entrées mentionnées au programme",
+                      "• La balade à dos de chameau et la croisière sur le lac Pichola"
+                    ]).map((item, idx) => item.trim() ? <li key={idx}>{item}</li> : null)}
                 </ul>
               </div>
               <div>
                 <h4 className="font-bold text-[#102d45] mb-4 uppercase text-sm tracking-widest border-b border-gray-200 pb-2 inline-block">Le prix ne comprend pas</h4>
                 <ul className="space-y-2 text-sm text-gray-600 italic">
-                  <li>• Les vols internationaux</li>
-                  <li>• Les frais de visa d'entrée en Inde</li>
-                  <li>• Les repas non mentionnés (déjeuners et dîners libres)</li>
-                  <li>• Les pourboires d'usage pour le chauffeur et les guides</li>
+                  {(dynamicContent?.priceExcludes ? dynamicContent.priceExcludes.split('\n') : [
+                      "• Les vols internationaux",
+                      "• Les frais de visa d'entrée en Inde",
+                      "• Les repas non mentionnés (déjeuners et dîners libres)",
+                      "• Les pourboires d'usage pour le chauffeur et les guides"
+                    ]).map((item, idx) => item.trim() ? <li key={idx}>{item}</li> : null)}
                 </ul>
               </div>
             </div>
@@ -445,14 +458,21 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
           <div className="pt-12 pb-16 px-6 md:px-12 lg:px-16 animate-fadeIn">
             <h2 className="text-[#b7772e] font-serif text-2xl font-bold mb-8 italic">Informations utiles</h2>
             <div className="space-y-8">
-              <div className="bg-white border-l-4 border-[#b7772e] p-6 shadow-sm">
-                <h4 className="font-bold text-[#102d45] mb-2 uppercase text-sm">Meilleure période</h4>
-                <p className="text-gray-600 text-sm leading-relaxed italic">Octobre à Avril (climat doux et sec idéal pour visiter le Rajasthan)</p>
-              </div>
-              <div className="bg-white border-l-4 border-[#b7772e] p-6 shadow-sm">
-                <h4 className="font-bold text-[#102d45] mb-2 uppercase text-sm">Style du voyage</h4>
-                <p className="text-gray-600 text-sm leading-relaxed italic">Voyage privé d'exception dédié aux amoureux d'histoire, d'architecture royale, de désert et de poésie lacustre.</p>
-              </div>
+              {(dynamicContent?.conseils?.length > 0 && typeof dynamicContent.conseils[0]?.title === 'string' && dynamicContent.conseils[0].title.trim() !== "" ? dynamicContent.conseils : [
+                {
+                  title: "Meilleure période",
+                  desc: dynamicContent?.bestPeriod || "Mars à mai"
+                },
+                {
+                  title: "Style du voyage",
+                  desc: dynamicContent?.travelStyle || "Voyage privé et aventure nature dédié aux amoureux de faune sauvage et de photographie."
+                }
+              ]).map((conseil, idx) => (
+                <div key={idx} className="bg-white border-l-4 border-[#b7772e] p-6 shadow-sm">
+                  <h4 className="font-bold text-[#102d45] mb-2 uppercase text-sm break-words">{conseil.title}</h4>
+                  <p className="text-gray-600 text-sm leading-relaxed italic whitespace-pre-wrap break-words">{conseil.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         );
@@ -463,26 +483,27 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
   return (
     <div className="w-full min-h-screen bg-[#f7f3f0] overflow-x-hidden">
-      <Navbar />
+      
 
-      <section className="relative h-[500px] md:h-[650px] lg:h-[720px] overflow-hidden">
-        <img src="/src/assets/image copy 21.png" alt="Rajasthan et ses palais" className="absolute inset-0 w-full h-full object-cover" />
+      <section className="relative h-[300px] md:h-[650px] lg:h-[720px] overflow-hidden">
+        <img src={dynamicContent?.heroImage || "/src/assets/image copy 21.png"} alt="Rajasthan et ses palais" className="absolute inset-0 w-full h-full object-cover" />
         <div className="absolute inset-0 bg-black/40" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center md: text-center w-full max-w-[1440px] mx-auto px-[40px]">
-          <div className="max-w-[800px]">
-            <h1 className="font-serif text-[46px] md:text-[62px] lg:text-[76px] leading-[1.1] text-white mb-8 drop-shadow-lg uppercase tracking-tight">Delhi, Jaipur Agra — 8 Jours</h1>
-            <div className="w-16 h-px bg-[#c58b32] mb-6 mx-auto" />
-            <p className="text-[14px] md:text-[16px] leading-relaxed text-white/90 max-w-[800px] mx-auto drop-shadow-md">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center w-full max-w-[1440px] mx-auto px-4 md:px-[40px]">
+          <div className="max-w-[800px] mt-8 md:mt-0">
+            <h1 className="font-serif text-[24px] md:text-[62px] lg:text-[76px] leading-[1.1] text-white mb-2 md:mb-8 drop-shadow-lg uppercase tracking-tight">Delhi, Jaipur Agra — 8 Jours</h1>
+            <div className="w-10 md:w-16 h-px bg-[#c58b32] mb-3 md:mb-6 mx-auto" />
+            <p className="text-[10px] md:text-[16px] leading-relaxed text-white/90 max-w-[800px] mx-auto drop-shadow-md px-2">
               Des ruelles animées de Delhi aux palais majestueux du Rajasthan avant de terminer face au mythique Taj Mahal, ce voyage vous plonge au cœur des plus grands trésors de l’Inde du Nord.
             </p>
           </div>
         </div>
       </section>
 
-      <div className="relative z-30 mt-12 pb-24 w-full max-w-[1440px] mx-auto px-[40px]">
+      <div className="relative z-30 mt-0 md:mt-12 pb-24 w-full max-w-[1440px] mx-auto px-0 md:px-[40px]">
         <div className="lg:flex lg:gap-8 items-start">
-          <div className="flex-1 bg-white shadow-2xl rounded-sm overflow-hidden min-h-[600px]">
-            <div className="flex bg-[#fcfcfc] border-b border-gray-200">
+          <div className="flex-1 bg-white shadow-2xl rounded-none md:rounded-sm overflow-hidden min-h-[600px]">
+            <div className="flex bg-[#fcfcfc] border-b border-gray-200 overflow-x-auto scrollbar-hide">
               {tabs.map((tab) => (
                 <button
                   key={tab}
@@ -497,7 +518,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
           </div>
 
           <div className="mt-12 lg:mt-0 w-full lg:w-[380px] shrink-0 space-y-8">
-            <div className="bg-white border border-[#eadfce]/40 rounded-sm p-10 text-center shadow-[0_15px_45px_rgba(70,45,20,0.12)]">
+            <div className="hidden md:block bg-white border border-[#eadfce]/40 rounded-sm p-10 text-center shadow-[0_15px_45px_rgba(70,45,20,0.12)]">
               <h3 className="font-serif text-[30px] text-[#b7772e] mb-2 italic">Circuit en Inde</h3>
               <div className="flex justify-center mb-8 opacity-70">
                 <div className="w-56 h-[1.5px] bg-[#333]" style={{ clipPath: "polygon(0% 45%, 15% 55%, 30% 40%, 50% 60%, 70% 35%, 85% 50%, 100% 40%, 100% 60%, 85% 55%, 70% 65%, 50% 40%, 30% 60%, 15% 45%, 0% 55%)" }} />
@@ -529,12 +550,20 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
               </div>
               <ul className="space-y-6">
                 {highlights.map((point, index) => (
-                  <li key={index} className="flex items-start gap-4">
+                  <li key={index} className={`flex items-start gap-4 animate-fadeIn ${!showAllHighlights && index >= 3 ? 'hidden md:flex' : ''}`}>
                     <div className="mt-1 shrink-0"><svg className="w-5 h-5 text-gray-700" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" /></svg></div>
                     <span className="text-[15px] text-[#444] font-['Montserrat'] leading-relaxed">{point}</span>
                   </li>
                 ))}
               </ul>
+              {highlights.length > 3 && (
+                <button 
+                  onClick={() => setShowAllHighlights(!showAllHighlights)}
+                  className="mt-6 flex flex-col items-center justify-center w-full text-[#b7772e] hover:text-[#9a6326] transition-colors md:hidden"
+                >
+                  <svg className={`w-6 h-6 transition-transform duration-300 ${showAllHighlights ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                </button>
+              )}
             </div>
 
             <div className="bg-white border border-[#eadfce]/40 rounded-sm p-10 shadow-[0_15px_45_rgba(70,45,20,0.12)]">
@@ -622,21 +651,21 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-[#f7f3f0]">
-        <div className="text-center w-full max-w-[1440px] mx-auto px-[40px]">
-          <h2 className="font-serif text-[32px] md:text-[42px] text-[#b7772e] mb-2 font-bold italic">Découvrez d'autres voyages en Inde</h2>
-          <div className="flex justify-center mb-16 opacity-70"><div className="w-64 h-[1.5px] bg-[#333]" style={{ clipPath: "polygon(0% 45%, 15% 55%, 30% 40%, 50% 60%, 70% 35%, 85% 50%, 100% 40%, 100% 60%, 85% 55%, 70% 65%, 50% 40%, 30% 60%, 15% 45%, 0% 55%)" }} /></div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <section className="py-12 md:py-20 px-2 md:px-6 bg-[#f7f3f0]">
+        <div className="text-center w-full max-w-[1440px] mx-auto px-0 md:px-[40px]">
+          <h2 className="font-serif text-[28px] md:text-[42px] text-[#b7772e] mb-2 font-bold italic px-4 md:px-0">Découvrez d'autres voyages en Inde</h2>
+          <div className="flex justify-center mb-10 md:mb-16 opacity-70"><div className="w-64 h-[1.5px] bg-[#333]" style={{ clipPath: "polygon(0% 45%, 15% 55%, 30% 40%, 50% 60%, 70% 35%, 85% 50%, 100% 40%, 100% 60%, 85% 55%, 70% 65%, 50% 40%, 30% 60%, 15% 45%, 0% 55%)" }} /></div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
             {otherTrips.map((trip, index) => (
-              <div key={index} className="group relative h-[450px] overflow-hidden rounded-sm shadow-xl cursor-pointer">
+              <div key={index} className="group relative h-[250px] md:h-[450px] overflow-hidden rounded-sm shadow-xl cursor-pointer">
                 <img src={trip.image} alt={trip.title} className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 text-left flex flex-col items-start gap-1">
-                  {trip.tag && <span className="bg-white text-black text-[10px] font-bold px-2 py-1 mb-2 tracking-widest uppercase">{trip.tag}</span>}
-                  <span className="text-white text-[11px] font-bold tracking-widest uppercase mb-1 drop-shadow-md">{trip.duration}</span>
-                  <h3 className="text-white font-serif text-[20px] md:text-[22px] font-bold leading-tight mb-4 drop-shadow-lg">{trip.title}</h3>
-                  <p className="text-white/90 text-[14px] font-medium mb-4 drop-shadow-md">À partir de <span className="text-[18px] font-bold">{trip.price}</span></p>
-                  <div className="text-white text-[12px] font-bold tracking-widest uppercase border-b border-white/40 group-hover:border-white transition-all">&gt; DÉCOUVRIR</div>
+                <div className="absolute inset-x-0 bottom-0 p-3 md:p-6 text-left flex flex-col items-start gap-1">
+                  {trip.tag && <span className="bg-white text-black text-[7px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2 md:py-1 mb-1 md:mb-2 tracking-widest uppercase line-clamp-1">{trip.tag}</span>}
+                  <span className="text-white text-[8px] md:text-[11px] font-bold tracking-widest uppercase mb-1 drop-shadow-md">{trip.duration}</span>
+                  <h3 className="text-white font-serif text-[13px] md:text-[22px] font-bold leading-tight mb-2 md:mb-4 drop-shadow-lg">{trip.title}</h3>
+                  <p className="text-white/90 text-[10px] md:text-[14px] font-medium mb-2 md:mb-4 drop-shadow-md">À partir de <span className="text-[13px] md:text-[18px] font-bold">{trip.price}</span></p>
+                  <div className="text-white text-[9px] md:text-[12px] font-bold tracking-widest uppercase border-b border-white/40 group-hover:border-white transition-all">&gt; DÉCOUVRIR</div>
                 </div>
               </div>
             ))}

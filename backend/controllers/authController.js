@@ -56,7 +56,10 @@ const registerUser = async (req, res) => {
 // LOGIN USER
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    let { email, password } = req.body;
+
+    if (email) email = email.trim();
+    if (password) password = password.trim();
 
     if (!email || !password) {
       return res.status(400).json({
@@ -89,7 +92,7 @@ const loginUser = async (req, res) => {
 
     const token = jwt.sign(
       { id: user.id, email: user.email },
-      process.env.JWT_SECRET,
+      process.env.JWT_SECRET || "indeora_secret_key",
       { expiresIn: "1d" }
     );
 
@@ -100,12 +103,13 @@ const loginUser = async (req, res) => {
       user: {
         id: user.id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        role: user.role || "admin"
       }
     });
   } catch (error) {
     console.error("Login Error:", error.message);
-    return res.status(500).json({
+      return res.status(500).json({
       success: false,
       message: "Server error during login"
     });
@@ -118,7 +122,7 @@ const getProfile = async (req, res) => {
     const userId = req.user.id;
 
     const [users] = await db.query(
-      "SELECT id, name, email, created_at FROM users WHERE id = ?",
+      "SELECT id, name, email, role, status, created_at FROM users WHERE id = ?",
       [userId]
     );
 

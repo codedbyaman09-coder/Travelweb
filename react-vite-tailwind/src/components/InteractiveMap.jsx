@@ -77,10 +77,21 @@ const destinations = [
   }
 ];
 
-const InteractiveMap = () => {
+const InteractiveMap = ({ settings = {} }) => {
   const [hoveredDest, setHoveredDest] = React.useState(null);
-  const leftDests = destinations.filter(d => d.side === 'left');
-  const rightDests = destinations.filter(d => d.side === 'right');
+  
+  const finalDests = (settings.items !== undefined) 
+    ? settings.items.map(d => ({ 
+        id: d.link ? d.link.replace('/destinations/', '') : '', 
+        title: d.title, 
+        subtitle: d.subtitle, 
+        img: d.image_url, 
+        side: d.icon || 'left' 
+      }))
+    : destinations;
+  
+  const leftDests = finalDests.filter(d => d.side === 'left');
+  const rightDests = finalDests.filter(d => d.side === 'right');
 
   // Map coordinates for pulsing markers (percentage based)
   const markers = {
@@ -100,13 +111,13 @@ const InteractiveMap = () => {
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
           <p className="text-[10px] tracking-[0.4em] text-[#A88B52] font-bold uppercase mb-2">
-            UNE AUTRE FAÇON DE VOYAGER EN INDE
+            {settings.subtitle || "UNE AUTRE FAÇON DE VOYAGER EN INDE"}
           </p>
           <h2 className="text-xl md:text-3xl font-serif text-[#A88B52] mb-3">
-            Explorez l’Inde autrement
+            {settings.title || "Explorez l’Inde autrement"}
           </h2>
           <p className="text-[#2d343e]/60 text-[12px] md:text-[13px] max-w-xl mx-auto leading-relaxed">
-            Une terre de palais, de spiritualité, de couleurs et de rencontres humaines, où chaque voyage devient une expérience profondément inspirante.
+            {settings.description || "Une terre de palais, de spiritualité, de couleurs et de rencontres humaines, où chaque voyage devient une expérience profondément inspirante."}
           </p>
         </div>
 

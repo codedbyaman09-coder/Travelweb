@@ -55,3 +55,80 @@ VALUES
   '7 min'
 )
 ON DUPLICATE KEY UPDATE title=title;
+
+-- Table structure for destinations
+CREATE TABLE IF NOT EXISTS destinations (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  image_url TEXT DEFAULT NULL,
+  meta_title VARCHAR(255) DEFAULT NULL,
+  meta_description TEXT DEFAULT NULL,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table structure for inquiries
+CREATE TABLE IF NOT EXISTS inquiries (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50) DEFAULT NULL,
+  message TEXT NOT NULL,
+  source VARCHAR(100) DEFAULT 'website',
+  status ENUM('new', 'read', 'replied') DEFAULT 'new',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table structure for itineraries
+CREATE TABLE IF NOT EXISTS itineraries (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  days INT NOT NULL,
+  price DECIMAL(10,2) DEFAULT NULL,
+  itinerary_details JSON DEFAULT NULL,
+  includes_excludes JSON DEFAULT NULL,
+  images JSON DEFAULT NULL,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table structure for faqs
+CREATE TABLE IF NOT EXISTS faqs (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category VARCHAR(100) NOT NULL,
+  question TEXT NOT NULL,
+  answer TEXT NOT NULL,
+  display_order INT DEFAULT 0,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table structure for pages (SEO)
+CREATE TABLE IF NOT EXISTS pages (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  pageName VARCHAR(100) NOT NULL,
+  pageSlug VARCHAR(255) NOT NULL UNIQUE,
+  metaTitle VARCHAR(255) DEFAULT NULL,
+  metaDescription TEXT DEFAULT NULL,
+  metaKeywords TEXT DEFAULT NULL,
+  canonicalUrl VARCHAR(255) DEFAULT NULL,
+  ogTitle VARCHAR(255) DEFAULT NULL,
+  ogDescription TEXT DEFAULT NULL,
+  ogImage VARCHAR(255) DEFAULT NULL,
+  twitterTitle VARCHAR(255) DEFAULT NULL,
+  twitterDescription TEXT DEFAULT NULL,
+  twitterImage VARCHAR(255) DEFAULT NULL,
+  robots VARCHAR(100) DEFAULT 'index, follow',
+  schemaMarkup TEXT DEFAULT NULL,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Table structure for settings
+CREATE TABLE IF NOT EXISTS settings (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  setting_key VARCHAR(100) NOT NULL UNIQUE,
+  setting_value TEXT NOT NULL
+);

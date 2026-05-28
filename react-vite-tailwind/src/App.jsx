@@ -29,6 +29,9 @@ import VoyagePhotoExpeditions from './pages/VoyagePhotoExpeditions';
 import DemanderUnDevis from './pages/DemanderUnDevis';
 import ContactRapide from './pages/ContactRapide';
 import RajasthanRoyale from './pages/RajasthanRoyale';
+import DecouverDuRajasthan from './pages/DecouverDuRajasthan';
+import Biakner from './pages/Biakner';
+import DynamicTourPage from './pages/DynamicTourPage';
 import KeralaBackwaters from './pages/KeralaBackwaters';
 import SpiritualVaranasi from './pages/SpiritualVaranasi';
 import Faq from './pages/Faq';
@@ -38,6 +41,8 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import BlogDetail from './pages/BlogDetail';
+import SEO from './components/SEO';
+import CookieConsent from './components/CookieConsent';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
@@ -60,7 +65,7 @@ const AppContent = () => {
     if (path === '/blog') return 'Blog';
     if (path === '/avant-de-partir') return 'Avant de partir';
     if (path === '/faq' || path === '/Faq' || path === '/FAQ') return 'Questions Fréquentes';
-    if (path === '/contact-rapide') return 'Contact Rapide';
+    if (path === '/contact-rapide' || path === '/contact') return 'Contact Rapide';
     if (path === '/festivals-couleurs-traditions-indiennes') return 'Festivals Traditions';
     if (path === '/croisieres-backwaters-kerala') return 'Kerala Experience';
     if (path === '/himalaya-aventures-hors-sentiers-battus') return 'Leh Ladakh';
@@ -104,12 +109,19 @@ const AppContent = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
+  const isAdminPage = location.pathname.startsWith('/admin');
+
   return (
-    <div className="w-full min-h-screen bg-white overflow-x-hidden pb-[50px]">
+    <div className={`w-full min-h-screen bg-white overflow-x-hidden ${isAdminPage ? '' : 'pb-[50px]'}`}>
       {loading && <Loader onFinish={() => setLoading(false)} pageName={pageName} />}
-      <TopBar />
-      <Navbar />
-      <ScrollToTop />
+      {!isAdminPage && (
+        <>
+          <TopBar />
+          <Navbar />
+          <ScrollToTop />
+        </>
+      )}
+      <SEO />
       <main className={loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-1000'}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -145,6 +157,9 @@ const AppContent = () => {
           <Route path="/art-artisanat-savoir-faire" element={<ArtArtisanatSavoirFaire />} />
           <Route path="/immersion-villages-indiens" element={<ImmersionVillagesIndiens />} />
           <Route path="/voyage-photo-expeditions" element={<VoyagePhotoExpeditions />} />
+          <Route path="/decouver-du-rajasthan-" element={<DecouverDuRajasthan />} />
+          <Route path="/decouver-du-rajasthan" element={<DecouverDuRajasthan />} />
+          <Route path="/biakner" element={<Biakner />} />
           <Route path="/demander-un-devis" element={<DemanderUnDevis />} />
           <Route path="/contact-rapide" element={<ContactRapide />} />
           <Route path="/faq" element={<Faq />} />
@@ -155,7 +170,10 @@ const AppContent = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/blog/:slug" element={<BlogDetail />} />
-          <Route path="/contact" element={<div className="pt-32 text-center">Contact Page</div>} />
+          <Route path="/contact" element={<ContactRapide />} />
+
+          {/* Dynamic Catch-All Route for destinations created via CMS */}
+          <Route path="/:slug" element={<DynamicTourPage />} />
         </Routes>
       </main>
     </div>
@@ -167,6 +185,7 @@ function App() {
     <AuthProvider>
       <Router>
         <AppContent />
+        <CookieConsent />
       </Router>
     </AuthProvider>
   );

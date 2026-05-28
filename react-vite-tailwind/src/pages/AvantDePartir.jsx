@@ -18,13 +18,13 @@
     Headphones,
     HeartHandshake
   } from 'lucide-react';
-  import Navbar from '../components/Navbar';
+  
   import Footer from '../components/Footer';
 
   const AvantDePartir = () => {
     return (
       <div className="bg-[#fdfbf7] min-h-screen font-sans selection:bg-[#C2A36B]/20 pt-20">
-        <Navbar />
+        
 
         {/* Main Container */}
         <div className="md: py-12 w-full max-w-[1440px] mx-auto px-[40px]">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
+import SEO from '../components/SEO';
 
 const BlogDetail = () => {
   const { slug } = useParams();
@@ -63,6 +64,17 @@ const BlogDetail = () => {
 
   return (
     <div className="bg-[#FAF9F6] min-h-screen text-[#161c20] font-sans">
+      <SEO 
+        pageType="blog-detail" 
+        customSlug={slug} 
+        dynamicData={{ 
+          title: blog.title, 
+          description: blog.excerpt, 
+          keywords: `${blog.category}, indeora, voyage en inde`, 
+          image: blog.image_url, 
+          canonicalUrl: `https://indeoravoyages.com/blog/${slug}` 
+        }} 
+      />
       {/* Article Hero */}
       <div className="relative h-[65vh] w-full overflow-hidden flex items-center justify-center">
         <div className="absolute inset-0">

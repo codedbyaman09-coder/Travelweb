@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { apiRequest, apiUrl } from '../lib/api';
 
 const AuthContext = createContext(null);
 
@@ -16,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const response = await fetch('http://localhost:8000/api/auth/profile', {
+        const response = await fetch(apiUrl('/auth/profile'), {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -40,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   // Login handler
   const login = async (email, password) => {
     try {
-      const response = await fetch('http://localhost:8000/api/auth/login', {
+      const response = await fetch(apiUrl('/auth/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -63,7 +64,7 @@ export const AuthProvider = ({ children }) => {
   // Register handler
   const register = async (name, email, password) => {
     try {
-      const response = await fetch('http://localhost:8000/api/auth/register', {
+      const response = await fetch(apiUrl('/auth/register'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -87,8 +88,14 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const refreshUser = async () => {
+    const data = await apiRequest('/auth/profile');
+    if (data.success) setUser(data.user);
+    return data.user;
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, login, register, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

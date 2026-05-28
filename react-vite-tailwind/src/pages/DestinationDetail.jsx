@@ -4,6 +4,7 @@ import Footer from '../components/Footer';
 import EspritIndeora from '../components/EspritIndeora';
 import InteractiveMap from '../components/InteractiveMap';
 import EnviesGrid from '../components/EnviesGrid';
+import SEO from '../components/SEO';
 
 const DestinationDetail = () => {
   const { id } = useParams();
@@ -229,6 +230,17 @@ const DestinationDetail = () => {
   if (data.layout === 'premium') {
     return (
       <div className="pt-0 bg-white min-h-screen">
+        <SEO 
+          pageType="destination-detail" 
+          customSlug={normalizedId} 
+          dynamicData={{ 
+            title: data.title, 
+            description: data.subtitle || data.mainText?.substring(0, 160), 
+            keywords: `${data.title}, voyage inde, indeora`, 
+            image: data.heroImg, 
+            canonicalUrl: `https://indeoravoyages.com/destinations/${normalizedId}` 
+          }} 
+        />
         <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0"><img src={data.heroImg} alt={data.title} className="w-full h-full object-cover" key={data.heroImg} /><div className="absolute inset-0 bg-black/20"></div></div>
           <div className="relative z-10 text-center text-white pt-32 md:pt-40 w-full max-w-[1440px] mx-auto px-[40px]">
@@ -313,6 +325,17 @@ const DestinationDetail = () => {
 
   return (
     <div className="pt-32 bg-white min-h-screen font-sans text-center">
+      <SEO 
+        pageType="destination-detail" 
+        customSlug={normalizedId} 
+        dynamicData={{ 
+          title: data.title, 
+          description: data.subtitle || data.title, 
+          keywords: `${data.title}, voyage inde, indeora`, 
+          image: data.heroImg, 
+          canonicalUrl: `https://indeoravoyages.com/destinations/${normalizedId}` 
+        }} 
+      />
       <section className="relative h-[65vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0"><img src={data.heroImg} alt={data.title} className="w-full h-full object-cover" /><div className="absolute inset-0 bg-black/30"></div></div>
         <div className="relative z-10 px-6"><h1 className="text-white text-5xl md:text-7xl font-bold">{data.title}</h1></div>

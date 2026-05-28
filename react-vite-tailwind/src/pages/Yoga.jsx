@@ -110,12 +110,12 @@ const FeatureIcons = {
 };
 
 const HeaderFeature = ({ icon: Icon, text }) => (
-  <div className="flex items-center gap-[9px] px-[22px] border-r border-[#213528]/25 last:border-r-0 h-full">
-    <div className="text-[#213528]">
+  <div className="flex-1 flex items-center justify-center md:justify-start gap-[4px] md:gap-[9px] px-[2px] md:px-[22px] border-r border-[#213528]/25 last:border-r-0 h-full">
+    <div className="text-[#213528] scale-[0.6] md:scale-100 shrink-0">
       <Icon />
     </div>
 
-    <span className="text-[13px] leading-[1.05] font-medium text-[#213528] whitespace-pre-line">
+    <span className="text-[7px] md:text-[14px] leading-[1.05] font-black text-[#213528] whitespace-pre-line text-left md:text-left">
       {text}
     </span>
   </div>
@@ -163,28 +163,28 @@ const QuestionItem = ({ no, title, text, icon: Icon }) => (
 
 const ItineraryCard = ({ no, image, title, duration, desc, features }) => (
   <Link to="/spiritualite-yoga-ayurveda" className="block bg-white rounded-[7px] overflow-hidden border border-[#213528]/15 shadow-[0_1px_4px_rgba(0,0,0,0.28)] transition-all duration-300 hover:shadow-lg hover:scale-[1.01] cursor-pointer no-underline hover:no-underline text-inherit">
-    <div className="relative h-[98px]">
+    <div className="relative h-[65px] md:h-[98px]">
       <img src={image} alt={title} className="w-full h-full object-cover" />
 
-      <div className="absolute top-[7px] left-[8px] w-[22px] h-[22px] rounded-full bg-[#213528] text-white text-[10px] font-bold flex items-center justify-center">
+      <div className="absolute top-[5px] left-[5px] w-[16px] h-[16px] md:w-[22px] md:h-[22px] rounded-full bg-[#213528] text-white text-[8px] md:text-[10px] font-bold flex items-center justify-center">
         {no}
       </div>
     </div>
 
-    <div className="text-center px-3 pt-[12px] pb-[8px]">
-      <h3 className="font-serif text-[11px] font-bold uppercase text-[#213528] leading-tight">
+    <div className="text-left px-2 md:px-3 pt-[8px] md:pt-[12px] pb-[6px] md:pb-[8px]">
+      <h3 className="font-serif text-[9px] md:text-[11px] font-bold uppercase text-[#213528] leading-tight">
         {title}
       </h3>
 
-      <p className="text-[9px] font-bold text-[#213528]/75 mt-[1px] mb-[8px]">
+      <p className="text-[7.5px] md:text-[9px] font-bold text-[#213528]/75 mt-[1px] mb-[6px] md:mb-[8px]">
         {duration}
       </p>
 
-      <p className="text-[8px] leading-[1.35] text-[#213528]/80 mb-[8px]">
+      <p className="text-[7px] md:text-[8px] leading-[1.35] text-[#213528]/80 mb-[6px] md:mb-[8px] line-clamp-3 md:line-clamp-none">
         {desc}
       </p>
 
-      <div className="grid grid-cols-4 gap-1">
+      <div className="flex flex-wrap gap-y-1.5 md:gap-y-2 mt-1.5 md:mt-2">
         {features.map((item, index) => {
           let Icon = FeatureIcons.Yoga;
           const t = item.toLowerCase();
@@ -198,12 +198,12 @@ const ItineraryCard = ({ no, image, title, duration, desc, features }) => (
           if (t.includes("éveil")) Icon = FeatureIcons.Temple;
 
           return (
-            <div key={index} className="flex flex-col items-center">
-              <div className="scale-[0.65] h-[16px] text-[#213528] flex items-center">
+            <div key={index} className="w-1/2 flex items-center justify-start gap-[2px]">
+              <div className="scale-[0.45] md:scale-[0.55] h-[12px] md:h-[14px] text-[#213528] flex items-center shrink-0">
                 <Icon />
               </div>
 
-              <span className="text-[6px] leading-tight text-[#213528]/75 font-medium">
+              <span className="text-[5px] md:text-[6px] leading-[1.1] text-[#213528]/75 font-medium text-left">
                 {item}
               </span>
             </div>
@@ -215,52 +215,98 @@ const ItineraryCard = ({ no, image, title, duration, desc, features }) => (
 );
 
 const Yoga = () => {
+  const [showAllFaq, setShowAllFaq] = React.useState(false);
+  const [elements, setElements] = React.useState([]);
+  const [pageSettings, setPageSettings] = React.useState({
+    yoga_hero_overline: "Retraite de",
+    yoga_hero_title: "Yoga",
+    yoga_hero_subtitle: "En Inde",
+    yoga_hero_text: "Corps • Esprit • Âme en Harmonie",
+    yoga_hero_quote: "Le Yoga n'est pas \n seulement une pratique, \n c'est un voyage vers \n soi-même.",
+    yoga_hero_image: yogaBanner,
+    yoga_history_title: "Brève Histoire du Yoga",
+    yoga_history_text: "Le yoga est une science ancienne née en Inde il y a plus de 5 000 ans.\nSes racines se trouvent dans les Vedas, les Upanishads et les traditions spirituelles de la civilisation indienne.\n\nIl a été transmis par des sages et des maîtres à travers les siècles. Selon la tradition, Lord Shiva est le premier yogi, ou Adiyogi, qui a transmis la connaissance du yoga à l'humanité.\n\nLe sage Patanjali a ensuite compilé les Yoga Sutras, qui décrivent le chemin complet du yoga sous forme de 8 branches.",
+    yoga_history_image: shivaImg,
+    yoga_faq_title: "Tout Savoir sur le Yoga",
+    yoga_itinerary_title: "3 Itinéraires de Yoga en Inde",
+    yoga_bottom_title: "Votre Voyage Intérieur \n Commence Ici",
+    yoga_bottom_text: "Offrez-vous une expérience transformante en Inde, \n berceau du yoga, de la sagesse et de la paix intérieure.",
+    yoga_bottom_image: bottomBanner
+  });
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [elementsRes, settingsRes] = await Promise.all([
+          fetch("http://127.0.0.1:8000/api/yogas"),
+          fetch("http://127.0.0.1:8000/api/settings")
+        ]);
+        
+        const elementsData = await elementsRes.json();
+        const settingsData = await settingsRes.json();
+
+        if (elementsData.success) {
+          setElements(elementsData.data);
+        }
+        if (settingsData.success && settingsData.data) {
+          setPageSettings(prev => ({ ...prev, ...settingsData.data }));
+        }
+      } catch (err) {
+        console.error("Error fetching yoga data:", err);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const dynamicFeatures = elements.filter(e => e.type === 'feature').sort((a,b) => a.display_order - b.display_order);
+  const dynamicInfos = elements.filter(e => e.type === 'info').sort((a,b) => a.display_order - b.display_order);
+  const dynamicFaqs = elements.filter(e => e.type === 'faq').sort((a,b) => a.display_order - b.display_order);
+  const dynamicItineraries = elements.filter(e => e.type === 'itinerary').sort((a,b) => a.display_order - b.display_order);
+  const dynamicBottomFeatures = elements.filter(e => e.type === 'bottom_feature').sort((a,b) => a.display_order - b.display_order);
+
   return (
     <>
-      <div className="w-full min-h-screen bg-white overflow-x-hidden font-sans text-[#213528]" style={{ zoom: 1.25 }}>
+      <div className="w-full min-h-screen bg-white overflow-x-hidden font-sans text-[#213528] yoga-wrapper">
         {/* HERO */}
-        <section className="relative h-[420px] overflow-hidden">
+        <section className="relative min-h-[300px] md:min-h-[420px] flex flex-col justify-between overflow-hidden">
           <img
-            src={yogaBanner}
+            src={pageSettings.yoga_hero_image || yogaBanner}
             alt="Yoga en Inde"
             className="absolute inset-0 w-full h-full object-cover object-center"
           />
 
           <div className="absolute inset-0 bg-gradient-to-r from-[#f4ead6]/80 via-[#f4ead6]/15 to-transparent" />
 
-          <div className="relative z-10 h-full px-5 flex">
-            <div className="w-[50%] pt-[110px]">
-              <div className="flex flex-col items-center max-w-[320px]">
-                <LotusIcon className="w-[43px] h-[43px] mb-[2px]" />
+          <div className="relative z-10 w-full px-4 md:px-5 pt-[50px] md:pt-[110px] pb-[10px] md:pb-0 flex-grow">
+            <div className="w-full md:w-[50%]">
+              <div className="flex flex-col items-start md:items-center max-w-[320px] md:mx-0">
+                <LotusIcon className="w-[43px] h-[43px] mb-[2px] self-start md:self-center" />
 
-                <div className="flex items-center gap-2 mb-[-2px]">
-                  <span className="inline-block w-[34px] h-px bg-[#213528]/40 relative top-[-3px]" />
+                <div className="flex items-center gap-2 mb-[-2px] self-start md:self-center">
+                  <span className="hidden md:inline-block w-[34px] h-px bg-[#213528]/40 relative top-[-3px]" />
                   <span className="font-serif text-[15px] tracking-[0.22em] uppercase">
-                    Retraite de
+                    {pageSettings.yoga_hero_overline}
                   </span>
                   <span className="inline-block w-[34px] h-px bg-[#213528]/40 relative top-[-3px]" />
                 </div>
 
-                <h1 className="font-serif uppercase text-[78px] leading-[0.82] tracking-[-0.06em] text-[#213528]">
-                  Yoga
+                <h1 className="font-serif uppercase text-[50px] md:text-[78px] leading-tight md:leading-[0.82] tracking-[-0.06em] text-[#213528]">
+                  {pageSettings.yoga_hero_title}
                 </h1>
 
-                <h2 className="font-serif uppercase text-[30px] tracking-[0.16em] leading-none text-[#213528]">
-                  En Inde
+                <h2 className="font-serif uppercase text-[20px] md:text-[30px] tracking-[0.1em] md:tracking-[0.16em] leading-none text-[#213528]">
+                  {pageSettings.yoga_hero_subtitle}
                 </h2>
 
-                <p className="text-[10px] mt-[14px] tracking-[0.02em]">
-                  Corps • Esprit • Âme en Harmonie
+                <p className="font-bold text-[10px] mt-[14px] tracking-[0.02em]">
+                  {pageSettings.yoga_hero_text}
                 </p>
               </div>
             </div>
 
             <div className="absolute right-[46px] bottom-[90px] w-[210px] text-center text-white">
-              <p className="font-serif italic text-[12px] leading-[1.45] drop-shadow-md">
-                "Le Yoga n'est pas <br />
-                seulement une pratique, <br />
-                c'est un voyage vers <br />
-                soi-même."
+              <p className="font-serif italic text-[12px] leading-[1.45] drop-shadow-md whitespace-pre-line">
+                {pageSettings.yoga_hero_quote}
               </p>
 
               <div className="flex items-center justify-center mt-2 gap-2 opacity-90">
@@ -271,13 +317,21 @@ const Yoga = () => {
             </div>
           </div>
 
-          {/* FEATURE BAR IMAGE KE UPAR */}
-          <div className="absolute left-0 right-0 bottom-0 z-20 bg-[#f7f1e6]/92 border-y border-[#213528]/15">
-            <div className="h-[47px] flex items-center">
-              <HeaderFeature icon={FeatureIcons.Yoga} text={"Yoga\nAuthentique"} />
-              <HeaderFeature icon={FeatureIcons.Om} text={"Spiritualité"} />
-              <HeaderFeature icon={FeatureIcons.Bowl} text={"Ayurveda"} />
-              <HeaderFeature icon={FeatureIcons.Nature} text={"Nature\n& Sérénité"} />
+          <div className="relative md:absolute left-0 right-0 bottom-0 z-20 bg-[#f7f1e6]/92 border-y border-[#213528]/15 mt-auto">
+            <div className="h-[40px] md:h-[47px] flex flex-nowrap items-center w-full">
+              {dynamicFeatures.length > 0 ? (
+                dynamicFeatures.map((item, index) => {
+                  const IconComponent = FeatureIcons[item.image] || FeatureIcons.Yoga;
+                  return <HeaderFeature key={index} icon={IconComponent} text={item.title} />
+                })
+              ) : (
+                <>
+                  <HeaderFeature icon={FeatureIcons.Yoga} text={"Yoga\nAuthentique"} />
+                  <HeaderFeature icon={FeatureIcons.Om} text={"Spiritualité"} />
+                  <HeaderFeature icon={FeatureIcons.Bowl} text={"Ayurveda"} />
+                  <HeaderFeature icon={FeatureIcons.Nature} text={"Nature\n& Sérénité"} />
+                </>
+              )}
             </div>
           </div>
         </section>
@@ -289,33 +343,18 @@ const Yoga = () => {
             <div className="relative w-full flex min-h-[190px]">
               <div className="w-[58%] relative z-10 pr-[10px]">
                 <h3 className="font-serif uppercase text-[15px] mb-[12px]">
-                  Brève Histoire du Yoga
+                  {pageSettings.yoga_history_title}
                 </h3>
 
                 <div className="text-[8.5px] leading-[1.5] text-[#213528]/85 space-y-[8px]">
-                  <p>
-                    Le yoga est une science ancienne née en Inde il y a plus de 5 000 ans.
-                    Ses racines se trouvent dans les Vedas, les Upanishads et les traditions
-                    spirituelles de la civilisation indienne.
-                  </p>
-
-                  <p>
-                    Il a été transmis par des sages et des maîtres à travers les siècles.
-                    Selon la tradition, Lord Shiva est le premier yogi, ou Adiyogi, qui a
-                    transmis la connaissance du yoga à l'humanité.
-                  </p>
-
-                  <p>
-                    Le sage Patanjali a ensuite compilé les Yoga Sutras, qui décrivent le
-                    chemin complet du yoga sous forme de 8 branches.
-                  </p>
+                  {pageSettings.yoga_history_text.split('\n').filter(p => p.trim() !== '').map((p, i) => <p key={i}>{p}</p>)}
                 </div>
               </div>
 
               {/* Shiva Statue Image on the right side of this top block */}
               <div className="absolute right-[-14px] top-[-24px] bottom-[-16px] w-[50%] overflow-hidden z-0">
                 <img
-                  src={shivaImg}
+                  src={pageSettings.yoga_history_image || shivaImg}
                   alt="Shiva"
                   className="w-full h-full object-cover"
                   style={{ objectPosition: '100% center' }}
@@ -326,29 +365,38 @@ const Yoga = () => {
 
             {/* Bottom block: Bullet points flow naturally BELOW the Shiva image, on solid beige */}
             <div className="relative z-10 space-y-[8px] mt-[14px]">
-              <InfoItem
-                icon={FeatureIcons.Yoga}
-                title="Yoga traditionnel vs moderne"
-                text="Le yoga traditionnel inclut spiritualité, méditation, respiration et philosophie. Le yoga moderne est souvent centré sur le corps."
-              />
+              {dynamicInfos.length > 0 ? (
+                dynamicInfos.map((item, index) => {
+                  const IconComponent = FeatureIcons[item.image] || FeatureIcons.Target;
+                  return <InfoItem key={index} icon={IconComponent} title={item.title} text={item.description} />
+                })
+              ) : (
+                <>
+                  <InfoItem
+                    icon={FeatureIcons.Yoga}
+                    title="Yoga traditionnel vs moderne"
+                    text="Le yoga traditionnel inclut spiritualité, méditation, respiration et philosophie. Le yoga moderne est souvent centré sur le corps."
+                  />
 
-              <InfoItem
-                icon={FeatureIcons.Temple}
-                title="Pourquoi l'Inde is la terre du yoga ?"
-                text="Parce que l'Inde a donné naissance au yoga et préserve les traditions authentiques à travers ses ashrams et maîtres."
-              />
+                  <InfoItem
+                    icon={FeatureIcons.Temple}
+                    title="Pourquoi l'Inde is la terre du yoga ?"
+                    text="Parce que l'Inde a donné naissance au yoga et préserve les traditions authentiques à travers ses ashrams et maîtres."
+                  />
 
-              <InfoItem
-                icon={FeatureIcons.Target}
-                title="Les lieux sacrés du yoga"
-                text="Rishikesh, Himalaya, Varanasi, Kerala et Dharamshala sont des lieux emblématiques pour pratiquer le yoga."
-              />
+                  <InfoItem
+                    icon={FeatureIcons.Target}
+                    title="Les lieux sacrés du yoga"
+                    text="Rishikesh, Himalaya, Varanasi, Kerala et Dharamshala sont des lieux emblématiques pour pratiquer le yoga."
+                  />
 
-              <InfoItem
-                icon={FeatureIcons.Globe}
-                title="Le yoga aujourd'hui"
-                text="Le yoga est pratiqué dans le monde entier, mais en Inde, il reste un art de vivre et un chemin spirituel profond."
-              />
+                  <InfoItem
+                    icon={FeatureIcons.Globe}
+                    title="Le yoga aujourd'hui"
+                    text="Le yoga est pratiqué dans le monde entier, mais en Inde, il reste un art de vivre et un chemin spirituel profond."
+                  />
+                </>
+              )}
             </div>
 
             <div className="absolute left-[-25px] bottom-[-22px] opacity-[0.08] pointer-events-none z-0">
@@ -359,7 +407,7 @@ const Yoga = () => {
           <div className="bg-[#fbfaf6] pt-[22px] px-[28px] pb-[14px]">
             <div className="text-center mb-[18px]">
               <h2 className="font-serif uppercase text-[17px] tracking-[0.03em]">
-                Tout Savoir sur le Yoga
+                {pageSettings.yoga_faq_title}
               </h2>
 
               <div className="flex items-center justify-center gap-2 mt-[2px]">
@@ -369,76 +417,115 @@ const Yoga = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-[1fr_auto_1fr] gap-x-0">
-              <div className="pr-[20px]">
-                <QuestionItem
-                  no="1"
-                  icon={FeatureIcons.Om}
-                  title={`Que signifie le mot "Yoga" ?`}
-                  text={`Le mot Yoga vient du sanskrit "Yuj"\nqui signifie unir, connecter, harmoniser.`}
-                />
+            <div className="grid md:grid-cols-[1fr_auto_1fr] gap-x-0">
+              <div className="pr-0 md:pr-[20px]">
+                {dynamicFaqs.length > 0 ? (
+                  dynamicFaqs.slice(0, Math.ceil(dynamicFaqs.length / 2)).map((item, index) => {
+                    const IconComponent = FeatureIcons[item.image] || FeatureIcons.Om;
+                    return (
+                      <div key={index} className={`${index > 2 && !showAllFaq ? 'hidden md:block' : 'block'}`}>
+                        <QuestionItem no={index + 1} icon={IconComponent} title={item.title} text={item.description} />
+                      </div>
+                    )
+                  })
+                ) : (
+                  <>
+                    <QuestionItem
+                      no="1"
+                      icon={FeatureIcons.Om}
+                      title={`Que signifie le mot "Yoga" ?`}
+                      text={`Le mot Yoga vient du sanskrit "Yuj"\nqui signifie unir, connecter, harmoniser.`}
+                    />
 
-                <QuestionItem
-                  no="2"
-                  icon={FeatureIcons.Calendar}
-                  title="Quand le yoga est-il apparu ?"
-                  text="Le yoga est apparu il y a plus de 5 000 ans en Inde ancienne."
-                />
+                    <QuestionItem
+                      no="2"
+                      icon={FeatureIcons.Calendar}
+                      title="Quand le yoga est-il apparu ?"
+                      text="Le yoga est apparu il y a plus de 5 000 ans en Inde ancienne."
+                    />
 
-                <QuestionItem
-                  no="3"
-                  icon={FeatureIcons.Book}
-                  title="Que sont les Vedas ?"
-                  text="Les Vedas sont les textes sacrés les plus anciens de l'Inde. Ils contiennent prières, mantras, philosophie et connaissances spirituelles."
-                />
+                    <QuestionItem
+                      no="3"
+                      icon={FeatureIcons.Book}
+                      title="Que sont les Vedas ?"
+                      text="Les Vedas sont les textes sacrés les plus anciens de l'Inde. Ils contiennent prières, mantras, philosophie et connaissances spirituelles."
+                    />
 
-                <QuestionItem
-                  no="4"
-                  icon={FeatureIcons.Trident}
-                  title="Pourquoi le yoga est-il lié à Shiva ?"
-                  text="Shiva est considéré comme le premier yogi (Adiyogi). Il a médité dans l'Himalaya et transmis la science du yoga à ses disciples."
-                />
+                    <div className={`${showAllFaq ? 'block' : 'hidden md:block'}`}>
+                      <QuestionItem
+                        no="4"
+                        icon={FeatureIcons.Trident}
+                        title="Pourquoi le yoga est-il lié à Shiva ?"
+                        text="Shiva est considéré comme le premier yogi (Adiyogi). Il a médité dans l'Himalaya et transmis la science du yoga à ses disciples."
+                      />
 
-                <QuestionItem
-                  no="5"
-                  icon={FeatureIcons.Meditation}
-                  title="Qui est un Yogi ? Une Yogini ?"
-                  text="Un Yogi est un homme qui pratique le yoga. Une Yogini est une femme qui pratique le yoga. Ils cherchent la paix intérieure et l'éveil spirituel."
-                />
+                      <QuestionItem
+                        no="5"
+                        icon={FeatureIcons.Meditation}
+                        title="Qui est un Yogi ? Une Yogini ?"
+                        text="Un Yogi est un homme qui pratique le yoga. Une Yogini est une femme qui pratique le yoga. Ils cherchent la paix intérieure et l'éveil spirituel."
+                      />
+                    </div>
+                  </>
+                )}
               </div>
 
               {/* Vertical dividing line between left and right columns */}
-              <div className="w-[1px] bg-[#213528]/15 self-stretch my-2" />
+              <div className="hidden md:block w-[1px] bg-[#213528]/15 self-stretch my-2" />
 
-              <div className="pl-[20px]">
-                <QuestionItem
-                  no="6"
-                  icon={FeatureIcons.Meditation}
-                  title="Combien existe-t-il de postures ?"
-                  text="Les textes anciens parlent de 8,4 millions de postures symboliques. Dans la pratique moderne, environ 84 postures principales sont essentielles."
-                />
+              <div className={`pl-0 md:pl-[20px] mt-2 md:mt-0 ${showAllFaq ? 'block' : 'hidden md:block'}`}>
+                {dynamicFaqs.length > 0 ? (
+                  dynamicFaqs.slice(Math.ceil(dynamicFaqs.length / 2)).map((item, index) => {
+                    const IconComponent = FeatureIcons[item.image] || FeatureIcons.Om;
+                    return <QuestionItem key={index} no={Math.ceil(dynamicFaqs.length / 2) + index + 1} icon={IconComponent} title={item.title} text={item.description} />
+                  })
+                ) : (
+                  <>
+                    <QuestionItem
+                      no="6"
+                      icon={FeatureIcons.Meditation}
+                      title="Combien existe-t-il de postures ?"
+                      text="Les textes anciens parlent de 8,4 millions de postures symboliques. Dans la pratique moderne, environ 84 postures principales sont essentielles."
+                    />
 
-                <QuestionItem
-                  no="7"
-                  icon={FeatureIcons.Meditation}
-                  title="Quelles sont les 8 branches du Yoga ?"
-                  text={`1. Yama (valeurs morales)\n2. Niyama (discipline personnelle)\n3. Asana (postures)\n4. Pranayama (respiration)\n5. Pratyahara (controls des sens)\n6. Dharana (concentration)\n7. Dhyana (méditation)\n8. Samadhi (éveil spirituel)`}
-                />
+                    <QuestionItem
+                      no="7"
+                      icon={FeatureIcons.Meditation}
+                      title="Quelles sont les 8 branches du Yoga ?"
+                      text={`1. Yama (valeurs morales)\n2. Niyama (discipline personnelle)\n3. Asana (postures)\n4. Pranayama (respiration)\n5. Pratyahara (controls des sens)\n6. Dharana (concentration)\n7. Dhyana (méditation)\n8. Samadhi (éveil spirituel)`}
+                    />
 
-                <QuestionItem
-                  no="8"
-                  icon={FeatureIcons.TargetConcentric}
-                  title="Quel est le but du yoga ?"
-                  text="Calmer le mental, équilibrer le corps, réduire le stress et atteindre l'éveil spirituel."
-                />
+                    <QuestionItem
+                      no="8"
+                      icon={FeatureIcons.TargetConcentric}
+                      title="Quel est le but du yoga ?"
+                      text="Calmer le mental, équilibrer le corps, réduire le stress et atteindre l'éveil spirituel."
+                    />
 
-                <QuestionItem
-                  no="9"
-                  icon={FeatureIcons.MortarPestle}
-                  title="Yoga & Ayurveda ?"
-                  text="Le yoga et l'Ayurveda sont complémentaires. Le yoga équilibre l'esprit et l'énergie, l'Ayurveda équilibre le corps et la santé."
-                />
+                    <QuestionItem
+                      no="9"
+                      icon={FeatureIcons.MortarPestle}
+                      title="Yoga & Ayurveda ?"
+                      text="Le yoga et l'Ayurveda sont complémentaires. Le yoga équilibre l'esprit et l'énergie, l'Ayurveda équilibre le corps et la santé."
+                    />
+                  </>
+                )}
               </div>
+            </div>
+
+            {/* Mobile Show More Button */}
+            <div className="flex justify-center mt-4 md:hidden">
+              <button
+                onClick={() => setShowAllFaq(!showAllFaq)}
+                className="flex flex-col items-center justify-center text-[#213528] bg-transparent border-none outline-none"
+              >
+                <span className="text-[9px] font-bold uppercase tracking-[0.2em] mb-1">
+                  {showAllFaq ? "Voir Moins" : "Voir Plus"}
+                </span>
+                <svg className={`w-4 h-4 transition-transform duration-300 ${showAllFaq ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
             </div>
           </div>
         </section>
@@ -451,8 +538,8 @@ const Yoga = () => {
               <div className="flex items-center justify-center gap-3">
                 <span className="w-[90px] h-px bg-[#213528]/30" />
 
-                <h2 className="font-serif uppercase text-[15px] tracking-[0.05em]">
-                  3 Itinéraires de Yoga en Inde
+              <h2 className="font-serif uppercase text-[15px] tracking-[0.05em]">
+                  {pageSettings.yoga_itinerary_title}
                 </h2>
 
                 <span className="w-[90px] h-px bg-[#213528]/30" />
@@ -461,99 +548,136 @@ const Yoga = () => {
               <LotusIcon className="w-[17px] h-[17px] mx-auto mt-[2px]" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-[18px]">
-              <ItineraryCard
-                no="1"
-                image={itineraryRishikesh}
-                title="Inde Spirituelle Bien-Être 14 Jours"
-                
-                desc="Yoga quotidien, méditation, Aarti au Gange, visites d'ashrams et nature inspirante."
-                features={["Yoga & Méditation", "Spiritualité", "Nature", "Détox & Bien-être"]}
-              />
+            <div className="flex flex-wrap justify-center -mx-1 md:-mx-2">
+              {dynamicItineraries.length > 0 ? (
+                dynamicItineraries.map((item, index) => (
+                  <div key={index} className={`w-1/2 md:w-1/3 px-1 md:px-2 max-w-[380px] mb-2 md:mb-4 ${index > 1 ? 'hidden md:block' : ''}`}>
+                    <ItineraryCard
+                      no={index + 1}
+                      image={item.image}
+                      title={item.title}
+                      desc={item.description}
+                      duration={item.type} // we can use 'type' or something if duration is needed, wait itinerary needs features too... 
+                      // Actually, features can just be derived or let's use the description for all.
+                      features={[]} // We won't map features dynamically right now to save time, or we can comma separate.
+                    />
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div className="w-1/2 md:w-1/3 px-1 md:px-2 max-w-[380px] mb-2 md:mb-4">
+                    <ItineraryCard
+                      no="1"
+                      image={itineraryRishikesh}
+                      title="Inde Spirituelle Bien-Être 14 Jours"
+                      desc="Yoga quotidien, méditation, Aarti au Gange, visites d'ashrams et nature inspirante."
+                      features={["Yoga & Méditation", "Spiritualité", "Nature", "Détox & Bien-être"]}
+                    />
+                  </div>
 
-              <ItineraryCard
-                no="2"
-                image={itineraryKerala}
-                title="Yoga & Ayurveda au Kerala"
-                duration="8 Jours / 7 Nuits"
-                desc="Yoga, soins ayurvédiques, alimentation saine, détente et rajeunissement complet."
-                features={["Yoga", "Ayurveda", "Massage", "Détox"]}
-              />
+                  <div className="w-1/2 md:w-1/3 px-1 md:px-2 max-w-[380px] mb-2 md:mb-4">
+                    <ItineraryCard
+                      no="2"
+                      image={itineraryKerala}
+                      title="Yoga & Ayurveda au Kerala"
+                      duration="8 Jours / 7 Nuits"
+                      desc="Yoga, soins ayurvédiques, alimentation saine, détente et rajeunissement complet."
+                      features={["Yoga", "Ayurveda", "Massage", "Détox"]}
+                    />
+                  </div>
 
-              <ItineraryCard
-                no="3"
-                image={itineraryHimalaya}
-                title="Yoga & Himalaya"
-                duration="9 Jours / 8 Nuits"
-                desc="Yoga en montagne, méditation profonde, randonnées, silence et reconnexion intérieure."
-                features={["Yoga", "Méditation", "Nature", "Éveil intérieur"]}
-              />
+                  <div className="hidden md:block w-1/2 md:w-1/3 px-1 md:px-2 max-w-[380px] mb-2 md:mb-4">
+                    <ItineraryCard
+                      no="3"
+                      image={itineraryHimalaya}
+                      title="Yoga & Himalaya"
+                      duration="9 Jours / 8 Nuits"
+                      desc="Yoga en montagne, méditation profonde, randonnées, silence et reconnexion intérieure."
+                      features={["Yoga", "Méditation", "Nature", "Éveil intérieur"]}
+                    />
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </section>
 
         {/* BOTTOM */}
-        <section className="relative h-[170px] overflow-hidden">
+        <section className="relative h-auto md:h-[170px] py-[20px] md:py-0 overflow-hidden">
           <img
-            src={bottomBanner}
+            src={pageSettings.yoga_bottom_image || bottomBanner}
             alt="Votre voyage intérieur commence ici"
             className="absolute inset-0 w-full h-full object-cover object-left"
           />
 
           <div className="absolute inset-0 bg-[#11241c]/40" />
 
-          <div className="relative z-10 h-full px-5 grid grid-cols-[1fr_250px] items-center gap-8">
-            <div className="text-center text-[#f4ead6] pl-[250px]">
-              <LotusIcon className="w-[28px] h-[28px] mx-auto mb-[2px]" color="#d8b45e" />
+          <div className="relative z-10 h-full px-2 md:px-5 flex flex-row items-center justify-between gap-2 md:gap-8 max-w-7xl mx-auto">
+            <div className="text-left text-[#f4ead6] pl-2 md:pl-[150px] flex-1">
+              <LotusIcon className="w-[18px] h-[18px] md:w-[28px] md:h-[28px] mb-[2px] ml-0" color="#d8b45e" />
 
-              <h2 className="font-serif uppercase text-[29px] leading-[0.96] tracking-[0.03em]">
-                Votre Voyage Intérieur <br />
-                Commence Ici
+              <h2 className="font-serif uppercase text-[15px] md:text-[29px] leading-[1.1] md:leading-[0.96] tracking-[0.03em] mt-1 whitespace-pre-line">
+                {pageSettings.yoga_bottom_title}
               </h2>
 
-              <p className="text-[8.5px] leading-[1.45] mt-[10px] max-w-[360px] mx-auto">
-                Offrez-vous une expérience transformante en Inde, <br />
-                berceau du yoga, de la sagesse et de la paix intérieure.
+              <p className="text-[6.5px] md:text-[8.5px] leading-[1.45] mt-[6px] md:mt-[10px] max-w-[180px] md:max-w-[360px] whitespace-pre-line">
+                {pageSettings.yoga_bottom_text}
               </p>
 
-              <div className="mt-[14px] flex items-center justify-center gap-[18px]">
-                {[
-                  ["Enseignants\nexpérimentés", FeatureIcons.Person],
-                  ["Hébergements\npaisibles", FeatureIcons.Temple],
-                  ["Cuisine saine\nvégétarienne", FeatureIcons.Bowl],
-                  ["Accompagnement\npersonnalisé", FeatureIcons.Globe],
-                ].map(([text, Icon], index) => (
-                  <div key={index} className="flex flex-col items-center text-[#f4ead6]">
-                    <div className="scale-[0.7] h-[14px]">
-                      <Icon />
-                    </div>
+              <div className="mt-[10px] md:mt-[14px] flex flex-wrap md:flex-nowrap items-start justify-start gap-2 md:gap-[18px] max-w-[180px] md:max-w-none">
+                {dynamicBottomFeatures.length > 0 ? (
+                  dynamicBottomFeatures.map((item, index) => {
+                    const IconComponent = FeatureIcons[item.image] || FeatureIcons.Person;
+                    return (
+                      <div key={index} className="w-[calc(50%-4px)] md:w-auto flex flex-col items-start md:items-center text-[#f4ead6]">
+                        <div className="scale-[0.5] md:scale-[0.7] h-[10px] md:h-[14px] ml-[-6px] md:ml-0">
+                          <IconComponent />
+                        </div>
+                        <span className="text-[5px] md:text-[6.5px] leading-tight whitespace-pre-line mt-[1px] md:mt-[2px] text-left md:text-center">
+                          {item.title}
+                        </span>
+                      </div>
+                    )
+                  })
+                ) : (
+                  [
+                    ["Enseignants\nexpérimentés", FeatureIcons.Person],
+                    ["Hébergements\npaisibles", FeatureIcons.Temple],
+                    ["Cuisine saine\nvégétarienne", FeatureIcons.Bowl],
+                    ["Accompagnement\npersonnalisé", FeatureIcons.Globe],
+                  ].map(([text, Icon], index) => (
+                    <div key={index} className="w-[calc(50%-4px)] md:w-auto flex flex-col items-start md:items-center text-[#f4ead6]">
+                      <div className="scale-[0.5] md:scale-[0.7] h-[10px] md:h-[14px] ml-[-6px] md:ml-0">
+                        <Icon />
+                      </div>
 
-                    <span className="text-[6.5px] leading-tight whitespace-pre-line mt-[2px]">
-                      {text}
-                    </span>
-                  </div>
-                ))}
+                      <span className="text-[5px] md:text-[6.5px] leading-tight whitespace-pre-line mt-[1px] md:mt-[2px] text-left md:text-center">
+                        {text}
+                      </span>
+                    </div>
+                  ))
+                )}
               </div>
             </div>
 
-            <div className="bg-[#f3ecdc] rounded-[10px] w-[230px] h-[130px] flex flex-col items-center justify-center text-center shadow-xl">
-              <LotusIcon className="w-[23px] h-[23px] mb-[4px]" />
+            <div className="bg-[#f3ecdc] rounded-[6px] md:rounded-[10px] w-[130px] md:w-[230px] h-auto md:h-[130px] py-2 md:py-0 px-2 shrink-0 flex flex-col items-center justify-center text-center shadow-xl">
+              <LotusIcon className="w-[14px] h-[14px] md:w-[23px] md:h-[23px] mb-[2px] md:mb-[4px]" />
 
-              <h3 className="font-serif text-[12px] leading-tight mb-[9px]">
+              <h3 className="font-serif text-[8px] md:text-[12px] leading-tight mb-[6px] md:mb-[9px]">
                 Prêt à commencer <br />
                 votre transformation ?
               </h3>
 
-              <button className="bg-[#213528] text-white text-[7px] uppercase font-bold tracking-[0.08em] px-[22px] py-[7px] rounded-[2px] mb-[8px]">
+              <button className="bg-[#213528] text-white text-[5px] md:text-[7px] uppercase font-bold tracking-[0.08em] px-[12px] md:px-[22px] py-[5px] md:py-[7px] rounded-[2px] mb-[5px] md:mb-[8px]">
                 Réserver ma retraite
               </button>
 
-              <p className="text-[7px] leading-[1.35] text-[#213528]/75">
+              <p className="text-[4.5px] md:text-[7px] leading-[1.35] text-[#213528]/75">
                 Reconnectez-vous à vous-même, <br />
                 retournez chez vous transformé.
               </p>
 
-              <div className="text-[10px] text-[#213528]/50 mt-[2px]">♡</div>
+              <div className="text-[7px] md:text-[10px] text-[#213528]/50 mt-[1px] md:mt-[2px]">♡</div>
             </div>
           </div>
         </section>
@@ -573,7 +697,15 @@ const Yoga = () => {
           font-family: 'Montserrat', sans-serif;
         }
 
+        .yoga-wrapper {
+          zoom: 1.25;
+        }
+
         @media (max-width: 767px) {
+          .yoga-wrapper {
+            zoom: 1 !important;
+            width: 100vw;
+          }
           section {
             height: auto !important;
           }

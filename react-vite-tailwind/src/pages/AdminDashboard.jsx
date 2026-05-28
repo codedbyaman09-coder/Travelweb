@@ -1,7 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Footer from '../components/Footer';
+import FaqManager from '../components/admin/FaqManager';
+import InquiryManager from '../components/admin/InquiryManager';
+import DestinationManager from '../components/admin/DestinationManager';
+import ItineraryManager from '../components/admin/ItineraryManager';
+import DashboardOverview from '../components/admin/DashboardOverview';
+import UserManager from '../components/admin/UserManager';
+import MediaManager from '../components/admin/MediaManager';
+import SettingManager from '../components/admin/SettingManager';
+import MenuManager from '../components/admin/MenuManager';
+import MetaManager from '../components/admin/MetaManager';
+import GlobalContentManager from '../components/admin/GlobalContentManager';
+import SeoManager from '../components/admin/SeoManager';
+import BlogContentManager from '../components/admin/BlogContentManager';
+import AboutManager from '../components/admin/AboutManager';
+import YogaManager from '../components/admin/YogaManager';
+import HomeManager from '../components/admin/HomeManager';
+import GenericContentManager from '../components/admin/GenericContentManager';
+import MapDestManager from '../components/admin/MapDestManager';
+import BlogCategoryManager from '../components/admin/BlogCategoryManager';
+import BlogManager from '../components/admin/BlogManager';
+import ProfileManager from '../components/admin/ProfileManager';
+import EnviesManager from '../components/admin/EnviesManager';
+import VisionManager from '../components/admin/VisionManager';
+import FooterManager from '../components/admin/FooterManager';
+import ConfirmModal from '../components/admin/ConfirmModal';
+import {
+  FileText, GalleryHorizontalEnd, HelpCircle, Home as HomeIcon,
+  Image, Inbox, Info, LayoutDashboard, Map, Mountain,
+  Route as RouteIcon, Search, Settings, Star, Tags,
+  UserCog, Users, Video, ChevronDown, ChevronUp
+} from 'lucide-react';
+import { apiList, apiRequest } from '../lib/api';
 
 const AdminDashboard = () => {
   const { user, loading } = useAuth();
@@ -27,7 +58,14 @@ const AdminDashboard = () => {
   const [success, setSuccess] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const API_URL = 'http://localhost:8000/api/blogs';
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [activeModule, setActiveModule] = useState('dashboard');
+  const [expandedNavGroups, setExpandedNavGroups] = useState({ home: false });
+  const [blogCategories, setBlogCategories] = useState(['Culture & Histoire', 'Nature & Bien-être', 'Spiritualité', 'Aventure', 'Plage & Détente']);
+  const [managingContentBlog, setManagingContentBlog] = useState(null);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [blogToDelete, setBlogToDelete] = useState(null);
+  const API_PATH = '/blogs';
 
   // Protect Admin Dashboard
   useEffect(() => {
@@ -73,542 +111,204 @@ const AdminDashboard = () => {
   // CREATE BLOG POST
   const handleCreateBlog = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
-    setIsSubmitting(true);
-
-    const token = localStorage.getItem('indeora_token');
-    if (!token) {
-      setError('Session expirée. Veuillez vous reconnecter.');
-      setIsSubmitting(false);
-      return;
-    }
-
+    setError(''); setSuccess(''); setIsSubmitting(true);
     try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          title,
-          slug,
-          category,
-          excerpt,
-          content,
-          image_url: imageUrl || 'https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&q=80&w=800',
-          read_time: readTime
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSuccess('Le blog a été créé avec succès!');
-        // Reset form
-        setTitle('');
-        setSlug('');
-        setExcerpt('');
-        setContent('');
-        setImageUrl('');
-        setReadTime('5 min');
-        // Refresh list
-        fetchBlogs();
-        // Redirect
-        setTimeout(() => {
-          setCurrentTab('list');
-          setSuccess('');
-        }, 1500);
-      } else {
-        setError(data.message || 'Échec de la création du blog.');
-      }
-    } catch (err) {
-      setError('Une erreur réseau est survenue.');
-    } finally {
-      setIsSubmitting(false);
-    }
+      const res = await apiRequest(API_PATH, { method: 'POST', body: JSON.stringify({ title, slug, category, excerpt, content, image_url: imageUrl, read_time: readTime }) });
+      if (res && res.success) {
+        setSuccess('Blog publié avec succès !');
+        setTitle(''); setSlug(''); setCategory('Culture & Histoire'); setExcerpt(''); setContent(''); setImageUrl(''); setReadTime('5 min');
+        setCurrentTab('list'); fetchBlogs();
+        setTimeout(() => setSuccess(''), 3000);
+      } else { setError(res?.message || 'Erreur.'); }
+    } catch (err) { setError('Erreur de connexion.'); }
+    finally { setIsSubmitting(false); }
   };
 
   // UPDATE BLOG POST
   const handleUpdateBlog = async (e) => {
     e.preventDefault();
-    setError('');
-    setSuccess('');
-    setIsSubmitting(true);
-
-    const token = localStorage.getItem('indeora_token');
-    if (!token) {
-      setError('Session expirée.');
-      setIsSubmitting(false);
-      return;
-    }
-
+    setError(''); setSuccess(''); setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_URL}/${editingBlog.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          title: editingBlog.title,
-          slug: editingBlog.slug,
-          category: editingBlog.category,
-          excerpt: editingBlog.excerpt,
-          content: editingBlog.content,
-          image_url: editingBlog.image_url,
-          read_time: editingBlog.read_time
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSuccess('Le blog a été modifié avec succès!');
-        setEditingBlog(null);
-        fetchBlogs();
-        setTimeout(() => setSuccess(''), 1500);
-      } else {
-        setError(data.message || 'Échec de la modification.');
-      }
-    } catch (err) {
-      setError('Erreur de connexion.');
-    } finally {
-      setIsSubmitting(false);
-    }
+      const res = await apiRequest(`${API_PATH}/${editingBlog.id}`, { method: 'PUT', body: JSON.stringify(editingBlog) });
+      if (res && res.success) {
+        setSuccess('Blog mis à jour !'); setEditingBlog(null); fetchBlogs();
+        setTimeout(() => setSuccess(''), 3000);
+      } else { setError(res?.message || 'Erreur.'); }
+    } catch (err) { setError('Erreur de connexion.'); }
+    finally { setIsSubmitting(false); }
   };
 
   // DELETE BLOG POST
-  const handleDeleteBlog = async (id) => {
-    if (!window.confirm('Êtes-vous sûr de vouloir supprimer ce blog ?')) return;
-
-    setError('');
-    setSuccess('');
-
-    const token = localStorage.getItem('indeora_token');
-    if (!token) {
-      setError('Session expirée.');
-      return;
-    }
-
+  const handleDeleteBlog = (id) => { setBlogToDelete(id); setDeleteModalOpen(true); };
+  const handleConfirmDeleteBlog = async () => {
+    if (!blogToDelete) return;
+    setDeleteModalOpen(false);
     try {
-      const response = await fetch(`${API_URL}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        setSuccess('Le blog a été supprimé.');
-        fetchBlogs();
-        setTimeout(() => setSuccess(''), 1500);
-      } else {
-        setError(data.message || 'Échec de la suppression.');
-      }
-    } catch (err) {
-      setError('Erreur de connexion.');
-    }
+      const res = await apiRequest(`${API_PATH}/${blogToDelete}`, { method: 'DELETE' });
+      if (res && res.success) { setSuccess('Blog supprimé.'); fetchBlogs(); setTimeout(() => setSuccess(''), 1500); }
+      else { setError(res?.message || 'Échec.'); }
+    } catch (err) { setError('Erreur de connexion.'); }
+    finally { setBlogToDelete(null); }
   };
 
-  // Start Edit mode
-  const startEdit = (blog) => {
-    setEditingBlog({ ...blog });
-  };
+  const startEdit = (blog) => { setEditingBlog({ ...blog }); };
+
+
+  const navItems = [
+    { id: 'dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { id: 'settings', icon: Settings, label: 'Website Settings' },
+    { id: 'menu', icon: RouteIcon, label: 'Navigation Menu' },
+    { id: 'meta', icon: Tags, label: 'Meta SEO Manager' },
+    { id: 'footer', icon: LayoutDashboard, label: 'Footer Management' },
+    { id: 'home', icon: HomeIcon, label: 'Home Page Builder' },
+    { id: 'abouts', icon: Info, label: 'About Management' },
+    { id: 'destinations', icon: Map, label: 'Destinations Management' },
+    { id: 'blogs', icon: FileText, label: 'Blog Management' },
+    { id: 'blog_categories', icon: Tags, label: 'Blog Categories' },
+    { id: 'logo', icon: Image, label: 'Logo Management' },
+    { id: 'banners', icon: GalleryHorizontalEnd, label: 'Banner / Hero' },
+    {
+      id: 'home_group', icon: HomeIcon, label: 'Home Pages', children: [
+        { id: 'home_content', icon: HomeIcon, label: 'Home Content' },
+        { id: 'esprit', icon: Star, label: "Home - L'esprit Indeora" },
+        { id: 'map_dest', icon: Map, label: 'Home - Carte Destinations' },
+        { id: 'vision', icon: Info, label: 'Home - Vision du Voyage' },
+      ]
+    },
+    { id: 'envies', icon: RouteIcon, label: 'Toutes Vos Envies' },
+    { id: 'itineraries', icon: RouteIcon, label: 'Tours / Packages' },
+    { id: 'gallery', icon: GalleryHorizontalEnd, label: 'Gallery' },
+    { id: 'videos', icon: Video, label: 'Videos' },
+    { id: 'testimonials', icon: Star, label: 'Testimonials' },
+    { id: 'faq', icon: HelpCircle, label: 'FAQ' },
+    { id: 'inquiries', icon: Inbox, label: 'Contact Enquiries' },
+    { id: 'page_content', icon: FileText, label: 'Textes Principaux' },
+    { id: 'pages', icon: Search, label: 'SEO Management' },
+    { id: 'yoga', icon: Mountain, label: 'Yoga' },
+    { id: 'media', icon: Image, label: 'Media Library' },
+    { id: 'users', icon: Users, label: 'Users' },
+    { id: 'profile', icon: UserCog, label: 'Admin Profile' },
+  ];
+
 
   if (loading) {
     return (
-      <div className="w-full min-h-screen bg-[#fcfbf9] flex items-center justify-center pt-24">
-        <svg className="animate-spin h-10 w-10 text-[#A88B52]" fill="none" viewBox="0 0 24 24">
+      <div className="w-full min-h-screen bg-[#f1f5f9] flex items-center justify-center pt-24">
+        <svg className="animate-spin h-10 w-10 text-indigo-500" fill="none" viewBox="0 0 24 24">
           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
         </svg>
       </div>
     );
   }
-
   if (!user) return null;
 
-  return (
-    <div className="w-full min-h-screen bg-[#fcfbf9] text-[#161c20] flex flex-col justify-between pt-24 font-sans">
-      <div className="py-12 flex-grow w-full max-w-[1440px] mx-auto px-[40px]">
-        {/* Header Dashboard */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between border-b border-gray-200 pb-6 mb-10 gap-4">
-          <div>
-            <span className="text-[#A88B52] text-[10px] tracking-[0.35em] font-bold uppercase mb-1 block">
-              Panneau d'administration
-            </span>
-            <h1 className="font-serif text-3xl md:text-4xl text-[#5e412f] italic">
-              Gestion des Blogs (CRUD)
-            </h1>
-          </div>
 
-          <div className="flex gap-3">
-            <button
-              onClick={() => {
-                setCurrentTab('list');
-                setEditingBlog(null);
-              }}
-              className={`px-5 py-2.5 text-xs font-bold tracking-wider uppercase border rounded-sm transition-all duration-300 ${currentTab === 'list' && !editingBlog
-                  ? 'bg-[#5e412f] text-white border-[#5e412f]'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-[#A88B52]'
-                }`}
-            >
-              Tous les blogs
-            </button>
-            <button
-              onClick={() => {
-                setCurrentTab('create');
-                setEditingBlog(null);
-              }}
-              className={`px-5 py-2.5 text-xs font-bold tracking-wider uppercase border rounded-sm transition-all duration-300 ${currentTab === 'create'
-                  ? 'bg-[#5e412f] text-white border-[#5e412f]'
-                  : 'bg-white text-gray-600 border-gray-200 hover:border-[#A88B52]'
-                }`}
-            >
-              Écrire un blog
-            </button>
+  return (
+    <div className="flex h-screen bg-[#f1f5f9] font-sans overflow-hidden text-[#1b2228]">
+      {/* Sidebar */}
+      <aside className={`bg-[#0f172a] border-r border-slate-800 transition-all duration-300 ${isSidebarOpen ? 'w-64' : 'w-20'} flex flex-col shrink-0 z-20 shadow-2xl`}>
+        <div className="h-20 flex items-center justify-center border-b border-slate-800/50 shrink-0">
+          <span className="text-white font-serif italic text-2xl tracking-widest">{isSidebarOpen ? 'Indeora.' : 'I.'}</span>
+        </div>
+        <nav className="flex-1 py-6 space-y-1 px-4 overflow-y-auto custom-scrollbar">
+          {navItems.map(item => {
+            if (item.children) {
+              const isOpen = expandedNavGroups[item.id];
+              const Icon = item.icon;
+              return (
+                <div key={item.id}>
+                  <button onClick={() => setExpandedNavGroups(p => ({ ...p, [item.id]: !p[item.id] }))} className="w-full flex items-center justify-between px-4 py-3 rounded-lg text-slate-400 hover:bg-[#1e293b]/50 hover:text-slate-200 transition-all group">
+                    <div className="flex items-center gap-3">
+                      <Icon size={19} strokeWidth={1.8} />
+                      {isSidebarOpen && <span className="text-[11px] uppercase tracking-wider font-bold whitespace-nowrap">{item.label}</span>}
+                    </div>
+                    {isSidebarOpen && (isOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />)}
+                  </button>
+                  {isOpen && isSidebarOpen && item.children.map(child => {
+                    const CIcon = child.icon;
+                    return (
+                      <button key={child.id} onClick={() => setActiveModule(child.id)} className={`w-full flex items-center gap-3 px-4 py-2.5 ml-4 rounded-lg text-[11px] font-bold uppercase tracking-wider transition-all ${activeModule === child.id ? 'bg-[#1e293b] text-indigo-400 shadow-[inset_4px_0_0_#818cf8]' : 'text-slate-500 hover:bg-[#1e293b]/50 hover:text-slate-200'}`}>
+                        <CIcon size={15} strokeWidth={1.8} />{child.label}
+                      </button>
+                    );
+                  })}
+                </div>
+              );
+            }
+            const Icon = item.icon;
+            return (
+              <button key={item.id} onClick={() => setActiveModule(item.id)} className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all group ${activeModule === item.id ? 'bg-[#1e293b] text-indigo-400 shadow-[inset_4px_0_0_#818cf8]' : 'text-slate-400 hover:bg-[#1e293b]/50 hover:text-slate-200'}`}>
+                <span className={`transition-transform duration-300 ${activeModule === item.id ? 'scale-110' : 'group-hover:scale-110'}`}><Icon size={19} strokeWidth={1.8} /></span>
+                {isSidebarOpen && <span className={`ml-1 text-[11px] uppercase tracking-wider font-bold whitespace-nowrap ${activeModule === item.id ? 'text-indigo-400' : 'text-slate-400 group-hover:text-slate-200'}`}>{item.label}</span>}
+              </button>
+            );
+          })}
+        </nav>
+        <div className="p-6 border-t border-slate-800/50 shrink-0 bg-[#0b1121]">
+          <button onClick={() => navigate('/')} className="flex items-center text-slate-400 hover:text-indigo-400 transition-colors w-full group">
+            <span className="group-hover:-translate-x-1 transition-transform duration-300"><HomeIcon size={18} strokeWidth={1.8} /></span>
+            {isSidebarOpen && <span className="ml-4 font-bold text-[10px] uppercase tracking-[0.2em] whitespace-nowrap">Retour au site</span>}
+          </button>
+        </div>
+      </aside>
+
+      {/* Main */}
+      <main className="flex-1 flex flex-col h-screen overflow-hidden bg-[#f1f5f9] relative">
+        <header className="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-8 shrink-0 z-10 sticky top-0">
+          <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="w-10 h-10 rounded-lg bg-slate-100 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:bg-slate-200 transition-all">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
+          </button>
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden md:block">
+              <p className="text-xs font-bold text-slate-800 uppercase tracking-wider">{user.name || 'Admin'}</p>
+              <p className="text-[10px] text-slate-500 font-mono mt-0.5">{user.email || 'admin@indeora.com'}</p>
+            </div>
+            <div className="w-10 h-10 rounded-lg bg-[#0f172a] text-white flex items-center justify-center font-bold text-lg shadow-sm border border-slate-200">{user.name ? user.name[0].toUpperCase() : 'A'}</div>
+          </div>
+        </header>
+
+        <div className="flex-1 overflow-auto p-4 md:p-8">
+          <div className="max-w-[1440px] mx-auto">
+            {activeModule === 'dashboard' && <DashboardOverview />}
+            {activeModule === 'home' && <HomeManager />}
+            {activeModule === 'faq' && <FaqManager />}
+            {activeModule === 'inquiries' && <InquiryManager />}
+            {activeModule === 'destinations' && <DestinationManager />}
+            {activeModule === 'envies' && <EnviesManager />}
+            {activeModule === 'vision' && <VisionManager />}
+            {activeModule === 'itineraries' && <ItineraryManager />}
+            {activeModule === 'media' && <MediaManager />}
+            {activeModule === 'users' && <UserManager />}
+            {activeModule === 'settings' && <SettingManager />}
+            {activeModule === 'footer' && <FooterManager />}
+            {activeModule === 'abouts' && <AboutManager />}
+            {activeModule === 'yoga' && <YogaManager />}
+            {activeModule === 'pages' && <SeoManager />}
+            {activeModule === 'page_content' && <GlobalContentManager />}
+            {activeModule === 'menu' && <MenuManager />}
+            {activeModule === 'meta' && <MetaManager />}
+            {activeModule === 'logo' && <GenericContentManager type="logo" title="Logo Management" description="Upload and manage website header/footer logos." mediaLabel="Logo URL" />}
+            {activeModule === 'banners' && <GenericContentManager type="banner" title="Banner / Hero Section Management" description="Manage hero banners, headings, buttons and banner images." mediaLabel="Banner Image URL" />}
+            {activeModule === 'map_dest' && <MapDestManager />}
+            {activeModule === 'esprit' && <GenericContentManager type="esprit" title="L'esprit Indeora" description="Gérer les 4 colonnes de la section Esprit Indeora." mediaLabel="URL de l'icône" />}
+            {activeModule === 'home_content' && <GenericContentManager type="home_content" title="Home Page Content Management" description="Manage editable home page text blocks and media." />}
+            {activeModule === 'gallery' && <GenericContentManager type="gallery" title="Gallery Management" description="Manage gallery images used across the website." mediaLabel="Gallery Image URL" />}
+            {activeModule === 'videos' && <GenericContentManager type="video" title="Video Management" description="Manage videos, thumbnails and embed URLs." mediaLabel="Video Thumbnail URL" videoMode />}
+            {activeModule === 'testimonials' && <GenericContentManager type="testimonial" title="Testimonial Management" description="Manage client reviews and testimonial content." mediaLabel="Client Image URL" />}
+            {activeModule === 'blog_categories' && <BlogCategoryManager />}
+            {activeModule === 'profile' && <ProfileManager />}
+
+            {activeModule === 'blogs' && <BlogManager />}
+
           </div>
         </div>
+      </main>
 
-        {/* Global Notifications */}
-        {error && (
-          <div className="mb-6 p-4 bg-red-50 border-l-2 border-red-500 text-red-700 text-xs font-semibold rounded-sm">
-            {error}
-          </div>
-        )}
-
-        {success && (
-          <div className="mb-6 p-4 bg-green-50 border-l-2 border-green-500 text-green-700 text-xs font-semibold rounded-sm animate-pulse">
-            {success}
-          </div>
-        )}
-
-        {/* TAB 1: LISTING & EDITING */}
-        {currentTab === 'list' && !editingBlog && (
-          <div className="bg-white border border-[#A88B52]/10 shadow-md rounded-sm overflow-hidden">
-            {isFetching ? (
-              <div className="p-20 flex justify-center items-center">
-                <svg className="animate-spin h-8 w-8 text-[#A88B52]" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-              </div>
-            ) : blogs.length === 0 ? (
-              <div className="p-16 text-center text-gray-400">
-                Aucun blog trouvé dans la base de données. Cliquez sur "Écrire un blog" pour commencer !
-              </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-[#fcfbf9] border-b border-gray-100 text-[#5e412f]/70 uppercase text-[9px] tracking-widest font-bold">
-                      <th className="py-4 px-6">Image</th>
-                      <th className="py-4 px-6">Titre</th>
-                      <th className="py-4 px-6">Catégorie</th>
-                      <th className="py-4 px-6">Temps de lecture</th>
-                      <th className="py-4 px-6 text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100 text-xs">
-                    {blogs.map((blog) => (
-                      <tr key={blog.id} className="hover:bg-gray-50/50 transition-colors">
-                        <td className="py-4 px-6">
-                          <img
-                            src={blog.image_url}
-                            alt={blog.title}
-                            className="w-14 h-10 object-cover rounded-sm shadow-sm"
-                          />
-                        </td>
-                        <td className="py-4 px-6 font-serif text-sm text-gray-800 font-medium">
-                          {blog.title}
-                          <span className="block text-[10px] text-gray-400 font-sans tracking-wide mt-0.5">
-                            /{blog.slug}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6">
-                          <span className="bg-[#f7f3ed] text-[#A88B52] px-2.5 py-1 rounded-full text-[9px] font-bold uppercase">
-                            {blog.category}
-                          </span>
-                        </td>
-                        <td className="py-4 px-6 text-gray-500 font-medium">{blog.read_time}</td>
-                        <td className="py-4 px-6 text-right space-x-2">
-                          <button
-                            onClick={() => startEdit(blog)}
-                            className="text-xs text-blue-600 hover:text-blue-800 font-bold uppercase tracking-wider bg-blue-50 px-3 py-1.5 rounded-sm transition-colors cursor-pointer"
-                          >
-                            Modifier
-                          </button>
-                          <button
-                            onClick={() => handleDeleteBlog(blog.id)}
-                            className="text-xs text-red-600 hover:text-red-800 font-bold uppercase tracking-wider bg-red-50 px-3 py-1.5 rounded-sm transition-colors cursor-pointer"
-                          >
-                            Supprimer
-                          </button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* TAB 2: CREATE BLOG POST */}
-        {currentTab === 'create' && !editingBlog && (
-          <div className="bg-white border border-[#A88B52]/10 shadow-md rounded-sm p-8 max-w-4xl mx-auto">
-            <h2 className="font-serif text-xl text-[#5e412f] border-b border-gray-100 pb-4 mb-6">
-              Créer un nouvel article
-            </h2>
-
-            <form onSubmit={handleCreateBlog} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Titre de l'article
-                  </label>
-                  <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => handleTitleChange(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] focus:ring-1 focus:ring-[#A88B52] text-sm"
-                    placeholder="Ex: Le Rajasthan Royal"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Slug (Auto-généré)
-                  </label>
-                  <input
-                    type="text"
-                    value={slug}
-                    onChange={(e) => setSlug(e.target.value)}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-sm focus:outline-none text-sm text-gray-500 font-mono"
-                    placeholder="rajasthan-royal"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Catégorie
-                  </label>
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm font-medium text-gray-700"
-                  >
-                    <option value="Culture & Histoire">Culture & Histoire</option>
-                    <option value="Nature & Bien-être">Nature & Bien-être</option>
-                    <option value="Spiritualité">Spiritualité</option>
-                    <option value="Aventure">Aventure</option>
-                    <option value="Plage & Détente">Plage & Détente</option>
-                  </select>
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    URL de l'image de couverture
-                  </label>
-                  <input
-                    type="url"
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm"
-                    placeholder="https://images.unsplash.com/..."
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Temps de lecture
-                  </label>
-                  <input
-                    type="text"
-                    value={readTime}
-                    onChange={(e) => setReadTime(e.target.value)}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm"
-                    placeholder="Ex: 5 min"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                  Extrait / Résumé court
-                </label>
-                <textarea
-                  value={excerpt}
-                  onChange={(e) => setExcerpt(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm h-20"
-                  placeholder="Écrivez un court extrait accrocheur pour la carte du blog..."
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                  Contenu de l'article (Supporte le HTML basique)
-                </label>
-                <textarea
-                  value={content}
-                  onChange={(e) => setContent(e.target.value)}
-                  className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm h-64 font-sans"
-                  placeholder="<h2>Titre principal</h2><p>Paragraphe ici...</p>"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full bg-[#5e412f] text-white text-[11px] font-bold tracking-[0.25em] py-4 rounded-sm hover:bg-[#A88B52] transition-colors duration-300 uppercase shadow-md flex items-center justify-center ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-              >
-                {isSubmitting ? 'Publication en cours...' : 'Publier le Blog'}
-              </button>
-            </form>
-          </div>
-        )}
-
-        {/* EDITING MODE FORM */}
-        {editingBlog && (
-          <div className="bg-white border border-[#A88B52]/10 shadow-md rounded-sm p-8 max-w-4xl mx-auto animate-fadeIn">
-            <div className="flex justify-between items-center border-b border-gray-100 pb-4 mb-6">
-              <h2 className="font-serif text-xl text-[#5e412f]">
-                Modifier l'article
-              </h2>
-              <button
-                onClick={() => setEditingBlog(null)}
-                className="text-gray-400 hover:text-gray-600 font-bold text-xs uppercase tracking-wider"
-              >
-                Annuler
-              </button>
-            </div>
-
-            <form onSubmit={handleUpdateBlog} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Titre de l'article
-                  </label>
-                  <input
-                    type="text"
-                    value={editingBlog.title}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, title: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Slug
-                  </label>
-                  <input
-                    type="text"
-                    value={editingBlog.slug}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, slug: e.target.value })}
-                    className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-sm text-sm text-gray-500 font-mono focus:outline-none"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Catégorie
-                  </label>
-                  <select
-                    value={editingBlog.category}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, category: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm font-medium text-gray-700"
-                  >
-                    <option value="Culture & Histoire">Culture & Histoire</option>
-                    <option value="Nature & Bien-être">Nature & Bien-être</option>
-                    <option value="Spiritualité">Spiritualité</option>
-                    <option value="Aventure">Aventure</option>
-                    <option value="Plage & Détente">Plage & Détente</option>
-                  </select>
-                </div>
-
-                <div className="md:col-span-2">
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    URL de l'image de couverture
-                  </label>
-                  <input
-                    type="url"
-                    value={editingBlog.image_url}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, image_url: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                    Temps de lecture
-                  </label>
-                  <input
-                    type="text"
-                    value={editingBlog.read_time}
-                    onChange={(e) => setEditingBlog({ ...editingBlog, read_time: e.target.value })}
-                    className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm"
-                    required
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                  Extrait / Résumé court
-                </label>
-                <textarea
-                  value={editingBlog.excerpt}
-                  onChange={(e) => setEditingBlog({ ...editingBlog, excerpt: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm h-20"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-[10px] uppercase tracking-wider font-bold text-[#5e412f]/60 mb-2">
-                  Contenu de l'article (Supporte le HTML)
-                </label>
-                <textarea
-                  value={editingBlog.content}
-                  onChange={(e) => setEditingBlog({ ...editingBlog, content: e.target.value })}
-                  className="w-full px-4 py-3 bg-[#fdfdfc] border border-gray-200 rounded-sm focus:outline-none focus:border-[#A88B52] text-sm h-64"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full bg-[#5e412f] text-white text-[11px] font-bold tracking-[0.25em] py-4 rounded-sm hover:bg-[#A88B52] transition-colors duration-300 uppercase shadow-md flex items-center justify-center ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
-                  }`}
-              >
-                {isSubmitting ? 'Sauvegarde en cours...' : 'Sauvegarder les modifications'}
-              </button>
-            </form>
-          </div>
-        )}
-      </div>
-      <Footer />
+      {managingContentBlog && (
+        <BlogContentManager blog={managingContentBlog} onClose={() => { setManagingContentBlog(null); fetchBlogs(); }} />
+      )}
+      <ConfirmModal isOpen={deleteModalOpen} title="Supprimer le blog" message="Êtes-vous sûr de vouloir supprimer cet article de blog ? Cette action est irréversible." onConfirm={handleConfirmDeleteBlog} onCancel={() => { setDeleteModalOpen(false); setBlogToDelete(null); }} />
     </div>
   );
 };

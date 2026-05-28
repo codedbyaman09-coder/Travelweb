@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+
 import Footer from '../components/Footer';
 
 const KeralaBackwaters = () => {
@@ -31,7 +31,7 @@ const KeralaBackwaters = () => {
 
   return (
     <div className="bg-[#FAF9F6] min-h-screen font-light">
-      <Navbar />
+      
 
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[75vh] lg:h-[85vh] overflow-hidden flex items-center justify-center">

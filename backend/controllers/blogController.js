@@ -3,8 +3,13 @@ const db = require("../db");
 // GET ALL BLOGS
 const getAllBlogs = async (req, res) => {
   try {
+    const includeInactive = req.query.includeInactive === "true";
     const [blogs] = await db.query(
-      "SELECT id, title, slug, category, excerpt, image_url, read_time, created_at FROM blogs ORDER BY id DESC"
+      `SELECT id, title, slug, category, excerpt, content, page_content, image_url, read_time,
+              status, meta_title, meta_description, meta_keywords, created_at
+       FROM blogs
+       ${includeInactive ? "" : "WHERE status = 'active' OR status IS NULL"}
+       ORDER BY id DESC`
     );
 
     return res.status(200).json({
@@ -53,7 +58,20 @@ const getBlogBySlug = async (req, res) => {
 // CREATE BLOG
 const createBlog = async (req, res) => {
   try {
-    const { title, slug, category, excerpt, content, image_url, read_time } = req.body;
+    const {
+      title,
+      slug,
+      category,
+      excerpt,
+      content,
+      page_content,
+      image_url,
+      read_time,
+      status,
+      meta_title,
+      meta_description,
+      meta_keywords
+    } = req.body;
 
     if (!title || !slug || !category || !excerpt || !content) {
       return res.status(400).json({
@@ -76,8 +94,23 @@ const createBlog = async (req, res) => {
     }
 
     await db.query(
-      "INSERT INTO blogs (title, slug, category, excerpt, content, image_url, read_time) VALUES (?, ?, ?, ?, ?, ?, ?)",
-      [title, slug, category, excerpt, content, image_url, read_time || "5 min"]
+      `INSERT INTO blogs
+        (title, slug, category, excerpt, content, page_content, image_url, read_time, status, meta_title, meta_description, meta_keywords)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        title,
+        slug,
+        category,
+        excerpt,
+        content,
+        page_content || null,
+        image_url,
+        read_time || "5 min",
+        status || "active",
+        meta_title || null,
+        meta_description || null,
+        meta_keywords || null
+      ]
     );
 
     return res.status(201).json({
@@ -97,11 +130,24 @@ const createBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   try {
     const { id } = req.params;
-    const { title, slug, category, excerpt, content, image_url, read_time } = req.body;
+    const {
+      title,
+      slug,
+      category,
+      excerpt,
+      content,
+      page_content,
+      image_url,
+      read_time,
+      status,
+      meta_title,
+      meta_description,
+      meta_keywords
+    } = req.body;
 
     // Check if blog exists
     const [existingBlog] = await db.query(
-      "SELECT id FROM blogs WHERE id = ?",
+      "SELECT * FROM blogs WHERE id = ?",
       [id]
     );
 
@@ -112,9 +158,41 @@ const updateBlog = async (req, res) => {
       });
     }
 
+    const blog = existingBlog[0];
+
+    const updatedTitle = title !== undefined ? title : blog.title;
+    const updatedSlug = slug !== undefined ? slug : blog.slug;
+    const updatedCategory = category !== undefined ? category : blog.category;
+    const updatedExcerpt = excerpt !== undefined ? excerpt : blog.excerpt;
+    const updatedContent = content !== undefined ? content : blog.content;
+    const updatedPageContent = page_content !== undefined ? page_content : blog.page_content;
+    const updatedImageUrl = image_url !== undefined ? image_url : blog.image_url;
+    const updatedReadTime = read_time !== undefined ? read_time : blog.read_time;
+    const updatedStatus = status !== undefined ? status : blog.status || "active";
+    const updatedMetaTitle = meta_title !== undefined ? meta_title : blog.meta_title;
+    const updatedMetaDescription = meta_description !== undefined ? meta_description : blog.meta_description;
+    const updatedMetaKeywords = meta_keywords !== undefined ? meta_keywords : blog.meta_keywords;
+
     await db.query(
-      "UPDATE blogs SET title = ?, slug = ?, category = ?, excerpt = ?, content = ?, image_url = ?, read_time = ? WHERE id = ?",
-      [title, slug, category, excerpt, content, image_url, read_time, id]
+      `UPDATE blogs
+       SET title = ?, slug = ?, category = ?, excerpt = ?, content = ?, page_content = ?,
+           image_url = ?, read_time = ?, status = ?, meta_title = ?, meta_description = ?, meta_keywords = ?
+       WHERE id = ?`,
+      [
+        updatedTitle,
+        updatedSlug,
+        updatedCategory,
+        updatedExcerpt,
+        updatedContent,
+        updatedPageContent || null,
+        updatedImageUrl,
+        updatedReadTime,
+        updatedStatus,
+        updatedMetaTitle,
+        updatedMetaDescription,
+        updatedMetaKeywords,
+        id
+      ]
     );
 
     return res.status(200).json({
