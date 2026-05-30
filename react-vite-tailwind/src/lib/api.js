@@ -10,6 +10,16 @@ export const apiUrl = (path = '') => {
   return `${API_BASE_URL}${cleanPath}`;
 };
 
+export const getMediaUrl = (url) => {
+  if (!url) return '';
+  if (url.includes('/uploads/')) {
+    const path = url.substring(url.indexOf('/uploads/'));
+    const serverBase = API_BASE_URL.replace(/\/api$/, '');
+    return `${serverBase}${path}`;
+  }
+  return url;
+};
+
 export const getAuthToken = () => localStorage.getItem('indeora_token');
 
 export const authHeaders = (headers = {}) => {

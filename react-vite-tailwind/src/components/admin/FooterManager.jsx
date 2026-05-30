@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image, Upload } from 'lucide-react';
-import { apiRequest } from '../../lib/api';
+import { apiRequest, getMediaUrl } from '../../lib/api';
 import Footer from '../Footer';
 
 
@@ -205,7 +205,7 @@ const FooterManager = () => {
               <div className="flex flex-col md:flex-row gap-4 items-start">
                 <div className="w-full md:w-1/3 aspect-video bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-dashed border-slate-300 relative group">
                   {config.content.bannerUrl ? (
-                    <img src={config.content.bannerUrl} alt="Footer Banner" className="w-full h-full object-cover" />
+                    <img src={getMediaUrl(config.content.bannerUrl)} alt="Footer Banner" className="w-full h-full object-cover" />
                   ) : (
                     <div className="text-slate-400 flex flex-col items-center">
                       <Image size={32} className="mb-2" />
@@ -366,7 +366,7 @@ const FooterManager = () => {
               <div className="flex flex-col md:flex-row gap-4 items-start">
                 <div className="w-full md:w-1/3 aspect-video bg-slate-100 rounded-lg flex items-center justify-center overflow-hidden border-2 border-dashed border-slate-300 relative group">
                   {config.content.logoUrl ? (
-                    <img src={config.content.logoUrl} alt="Footer Logo" className="w-full h-full object-contain p-2" />
+                    <img src={getMediaUrl(config.content.logoUrl)} alt="Footer Logo" className="w-full h-full object-contain p-2" />
                   ) : (
                     <div className="text-slate-400 flex flex-col items-center">
                       <Image size={32} className="mb-2" />

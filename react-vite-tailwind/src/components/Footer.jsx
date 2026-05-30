@@ -70,7 +70,7 @@ const defaultFooterConfig = {
         id: 'infos',
         title: 'INFORMATIONS',
         type: 'contact',
-        items: [] 
+        items: []
       },
       {
         id: 'news',
@@ -99,7 +99,7 @@ const Footer = ({ previewConfig }) => {
   const [dynamicBanner, setDynamicBanner] = useState(footerBannerImg);
 
   useEffect(() => {
-    fetchSettings().then(setSettings).catch(() => {});
+    fetchSettings().then(setSettings).catch(() => { });
     apiRequest('/content?type=logo')
       .then((data) => {
         const items = data.data?.filter((entry) => entry.status === 'active' && entry.media_url) || [];
@@ -107,14 +107,14 @@ const Footer = ({ previewConfig }) => {
         const item = footerLogoItem || items[0];
         if (item?.media_url) setDynamicLogo(item.media_url);
       })
-      .catch(() => {});
+      .catch(() => { });
     apiRequest('/content?type=banner')
       .then((data) => {
         const items = data.data?.filter((entry) => entry.status === 'active' && entry.media_url) || [];
         const footerBanner = items.find((entry) => entry.subtitle?.toLowerCase().includes('footer') || entry.title?.toLowerCase().includes('footer'));
         if (footerBanner?.media_url) setDynamicBanner(footerBanner.media_url);
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   let footerConfig = defaultFooterConfig;
@@ -175,7 +175,7 @@ const Footer = ({ previewConfig }) => {
         </div>
       </section>
 
-      
+
       <style>
         {`
           .dynamic-footer {

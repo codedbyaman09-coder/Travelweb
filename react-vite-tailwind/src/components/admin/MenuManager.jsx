@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { apiRequest } from '../../lib/api';
-import { GripVertical, Plus, Trash2, ChevronDown, ChevronUp, Palette, Maximize, Link as LinkIcon, Eye, RefreshCw, Type, Layout, Image, Sidebar, MousePointerClick, Smartphone } from 'lucide-react';
+import { GripVertical, Plus, Trash2, ChevronDown, ChevronUp, Palette, Maximize, Link as LinkIcon, Eye, RefreshCw, Type, Layout, Image as ImageIcon, Sidebar, MousePointerClick, Smartphone, Upload } from 'lucide-react';
 import Navbar from '../Navbar';
 
 const DEFAULT_CONFIG = {
@@ -442,7 +442,7 @@ const MenuManager = () => {
 
   const tabs = [
     { id: 'layout', icon: Layout, label: 'Layout' },
-    { id: 'logo', icon: Image, label: 'Logo' },
+    { id: 'logo', icon: ImageIcon, label: 'Logo' },
     { id: 'colors', icon: Palette, label: 'Couleurs' },
     { id: 'typography', icon: Type, label: 'Typographie' },
     { id: 'dropdown', icon: Sidebar, label: 'Dropdown' },
@@ -607,6 +607,25 @@ const MenuManager = () => {
               </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label className="block text-xs font-bold text-slate-700 mb-1.5">Image du Logo</label>
+                  <div className="flex gap-2">
+                    <input type="text" value={navConfig.logoUrl} onChange={e => handleConfigChange('logoUrl', e.target.value)} className="w-full p-2.5 bg-white text-slate-800 border border-slate-300 rounded-lg focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 outline-none text-sm transition-all" placeholder="URL ou laissez vide" />
+                    <label className="w-11 h-11 shrink-0 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 hover:bg-indigo-100 hover:text-indigo-700 cursor-pointer transition-colors" title="Uploader une image">
+                      <Upload size={18} />
+                      <input type="file" className="hidden" accept="image/*" onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (!file) return;
+                        const payload = new FormData();
+                        payload.append('files', file);
+                        try {
+                          const data = await apiRequest('/media/upload', { method: 'POST', body: payload });
+                          if (data.urls?.[0]) handleConfigChange('logoUrl', data.urls[0]);
+                        } catch (err) { console.error(err); }
+                      }} />
+                    </label>
+                  </div>
+                </div>
                 {renderInput('Hauteur Logo (Bureau)', 'logoHeight')}
                 {renderInput('Hauteur Logo (Mobile)', 'logoMobileHeight')}
                 {renderInput('Largeur Logo', 'logoWidth', 'auto ou ex: 150px')}

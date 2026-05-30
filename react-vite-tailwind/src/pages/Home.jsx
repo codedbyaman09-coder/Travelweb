@@ -471,7 +471,10 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
     );
   };
 
-  const renderFaq = () => <div key="faq" style={getStyle('faq')}><FAQSection /></div>;
+  const renderFaq = () => {
+    const data = dynamicSections && dynamicSections['faq'];
+    return <div key="faq" style={getStyle('faq')}><FAQSection settings={data || {}} /></div>;
+  };
 
   const renderReviews = () => {
     const data = dynamicSections && dynamicSections['reviews'];
@@ -660,6 +663,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
         case 'featured_dest': return renderFeaturedDest();
         case 'faq': return renderFaq();
         case 'reviews': return renderReviews();
+        case 'envies_voyage': return renderEnviesVoyage();
         default: return renderGenericSection(key);
       }
     });
@@ -672,7 +676,6 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
       {/* Floating WhatsApp Button */}
       <a
         href="https://wa.me/919928605746"
-        target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-16 md:bottom-20 left-4 md:left-6 z-[100] bg-[#25D366] text-white p-2.5 md:p-3 rounded-full shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center"
         aria-label="Contact us on WhatsApp"
