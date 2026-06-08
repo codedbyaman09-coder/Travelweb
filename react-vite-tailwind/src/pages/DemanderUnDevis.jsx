@@ -1,10 +1,13 @@
   import React, { useState, useRef, useEffect } from 'react';
+  import { useLocation } from 'react-router-dom';
   import countryData from "../data/countries";
   import Footer from '../components/Footer';
 
   const allCountries = countryData.allCountries || [];
 
   const DemanderUnDevis = () => {
+    const location = useLocation();
+
     const [formData, setFormData] = useState({
       title: 'M',
       lastName: '',
@@ -14,10 +17,10 @@
       phone: '',
       zipCode: '',
       country: '',
-      destination: '',
+      destination: location.state?.prefilledTitle || '',
       date: '',
-      duration: '',
-      details: '',
+      duration: location.state?.prefilledDuration || '',
+      details: location.state?.prefilledDetails || '',
       adults: 2,
       children: 0,
       newsletter: true
@@ -114,25 +117,17 @@
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   {/* Destination */}
                   <div className="relative">
-                    <select
+                    <input
+                      type="text"
                       name="destination"
                       id="destination"
                       value={formData.destination}
                       onChange={handleChange}
-                      className={selectClass}
+                      className={inputClass}
+                      placeholder=" "
                       required
-                    >
-                      <option value="" disabled hidden></option>
-                      <option value="rajasthan">Rajasthan</option>
-                      <option value="kerala">Kerala</option>
-                      <option value="ladakh">Ladakh</option>
-                    </select>
-                    <label htmlFor="destination" className={selectLabelClass}>Destination *</label>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg className="w-4 h-4 text-[#A88B52]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 9l-7 7-7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
+                    />
+                    <label htmlFor="destination" className={labelClass}>Destination *</label>
                   </div>
 
                   {/* Date */}

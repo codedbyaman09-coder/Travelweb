@@ -4,9 +4,9 @@ import { apiUrl } from '../lib/api';
 
 const VisionSection = ({ settings = {} }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
-  const visionSubtitle = settings.subtitle || "L'ART DU VOYAGE SUR MESURE EN INDE";
-  const visionTitle = settings.title || "Notre vision du voyage";
+
+  const visionSubtitle = "L'ART DU VOYAGE SUR MESURE EN INDE";
+  const visionTitle = "Notre vision du voyage";
   const visionShortDesc = settings.description || "Voyager en Inde, c'est découvrir bien plus qu'une destination. C'est ressentir une émotion, vivre des rencontres sincères et s'ouvrir à une culture parmi les plus fascinantes au monde.";
   const visionQuote = settings.extra_text || "\"Chez Indeora Voyages, nous croyons qu’un voyage en Inde ne se résume pas à une simple succession de visites ou de paysages. Voyager en Inde, c’est vivre une émotion, ressentir une atmosphère...\"";
   const visionImage = settings.image_url || visionImg;

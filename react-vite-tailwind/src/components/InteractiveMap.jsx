@@ -79,17 +79,17 @@ const destinations = [
 
 const InteractiveMap = ({ settings = {} }) => {
   const [hoveredDest, setHoveredDest] = React.useState(null);
-  
-  const finalDests = (settings.items !== undefined) 
-    ? settings.items.map(d => ({ 
-        id: d.link ? d.link.replace('/destinations/', '') : '', 
-        title: d.title, 
-        subtitle: d.subtitle, 
-        img: d.image_url, 
-        side: d.icon || 'left' 
-      }))
+
+  const finalDests = (settings.items !== undefined)
+    ? settings.items.map(d => ({
+      id: d.link ? d.link.replace('/destinations/', '') : '',
+      title: d.title,
+      subtitle: d.subtitle,
+      img: d.image_url,
+      side: d.icon || 'left'
+    }))
     : destinations;
-  
+
   const leftDests = finalDests.filter(d => d.side === 'left');
   const rightDests = finalDests.filter(d => d.side === 'right');
 
@@ -111,13 +111,13 @@ const InteractiveMap = ({ settings = {} }) => {
         {/* Header */}
         <div className="text-center mb-6 md:mb-8">
           <p className="text-[10px] tracking-[0.4em] text-[#A88B52] font-bold uppercase mb-2">
-            {settings.subtitle || "UNE AUTRE FAÇON DE VOYAGER EN INDE"}
+            {"UNE AUTRE FAÇON DE VOYAGER EN INDE"}
           </p>
           <h2 className="text-xl md:text-3xl font-serif text-[#A88B52] mb-3">
-            {settings.title || "Explorez l’Inde autrement"}
+            {"Explorez l’Inde autrement"}
           </h2>
           <p className="text-[#2d343e]/60 text-[12px] md:text-[13px] max-w-xl mx-auto leading-relaxed">
-            {settings.description || "Une terre de palais, de spiritualité, de couleurs et de rencontres humaines, où chaque voyage devient une expérience profondément inspirante."}
+            {"Une terre de palais, de spiritualité, de couleurs et de rencontres humaines, où chaque voyage devient une expérience profondément inspirante."}
           </p>
         </div>
 

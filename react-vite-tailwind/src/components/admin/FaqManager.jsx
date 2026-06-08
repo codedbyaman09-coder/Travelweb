@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { apiRequest, apiList } from '../../lib/api';
 import { Save, Trash2, Layout, Maximize, AlignCenter, Type, AlignLeft, PaintBucket, Sidebar, Settings, Code, MonitorSmartphone, PlusCircle, Search } from 'lucide-react';
 import Faq from '../../pages/Faq';
+import FaqManagement from './FaqManagement';
 
 const DEFAULT_CONFIG = {
   layout: { pageWidth: '100%', containerWidth: '1440px', sectionWidth: '100%', sectionHeight: 'auto', minHeight: '100vh', maxWidth: '100%', bgColor: '#ffffff', bgImage: '', border: 'none', borderRadius: '0px', boxShadow: 'none', overflow: 'hidden', responsiveWidth: '100%' },
@@ -23,15 +24,8 @@ const FaqManager = () => {
   const [activeTab, setActiveTab] = useState('items'); // Default to CRUD
   const [message, setMessage] = useState('');
 
-  // CRUD State
-  const [faqs, setFaqs] = useState([]);
-  const [isEditingItem, setIsEditingItem] = useState(false);
-  const [formData, setFormData] = useState({ category: 'AVANT DE PARTIR EN INDE', question: '', answer: '', display_order: 0, status: 'active' });
-  const [editId, setEditId] = useState(null);
-
   useEffect(() => {
     fetchConfig();
-    fetchFaqs();
   }, []);
 
   const fetchConfig = async () => {
@@ -52,13 +46,6 @@ const FaqManager = () => {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const fetchFaqs = async () => {
-    try {
-      const rows = await apiList('/faqs');
-      setFaqs(rows || []);
-    } catch (err) { console.error(err); }
   };
 
   const handleSave = async () => {
@@ -101,31 +88,6 @@ const FaqManager = () => {
     }));
   };
 
-  // CRUD Handlers
-  const handleItemSubmit = async (e) => {
-    e.preventDefault();
-    const method = isEditingItem ? 'PUT' : 'POST';
-    const url = isEditingItem ? `/faqs/${editId}` : '/faqs';
-    try {
-      await apiRequest(url, { method, body: JSON.stringify(formData) });
-      setFormData({ category: 'AVANT DE PARTIR EN INDE', question: '', answer: '', display_order: 0, status: 'active' });
-      setIsEditingItem(false);
-      setEditId(null);
-      fetchFaqs();
-      setMessage(isEditingItem ? 'FAQ mise à jour!' : 'FAQ ajoutée!');
-      setTimeout(() => setMessage(''), 3000);
-    } catch (err) { console.error(err); }
-  };
-
-  const handleDeleteItem = async (id) => {
-    if (window.confirm("Supprimer cette FAQ ?")) {
-      await apiRequest(`/faqs/${id}`, { method: 'DELETE' });
-      fetchFaqs();
-      setMessage('FAQ supprimée!');
-      setTimeout(() => setMessage(''), 3000);
-    }
-  };
-
   const renderInput = (section, label, field, placeholder = "") => (
     <div>
       <label className="block text-xs font-bold text-slate-700 mb-1.5">{label}</label>
@@ -162,60 +124,6 @@ const FaqManager = () => {
     { id: 'classes', icon: Code, label: 'Tailwind Classes' },
     { id: 'responsive', icon: MonitorSmartphone, label: 'Responsive' }
   ];
-
-  const renderCRUDManager = () => {
-    const cats = ['AVANT DE PARTIR EN INDE', 'SANTÉ & CONFORT', 'ORGANISATION DU VOYAGE', 'EXPÉRIENCES & DÉCOUVERTES', 'ACCOMPAGNEMENT & RÉSERVATION'];
-    return (
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 animate-fadeIn">
-        <div className="xl:col-span-1 bg-slate-50 p-6 shadow-sm border border-slate-200 rounded-xl h-fit">
-          <h3 className="text-lg font-black text-slate-800 mb-6 border-b pb-2">{isEditingItem ? 'Modifier FAQ' : 'Ajouter FAQ'}</h3>
-          <form onSubmit={handleItemSubmit} className="space-y-4 text-sm">
-            <div><label className="block text-[11px] font-bold text-slate-500 mb-1">Catégorie</label>
-              <select value={formData.category} onChange={e => setFormData({...formData, category: e.target.value})} className="w-full p-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 outline-none focus:border-indigo-500">
-                {cats.map(c => <option key={c} value={c}>{c}</option>)}
-              </select>
-            </div>
-            <div><label className="block text-[11px] font-bold text-slate-500 mb-1">Question</label><input required type="text" value={formData.question} onChange={e => setFormData({...formData, question: e.target.value})} className="w-full p-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 outline-none focus:border-indigo-500" /></div>
-            <div><label className="block text-[11px] font-bold text-slate-500 mb-1">Réponse (HTML accepté)</label><textarea required value={formData.answer} onChange={e => setFormData({...formData, answer: e.target.value})} className="w-full p-2.5 border border-slate-300 rounded-lg h-32 resize-none bg-white text-slate-900 outline-none focus:border-indigo-500" /></div>
-            <div><label className="block text-[11px] font-bold text-slate-500 mb-1">Ordre</label><input type="number" value={formData.display_order} onChange={e => setFormData({...formData, display_order: parseInt(e.target.value)})} className="w-full p-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 outline-none focus:border-indigo-500" /></div>
-            <div><label className="block text-[11px] font-bold text-slate-500 mb-1">Statut</label><select value={formData.status} onChange={e => setFormData({...formData, status: e.target.value})} className="w-full p-2.5 border border-slate-300 rounded-lg bg-white text-slate-900 outline-none focus:border-indigo-500"><option value="active">Actif</option><option value="inactive">Inactif</option></select></div>
-            <button type="submit" className="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold text-xs uppercase shadow-md hover:bg-indigo-700 transition-all">{isEditingItem ? 'Mettre à jour' : 'Ajouter'}</button>
-            {isEditingItem && <button type="button" onClick={() => { setIsEditingItem(false); setFormData({ category: 'AVANT DE PARTIR EN INDE', question: '', answer: '', display_order: 0, status: 'active' }); }} className="w-full mt-2 text-slate-500 py-2 text-xs font-bold uppercase hover:bg-slate-200 rounded-lg transition-all">Annuler</button>}
-          </form>
-        </div>
-        <div className="xl:col-span-2 bg-white shadow-sm border border-slate-200 rounded-xl overflow-hidden">
-          <div className="flex justify-between items-center p-4 border-b border-slate-200">
-            <h3 className="font-black text-slate-800">Liste des Questions</h3>
-            <button onClick={() => { setIsEditingItem(false); setFormData({ category: 'AVANT DE PARTIR EN INDE', question: '', answer: '', display_order: 0, status: 'active' }); }} className="bg-indigo-50 text-indigo-600 px-4 py-2 rounded-lg font-bold text-xs uppercase flex items-center gap-2 hover:bg-indigo-100 transition-all">
-              <PlusCircle size={16} /> Nouvelle
-            </button>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50"><tr><th className="p-4 font-bold text-[11px] uppercase text-slate-400 border-b">Ordre</th><th className="p-4 font-bold text-[11px] uppercase text-slate-400 border-b">Catégorie</th><th className="p-4 font-bold text-[11px] uppercase text-slate-400 border-b w-1/2">Question</th><th className="p-4 font-bold text-[11px] uppercase text-slate-400 border-b">Statut</th><th className="p-4 font-bold text-[11px] uppercase text-slate-400 border-b text-right">Actions</th></tr></thead>
-              <tbody className="divide-y divide-slate-100">
-                {faqs.map(faq => (
-                  <tr key={faq.id} className="hover:bg-slate-50 transition-colors">
-                    <td className="p-4 font-bold text-slate-500">{faq.display_order}</td>
-                    <td className="p-4"><span className="bg-indigo-50 text-indigo-600 px-2 py-1 rounded text-[9px] uppercase font-bold">{faq.category}</span></td>
-                    <td className="p-4 text-slate-800">{faq.question}</td>
-                    <td className="p-4"><span className={`px-2 py-1 rounded text-[9px] uppercase font-bold ${faq.status === 'active' ? 'bg-green-50 text-green-600' : 'bg-slate-100 text-slate-500'}`}>{faq.status||'active'}</span></td>
-                    <td className="p-4 text-right space-x-2">
-                      <button onClick={() => { setFormData({ category: faq.category, question: faq.question, answer: faq.answer, display_order: faq.display_order, status: faq.status||'active' }); setEditId(faq.id); setIsEditingItem(true); }} className="text-blue-600 text-[11px] font-bold hover:underline">Modif.</button>
-                      <button onClick={() => handleDeleteItem(faq.id)} className="text-rose-500 text-[11px] font-bold hover:underline">Suppr.</button>
-                    </td>
-                  </tr>
-                ))}
-                {faqs.length === 0 && (
-                  <tr><td colSpan="5" className="p-8 text-center text-slate-400">Aucune question trouvée.</td></tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    );
-  };
 
   return (
     <div className="animate-fadeIn pb-24">
@@ -255,7 +163,7 @@ const FaqManager = () => {
       </div>
 
       <div className="space-y-6">
-        {activeTab === 'items' && renderCRUDManager()}
+        {activeTab === 'items' && <FaqManagement />}
 
         {activeTab === 'content' && (
            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 animate-fadeIn">

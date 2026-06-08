@@ -7,11 +7,53 @@ const FAQSection = ({ settings = {} }) => {
 
   const title = settings.title || "FAQ";
   const subtitle = settings.subtitle || "∞";
-  const description = settings.description || "Voyage sur mesure en Inde";
-  const extra_text = settings.extra_text || "Toutes les réponses à vos questions avec Indeora Voyages";
-  
-  const faqs = (settings.items !== undefined) ? settings.items.sort((a,b) => a.display_order - b.display_order) : [];
+  const description = "L’Inde en toute sérénité";
+  const extra_text = "Conseils, informations pratiques et inspirations pour découvrir l’Inde sereinement avec Indeora Voyages.";
 
+  const faqs = [
+    {
+      id: "faq-1",
+      title: "Est-il prudent de voyager en Inde ?",
+      question: "Est-il prudent de voyager en Inde ?",
+      description: "Oui, l’Inde peut être une destination très agréable et rassurante lorsqu’elle est découverte avec une organisation sérieuse et un accompagnement local de confiance. Comme dans tout grand voyage, quelques précautions simples suffisent généralement à profiter pleinement de l’expérience.",
+      answer: "Oui, l’Inde peut être une destination très agréable et rassurante lorsqu’elle est découverte avec une organisation sérieuse et un accompagnement local de confiance. Comme dans tout grand voyage, quelques précautions simples suffisent généralement à profiter pleinement de l’expérience."
+    },
+    {
+      id: "faq-2",
+      title: "Quel budget prévoir pour un voyage en Inde ?",
+      question: "Quel budget prévoir pour un voyage en Inde ?",
+      description: "L’Inde offre un excellent rapport qualité-prix pour des voyages privés et personnalisés. Le budget dépend principalement de la durée du séjour, des hôtels choisis et du style de voyage souhaité, du plus authentique au plus raffiné.",
+      answer: "L’Inde offre un excellent rapport qualité-prix pour des voyages privés et personnalisés. Le budget dépend principalement de la durée du séjour, des hôtels choisis et du style de voyage souhaité, du plus authentique au plus raffiné."
+    },
+    {
+      id: "faq-3",
+      title: "Où aller pour un premier voyage en Inde ?",
+      question: "Où aller pour un premier voyage en Inde ?",
+      description: "Le Rajasthan reste l’une des plus belles introductions à l’Inde avec ses palais, villes colorées, traditions et atmosphère unique. Beaucoup de voyageurs choisissent également de combiner Delhi, Agra et Jaipur pour une première découverte équilibrée et inspirante.",
+      answer: "Le Rajasthan reste l’une des plus belles introductions à l’Inde avec ses palais, villes colorées, traditions et atmosphère unique. Beaucoup de voyageurs choisissent également de combiner Delhi, Agra et Jaipur pour une première découverte équilibrée et inspirante."
+    },
+    {
+      id: "faq-4",
+      title: "Quelle est la meilleure période pour visiter l’Inde ?",
+      question: "Quelle est la meilleure période pour visiter l’Inde ?",
+      description: "La période entre octobre et mars est généralement idéale pour découvrir le Rajasthan, le Nord de l’Inde, Varanasi ou encore le Kerala dans les meilleures conditions climatiques.",
+      answer: "La période entre octobre et mars est généralement idéale pour découvrir le Rajasthan, le Nord de l’Inde, Varanasi ou encore le Kerala dans les meilleures conditions climatiques."
+    },
+    {
+      id: "faq-5",
+      title: "Comment s’habiller en Inde ?",
+      question: "Comment s’habiller en Inde ?",
+      description: "Des vêtements légers, confortables et élégants sont généralement les plus adaptés. L’Inde est un pays très diversifié, mais des tenues simples et respectueuses permettent de voyager confortablement dans toutes les régions.",
+      answer: "Des vêtements légers, confortables et élégants sont généralement les plus adaptés. L’Inde est un pays très diversifié, mais des tenues simples et respectueuses permettent de voyager confortablement dans toutes les régions."
+    },
+    {
+      id: "faq-6",
+      title: "Peut-on voyager en Inde avec des enfants ?",
+      question: "Peut-on voyager en Inde avec des enfants ?",
+      description: "Oui, l’Inde peut être une expérience merveilleuse à vivre en famille. Avec un itinéraire adapté, des hébergements confortables et un rythme agréable, le voyage devient souvent une aventure inoubliable pour petits et grands.",
+      answer: "Oui, l’Inde peut être une expérience merveilleuse à vivre en famille. Avec un itinéraire adapté, des hébergements confortables et un rythme agréable, le voyage devient souvent une aventure inoubliable pour petits et grands."
+    }
+  ];
   return (
     <section className="bg-[#fcfaf7] py-4 md:py-6 px-[40px] overflow-hidden w-full">
       <div className="max-w-2xl mx-auto">

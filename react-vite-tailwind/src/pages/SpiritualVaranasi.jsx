@@ -78,8 +78,8 @@ const SpiritualVaranasi = () => {
           {/* Left Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[685px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[689px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[232px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 1"
@@ -89,8 +89,8 @@ const SpiritualVaranasi = () => {
             </div>
 
             {/* Card 2: Flanking Section 2 Image */}
-            <div className="lg:mt-[370px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+            <div className="lg:mt-[389px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[232px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
@@ -111,8 +111,8 @@ const SpiritualVaranasi = () => {
             </div>
 
             {/* Card 3: Flanking Section 3 Image */}
-            <div className="lg:mt-[335px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+            <div className="lg:mt-[325px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[231px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
@@ -132,8 +132,8 @@ const SpiritualVaranasi = () => {
               </div>
             </div>
             {/* Card 4: Flanking Section 4 Image */}
-            <div className="lg:mt-[290px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+            <div className="lg:mt-[293px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[232px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
@@ -153,8 +153,8 @@ const SpiritualVaranasi = () => {
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            <div className="lg:mt-[290px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+            <div className="lg:mt-[293px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[232px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
@@ -360,8 +360,8 @@ const SpiritualVaranasi = () => {
           {/* Right Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[685px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto">
+            <div className="lg:mt-[690px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[222px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 1"
@@ -371,7 +371,7 @@ const SpiritualVaranasi = () => {
             </div>
 
             {/* Card 2: Flanking Section 2 Image */}
-            <div className="lg:mt-[370px]">
+            <div className="lg:mt-[379px]">
               <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
@@ -394,7 +394,7 @@ const SpiritualVaranasi = () => {
 
             {/* Card 3: Flanking Section 3 Image */}
             <div className="lg:mt-[335px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[232px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
@@ -415,8 +415,8 @@ const SpiritualVaranasi = () => {
             </div>
 
             {/* Card 4: Flanking Section 4 Image */}
-            <div className="lg:mt-[290px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+            <div className="lg:mt-[293px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[233px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"
@@ -436,8 +436,8 @@ const SpiritualVaranasi = () => {
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            <div className="lg:mt-[290px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[240px] mx-auto group cursor-pointer">
+            <div className="lg:mt-[291px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[233px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Right Featured 2"

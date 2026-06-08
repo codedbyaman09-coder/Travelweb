@@ -169,15 +169,44 @@ const HomeManager = () => {
     }
   };
 
+  const handleResetAllThemes = async () => {
+    if (window.confirm("Voulez-vous vraiment réinitialiser le design de TOUTES les sections aux couleurs par défaut d'origine ?")) {
+      try {
+        setLoading(true);
+        for (const sec of sections) {
+          await apiRequest(`/home-dynamic/admin/sections/${sec.id}/theme`, {
+            method: 'PUT',
+            body: JSON.stringify({})
+          });
+        }
+        showMessage('Design réinitialisé avec succès');
+        fetchSections();
+      } catch (err) {
+        showMessage('Erreur lors de la réinitialisation');
+        setLoading(false);
+      }
+    }
+  };
+
   if (loading) return <div className="p-8">Loading...</div>;
 
   return (
     <div className="space-y-6 animate-fadeIn pb-20">
       {/* Header */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <h2 className="text-2xl font-bold text-slate-800">Dynamic Home Page Manager</h2>
-        <p className="text-slate-500 text-sm mt-1">Manage complete frontend design, sections, and content dynamically without breaking the UI.</p>
-        
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-800">Dynamic Home Page Manager</h2>
+            <p className="text-slate-500 text-sm mt-1">Manage complete frontend design, sections, and content dynamically without breaking the UI.</p>
+          </div>
+          <button 
+            onClick={handleResetAllThemes}
+            className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+            Réinitialiser le Design
+          </button>
+        </div>
         {message && (
           <div className="mt-4 p-3 bg-green-50 text-green-700 text-sm rounded-lg border border-green-200">
             {message}

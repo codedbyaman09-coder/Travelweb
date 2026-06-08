@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
@@ -8,41 +9,41 @@ const SpiritualiteYogaAyurveda = () => {
   const [showAllHighlights, setShowAllHighlights] = useState(false);
   const [dynamicContent, setDynamicContent] = useState(null);
 
-    useEffect(() => {
+  useEffect(() => {
     Promise.all([
       fetch('http://127.0.0.1:8000/api/itineraries').then(res => res.json()),
       fetch('http://127.0.0.1:8000/api/destinations').then(res => res.json())
     ])
-    .then(([itinData, destData]) => {
-      let itin = null;
-      if (itinData.success) {
-        itin = itinData.data.find(d => d.slug.replace(/-$/, '') === 'spiritualite-yoga-ayurveda');
-      }
-
-      let dest = null;
-      if (destData.success) {
-        dest = destData.data.find(d => d.slug.replace(/-$/, '') === 'spiritualite-yoga-ayurveda');
-      }
-
-      if (itin || dest) {
-        try {
-          const rawContent = (itin && itin.page_content) ? itin.page_content : dest.page_content;
-          let parsedContent = typeof rawContent === 'string' ? JSON.parse(rawContent) : rawContent;
-          if (!parsedContent) parsedContent = {};
-
-          setDynamicContent({
-            ...parsedContent,
-            heroTitle: parsedContent.heroTitle || dest?.title || itin?.title,
-            heroDuration: parsedContent.heroDuration || (itin?.days ? `${itin.days} Jours` : ''),
-            price: parsedContent.price || (itin?.price ? `${itin.price}€` : ''),
-            durationText: parsedContent.durationText || (itin?.days ? `${itin.days}j / ${Math.max(1, itin.days - 1)}n` : ''),
-          });
-        } catch (e) {
-          console.error("Error parsing dynamic content:", e);
+      .then(([itinData, destData]) => {
+        let itin = null;
+        if (itinData.success) {
+          itin = itinData.data.find(d => d.slug.replace(/-$/, '') === 'spiritualite-yoga-ayurveda');
         }
-      }
-    })
-    .catch(err => console.error("Error fetching data:", err));
+
+        let dest = null;
+        if (destData.success) {
+          dest = destData.data.find(d => d.slug.replace(/-$/, '') === 'spiritualite-yoga-ayurveda');
+        }
+
+        if (itin || dest) {
+          try {
+            const rawContent = (itin && itin.page_content) ? itin.page_content : dest.page_content;
+            let parsedContent = typeof rawContent === 'string' ? JSON.parse(rawContent) : rawContent;
+            if (!parsedContent) parsedContent = {};
+
+            setDynamicContent({
+              ...parsedContent,
+              heroTitle: parsedContent.heroTitle || dest?.title || itin?.title,
+              heroDuration: parsedContent.heroDuration || (itin?.days ? `${itin.days} Jours` : ''),
+              price: parsedContent.price || (itin?.price ? `${itin.price}€` : ''),
+              durationText: parsedContent.durationText || (itin?.days ? `${itin.days}j / ${Math.max(1, itin.days - 1)}n` : ''),
+            });
+          } catch (e) {
+            console.error("Error parsing dynamic content:", e);
+          }
+        }
+      })
+      .catch(err => console.error("Error fetching data:", err));
   }, []);
 
   const tabs = [
@@ -188,6 +189,12 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
     return index % 2 === 0 ? royalToursUrl : agenceContactUrl;
   };
 
+  const durationMatch = String(dynamicContent?.heroDuration || 10).match(/\d+/);
+  const prefilledDuration = durationMatch ? `${durationMatch[0]} jours` : '';
+  const priceText = dynamicContent?.price ? (String(dynamicContent.price).includes('/') ? dynamicContent.price : `${dynamicContent.price}/pers`) : "860€/pers";
+  const prefilledTitle = `${dynamicContent?.heroTitle || "Inde Spirituelle Bien-Être"} — À partir de ${priceText}`;
+  const prefilledDetails = ``;
+
   const renderTabContent = () => {
     switch (activeTab) {
       case "ITINÉRAIRE":
@@ -246,9 +253,9 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
               </div>
 
               <div className="mt-10 flex justify-center">
-                <button className="bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-4 px-12 rounded shadow-[0_4px_14px_rgba(183,119,46,0.39)] transition-all duration-300 uppercase tracking-[0.1em] text-[15px]">
+                <Link to="/demander-un-devis" state={{ prefilledDetails, prefilledDuration, prefilledTitle }} className="inline-block bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-4 px-12 rounded shadow-[0_4px_14px_rgba(183,119,46,0.39)] transition-all duration-300 uppercase tracking-[0.1em] text-[15px]">
                   DEMANDER UN DEVIS
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -526,9 +533,9 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
               ))}
             </div>
             <div className="mt-16 flex justify-center border-t border-gray-50 pt-10">
-              <button className="bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-4 px-12 rounded-sm shadow-lg transition-all duration-300 uppercase tracking-[0.2em] text-[14px]">
+              <Link to="/demander-un-devis" state={{ prefilledDetails, prefilledDuration, prefilledTitle }} className="inline-block bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-4 px-12 rounded-sm shadow-lg transition-all duration-300 uppercase tracking-[0.2em] text-[14px]">
                 DEMANDER UN DEVIS
-              </button>
+              </Link>
             </div>
           </div>
         );
@@ -548,22 +555,22 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
                 <h4 className="font-bold text-[#102d45] mb-4 uppercase text-sm tracking-widest border-b border-[#b7772e] pb-2 inline-block">Le prix comprend</h4>
                 <ul className="space-y-2 text-sm text-gray-600 italic">
                   {(dynamicContent?.priceIncludes ? dynamicContent.priceIncludes.split('\n') : [
-                      "• L'hébergement en chambre double",
-                      "• Les petits-déjeuners",
-                      "• Les transferts en véhicule privé",
-                      "• Les vols domestiques mentionnés"
-                    ]).map((item, idx) => item.trim() ? <li key={idx}>{item}</li> : null)}
+                    "• L'hébergement en chambre double",
+                    "• Les petits-déjeuners",
+                    "• Les transferts en véhicule privé",
+                    "• Les vols domestiques mentionnés"
+                  ]).map((item, idx) => item.trim() ? <li key={idx}>{item}</li> : null)}
                 </ul>
               </div>
               <div>
                 <h4 className="font-bold text-[#102d45] mb-4 uppercase text-sm tracking-widest border-b border-gray-200 pb-2 inline-block">Le prix ne comprend pas</h4>
                 <ul className="space-y-2 text-sm text-gray-600 italic">
                   {(dynamicContent?.priceExcludes ? dynamicContent.priceExcludes.split('\n') : [
-                      "• Le vol international",
-                      "• Les frais de visa",
-                      "• Les repas non mentionnés",
-                      "• Les pourboires"
-                    ]).map((item, idx) => item.trim() ? <li key={idx}>{item}</li> : null)}
+                    "• Le vol international",
+                    "• Les frais de visa",
+                    "• Les repas non mentionnés",
+                    "• Les pourboires"
+                  ]).map((item, idx) => item.trim() ? <li key={idx}>{item}</li> : null)}
                 </ul>
               </div>
             </div>
@@ -599,7 +606,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
   return (
     <div className="w-full min-h-screen bg-[#f7f3f0] overflow-x-hidden">
-      
+
 
       <section className="relative h-[300px] md:h-[650px] lg:h-[720px] overflow-hidden">
         <img src={dynamicContent?.heroImage || "src/assets/image copy 20.png"} alt="Nos destinations" className="absolute inset-0 w-full h-full object-cover" />
@@ -653,7 +660,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
                   <p className="text-[24px] font-bold text-[#102d45] whitespace-nowrap">{dynamicContent?.durationText || "14j / 11n"}</p>
                 </div>
               </div>
-              <button className="w-full bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-5 px-6 rounded-sm shadow-lg transition-all duration-300 uppercase tracking-[0.2em] text-[14px]">DEMANDER UN DEVIS</button>
+              <Link to="/demander-un-devis" state={{ prefilledDetails, prefilledDuration, prefilledTitle }} className="block text-center w-full bg-[#b7772e] hover:bg-[#9a6326] text-white font-bold py-5 px-6 rounded-sm shadow-lg transition-all duration-300 uppercase tracking-[0.2em] text-[14px]">DEMANDER UN DEVIS</Link>
             </div>
 
             <div className="bg-white border border-[#eadfce]/40 rounded-sm p-10 shadow-[0_15px_45_rgba(70,45,20,0.12)]">
@@ -671,7 +678,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
               </ul>
               {((dynamicContent?.highlights?.length > 0 && typeof dynamicContent.highlights[0] === 'string' && dynamicContent.highlights[0].trim() !== "" ? dynamicContent.highlights : highlights).length > 3) && (
                 <div className="mt-8 flex justify-center border-t border-gray-100 pt-6 md:hidden">
-                  <button 
+                  <button
                     onClick={() => setShowAllHighlights(!showAllHighlights)}
                     className="flex flex-col items-center justify-center text-[#b7772e] hover:text-[#9a6326] transition-all group"
                   >

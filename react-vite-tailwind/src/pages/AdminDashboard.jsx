@@ -164,6 +164,7 @@ const AdminDashboard = () => {
     { id: 'abouts', icon: Info, label: 'About Management' },
     { id: 'destinations', icon: Map, label: 'Destinations Management' },
     { id: 'blogs', icon: FileText, label: 'Blog Management' },
+    { id: 'faq_management', icon: HelpCircle, label: 'FAQ Management' },
     { id: 'blog_categories', icon: Tags, label: 'Blog Categories' },
     { id: 'logo', icon: Image, label: 'Logo Management' },
     { id: 'banners', icon: GalleryHorizontalEnd, label: 'Banner / Hero' },
@@ -180,7 +181,6 @@ const AdminDashboard = () => {
     { id: 'gallery', icon: GalleryHorizontalEnd, label: 'Gallery' },
     { id: 'videos', icon: Video, label: 'Videos' },
     { id: 'testimonials', icon: Star, label: 'Testimonials' },
-    { id: 'faq', icon: HelpCircle, label: 'FAQ' },
     { id: 'inquiries', icon: Inbox, label: 'Contact Enquiries' },
     { id: 'page_content', icon: FileText, label: 'Textes Principaux' },
     { id: 'pages', icon: Search, label: 'SEO Management' },
@@ -270,10 +270,10 @@ const AdminDashboard = () => {
 
         <div className="flex-1 overflow-auto p-4 md:p-8">
           <div className="max-w-[1440px] mx-auto">
-            {activeModule === 'dashboard' && <DashboardOverview />}
-            {activeModule === 'home' && <HomeManager />}
-            {activeModule === 'faq' && <FaqManager />}
-            {activeModule === 'inquiries' && <InquiryManager />}
+            { activeModule === 'dashboard' && <DashboardOverview /> }
+            { activeModule === 'home' && <HomeManager /> }
+            { activeModule === 'faq_management' && <FaqManager /> }
+            { activeModule === 'inquiries' && <InquiryManager /> }
             {activeModule === 'destinations' && <DestinationManager />}
             {activeModule === 'envies' && <EnviesManager />}
             {activeModule === 'vision' && <VisionManager />}

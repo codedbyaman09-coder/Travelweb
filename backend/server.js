@@ -26,6 +26,7 @@ const blogPageRoutes = require("./routes/blogPageRoutes");
 const destinationsPageRoutes = require("./routes/destinationsPageRoutes");
 const metaRoutes = require("./routes/metaRoutes");
 const cookieConsentRoutes = require("./routes/cookieConsentRoutes");
+const contactRapideRoutes = require("./routes/contactRapideRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -74,6 +75,7 @@ app.use("/api/blog-page", blogPageRoutes);
 app.use("/api/destinations-page", destinationsPageRoutes);
 app.use("/api/meta", metaRoutes);
 app.use("/api/cookie-consent", cookieConsentRoutes);
+app.use("/api/contact-rapide", contactRapideRoutes);
 
 // 404 route
 app.use((req, res) => {

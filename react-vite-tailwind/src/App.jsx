@@ -10,6 +10,7 @@ import DestinationDetail from './pages/DestinationDetail';
 import Blog from './pages/Blog';
 import AvantDePartir from './pages/AvantDePartir';
 import Yoga from './pages/Yoga';
+import TestGrid from './pages/TestGrid';
 import FestivalsCouleursTraditionsIndiennes from './pages/FestivalsCouleursTraditionsIndiennes';
 import CroisieresBackwatersKerala from './pages/CroisieresBackwatersKerala';
 import HimalayaAventuresHorsSentiersBattus from './pages/HimalayaAventuresHorsSentiersBattus';
@@ -43,6 +44,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import BlogDetail from './pages/BlogDetail';
 import SEO from './components/SEO';
 import CookieConsent from './components/CookieConsent';
+import WhatsAppButton from './components/WhatsAppButton';
 import { AuthProvider } from './context/AuthContext';
 import './App.css';
 
@@ -109,12 +111,12 @@ const AppContent = () => {
     window.scrollTo(0, 0);
   }, [location]);
 
-  const isAdminPage = location.pathname.startsWith('/admin');
+  const isNoNavPage = location.pathname.startsWith('/admin') || location.pathname === '/login' || location.pathname === '/register';
 
   return (
-    <div className={`w-full min-h-screen bg-white overflow-x-hidden ${isAdminPage ? '' : 'pb-[50px]'}`}>
+    <div className={`w-full min-h-screen bg-white overflow-x-hidden ${isNoNavPage ? '' : 'pb-[50px]'}`}>
       {loading && <Loader onFinish={() => setLoading(false)} pageName={pageName} />}
-      {!isAdminPage && (
+      {!isNoNavPage && (
         <>
           <TopBar />
           <Navbar />
@@ -145,8 +147,8 @@ const AppContent = () => {
           <Route path="/avant-de-partir" element={<AvantDePartir />} />
           <Route path="/yoga" element={<Yoga />} />
           <Route path="/Yoga" element={<Yoga />} />
-          <Route path="/testing" element={<Yoga />} />
-          <Route path="/Testing" element={<Yoga />} />
+          <Route path="/testing" element={<TestGrid />} />
+          <Route path="/testing" element={<TestGrid />} />
           <Route path="/festivals-couleurs-traditions-indiennes" element={<FestivalsCouleursTraditionsIndiennes />} />
           <Route path="/croisieres-backwaters-kerala" element={<CroisieresBackwatersKerala />} />
           <Route path="/himalaya-aventures-hors-sentiers-battus" element={<HimalayaAventuresHorsSentiersBattus />} />
@@ -176,6 +178,7 @@ const AppContent = () => {
           <Route path="/:slug" element={<DynamicTourPage />} />
         </Routes>
       </main>
+      {!isNoNavPage && <WhatsAppButton />}
     </div>
   );
 };

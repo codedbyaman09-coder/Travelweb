@@ -28,7 +28,16 @@ const Home = () => {
         if (res && res.length) {
           const dict = {};
           res.forEach(s => dict[s.section_key] = s);
-          dict._orderedKeys = res.map(s => s.section_key);
+          let keys = res.map(s => s.section_key);
+          const visionIdx = keys.indexOf('vision');
+          const enviesVoyageIdx = keys.indexOf('envies_voyage');
+
+          if (visionIdx !== -1 && enviesVoyageIdx !== -1 && visionIdx > enviesVoyageIdx) {
+            // Swap them so vision comes BEFORE envies_voyage
+            keys[visionIdx] = 'envies_voyage';
+            keys[enviesVoyageIdx] = 'vision';
+          }
+          dict._orderedKeys = keys;
           setDynamicSections(dict);
         }
       })
@@ -53,10 +62,10 @@ const Home = () => {
     { top: "Séjour Personnalisé", bottom: "En Inde" },
     { top: "Voyage authentique", bottom: "En Inde" }
   ];
-  
+
   const heroData = dynamicSections && dynamicSections['hero'];
-  const heroTexts = (heroData && heroData.items) 
-    ? heroData.items.map(item => ({ top: item.title, bottom: item.subtitle })) 
+  const heroTexts = (heroData && heroData.items)
+    ? heroData.items.map(item => ({ top: item.title, bottom: item.subtitle }))
     : defaultHeroTexts;
 
   const videoRef = React.useRef(null);
@@ -158,77 +167,77 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
   const renderHero = () => {
     const heroData = dynamicSections && dynamicSections['hero'];
     let videoUrl = heroData?.video_url || "https://www.youtube.com/embed/4hIXWVt8Rrk?autoplay=1&mute=1&loop=1&playlist=4hIXWVt8Rrk&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1";
-    
+
     let isYoutube = videoUrl.includes("youtube.com") || videoUrl.includes("youtu.be");
     if (isYoutube) {
-       const match = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
-       if (match && match[1]) {
-         const youtubeId = match[1];
-         videoUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1`;
-       }
+      const match = videoUrl.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+      if (match && match[1]) {
+        const youtubeId = match[1];
+        videoUrl = `https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=1&loop=1&playlist=${youtubeId}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1`;
+      }
     }
 
     return (
-    <div key="hero" className="relative min-h-screen w-full overflow-hidden" style={getStyle('hero')}>
+      <div key="hero" className="relative min-h-screen w-full overflow-hidden" style={getStyle('hero')}>
 
 
 
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-        {isYoutube ? (
-          <iframe
-            className="w-full h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
-            src={videoUrl}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Background Video"
-          ></iframe>
-        ) : (
-          <video 
-            ref={videoRef}
-            src={videoUrl.startsWith('http') || videoUrl.startsWith('/') ? videoUrl : `/${videoUrl}`} 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
-            className="w-full h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
-          />
-        )}
-        <div className="absolute inset-0 bg-black/25 z-10 pointer-events-auto"></div>
-      </div>
-
-      {/* Hero Text Content (Bottom Right) */}
-      <div className="relative z-10 h-screen w-full">
-        <div className="absolute bottom-10 right-6 md:bottom-20 md:right-20 text-right max-w-[90%]">
-          <h1 key={`top-${textIndex}`} className="text-white text-[9px] md:text-[10px] lg:text-[12px] font-light tracking-[0.3em] mb-1.5 uppercase opacity-80 animate-fadeIn text-right">
-            {heroTexts[textIndex].top}
-          </h1>
-          <h2 key={`bottom-${textIndex}`} className="text-white text-sm sm:text-base md:text-xl font-serif italic leading-tight drop-shadow-xl animate-fadeIn text-right">
-            {heroTexts[textIndex].bottom}
-          </h2>
+        {/* Background Video */}
+        <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+          {isYoutube ? (
+            <iframe
+              className="w-full h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
+              src={videoUrl}
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Background Video"
+            ></iframe>
+          ) : (
+            <video
+              ref={videoRef}
+              src={videoUrl.startsWith('http') || videoUrl.startsWith('/') ? videoUrl : `/${videoUrl}`}
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-[56.25vw] min-h-[100vh] min-w-[177.77vh] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-video object-cover scale-110 pointer-events-none"
+            />
+          )}
+          <div className="absolute inset-0 bg-black/25 z-10 pointer-events-auto"></div>
         </div>
-      </div>
 
-      {/* Social Sidebar (Left) */}
-      <div className="absolute left-6 md:left-10 top-[60%] -translate-y-1/2 hidden sm:flex flex-col items-center space-y-8 z-10">
-        <a href="https://www.instagram.com/indeoravoyages/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
-        </a>
-        {/* <a href="#" className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all">
+        {/* Hero Text Content (Bottom Right) */}
+        <div className="relative z-10 h-screen w-full">
+          <div className="absolute bottom-10 right-6 md:bottom-20 md:right-20 text-right max-w-[90%]">
+            <h1 key={`top-${textIndex}`} className="text-white text-[9px] md:text-[10px] lg:text-[12px] font-light tracking-[0.3em] mb-1.5 uppercase opacity-80 animate-fadeIn text-right">
+              {heroTexts[textIndex].top}
+            </h1>
+            <h2 key={`bottom-${textIndex}`} className="text-white text-sm sm:text-base md:text-xl font-serif italic leading-tight drop-shadow-xl animate-fadeIn text-right">
+              {heroTexts[textIndex].bottom}
+            </h2>
+          </div>
+        </div>
+
+        {/* Social Sidebar (Left) */}
+        <div className="absolute left-6 md:left-10 top-[60%] -translate-y-1/2 hidden sm:flex flex-col items-center space-y-8 z-10">
+          <a href="https://www.instagram.com/indeoravoyages/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+          </a>
+          {/* <a href="#" className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
           </a> */}
-        <a href="https://www.facebook.com/indeoravoyages/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all">
-          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg>
-        </a>
-        <div className="h-16 w-[1px] bg-white/20 mx-auto"></div>
-        <span className="text-white/60 text-[10px] tracking-[0.4em] vertical-text uppercase font-bold">Follow us</span>
-      </div>
+          <a href="https://www.facebook.com/indeoravoyages/" target="_blank" rel="noopener noreferrer" className="w-8 h-8 rounded-full border border-white/40 flex items-center justify-center text-white/60 hover:text-white hover:border-white transition-all">
+            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" /></svg>
+          </a>
+          <div className="h-16 w-[1px] bg-white/20 mx-auto"></div>
+          <span className="text-white/60 text-[10px] tracking-[0.4em] vertical-text uppercase font-bold">Follow us</span>
+        </div>
 
 
 
-      <style dangerouslySetInnerHTML={{
-        __html: `
+        <style dangerouslySetInnerHTML={{
+          __html: `
           .vertical-text {
             writing-mode: vertical-rl;
             text-orientation: mixed;
@@ -245,7 +254,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
             animation-play-state: paused;
           }
         `}} />
-    </div>
+      </div>
     );
   };
 
@@ -307,20 +316,20 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
 
                 return (
                   <div key={idx} className="flex flex-col items-start max-w-xl mx-auto md:mx-0">
-                    <div className={`flex items-center mb-2 ${isEven ? 'gap-4' : 'gap-8 ml-[120px] md:ml-[230px]'}`}>
+                    <div className={`flex items-center mb-4 ${isEven ? 'gap-4' : 'gap-5 ml-auto'}`}>
                       {!isEven && (
                         <div className="text-right">
-                          <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">{item.title}</h3>
-                          <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide">{item.subtitle}</p>
+                          <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0 whitespace-pre-line">{item.title.replace(' ', '\n')}</h3>
+                          <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide mt-1">{item.subtitle}</p>
                         </div>
                       )}
-                      <div className={`rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0 ${isEven ? 'w-20 h-20 md:w-28 md:h-28' : 'w-22 h-20 md:w-28 md:h-28'}`}>
-                        <img src={imgUrl} alt={item.title} className={`w-full h-full object-cover ${isEven ? 'object-[25%_75%] scale-[2.5]' : 'object-[33%_-15%] scale-[2.1] translate-y-9'}`} />
+                      <div className={`rounded-full overflow-hidden shadow-xl border border-white/20 shrink-0 w-20 h-20 md:w-28 md:h-28`}>
+                        <img src={imgUrl} alt={item.title.replace('\n', ' ')} className={`w-full h-full object-cover ${isEven ? 'object-[25%_75%] scale-[2.5]' : 'object-[20%_20%] scale-[2.2] translate-y-10'}`} />
                       </div>
                       {isEven && (
                         <div>
                           <h3 className="text-[#D7CBB3] text-base md:text-lg font-serif italic mb-0">{item.title}</h3>
-                          <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide">{item.subtitle}</p>
+                          <p className="text-white font-bold text-[10px] md:text-[11px] tracking-wide mt-1">{item.subtitle}</p>
                         </div>
                       )}
                     </div>
@@ -562,8 +571,8 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
     </>
   );
 
-  
-    const renderGenericSection = (sectionKey) => {
+
+  const renderGenericSection = (sectionKey) => {
     const data = dynamicSections && dynamicSections[sectionKey];
     if (!data) return null;
 
@@ -572,10 +581,10 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
     let embedUrl = null;
 
     if (isYoutube) {
-       const match = videoUrl.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
-       if (match && match[1]) {
-         embedUrl = `https://www.youtube.com/embed/${match[1]}?autoplay=0&controls=1&rel=0`;
-       }
+      const match = videoUrl.match(/(?:youtu.be\/|youtube.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?]+)/);
+      if (match && match[1]) {
+        embedUrl = `https://www.youtube.com/embed/${match[1]}?autoplay=0&controls=1&rel=0`;
+      }
     }
 
     return (
@@ -613,7 +622,7 @@ Pour un prochain voyage en Inde, je choisirai sans hésiter "Le Passage en Inde"
                   title={data.title || "Video"}
                 ></iframe>
               ) : (
-                <video 
+                <video
                   src={videoUrl.startsWith('http') || videoUrl.startsWith('/') ? videoUrl : `/${videoUrl}`}
                   controls
                   className="w-full h-full object-cover"

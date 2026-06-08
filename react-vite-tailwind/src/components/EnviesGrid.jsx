@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const EnviesGrid = ({ settings = {} }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   
-  const title = settings.title || "TOUTES VOS ENVIES DE VOYAGE EN INDE";
+  const title = "TOUTES VOS ENVIES DE VOYAGE EN INDE";
   const items = (settings.items !== undefined) 
     ? settings.items 
     : [

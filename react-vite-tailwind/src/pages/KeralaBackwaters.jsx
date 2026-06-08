@@ -26,12 +26,12 @@ const KeralaBackwaters = () => {
       question: "Pourquoi voyager avec une agence locale en Inde ?",
       answer: "Une agence locale spécialisée permet de bénéficier d’une meilleure organisation, d’expériencesplus authentiques et d’un accompagnement personnalisé sur place.",
     },
-    
+
   ];
 
   return (
     <div className="bg-[#FAF9F6] min-h-screen font-light">
-      
+
 
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[75vh] lg:h-[85vh] overflow-hidden flex items-center justify-center">
@@ -66,8 +66,8 @@ const KeralaBackwaters = () => {
           {/* Left Column: Flanking cards for all Subsections */}
           <div className="lg:col-span-3 lg:w-full lg:mx-auto">
             {/* Card 1: Flanking Section 1 Image */}
-            <div className="lg:mt-[838px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[238px] mx-auto">
+            <div className="lg:mt-[871px]">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[231px] mx-auto">
                 <img
                   src="https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 1"
@@ -78,7 +78,7 @@ const KeralaBackwaters = () => {
 
             {/* Card 2: Flanking Section 2 Image */}
             <div className="lg:mt-[561px]">
-              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[239px] mx-auto group cursor-pointer">
+              <div className="relative overflow-hidden aspect-[4/5] bg-white shadow-2xl rounded-sm border border-gray-150 p-3 animate-fadeIn lg:max-w-[235px] mx-auto group cursor-pointer">
                 <img
                   src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&q=80&w=800"
                   alt="Rajasthan Royale Left Featured 2"
@@ -141,8 +141,8 @@ const KeralaBackwaters = () => {
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            
-            
+
+
           </div>
           {/* Center Column: Main overlapping white editorial card */}
           <div className="lg:col-span-6">
@@ -158,14 +158,14 @@ const KeralaBackwaters = () => {
                 </div>
 
                 <p className="font-light italic leading-loose text-justify text-gray-600 first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:text-[#A88B52] first-letter:mr-3 first-letter:float-left first-letter:mt-1">
-                Un premier voyage en Inde ne ressemble à aucun autre voyage. L’Inde ne se visite pas
-simplement. Elle se ressent, s’écoute et se vit intensément. Avant même d’y poser les pieds,
-beaucoup imaginent déjà les palais du Rajasthan, les cérémonies du Gange, les marchés
-colorés ou les paysages majestueux de l’Himalaya. Pourtant, une fois sur place, le voyage
-devient bien plus profond que ce que l’on avait imaginé. L’Inde possède cette capacité rare
-de transformer un simple séjour en expérience profondément humaine. Chaque région
-raconte une histoire différente, chaque rencontre laisse une émotion particulière et chaque
-journée semble offrir une nouvelle manière de regarder le monde.
+                  Un premier voyage en Inde ne ressemble à aucun autre voyage. L’Inde ne se visite pas
+                  simplement. Elle se ressent, s’écoute et se vit intensément. Avant même d’y poser les pieds,
+                  beaucoup imaginent déjà les palais du Rajasthan, les cérémonies du Gange, les marchés
+                  colorés ou les paysages majestueux de l’Himalaya. Pourtant, une fois sur place, le voyage
+                  devient bien plus profond que ce que l’on avait imaginé. L’Inde possède cette capacité rare
+                  de transformer un simple séjour en expérience profondément humaine. Chaque région
+                  raconte une histoire différente, chaque rencontre laisse une émotion particulière et chaque
+                  journée semble offrir une nouvelle manière de regarder le monde.
 
                 </p>
               </div>
@@ -188,14 +188,14 @@ journée semble offrir une nouvelle manière de regarder le monde.
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                   L’Inde est l’un des pays les plus fascinants au monde par sa diversité culturelle, ses
-paysages et la richesse de ses traditions. En quelques jours seulement, vous pouvez passer
-des palais majestueux du Rajasthan aux paysages tropicaux du Kerala, des cérémonies
-spirituelles de Varanasi aux villages paisibles de l’Himalaya. Mais ce qui rend un voyage en
-Inde réellement unique, ce ne sont pas seulement les lieux visités. Ce sont surtout les
-émotions vécues sur place : le parfum des épices dans les marchés, les sourires échangés
-dans un village, le silence d’un temple au lever du soleil ou encore l’énergie vibrante des
-grandes villes indiennes.
+                    L’Inde est l’un des pays les plus fascinants au monde par sa diversité culturelle, ses
+                    paysages et la richesse de ses traditions. En quelques jours seulement, vous pouvez passer
+                    des palais majestueux du Rajasthan aux paysages tropicaux du Kerala, des cérémonies
+                    spirituelles de Varanasi aux villages paisibles de l’Himalaya. Mais ce qui rend un voyage en
+                    Inde réellement unique, ce ne sont pas seulement les lieux visités. Ce sont surtout les
+                    émotions vécues sur place : le parfum des épices dans les marchés, les sourires échangés
+                    dans un village, le silence d’un temple au lever du soleil ou encore l’énergie vibrante des
+                    grandes villes indiennes.
 
                   </p>
                 </div>
@@ -215,13 +215,13 @@ grandes villes indiennes.
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                  Le Rajasthan reste souvent la meilleure porte d’entrée vers l’Inde. Entre forts majestueux,
-palais de maharajas, désert du Thar et villes historiques comme Jaipur, Jodhpur ou Udaipur,
-cette région concentre toute la magie de l’Inde du Nord. Le Kerala séduit quant à lui par une
-ambiance plus tropicale et apaisante. Les backwaters, les plantations de thé et l’Ayurveda
-attirent les voyageurs en quête de nature et de bien-être. Pour les amateurs de spiritualité,
-Varanasi et Rishikesh offrent une immersion fascinante au cœur des traditions sacrées
-indiennes.
+                    Le Rajasthan reste souvent la meilleure porte d’entrée vers l’Inde. Entre forts majestueux,
+                    palais de maharajas, désert du Thar et villes historiques comme Jaipur, Jodhpur ou Udaipur,
+                    cette région concentre toute la magie de l’Inde du Nord. Le Kerala séduit quant à lui par une
+                    ambiance plus tropicale et apaisante. Les backwaters, les plantations de thé et l’Ayurveda
+                    attirent les voyageurs en quête de nature et de bien-être. Pour les amateurs de spiritualité,
+                    Varanasi et Rishikesh offrent une immersion fascinante au cœur des traditions sacrées
+                    indiennes.
 
 
                   </p>
@@ -242,12 +242,12 @@ indiennes.
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                   La meilleure période pour voyager en Inde dépend principalement des régions visitées.
-D’octobre à mars, les conditions sont idéales pour découvrir le Rajasthan, Delhi, Agra,
-Varanasi ainsi que le Kerala et l’Inde du Sud. Entre avril et juillet, les régions himalayennes
-comme le Ladakh deviennent particulièrement agréables. Pendant la mousson, certaines
-régions comme le Kerala ou le Nord-Est indien révèlent des paysages luxuriants et une
-atmosphère totalement différente.
+                    La meilleure période pour voyager en Inde dépend principalement des régions visitées.
+                    D’octobre à mars, les conditions sont idéales pour découvrir le Rajasthan, Delhi, Agra,
+                    Varanasi ainsi que le Kerala et l’Inde du Sud. Entre avril et juillet, les régions himalayennes
+                    comme le Ladakh deviennent particulièrement agréables. Pendant la mousson, certaines
+                    régions comme le Kerala ou le Nord-Est indien révèlent des paysages luxuriants et une
+                    atmosphère totalement différente.
                   </p>
                 </div>
 
@@ -266,18 +266,18 @@ atmosphère totalement différente.
                   </div>
 
                   <p className="leading-loose font-light mb-4 text-justify">
-                   Le véritable luxe en Inde ne réside pas uniquement dans les hôtels prestigieux ou les palais
-transformés en hébergements de charme. Il se trouve dans les émotions vécues : un
-coucher de soleil dans le désert du Rajasthan, une cérémonie au bord du Gange, un repas
-partagé avec une famille locale ou encore le silence des montagnes himalayennes. Ce sont
-ces instants profondément humains qui rendent un voyage en Inde réellement inoubliable.
+                    Le véritable luxe en Inde ne réside pas uniquement dans les hôtels prestigieux ou les palais
+                    transformés en hébergements de charme. Il se trouve dans les émotions vécues : un
+                    coucher de soleil dans le désert du Rajasthan, une cérémonie au bord du Gange, un repas
+                    partagé avec une famille locale ou encore le silence des montagnes himalayennes. Ce sont
+                    ces instants profondément humains qui rendent un voyage en Inde réellement inoubliable.
 
 
                   </p>
                 </div>
 
                 {/* Subsection 5 */}
-               
+
               </div>
 
               {/* Subsection 6: FAQ Accordion */}
@@ -396,7 +396,7 @@ ces instants profondément humains qui rendent un voyage en Inde réellement ino
               </div>
             </div>
             {/* Card 5: Flanking Section 5 Image */}
-            
+
           </div>
 
 
@@ -425,10 +425,10 @@ ces instants profondément humains qui rendent un voyage en Inde réellement ino
           <div className="w-16 h-[1.5px] bg-[#A88B52] mx-auto mb-8"></div>
 
           <p className="text-[13px] md:text-[16px] leading-[1.8] text-gray-300 font-light italic mb-12 max-w-3xl mx-auto">
-           Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les
-voyageurs francophones en quête d’authenticité, d’émotions et d’expériences profondément
-humaines. Contactez notre équipe pour créer un voyage entièrement pensé selon vos
-envies, votre rythme et votre manière de voyager.
+            Depuis plus de 18 ans, Indeora Voyages imagine des voyages sur mesure en Inde pour les
+            voyageurs francophones en quête d’authenticité, d’émotions et d’expériences profondément
+            humaines. Contactez notre équipe pour créer un voyage entièrement pensé selon vos
+            envies, votre rythme et votre manière de voyager.
           </p>
         </div>
       </section>

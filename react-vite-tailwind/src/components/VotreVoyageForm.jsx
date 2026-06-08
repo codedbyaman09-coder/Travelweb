@@ -194,8 +194,10 @@ const VotreVoyageForm = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [destination, setDestination] = useState('');
+  const [userMessage, setUserMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
+  const [errors, setErrors] = useState({});
 
   const handleDateClick = (day, month, year) => {
     const clickedDate = new Date(year, month, day);
@@ -244,6 +246,8 @@ const VotreVoyageForm = () => {
   };
 
   const handleInputChange = (type, val) => {
+    if (errors.startDate) setErrors(e => ({ ...e, startDate: null }));
+    if (errors.endDate) setErrors(e => ({ ...e, endDate: null }));
     if (!val) {
       type === 'start' ? setStartDate(null) : setEndDate(null);
       return;
@@ -262,8 +266,37 @@ const VotreVoyageForm = () => {
   };
 
   const handleSubmit = async () => {
-    if (!name || !email || !phone) {
-      setSubmitMessage('Veuillez remplir votre nom, email et téléphone.');
+    const newErrors = {};
+
+    if (knowsDates) {
+      if (!startDate) newErrors.startDate = 'Start date is required';
+      if (!endDate) newErrors.endDate = 'End date is required';
+    } else {
+      if (!selectedPeriod) newErrors.selectedPeriod = 'Period is required';
+      if (!selectedDuration) newErrors.selectedDuration = 'Duration is required';
+    }
+
+    if (!name || !name.trim()) newErrors.name = 'Name is required';
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!emailRegex.test(email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    const phoneRegex = /^[0-9\-\+\s\(\)]{6,20}$/;
+    if (!phone || !phone.trim()) {
+      newErrors.phone = 'Phone is required';
+    } else if (!phoneRegex.test(phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    if (!destination || !destination.trim()) newErrors.destination = 'Destination is required';
+
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length > 0) {
       return;
     }
 
@@ -271,35 +304,40 @@ const VotreVoyageForm = () => {
     setSubmitMessage('');
 
     // Prepare message with all the context
-    let travelDetails = `Période: ${knowsDates ? `Du ${startDate?.toLocaleDateString()} au ${endDate?.toLocaleDateString()}` : selectedPeriod}\n`;
-    travelDetails += `Durée: ${knowsDates ? `${getDuration()} jours` : selectedDuration}\n`;
-    travelDetails += `Voyageurs: ${adults} adulte(s), ${children} enfant(s)\n`;
-    travelDetails += `Budget par personne: ${selectedBudget}\n`;
-    travelDetails += `Destination souhaitée: ${destination || 'Non spécifiée'}\n`;
-
     try {
-      const res = await fetch('http://127.0.0.1:8000/api/inquiries', {
+      const res = await fetch('http://127.0.0.1:8000/api/contact-rapide/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name,
           email,
           phone: `${selectedCountry.code} ${phone}`,
-          message: travelDetails
+          destination,
+          periode: knowsDates ? `Du ${startDate?.toLocaleDateString()} au ${endDate?.toLocaleDateString()}` : selectedPeriod,
+          duree: knowsDates ? `${getDuration()} jours` : selectedDuration,
+          voyageurs: `${adults} adulte(s), ${children} enfant(s)`,
+          budget: selectedBudget,
+          message: userMessage
         })
       });
       const data = await res.json();
       if (data.success) {
-        setSubmitMessage('Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.');
+        if (data.previewUrl) {
+          setSubmitMessage(`Form submitted! (Test Email generated: ${data.previewUrl})`);
+          console.log('Test Email URL:', data.previewUrl);
+        } else {
+          setSubmitMessage('Form submitted successfully');
+        }
         setName('');
         setEmail('');
         setPhone('');
         setDestination('');
+        setUserMessage('');
       } else {
-        setSubmitMessage('Une erreur est survenue.');
+        setSubmitMessage('Something went wrong. Please try again.');
       }
     } catch (err) {
-      setSubmitMessage('Impossible de contacter le serveur.');
+      setSubmitMessage('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -343,10 +381,9 @@ const VotreVoyageForm = () => {
     "flex items-center justify-between gap-4 border-b border-[#ead8cf] pb-5 mb-8";
 
   const optionClass = (active) =>
-    `relative rounded-2xl border p-5 text-left transition-all duration-300 ${
-      active
-        ? 'bg-[#b8795f] border-[#b8795f] text-white shadow-[0_14px_35px_rgba(184,121,95,0.28)]'
-        : 'bg-white border-[#ead8cf] text-[#241f1c] hover:border-[#b8795f] hover:-translate-y-1'
+    `relative rounded-2xl border p-5 text-left transition-all duration-300 ${active
+      ? 'bg-[#b8795f] border-[#b8795f] text-white shadow-[0_14px_35px_rgba(184,121,95,0.28)]'
+      : 'bg-white border-[#ead8cf] text-[#241f1c] hover:border-[#b8795f] hover:-translate-y-1'
     }`;
 
   const renderCalendarGrid = (viewDate) => {
@@ -413,13 +450,12 @@ const VotreVoyageForm = () => {
                 type="button"
                 key={day}
                 onClick={() => handleDateClick(day, month, year)}
-                className={`w-9 h-9 mx-auto rounded-full transition-all ${
-                  selected
-                    ? 'bg-[#b8795f] text-white font-bold shadow-md'
-                    : inRange
+                className={`w-9 h-9 mx-auto rounded-full transition-all ${selected
+                  ? 'bg-[#b8795f] text-white font-bold shadow-md'
+                  : inRange
                     ? 'bg-[#f1d7cc] text-[#241f1c]'
                     : 'text-[#241f1c] hover:bg-white'
-                }`}
+                  }`}
               >
                 {day}
               </button>
@@ -482,11 +518,10 @@ const VotreVoyageForm = () => {
                 <button
                   type="button"
                   onClick={() => setKnowsDates(true)}
-                  className={`px-10 py-3 rounded-full text-[12px] uppercase tracking-[0.2em] font-bold transition-all ${
-                    knowsDates
-                      ? 'bg-[#241f1c] text-white'
-                      : 'bg-white text-[#241f1c] border border-[#ead8cf] hover:border-[#b8795f]'
-                  }`}
+                  className={`px-10 py-3 rounded-full text-[12px] uppercase tracking-[0.2em] font-bold transition-all ${knowsDates
+                    ? 'bg-[#241f1c] text-white'
+                    : 'bg-white text-[#241f1c] border border-[#ead8cf] hover:border-[#b8795f]'
+                    }`}
                 >
                   Oui
                 </button>
@@ -494,11 +529,10 @@ const VotreVoyageForm = () => {
                 <button
                   type="button"
                   onClick={() => setKnowsDates(false)}
-                  className={`px-10 py-3 rounded-full text-[12px] uppercase tracking-[0.2em] font-bold transition-all ${
-                    !knowsDates
-                      ? 'bg-[#241f1c] text-white'
-                      : 'bg-white text-[#241f1c] border border-[#ead8cf] hover:border-[#b8795f]'
-                  }`}
+                  className={`px-10 py-3 rounded-full text-[12px] uppercase tracking-[0.2em] font-bold transition-all ${!knowsDates
+                    ? 'bg-[#241f1c] text-white'
+                    : 'bg-white text-[#241f1c] border border-[#ead8cf] hover:border-[#b8795f]'
+                    }`}
                 >
                   Non
                 </button>
@@ -518,6 +552,7 @@ const VotreVoyageForm = () => {
                       placeholder=" "
                     />
                     <label className={labelClass}>Date de départ *</label>
+                    {errors.startDate && <p className="text-red-500 text-[11px] mt-1 absolute -bottom-5 left-2">{errors.startDate}</p>}
                   </div>
 
                   <div className="relative">
@@ -530,6 +565,7 @@ const VotreVoyageForm = () => {
                       placeholder=" "
                     />
                     <label className={labelClass}>Date de retour *</label>
+                    {errors.endDate && <p className="text-red-500 text-[11px] mt-1 absolute -bottom-5 left-2">{errors.endDate}</p>}
                   </div>
                 </div>
 
@@ -556,7 +592,7 @@ const VotreVoyageForm = () => {
                       <button
                         type="button"
                         key={p.id}
-                        onClick={() => setSelectedPeriod(p.id)}
+                        onClick={() => { setSelectedPeriod(p.id); if (errors.selectedPeriod) setErrors(e => ({ ...e, selectedPeriod: null })); }}
                         className={optionClass(selectedPeriod === p.id)}
                       >
                         <span className="text-xl mr-3">{p.icon}</span>
@@ -564,6 +600,7 @@ const VotreVoyageForm = () => {
                       </button>
                     ))}
                   </div>
+                  {errors.selectedPeriod && <p className="text-red-500 text-[11px] mt-2 ml-2">{errors.selectedPeriod}</p>}
                 </div>
 
                 <div>
@@ -576,13 +613,14 @@ const VotreVoyageForm = () => {
                       <button
                         type="button"
                         key={d}
-                        onClick={() => setSelectedDuration(d)}
+                        onClick={() => { setSelectedDuration(d); if (errors.selectedDuration) setErrors(e => ({ ...e, selectedDuration: null })); }}
                         className={optionClass(selectedDuration === d)}
                       >
                         <span className="text-[14px] font-medium">{d}</span>
                       </button>
                     ))}
                   </div>
+                  {errors.selectedDuration && <p className="text-red-500 text-[11px] mt-2 ml-2">{errors.selectedDuration}</p>}
                 </div>
               </div>
             )}
@@ -721,13 +759,15 @@ const VotreVoyageForm = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="relative">
-                <input type="text" value={name} onChange={e => setName(e.target.value)} className={fieldClass} placeholder=" " />
+                <input type="text" value={name} onChange={e => { setName(e.target.value); if (errors.name) setErrors(err => ({ ...err, name: null })); }} className={fieldClass} placeholder=" " />
                 <label className={labelClass}>Nom & Prénom *</label>
+                {errors.name && <p className="text-red-500 text-[11px] mt-1 absolute -bottom-5 left-2">{errors.name}</p>}
               </div>
 
               <div className="relative">
-                <input type="email" value={email} onChange={e => setEmail(e.target.value)} className={fieldClass} placeholder=" " />
+                <input type="email" value={email} onChange={e => { setEmail(e.target.value); if (errors.email) setErrors(err => ({ ...err, email: null })); }} className={fieldClass} placeholder=" " />
                 <label className={labelClass}>Email *</label>
+                {errors.email && <p className="text-red-500 text-[11px] mt-1 absolute -bottom-5 left-2">{errors.email}</p>}
               </div>
 
               <div className="grid grid-cols-[130px_1fr] gap-4">
@@ -756,9 +796,8 @@ const VotreVoyageForm = () => {
                             setSelectedCountry(c);
                             setIsCountryCodeOpen(false);
                           }}
-                          className={`w-full p-3 hover:bg-[#fff0e8] cursor-pointer text-sm text-[#241f1c] border-b border-[#f4ece7] flex items-center gap-3 transition-colors ${
-                            selectedCountry.code === c.code ? 'bg-[#fff0e8]' : ''
-                          }`}
+                          className={`w-full p-3 hover:bg-[#fff0e8] cursor-pointer text-sm text-[#241f1c] border-b border-[#f4ece7] flex items-center gap-3 transition-colors ${selectedCountry.code === c.code ? 'bg-[#fff0e8]' : ''
+                            }`}
                         >
                           <span className="text-lg">{c.flag}</span>
                           <span className="font-bold">{c.code}</span>
@@ -772,14 +811,31 @@ const VotreVoyageForm = () => {
                 </div>
 
                 <div className="relative">
-                  <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} className={fieldClass} placeholder=" " />
+                  <input type="tel" value={phone} onChange={e => { setPhone(e.target.value); if (errors.phone) setErrors(err => ({ ...err, phone: null })); }} className={fieldClass} placeholder=" " />
                   <label className={labelClass}>Téléphone *</label>
+                  {errors.phone && <p className="text-red-500 text-[11px] mt-1 absolute -bottom-5 left-2">{errors.phone}</p>}
                 </div>
               </div>
 
-              <div className="relative">
-                <input type="text" value={destination} onChange={e => setDestination(e.target.value)} className={fieldClass} placeholder=" " />
-                <label className={labelClass}>Destination souhaitée</label>
+              <div className="relative md:col-span-2">
+                <textarea 
+                  value={destination} 
+                  onChange={e => { setDestination(e.target.value); if(errors.destination) setErrors(err => ({...err, destination: null})); }} 
+                  className={`${fieldClass} resize-none min-h-[120px]`} 
+                  placeholder=" " 
+                />
+                <label className={labelClass}>Destinations souhaitées *</label>
+                {errors.destination && <p className="text-red-500 text-[11px] mt-1 absolute -bottom-5 left-2">{errors.destination}</p>}
+              </div>
+
+              <div className="relative md:col-span-2">
+                <textarea 
+                  value={userMessage} 
+                  onChange={e => setUserMessage(e.target.value)} 
+                  className={`${fieldClass} resize-none min-h-[120px]`} 
+                  placeholder=" " 
+                />
+                <label className={labelClass}>Votre message (optionnel)</label>
               </div>
             </div>
 
@@ -796,7 +852,7 @@ const VotreVoyageForm = () => {
                 disabled={isSubmitting}
                 className={`group relative overflow-hidden bg-[#241f1c] text-white px-10 md:px-16 py-4 rounded-full text-[12px] md:text-sm tracking-[0.22em] uppercase transition-all duration-500 font-bold shadow-[0_18px_45px_rgba(36,31,28,0.22)] ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'hover:bg-[#b8795f]'}`}
               >
-                {isSubmitting ? 'Envoi en cours...' : 'Demander un devis personnalisé'}
+                {isSubmitting ? 'Sending...' : 'Demander un devis personnalisé'}
               </button>
             </div>
           </section>

@@ -18,10 +18,10 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="absolute top-2 md:top-6 left-2 md:left-10 right-2 md:left-10 z-50 bg-[#313c45] rounded-[12px] md:rounded-[20px] shadow-xl border border-gray-100/10 transition-all duration-300">
-      <div className="md: h-16 md:h-24 flex items-center justify-between lg:justify-center lg:gap-12 xl:gap-16 relative w-full max-w-[1440px] mx-auto px-[40px]">
+    <nav className="absolute top-2 md:top-6 left-2 md:left-10 right-2 md:right-10 z-50 bg-[#313c45] rounded-[12px] md:rounded-[20px] shadow-xl border border-gray-100/10 transition-all duration-300">
+      <div className="h-16 md:h-24 flex items-center justify-between relative w-full max-w-[1440px] mx-auto px-[40px]">
         {/* Left Menu */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-10">
+        <div className="hidden lg:flex flex-1 justify-end items-center gap-6 xl:gap-10 lg:pr-12 xl:pr-16">
           <Link to="/" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Accueil</Link>
           <Link to="/about" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">À propos</Link>
 
@@ -83,7 +83,7 @@ const Navbar = () => {
         </Link>
 
         {/* Right Menu */}
-        <div className="hidden lg:flex items-center gap-6 xl:gap-10">
+        <div className="hidden lg:flex flex-1 justify-start items-center gap-6 xl:gap-10 lg:pl-12 xl:pl-16">
           <Link to="/blog" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Blog</Link>
           <Link to="/faq" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">FAQ</Link>
           <Link to="/contact-rapide" className="text-[9px] xl:text-[10px] font-bold tracking-[0.2em] xl:tracking-[0.3em] text-[#C6A46D] uppercase hover:text-white transition-colors whitespace-nowrap">Contact rapide</Link>

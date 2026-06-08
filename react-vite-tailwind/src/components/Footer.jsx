@@ -28,6 +28,7 @@ const defaultFooterConfig = {
       address: 'Bikaner, Rajasthan, Inde',
       phoneFrance: '+33 6 16 64 26 26',
       phoneIndia: '+91 93514 21959',
+      // phoneIndia: '+911514050559',
       email: 'contact@indeoravoyages.com'
     },
     seoText: "Agence de voyage Inde Paris • Agence locale Inde du Sud • Agence de voyage Inde du Nord • Agence locale francophone Inde • Receptif inde • Agence locale Rajasthan • agence de voyage en inde • Agence de voyage spécialisée pour l'Inde • Meilleure agence de voyage inde",
@@ -89,6 +90,13 @@ const Footer = ({ previewConfig }) => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
   const [isFooterPhoneOpen, setIsFooterPhoneOpen] = useState(false);
+  const [footerCallDay, setFooterCallDay] = useState('Any Day');
+  const [footerCallTime, setFooterCallTime] = useState('Any Time');
+  const [callbackLoading, setCallbackLoading] = useState(false);
+  const [callbackStatus, setCallbackStatus] = useState('idle');
+  const [newsletterPanelEmail, setNewsletterPanelEmail] = useState('');
+  const [newsletterPanelLoading, setNewsletterPanelLoading] = useState(false);
+  const [newsletterPanelStatus, setNewsletterPanelStatus] = useState('idle');
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isLegalOpen, setIsLegalOpen] = useState(false);
   const [isCancelOpen, setIsCancelOpen] = useState(false);
@@ -307,7 +315,7 @@ const Footer = ({ previewConfig }) => {
                     </div>
                     <div className="flex items-center gap-3">
                       <img src="https://flagcdn.com/w20/in.png" alt="Inde Mobile" className="w-4 h-auto shadow-sm opacity-80" />
-                      <a href={"tel:" + (footerConfig.content.contactInfo?.phoneIndia?.replace(/\s/g, "") || "+919351421959")} className="text-[#C5A46D]/80 hover:text-white transition-colors">{footerConfig.content.contactInfo?.phoneIndia || "+91 93514 21959"}</a>
+                      <a href="tel:+911514050559" className="text-[#C5A46D]/80 hover:text-white transition-colors">+91 151 405 0559</a>
                     </div>
                   </div>
                 </li>
@@ -428,7 +436,11 @@ const Footer = ({ previewConfig }) => {
                   <p className="text-[#2D5C64]/70 text-[13px] mb-5 font-light tracking-wide italic">Quand souhaitez-vous être appelé ?</p>
                   <div className="grid grid-cols-2 gap-4">
                     <div className="relative">
-                      <select className="w-full px-4 py-3.5 bg-white border border-gray-200 text-sm appearance-none outline-none focus:border-[#2D5C64] cursor-pointer text-gray-400 font-light rounded-sm">
+                      <select 
+                        value={footerCallDay}
+                        onChange={(e) => setFooterCallDay(e.target.value)}
+                        className="w-full px-4 py-3.5 bg-white border border-gray-200 text-sm appearance-none outline-none focus:border-[#2D5C64] cursor-pointer text-gray-400 font-light rounded-sm"
+                      >
                         <option>Any Day</option>
                         <option>Sunday</option>
                         <option>Monday</option>
@@ -443,7 +455,11 @@ const Footer = ({ previewConfig }) => {
                       </svg>
                     </div>
                     <div className="relative">
-                      <select className="w-full px-4 py-3.5 bg-white border border-gray-200 text-sm appearance-none outline-none focus:border-[#2D5C64] cursor-pointer text-gray-400 font-light rounded-sm">
+                      <select 
+                        value={footerCallTime}
+                        onChange={(e) => setFooterCallTime(e.target.value)}
+                        className="w-full px-4 py-3.5 bg-white border border-gray-200 text-sm appearance-none outline-none focus:border-[#2D5C64] cursor-pointer text-gray-400 font-light rounded-sm"
+                      >
                         <option>Any Time</option>
                         <option>Morning</option>
                         <option>Afternoon</option>
@@ -456,9 +472,51 @@ const Footer = ({ previewConfig }) => {
                   </div>
                 </div>
 
-                <button className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md mt-4 text-center">
-                  APPELEZ-MOI
+                <button 
+                  disabled={callbackLoading}
+                  onClick={async () => {
+                    if (!footerPhone) {
+                      setCallbackStatus('error-phone');
+                      return;
+                    }
+                    setCallbackLoading(true);
+                    setCallbackStatus('idle');
+                    const fullPhone = `${footerCountryCode.replace('+', '')}${footerPhone}`;
+                    try {
+                      await apiRequest('/contact-rapide/send', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                          name: 'Callback Request',
+                          email: 'callback@indeoravoyages.com',
+                          phone: `+${fullPhone}`,
+                          message: `Demande de rappel\nNuméro : +${fullPhone}\nJour préféré : ${footerCallDay}\nHeure préférée : ${footerCallTime}`
+                        })
+                      });
+                      setCallbackStatus('success');
+                      // Also open WhatsApp
+                      const msg = `Bonjour, je souhaite être rappelé.\nMon numéro : +${fullPhone}\nJour préféré : ${footerCallDay}\nHeure préférée : ${footerCallTime}`;
+                      const whatsappUrl = `https://wa.me/919928605746?text=${encodeURIComponent(msg)}`;
+                      window.open(whatsappUrl, '_blank');
+                      setFooterPhone('');
+                      setFooterCallDay('Any Day');
+                      setFooterCallTime('Any Time');
+                    } catch (error) {
+                      console.error('Callback email error:', error);
+                      setCallbackStatus('error');
+                      // Still open WhatsApp even if email fails
+                      const msg = `Bonjour, je souhaite être rappelé.\nMon numéro : +${fullPhone}\nJour préféré : ${footerCallDay}\nHeure préférée : ${footerCallTime}`;
+                      const whatsappUrl = `https://wa.me/919928605746?text=${encodeURIComponent(msg)}`;
+                      window.open(whatsappUrl, '_blank');
+                    }
+                    setCallbackLoading(false);
+                  }}
+                  className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md mt-4 text-center disabled:opacity-50"
+                >
+                  {callbackLoading ? 'ENVOI...' : 'APPELEZ-MOI'}
                 </button>
+                {callbackStatus === 'success' && <p className="text-green-600 text-sm mt-2 text-center">Demande envoyée avec succès !</p>}
+                {callbackStatus === 'error' && <p className="text-orange-500 text-sm mt-2 text-center">Email non envoyé, mais WhatsApp ouvert.</p>}
+                {callbackStatus === 'error-phone' && <p className="text-red-500 text-sm mt-2 text-center">Veuillez entrer votre numéro de téléphone.</p>}
               </div>
             </div>
           </div>
@@ -481,12 +539,43 @@ const Footer = ({ previewConfig }) => {
               <div className="w-full space-y-6">
                 <input
                   type="email"
+                  value={newsletterPanelEmail}
+                  onChange={(e) => setNewsletterPanelEmail(e.target.value)}
                   placeholder="Adresse email"
                   className="w-full px-6 py-4 bg-white border border-gray-200 text-sm outline-none focus:border-[#2D5C64] transition-colors placeholder:text-gray-300 rounded-sm font-light shadow-sm"
                 />
-                <button className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md">
-                  JE M'INSCRIS
+                <button 
+                  disabled={newsletterPanelLoading}
+                  onClick={async () => {
+                    if (!newsletterPanelEmail) return;
+                    setNewsletterPanelLoading(true);
+                    setNewsletterPanelStatus('idle');
+                    try {
+                      const res = await fetch('http://localhost:8000/api/contact-rapide/newsletter', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ 
+                          email: newsletterPanelEmail,
+                          message: "Voyages thématiques, itinéraires originaux et conseils exclusifs... Recevez notre newsletter" 
+                        })
+                      });
+                      if (res.ok) {
+                        setNewsletterPanelStatus('success');
+                        setNewsletterPanelEmail('');
+                      } else {
+                        setNewsletterPanelStatus('error');
+                      }
+                    } catch (error) {
+                      setNewsletterPanelStatus('error');
+                    }
+                    setNewsletterPanelLoading(false);
+                  }}
+                  className="w-full bg-[#2D5C64] text-white py-4 text-[13px] font-bold tracking-[0.2em] uppercase hover:bg-[#234b51] transition-all duration-300 rounded-sm shadow-md disabled:opacity-50"
+                >
+                  {newsletterPanelLoading ? "ENVOI..." : "JE M'INSCRIS"}
                 </button>
+                {newsletterPanelStatus === 'success' && <p className="text-green-600 text-sm mt-2">Inscription réussie !</p>}
+                {newsletterPanelStatus === 'error' && <p className="text-red-600 text-sm mt-2">Erreur lors de l'inscription.</p>}
               </div>
             </div>
           </div>
@@ -494,64 +583,64 @@ const Footer = ({ previewConfig }) => {
 
         {/* Contacter un specialiste francophone callback panel remains if needed, but phone numbers dropdown panel is removed */}
 
-        <div className="flex flex-col md:flex-row items-stretch h-auto md:h-[60px] w-full max-w-[1440px] mx-auto px-[40px]">
+        <div className="flex flex-col lg:flex-row items-stretch h-auto lg:h-[60px] w-full max-w-[1440px] mx-auto px-0 lg:pl-4 xl:pl-[40px]">
 
 
           {/* Info Sections */}
-          <div className="flex-1 flex items-center divide-x divide-gray-100">
+          <div className="flex-1 flex flex-col lg:flex-row items-center divide-y lg:divide-y-0 lg:divide-x divide-gray-100 overflow-hidden pr-2 xl:pr-4">
             {/* Contacter un specialiste francophone */}
             <div
-              className="flex-1 flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors"
+              className="flex-[1] flex items-center justify-center gap-2 xl:gap-3 px-2 py-3 lg:py-0 group cursor-pointer hover:bg-gray-50 transition-colors shrink-0 overflow-hidden"
               onClick={() => {
                 setIsContactOpen(!isContactOpen);
                 setIsAppointmentOpen(false);
               }}
             >
-              <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 xl:w-6 xl:h-6 text-[#2D5C64] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
-              <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Contacter un specialiste francophone</span>
-              <svg className={`w-3 h-3 text-[#2D5C64] transition-transform duration-300 ${isContactOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="text-[#2D5C64] text-[10px] xl:text-[12px] font-medium tracking-wide truncate">Contacter un specialiste francophone</span>
+              <svg className={`w-3 h-3 text-[#2D5C64] shrink-0 transition-transform duration-300 ${isContactOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
             </div>
 
             {/* Phone Section (Direct Contact Numbers Displayed) */}
-            <div className="flex-[1.3] flex items-center justify-center gap-3 px-4 py-3 md:py-0 text-[#2D5C64]">
-              <svg className="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex-[1.5] flex items-center justify-center gap-2 xl:gap-3 px-2 py-3 lg:py-0 text-[#2D5C64] shrink-0 overflow-hidden">
+              <svg className="w-4 h-4 xl:w-5 xl:h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-6 6" />
               </svg>
-              <div className="flex items-center gap-2 text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">
-                <span>France :</span>
-                <a href={"tel:" + (footerConfig.content.contactInfo?.phoneFrance?.replace(/\s/g, "") || "+33616642626")} className="font-bold hover:underline text-[#2D5C64]">{footerConfig.content.contactInfo?.phoneFrance || "+33 6 16 64 26 26"}</a>
-                <span className="text-gray-300 mx-1">|</span>
-                <span>INDE :</span>
-                <a href={"tel:" + (footerConfig.content.contactInfo?.phoneIndia?.replace(/\s/g, "") || "+919351421959")} className="font-bold hover:underline text-[#2D5C64]">{footerConfig.content.contactInfo?.phoneIndia || "+91 93514 21959"}</a>
+              <div className="flex items-center gap-1 xl:gap-2 text-[10px] xl:text-[12px] font-medium tracking-wide truncate">
+                <span>France:</span>
+                <a href={"tel:" + (footerConfig.content.contactInfo?.phoneFrance?.replace(/\s/g, "") || "+33616642626")} className="font-bold hover:underline text-[#2D5C64] truncate">{footerConfig.content.contactInfo?.phoneFrance || "+33 6 16 64 26 26"}</a>
+                <span className="text-gray-300 mx-1 hidden lg:inline">|</span>
+                <span className="hidden lg:inline">INDE:</span>
+                <a href={"tel:" + (footerConfig.content.contactInfo?.phoneIndia?.replace(/\s/g, "") || "+919351421959")} className="hidden lg:inline font-bold hover:underline text-[#2D5C64] truncate">{footerConfig.content.contactInfo?.phoneIndia || "+91 93514 21959"}</a>
               </div>
             </div>
 
             {/* Appointment Section */}
             <div
-              className="flex-1 flex items-center justify-center gap-3 px-4 py-3 md:py-0 group cursor-pointer hover:bg-gray-50 transition-colors"
+              className="flex-[1] flex items-center justify-center gap-2 xl:gap-3 px-2 py-3 lg:py-0 group cursor-pointer hover:bg-gray-50 transition-colors shrink-0 overflow-hidden"
               onClick={() => {
                 setIsAppointmentOpen(!isAppointmentOpen);
                 setIsContactOpen(false);
               }}
             >
-              <svg className="w-6 h-6 text-[#2D5C64]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 xl:w-6 xl:h-6 text-[#2D5C64] shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
-              <span className="text-[#2D5C64] text-[11px] md:text-[13px] font-medium tracking-wide whitespace-nowrap">Prendre rendez-vous</span>
-              <svg className={`w-3 h-3 text-[#2D5C64] transition-transform duration-300 ${isAppointmentOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span className="text-[#2D5C64] text-[10px] xl:text-[12px] font-medium tracking-wide truncate">Prendre rendez-vous</span>
+              <svg className={`w-3 h-3 text-[#2D5C64] shrink-0 transition-transform duration-300 ${isAppointmentOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
               </svg>
             </div>
           </div>
 
           {/* CTA Button */}
-          <Link to="/demander-un-devis" className="bg-[#2D5C64] px-8 md:px-12 py-4 md:py-0 flex items-center justify-center cursor-pointer hover:bg-[#234b51] transition-all duration-300 group">
-            <span className="text-white text-[12px] md:text-[14px] font-bold tracking-[0.15em] uppercase whitespace-nowrap">DEMANDER UN DEVIS</span>
+          <Link to="/demander-un-devis" className="bg-[#2D5C64] px-6 lg:px-8 xl:px-12 py-4 lg:py-0 flex items-center justify-center cursor-pointer hover:bg-[#234b51] transition-all duration-300 group shrink-0">
+            <span className="text-white text-[11px] xl:text-[13px] font-bold tracking-[0.1em] xl:tracking-[0.15em] uppercase whitespace-nowrap">DEMANDER UN DEVIS</span>
           </Link>
         </div>
       </div>

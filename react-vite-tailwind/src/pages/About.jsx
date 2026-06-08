@@ -11,7 +11,7 @@ import guideIcon from "../assets/ChatGPT Image May 14, 2026, 01_37_59 PM.png";
 import assistanceIcon from "../assets/ChatGPT Image May 14, 2026, 01_40_49 PM.png";
 import bgUSPImg from "../assets/image copy 42.jpeg";
 import amandineImg from "../assets/image copy 46.jpeg";
-import dipeshImg from "../assets/team/dipesh.png";
+import dipeshImg from "../assets/image copy 47.jpeg";
 
 
 const About = ({ previewConfig, previewSettings }) => {
@@ -501,11 +501,13 @@ const About = ({ previewConfig, previewSettings }) => {
                 className={`flex gap-3 md:gap-6 items-start ${index === 1 ? "md:border-l md:pl-16 border-[#d8cdbc]" : ""
                   }`}
               >
-                <img
-                  src={person.img}
-                  alt={person.name}
-                  className="w-16 h-16 md:w-28 md:h-28 rounded-full object-cover shrink-0"
-                />
+                <div className="w-16 h-16 md:w-28 md:h-28 rounded-full overflow-hidden shrink-0">
+                  <img
+                    src={person.img}
+                    alt={person.name}
+                    className={`w-full h-full object-cover ${index === 0 ? 'scale-[2.5] object-[20%_25%] -translate-y-10' : index === 1 ? 'scale-[1.8] object-center translate-y-8' : ''}`}
+                  />
+                </div>
 
                 <div>
                   <h3 className="about-heading text-base md:text-xl mb-0.5 md:mb-1">{person.name}</h3>
@@ -659,17 +661,31 @@ const About = ({ previewConfig, previewSettings }) => {
               "Nous croyons qu’un beau voyage ne se résume pas à une liste de monuments à visiter ou de photos à rapporter. Un véritable voyage est une émotion. Une rencontre. Un souvenir qui reste longtemps après le retour."
             </div>
 
-            <div className="space-y-6 text-sm md:text-base leading-relaxed text-[var(--about-text-light,#273137)]/90 font-medium">
-              <p>
-                Notre mission est de vous faire découvrir l’Inde autrement — une Inde plus humaine, plus sincère et profondément vivante. Loin des circuits impersonnels et du tourisme standardisé, nous imaginons des voyages uniques, pensés selon votre personnalité, votre rythme et votre manière de ressentir le monde.
-              </p>
-              <p>
-                Chaque itinéraire est conçu comme une expérience à vivre pleinement : partager un thé avec une famille dans un village du Rajasthan, assister à une cérémonie au lever du soleil sur les rives du Gange, traverser les paysages paisibles du Kerala ou écouter les histoires d’un guide passionné au cœur des anciens palais indiens.
-              </p>
-              <p>
-                À travers Indeora Voyages, nous souhaitons créer des moments vrais, des émotions profondes et des souvenirs qui marquent durablement. Parce que voyager en Inde, ce n’est pas seulement découvrir un pays — c’est apprendre à le ressentir, à le comprendre et parfois même à se redécouvrir soi-même.
-              </p>
-            </div>
+            {dynamicMission.length > 0 ? (
+              <div className="space-y-8 mt-8">
+                {dynamicMission.map((item, idx) => (
+                  <div key={idx} className="flex flex-col gap-4">
+                    {item.image && <img src={item.image} alt={item.title} className="w-full h-48 md:h-64 object-cover rounded-md shadow-md" />}
+                    <div>
+                      {item.title && <h3 className="about-heading text-xl md:text-2xl text-[var(--about-primary,#b89450)] mb-2">{item.title}</h3>}
+                      {item.description && <p className="text-sm md:text-base leading-relaxed text-[var(--about-text-light,#273137)]/90 whitespace-pre-line">{item.description}</p>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-6 text-sm md:text-base leading-relaxed text-[var(--about-text-light,#273137)]/90 font-medium">
+                <p>
+                  Notre mission est de vous faire découvrir l’Inde autrement — une Inde plus humaine, plus sincère et profondément vivante. Loin des circuits impersonnels et du tourisme standardisé, nous imaginons des voyages uniques, pensés selon votre personnalité, votre rythme et votre manière de ressentir le monde.
+                </p>
+                <p>
+                  Chaque itinéraire est conçu comme une expérience à vivre pleinement : partager un thé avec une famille dans un village du Rajasthan, assister à une cérémonie au lever du soleil sur les rives du Gange, traverser les paysages paisibles du Kerala ou écouter les histoires d’un guide passionné au cœur des anciens palais indiens.
+                </p>
+                <p>
+                  À travers Indeora Voyages, nous souhaitons créer des moments vrais, des émotions profondes et des souvenirs qui marquent durablement. Parce que voyager en Inde, ce n’est pas seulement découvrir un pays — c’est apprendre à le ressentir, à le comprendre et parfois même à se redécouvrir soi-même.
+                </p>
+              </div>
+            )}
 
             <div className="mt-10 text-center">
               <button

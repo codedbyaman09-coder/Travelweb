@@ -602,6 +602,24 @@ const BlogManager = () => {
           onClose={() => { setEditingContentFor(null); fetchBlogs(); }}
         />
       )}
+
+      {/* ── LIVE PREVIEW ── */}
+      <div className="mt-16 mb-8 text-center">
+        <h3 className="text-xl font-bold text-slate-400 uppercase tracking-widest">Aperçu en Direct</h3>
+        <p className="text-sm text-slate-500 mt-2">Les modifications apparaîtront instantanément ici.</p>
+        <div className="w-24 h-1 bg-slate-200 mx-auto mt-4 rounded-full"></div>
+      </div>
+
+      <div className="border-[12px] border-slate-800 rounded-2xl overflow-hidden shadow-2xl relative mb-20">
+        <div className="absolute top-0 w-full h-8 bg-slate-800 flex items-center justify-center gap-2 z-50">
+          <div className="w-3 h-3 rounded-full bg-red-500"></div>
+          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+        <div className="pt-8 h-[800px] overflow-y-auto bg-white custom-scrollbar pointer-events-auto">
+          <Blog />
+        </div>
+      </div>
     </div>
   );
 };

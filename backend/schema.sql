@@ -94,15 +94,31 @@ CREATE TABLE IF NOT EXISTS itineraries (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Table structure for faqs
-CREATE TABLE IF NOT EXISTS faqs (
+-- Table structure for faq_categories
+CREATE TABLE IF NOT EXISTS faq_categories (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  category VARCHAR(100) NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT,
+  image VARCHAR(255),
+  badge_number VARCHAR(50),
+  sort_order INT DEFAULT 0,
+  status ENUM('active', 'inactive') DEFAULT 'active',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Table structure for faq_questions
+CREATE TABLE IF NOT EXISTS faq_questions (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  category_id INT NOT NULL,
   question TEXT NOT NULL,
   answer TEXT NOT NULL,
-  display_order INT DEFAULT 0,
+  sort_order INT DEFAULT 0,
   status ENUM('active', 'inactive') DEFAULT 'active',
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (category_id) REFERENCES faq_categories(id) ON DELETE CASCADE
 );
 
 -- Table structure for pages (SEO)

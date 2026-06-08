@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import Footer from '../components/Footer';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -99,15 +98,8 @@ const Login = () => {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-gray-700/30 text-center text-xs text-gray-400">
-            Nouveau membre admin ?{' '}
-            <Link to="/register" className="text-[#C6A46D] hover:text-white font-bold transition-colors underline decoration-dotted">
-              Inscrivez-vous ici
-            </Link>
-          </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -60,7 +60,7 @@ const AboutManager = () => {
 
   async function fetchAbouts() {
     try {
-      const data = await apiList('abouts');
+      const data = await apiList('about-sections');
       setAbouts(data);
     } catch (error) {
       console.error("Error fetching abouts:", error);
@@ -105,6 +105,13 @@ const AboutManager = () => {
     });
   };
 
+  const handleResetToDefault = () => {
+    if (window.confirm("Voulez-vous vraiment réinitialiser le design aux couleurs par défaut d'origine ? (Vous devrez cliquer sur 'Tout Sauvegarder' ensuite pour appliquer)")) {
+      setThemeConfig(defaultThemeConfig);
+      setPageSettings(p => ({ ...p, about_config: JSON.stringify({ theme: defaultThemeConfig }) }));
+    }
+  };
+
   const handleSaveSettings = async (e) => {
     e?.preventDefault();
     setSavingSettings(true);
@@ -123,12 +130,12 @@ const AboutManager = () => {
     e.preventDefault();
     try {
       if (isEditing && editId) {
-        await apiRequest(`/abouts/${editId}`, { method: 'PUT', body: JSON.stringify(formData) });
+        await apiRequest(`/about-sections/${editId}`, { method: 'PUT', body: JSON.stringify(formData) });
       } else {
-        await apiRequest('/abouts', { method: 'POST', body: JSON.stringify(formData) });
+        await apiRequest('/about-sections', { method: 'POST', body: JSON.stringify(formData) });
       }
       setIsEditing(false);
-      setFormData({ type: activeSection === 'team' ? 'team' : activeSection === 'values' ? 'value' : activeSection === 'usp' ? 'feature' : 'team', title: '', subtitle: '', description: '', image: '', icon: '', display_order: 0 });
+      setFormData({ type: activeSection === 'team' ? 'team' : activeSection === 'values' ? 'value' : activeSection === 'history' ? 'history' : activeSection === 'mission' ? 'mission' : 'feature', title: '', subtitle: '', description: '', image: '', icon: '', display_order: 0 });
       setEditId(null);
       fetchAbouts();
     } catch (error) {
@@ -145,7 +152,7 @@ const AboutManager = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Êtes-vous sûr de vouloir supprimer cet élément ?")) {
       try {
-        await apiRequest(`/abouts/${id}`, { method: 'DELETE' });
+        await apiRequest(`/about-sections/${id}`, { method: 'DELETE' });
         fetchAbouts();
       } catch (error) {
         console.error("Error deleting:", error);
@@ -310,7 +317,7 @@ const AboutManager = () => {
           <h4 className="font-bold text-indigo-600 text-sm mb-2">{isEditing ? 'Modifier un Élément' : 'Ajouter un Élément'}</h4>
           <div className="grid grid-cols-2 gap-4">
             <div><label className="block text-xs font-bold text-slate-500 mb-1">Titre / Nom</label><input required type="text" value={formData.title} onChange={e => setFormData({ ...formData, title: e.target.value })} className="bg-white text-slate-800 w-full border px-3 py-2 rounded" /></div>
-            {(itemType === 'team' || itemType === 'feature') && <div><label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label><input type="text" value={formData.image} onChange={e => setFormData({ ...formData, image: e.target.value })} className="bg-white text-slate-800 w-full border px-3 py-2 rounded" /></div>}
+            {itemType !== 'value' && <div><label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label><input type="text" value={formData.image} onChange={e => setFormData({ ...formData, image: e.target.value })} className="bg-white text-slate-800 w-full border px-3 py-2 rounded" /></div>}
             {itemType === 'team' && <div><label className="block text-xs font-bold text-slate-500 mb-1">Sous-titre / Rôle</label><input type="text" value={formData.subtitle} onChange={e => setFormData({ ...formData, subtitle: e.target.value })} className="bg-white text-slate-800 w-full border px-3 py-2 rounded" /></div>}
             {itemType === 'value' && <div><label className="block text-xs font-bold text-slate-500 mb-1">Icône (Caractère)</label><input type="text" value={formData.icon} onChange={e => setFormData({ ...formData, icon: e.target.value })} className="bg-white text-slate-800 w-full border px-3 py-2 rounded" /></div>}
             <div><label className="block text-xs font-bold text-slate-500 mb-1">Ordre</label><input type="number" value={formData.display_order} onChange={e => setFormData({ ...formData, display_order: parseInt(e.target.value) })} className="bg-white text-slate-800 w-full border px-3 py-2 rounded" /></div>
@@ -335,6 +342,8 @@ const AboutManager = () => {
                       <img src={item.title === 'Voyages Sur Mesure' ? CustomIcon : item.title === 'Guides Privés' ? guideIcon : item.title === 'Assistance Voyage 24h/24 Et 7j/7' ? assistanceIcon : expertIcon} alt={item.title} className="w-10 h-10 object-cover rounded-md shrink-0 border border-slate-200" />
                     ) : item.type === 'team' ? (
                       <img src={dipeshImg} alt={item.title} className="w-10 h-10 object-cover rounded-md shrink-0 border border-slate-200" />
+                    ) : item.type === 'mission' || item.type === 'history' ? (
+                      <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=120&q=90" alt={item.title} className="w-10 h-10 object-cover rounded-md shrink-0 border border-slate-200" />
                     ) : item.icon ? (
                       <div className="w-10 h-10 bg-slate-100 text-slate-600 rounded-md flex items-center justify-center text-xl shrink-0 border border-slate-200">{item.icon}</div>
                     ) : (
@@ -359,9 +368,18 @@ const AboutManager = () => {
 
   return (
     <div className="space-y-6 animate-fadeIn pb-20">
-      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
-        <h2 className="text-2xl font-bold text-slate-800">Dynamic About Page Manager</h2>
-        <p className="text-slate-500 text-sm mt-1">Gérez le contenu, les éléments et le design de la page À Propos en temps réel.</p>
+      <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-between items-center">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800">Dynamic About Page Manager</h2>
+          <p className="text-slate-500 text-sm mt-1">Gérez le contenu, les éléments et le design de la page À Propos en temps réel.</p>
+        </div>
+        <button 
+          onClick={handleResetToDefault}
+          className="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-lg font-bold text-xs uppercase tracking-wider transition-colors flex items-center gap-2"
+        >
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+          Réinitialiser le Design
+        </button>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-6">

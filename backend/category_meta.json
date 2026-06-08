@@ -1,0 +1,74 @@
+{
+  "Santé & Sécurité": {
+    "no": "02",
+    "img": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=900",
+    "color": "#4b7d33",
+    "desc": "Toutes les informations santé et sécurité pour voyager sereinement en Inde."
+  },
+  "Luxe & Expériences Exclusives en Inde": {
+    "no": "03",
+    "img": "https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=900",
+    "color": "#2f7c4b",
+    "desc": "Découvrez les expériences les plus raffinées et authentiques pour voyager en Inde avec élégance grâce à Indeora Voyages"
+  },
+  "Voyage en Famille en Inde": {
+    "no": "04",
+    "img": "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=900",
+    "color": "#b84d6b",
+    "desc": "Toutes les informations essentielles pour organiser un voyage en famille en Inde avec Indeora Voyages."
+  },
+  "Santé & Sécurité en Inde": {
+    "no": "05",
+    "img": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=900",
+    "color": "#b67816",
+    "desc": "Toutes les informations essentielles pour voyager sereinement en Inde avec Indeora Voyages."
+  },
+  "Indeora Voyages & Organisation": {
+    "no": "06",
+    "img": "https://images.unsplash.com/photo-1561361513-2d000a50f0dc?q=80&w=900",
+    "color": "#4b7d33",
+    "desc": "Toutes les réponses aux questions les plus fréquentes concernant l’organisation de votre voyage avec Indeora Voyages."
+  },
+  "Voyage & Découverte de l’Inde": {
+    "no": "07",
+    "img": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=900",
+    "color": "#0b6b86",
+    "desc": "Découvrez les questions essentielles autour des voyages en Inde à travers cette FAQ signée Indeora Voyages."
+  },
+  "Culture & Traditions indiennes": {
+    "no": "08",
+    "img": "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=900",
+    "color": "#5b4c91",
+    "desc": "Découvrez les traditions, symboles et coutumes qui rendent l’Inde si fascinante à travers cette FAQ culturelle signée Indeora Voyages."
+  },
+  "Femme voyageant en Inde": {
+    "no": "09",
+    "img": "https://images.unsplash.com/photo-1587135941948-670b381f08ce?q=80&w=900",
+    "color": "#bd7b16",
+    "desc": "Toutes les informations essentielles pour voyager sereinement en Inde en tant que femme avec Indeora Voyages"
+  },
+  "Climat & Saisons en Inde": {
+    "no": "10",
+    "img": "https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=900",
+    "color": "#56439a",
+    "desc": "Toutes les informations essentielles pour choisir la meilleure période pour voyager en Inde avec Indeora Voyages."
+  },
+  "Première découverte de l’Inde": {
+    "no": "11",
+    "img": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900",
+    "color": "#ad6b15",
+    "desc": "Toutes les informations essentielles pour préparer un premier voyage en Inde avec Indeora Voyages."
+  },
+  "Budget & Prix — Voyage en Inde": {
+    "no": "12",
+    "img": "https://images.unsplash.com/photo-1518002054494-3a6f94352e9d?q=80&w=900",
+    "color": "#0f7a61",
+    "desc": "Toutes les informations essentielles pour comprendre le budget d’un voyage en Inde avec Indeora Voyages."
+  },
+  "Avant de partir en Inde": {
+    "no": "13",
+    "img": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=900",
+    "color": "#ad6b15",
+    "desc": "Toutes les informations essentielles pour préparer votre voyage en Inde sereinement avec Indeora Voyages."
+  }
+}
